@@ -49,7 +49,7 @@ const wordpressPathCardEndpoint =
   'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=5&_embed=1&orderby=date&order=desc'
 
 const wordpressAircraftShowcaseEndpoint =
-  'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=4&_embed=1&orderby=date&order=desc'
+  'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=5&_embed=1&orderby=date&order=desc'
 
 const wordpressAircraftShowcaseCategory = 790298188
 
@@ -77,6 +77,9 @@ const wordpressPathCardCategories = {
     zh: 790297636,
   },
 }
+
+let aircraftShowcaseImageCache = []
+const newsPostsCache = {}
 
 const newsFallbackImages = [
   '/assets/news/news-cabin-wide.jpg',
@@ -215,18 +218,27 @@ function getPathCardCarouselHostHtml(cardKey, fallbackImage, fallbackTitle) {
   return `<div class="img-wrap path-card-carousel-host" data-path-card-carousel-host data-card-key="${cardKey}" data-fallback-image="${fallbackImage}" data-fallback-title="${fallbackTitle}"></div>`
 }
 
-function getAircraftShowcaseHostHtml(fallbackImage, fallbackTitle) {
-  return `<div class="img-wrap aircraft-showcase-carousel-host" data-aircraft-showcase-carousel-host data-fallback-image="${fallbackImage}" data-fallback-title="${fallbackTitle}"></div>`
+function getAircraftShowcaseHostHtml() {
+  return '<div class="img-wrap aircraft-showcase-carousel-host" data-aircraft-showcase-carousel-host></div>'
+}
+
+function addMobileMenuToggle(html) {
+  if (html.includes('data-mobile-menu-toggle')) return html
+  return html.replace(
+    '\n  <nav class="primary">',
+    '\n  <button class="mobile-menu-toggle" type="button" aria-label="Menu" aria-expanded="false" data-mobile-menu-toggle><span></span><span></span><span></span></button>\n  <nav class="primary">',
+  )
 }
 
 function getPageHtml(page, routeKey) {
-  if (routeKey !== 'home') return page.html
+  const html = addMobileMenuToggle(page.html)
+  if (routeKey !== 'home') return html
   return pathCardImagePatterns.reduce(
     (html, { key, pattern }) => html.replace(pattern, (_, fallbackImage, fallbackTitle) => getPathCardCarouselHostHtml(key, fallbackImage, fallbackTitle)),
-    page.html,
+    html,
   )
     .replace(heroBackgroundPattern, (_, fallbackImage) => getHeroBannerHostHtml(fallbackImage))
-    .replace(aircraftShowcaseImagePattern, (_, fallbackImage, fallbackTitle) => getAircraftShowcaseHostHtml(fallbackImage, fallbackTitle))
+    .replace(aircraftShowcaseImagePattern, () => getAircraftShowcaseHostHtml())
     .replace(certificationCopyPattern, `${newsCarouselHostHtml}$1`)
 }
 
@@ -267,8 +279,7 @@ function sanitizePostHtml(html = '') {
 function normalizePost(post, index, lang) {
   const contentHtml = post.content?.rendered || ''
   const title = decodeHtml(post.title?.rendered) || (lang === 'zh' ? 'Aviona 最新动态' : 'Aviona Update')
-  const embeddedImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url
-  const image = post.jetpack_featured_media_url || embeddedImage || getFirstImageFromHtml(contentHtml) || newsFallbackImages[index % newsFallbackImages.length]
+  const image = getNewsPostImage(post, index)
 
   return {
     id: post.id,
@@ -278,6 +289,19 @@ function normalizePost(post, index, lang) {
     image,
     contentHtml: sanitizePostHtml(contentHtml),
   }
+}
+
+function getNewsPostImage(post, index) {
+  const contentHtml = post.content?.rendered || ''
+  const embeddedImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url
+  return post.jetpack_featured_media_url || embeddedImage || getFirstImageFromHtml(contentHtml) || newsFallbackImages[index % newsFallbackImages.length]
+}
+
+function preloadImage(src) {
+  if (!src) return
+  const image = new Image()
+  image.decoding = 'async'
+  image.src = src
 }
 
 function formatPostDate(date, lang) {
@@ -512,7 +536,7 @@ function PathCardImageCarousel({ cardKey, fallbackImage, fallbackTitle, lang }) 
   )
 }
 
-function AircraftShowcaseCarousel({ fallbackImage, fallbackTitle }) {
+function AircraftShowcaseCarousel({ lang }) {
   const trackRef = useRef(null)
   const dragRef = useRef({
     active: false,
@@ -523,7 +547,8 @@ function AircraftShowcaseCarousel({ fallbackImage, fallbackTitle }) {
     startY: 0,
   })
   const lastInteractionRef = useRef(0)
-  const [images, setImages] = useState([])
+  const [images, setImages] = useState(() => aircraftShowcaseImageCache)
+  const [status, setStatus] = useState(aircraftShowcaseImageCache.length > 0 ? 'ready' : 'loading')
   const [activeIndex, setActiveIndex] = useState(0)
   const [dragOffset, setDragOffset] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
@@ -540,16 +565,22 @@ function AircraftShowcaseCarousel({ fallbackImage, fallbackTitle }) {
 
         const data = await response.json()
         const nextImages = Array.isArray(data)
-          ? data.map((post) => normalizeImagePost(post, fallbackImage)).filter((image) => image.image).slice(0, 4)
+          ? data.map((post) => normalizeImagePost(post)).filter((image) => image.image).slice(0, 5)
           : []
 
         if (!cancelled) {
-          setImages(nextImages)
+          if (nextImages.length > 0) {
+            aircraftShowcaseImageCache = nextImages
+            setImages(nextImages)
+            setStatus('ready')
+          } else if (aircraftShowcaseImageCache.length === 0) {
+            setStatus('empty')
+          }
           setActiveIndex(0)
           setDragOffset(0)
         }
       } catch {
-        if (!cancelled) setImages([])
+        if (!cancelled && aircraftShowcaseImageCache.length === 0) setStatus('error')
       }
     }
 
@@ -559,12 +590,9 @@ function AircraftShowcaseCarousel({ fallbackImage, fallbackTitle }) {
       cancelled = true
       window.clearInterval(timer)
     }
-  }, [fallbackImage])
+  }, [])
 
-  const slides = [
-    { id: 'fallback', image: fallbackImage, title: fallbackTitle },
-    ...images,
-  ].slice(0, 5)
+  const slides = images
   const safeActiveIndex = Math.min(activeIndex, Math.max(slides.length - 1, 0))
 
   useEffect(() => {
@@ -656,28 +684,43 @@ function AircraftShowcaseCarousel({ fallbackImage, fallbackTitle }) {
 
   return (
     <div className="aircraft-showcase-carousel">
-      <div
-        className="aircraft-showcase-track"
-        ref={trackRef}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerEnd}
-        onPointerCancel={handlePointerCancel}
-        onPointerLeave={handlePointerEnd}
-        onMouseDown={(event) => {
-          if (!dragRef.current.active) handlePointerDown(event)
-        }}
-        onMouseMove={handlePointerMove}
-        onMouseUp={handlePointerEnd}
-        onMouseLeave={handlePointerEnd}
-        style={{ transform: trackTransform }}
-      >
-        {slides.map((slide) => (
-          <div className="aircraft-showcase-slide" key={slide.id}>
-            <img src={slide.image} alt={slide.title} draggable={false} loading="lazy" onDragStart={(event) => event.preventDefault()} />
-          </div>
-        ))}
-      </div>
+      {slides.length > 0 ? (
+        <div
+          className="aircraft-showcase-track"
+          ref={trackRef}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerEnd}
+          onPointerCancel={handlePointerCancel}
+          onPointerLeave={handlePointerEnd}
+          onMouseDown={(event) => {
+            if (!dragRef.current.active) handlePointerDown(event)
+          }}
+          onMouseMove={handlePointerMove}
+          onMouseUp={handlePointerEnd}
+          onMouseLeave={handlePointerEnd}
+          style={{ transform: trackTransform }}
+        >
+          {slides.map((slide, index) => (
+            <div className="aircraft-showcase-slide" key={slide.id}>
+              <img
+                src={slide.image}
+                alt={slide.title}
+                draggable={false}
+                loading="eager"
+                fetchPriority={index === safeActiveIndex ? 'high' : 'auto'}
+                onDragStart={(event) => event.preventDefault()}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="aircraft-showcase-placeholder">
+          {status === 'error'
+            ? (lang === 'zh' ? '暂时无法读取飞机图片' : 'Unable to load aircraft images')
+            : (lang === 'zh' ? '正在读取飞机图片...' : 'Loading aircraft images...')}
+        </div>
+      )}
 
       {slides.length > 1 && (
         <div className="aircraft-showcase-dots" aria-hidden="true">
@@ -843,13 +886,15 @@ function HeroBanner({ fallbackImage, lang }) {
 function NewsCarousel({ lang }) {
   const trackRef = useRef(null)
   const dragRef = useRef({ active: false, moved: false, postId: null, scrollLeft: 0, startX: 0, startY: 0 })
-  const [posts, setPosts] = useState([])
-  const [status, setStatus] = useState('loading')
+  const [posts, setPosts] = useState(() => newsPostsCache[lang] || [])
+  const [status, setStatus] = useState(newsPostsCache[lang]?.length > 0 ? 'ready' : 'loading')
   const [activeIndex, setActiveIndex] = useState(0)
   const [activePost, setActivePost] = useState(null)
 
   useEffect(() => {
     let cancelled = false
+    const cachedPosts = newsPostsCache[lang] || []
+    cachedPosts.forEach((post, index) => preloadImage(getNewsPostImage(post, index)))
 
     async function loadPosts() {
       try {
@@ -860,13 +905,16 @@ function NewsCarousel({ lang }) {
 
         const data = await response.json()
         if (!cancelled) {
-          setPosts(Array.isArray(data) ? data.slice(0, 4) : [])
+          const nextPosts = Array.isArray(data) ? data.slice(0, 4) : []
+          newsPostsCache[lang] = nextPosts
+          nextPosts.forEach((post, index) => preloadImage(getNewsPostImage(post, index)))
+          setPosts(nextPosts)
           setActiveIndex(0)
           trackRef.current?.scrollTo({ left: 0, behavior: 'auto' })
           setStatus('ready')
         }
       } catch {
-        if (!cancelled) setStatus('error')
+        if (!cancelled && cachedPosts.length === 0) setStatus('error')
       }
     }
 
@@ -1007,10 +1055,17 @@ function NewsCarousel({ lang }) {
               onPointerLeave={(event) => handlePointerEnd(event, { openOnTap: false })}
               onScroll={handleScroll}
             >
-              {normalizedPosts.map((post) => (
+              {normalizedPosts.map((post, index) => (
                 <button className="news-slide" data-post-id={post.id} key={post.id} type="button" onClick={(event) => handleSlideClick(event, post)}>
                   <span className="news-slide-image">
-                    <img src={post.image} alt="" loading="lazy" />
+                    <img
+                      src={post.image}
+                      alt=""
+                      draggable={false}
+                      loading="eager"
+                      fetchPriority={index === activeIndex ? 'high' : 'auto'}
+                      onDragStart={(event) => event.preventDefault()}
+                    />
                   </span>
                   <span className="news-slide-copy">
                     <span className="news-slide-date">{formatPostDate(post.date, lang)}</span>
@@ -1172,6 +1227,13 @@ function scrollToSection(id) {
   window.scrollTo({ top, behavior: 'smooth' })
 }
 
+function closeMobileMenu(root) {
+  const header = root?.querySelector('header.site.mobile-menu-open')
+  if (!header) return
+  header.classList.remove('mobile-menu-open')
+  header.querySelector('[data-mobile-menu-toggle]')?.setAttribute('aria-expanded', 'false')
+}
+
 function App() {
   const pageRootRef = useRef(null)
   const heroBannerRootRef = useRef(null)
@@ -1264,7 +1326,7 @@ function App() {
       }
     }
 
-    newsCarouselRootRef.current.root.render(<NewsCarousel lang={lang} />)
+    newsCarouselRootRef.current.root.render(<NewsCarousel key={lang} lang={lang} />)
   }, [pageHtml, route.key, lang])
 
   useEffect(() => {
@@ -1282,12 +1344,9 @@ function App() {
     }
 
     aircraftShowcaseRootRef.current.root.render(
-      <AircraftShowcaseCarousel
-        fallbackImage={host.dataset.fallbackImage || '/assets/aviona-jet.jpg'}
-        fallbackTitle={host.dataset.fallbackTitle || 'Aviona aircraft'}
-      />,
+      <AircraftShowcaseCarousel lang={lang} />,
     )
-  }, [pageHtml, route.key])
+  }, [pageHtml, route.key, lang])
 
   useEffect(() => {
     const hosts = Array.from(pageRootRef.current?.querySelectorAll('[data-path-card-carousel-host]') || [])
@@ -1365,6 +1424,20 @@ function App() {
     const root = pageRootRef.current
     if (!(target instanceof Element) || !root) return
 
+    const mobileMenuToggle = target.closest('[data-mobile-menu-toggle]')
+    if (mobileMenuToggle) {
+      event.preventDefault()
+      const header = mobileMenuToggle.closest('header.site')
+      const isOpen = !header?.classList.contains('mobile-menu-open')
+      header?.classList.toggle('mobile-menu-open', isOpen)
+      mobileMenuToggle.setAttribute('aria-expanded', String(isOpen))
+      return
+    }
+
+    if (root.querySelector('header.site.mobile-menu-open') && !target.closest('header.site')) {
+      closeMobileMenu(root)
+    }
+
     const toast = target.closest('#toast')
     if (toast) {
       toast.classList.remove('show')
@@ -1408,24 +1481,28 @@ function App() {
 
       if (action === 'external') {
         event.preventDefault()
+        closeMobileMenu(root)
         showToast(dataTarget)
         return
       }
 
       if (action === 'scroll') {
         event.preventDefault()
+        closeMobileMenu(root)
         scrollToSection(dataTarget)
         return
       }
 
       if (action === 'page') {
         event.preventDefault()
+        closeMobileMenu(root)
         navigateToPageKey(dataTargetToPage[dataTarget] || 'home')
         return
       }
 
       if (action === 'page-scroll') {
         event.preventDefault()
+        closeMobileMenu(root)
         const section = actionEl.getAttribute('data-section')
         navigateToPageKey(dataTargetToPage[dataTarget] || 'home', section ? `#${section}` : '')
         return
@@ -1441,6 +1518,7 @@ function App() {
     const url = new URL(href, window.location.origin)
     if (url.origin === window.location.origin && isAppPath(url.pathname)) {
       event.preventDefault()
+      closeMobileMenu(root)
       navigate(url.pathname, url.hash)
     }
   }
