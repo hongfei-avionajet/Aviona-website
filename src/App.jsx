@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { createRoot } from 'react-dom/client'
 import { I18N } from './content/i18n'
@@ -52,6 +52,9 @@ const wordpressAircraftShowcaseEndpoint =
   'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=5&_embed=1&orderby=date&order=desc'
 
 const wordpressAircraftShowcaseCategory = 790298188
+const wordpressAircraftHeroMediaCategory = 790314762
+const wordpressAircraftHeroMediaEndpoint =
+  'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=1&_embed=1&orderby=date&order=desc'
 
 const wordpressNewsCategories = {
   en: 4236455,
@@ -79,6 +82,8 @@ const wordpressPathCardCategories = {
 }
 
 let aircraftShowcaseImageCache = []
+let aircraftHeroMediaCache = []
+const videoPressSourceCache = {}
 const newsPostsCache = {}
 
 const newsFallbackImages = [
@@ -214,6 +219,10 @@ function getHeroBannerHostHtml(fallbackImage) {
   return `<div class="hero-bg hero-banner-host" data-hero-banner-host data-fallback-image="${fallbackImage}" style="background-image: url('${fallbackImage}');"></div>`
 }
 
+function getAircraftHeroMediaHostHtml(fallbackImage) {
+  return `<div class="hero-bg aircraft-media-banner-host" data-aircraft-media-banner-host data-fallback-image="${fallbackImage}" style="background-image: url('${fallbackImage}');"></div>`
+}
+
 function getPathCardCarouselHostHtml(cardKey, fallbackImage, fallbackTitle) {
   return `<div class="img-wrap path-card-carousel-host" data-path-card-carousel-host data-card-key="${cardKey}" data-fallback-image="${fallbackImage}" data-fallback-title="${fallbackTitle}"></div>`
 }
@@ -232,7 +241,12 @@ function addMobileMenuToggle(html) {
 
 function getPageHtml(page, routeKey) {
   const html = addMobileMenuToggle(page.html)
+  if (routeKey === 'aircraft') {
+    return html.replace(heroBackgroundPattern, (_, fallbackImage) => getAircraftHeroMediaHostHtml(fallbackImage))
+  }
+
   if (routeKey !== 'home') return html
+
   return pathCardImagePatterns.reduce(
     (html, { key, pattern }) => html.replace(pattern, (_, fallbackImage, fallbackTitle) => getPathCardCarouselHostHtml(key, fallbackImage, fallbackTitle)),
     html,
@@ -251,6 +265,150 @@ function decodeHtml(value = '') {
 function getFirstImageFromHtml(html = '') {
   const match = html.match(/<img[^>]+src="([^"]+)"/)
   return match?.[1]?.replaceAll('&amp;', '&') || ''
+}
+
+function cleanMediaUrl(value = '') {
+  return value.replaceAll('&amp;', '&').trim()
+}
+
+function isVideoUrl(value = '') {
+  return /\.(mp4|m4v|mov|webm)(\?|#|$)/i.test(value)
+}
+
+function getImageUrlFromElement(element) {
+  return cleanMediaUrl(
+    element.getAttribute('data-orig-file') ||
+      element.getAttribute('data-large-file') ||
+      element.getAttribute('src') ||
+      '',
+  )
+}
+
+function getVideoUrlFromElement(element) {
+  if (element.tagName.toLowerCase() === 'video') {
+    return cleanMediaUrl(
+      element.getAttribute('src') ||
+        element.querySelector('source')?.getAttribute('src') ||
+        '',
+    )
+  }
+
+  return cleanMediaUrl(element.getAttribute('src') || element.getAttribute('href') || '')
+}
+
+function getEmbedUrlFromElement(element) {
+  return cleanMediaUrl(element.getAttribute('src') || '')
+}
+
+function getPlayableEmbedUrl(src = '') {
+  try {
+    const url = new URL(src)
+    url.searchParams.delete('cover')
+    url.searchParams.set('autoPlay', '1')
+    url.searchParams.set('controls', '1')
+    url.searchParams.set('playsinline', '1')
+    url.searchParams.set('muted', '1')
+    return url.toString()
+  } catch {
+    return src
+  }
+}
+
+function getVideoPressGuid(src = '') {
+  try {
+    const url = new URL(src)
+    if (!/video\.wordpress\.com$/i.test(url.hostname)) return ''
+    const match = url.pathname.match(/\/(?:embed|v)\/([^/?#]+)/)
+    return match?.[1] || ''
+  } catch {
+    return ''
+  }
+}
+
+function getVideoPressFileUrl(metadata = {}) {
+  const base = metadata.file_url_base?.https || metadata.file_url_base?.http || ''
+  const files = metadata.files || {}
+  const mp4Path =
+    files.hd?.mp4 ||
+    files.dvd?.mp4 ||
+    files.avc_240p?.mp4 ||
+    files.std?.mp4 ||
+    ''
+
+  if (metadata.original) return cleanMediaUrl(metadata.original)
+  if (base && mp4Path) return cleanMediaUrl(`${base}${mp4Path}`)
+  return ''
+}
+
+async function resolveVideoPressEmbeds(media) {
+  const resolved = await Promise.all(media.map(async (item) => {
+    if (item.type !== 'embed') return item
+
+    const guid = getVideoPressGuid(item.src)
+    if (!guid) return item
+
+    try {
+      if (!videoPressSourceCache[guid]) {
+        const response = await fetch(`https://public-api.wordpress.com/rest/v1.1/videos/${guid}`, {
+          headers: { Accept: 'application/json' },
+        })
+        if (!response.ok) throw new Error(`VideoPress returned ${response.status}`)
+        const metadata = await response.json()
+        videoPressSourceCache[guid] = {
+          src: getVideoPressFileUrl(metadata),
+          poster: cleanMediaUrl(metadata.poster || ''),
+          title: decodeHtml(metadata.title || item.title),
+        }
+      }
+
+      const video = videoPressSourceCache[guid]
+      if (!video.src) return item
+
+      return {
+        ...item,
+        type: 'video',
+        src: video.src,
+        poster: video.poster || item.poster || '',
+        title: video.title || item.title,
+      }
+    } catch {
+      return item
+    }
+  }))
+
+  return resolved
+}
+
+function extractMediaFromPostHtml(html = '') {
+  const template = document.createElement('template')
+  template.innerHTML = html
+
+  const seen = new Set()
+  const media = []
+
+  template.content.querySelectorAll('video, source, iframe, img, a[href]').forEach((element) => {
+    const tagName = element.tagName.toLowerCase()
+    const type = tagName === 'img' ? 'image' : tagName === 'iframe' ? 'embed' : 'video'
+    const src = type === 'image'
+      ? getImageUrlFromElement(element)
+      : type === 'embed'
+        ? getEmbedUrlFromElement(element)
+        : getVideoUrlFromElement(element)
+
+    if (!src || seen.has(src)) return
+    if (type === 'video' && !isVideoUrl(src)) return
+
+    seen.add(src)
+    media.push({
+      id: `media-${media.length}-${src}`,
+      type,
+      src,
+      poster: tagName === 'video' ? cleanMediaUrl(element.getAttribute('poster') || '') : '',
+      title: element.getAttribute('title') || element.getAttribute('alt') || 'Aviona aircraft media',
+    })
+  })
+
+  return media
 }
 
 function sanitizePostHtml(html = '') {
@@ -333,6 +491,10 @@ function getAircraftShowcaseEndpoint() {
   return `${wordpressAircraftShowcaseEndpoint}&categories=${wordpressAircraftShowcaseCategory}`
 }
 
+function getAircraftHeroMediaEndpoint() {
+  return `${wordpressAircraftHeroMediaEndpoint}&categories=${wordpressAircraftHeroMediaCategory}`
+}
+
 function normalizeBannerPost(post) {
   const contentHtml = post.content?.rendered || ''
   const embeddedImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url
@@ -355,6 +517,25 @@ function normalizeImagePost(post, fallbackImage) {
     title: decodeHtml(post.title?.rendered) || 'Aviona',
     image,
   }
+}
+
+function normalizeAircraftHeroMediaPost(post, fallbackImage) {
+  const contentHtml = post.content?.rendered || ''
+  const media = extractMediaFromPostHtml(contentHtml)
+  const embeddedImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url
+  const fallbackMedia = post.jetpack_featured_media_url || embeddedImage || fallbackImage
+
+  if (media.length > 0) return media.slice(0, 8)
+
+  return fallbackMedia
+    ? [{
+        id: 'fallback',
+        type: 'image',
+        src: fallbackMedia,
+        poster: '',
+        title: 'Aviona aircraft',
+      }]
+    : []
 }
 
 function PathCardImageCarousel({ cardKey, fallbackImage, fallbackTitle, lang }) {
@@ -883,6 +1064,288 @@ function HeroBanner({ fallbackImage, lang }) {
   )
 }
 
+function AircraftHeroMediaBanner({ fallbackImage, lang }) {
+  const trackRef = useRef(null)
+  const dragRef = useRef({ active: false, moved: false, scrollLeft: 0, startX: 0 })
+  const [media, setMedia] = useState(() => aircraftHeroMediaCache)
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [activeMedia, setActiveMedia] = useState(null)
+
+  useEffect(() => {
+    let cancelled = false
+
+    async function loadMedia() {
+      try {
+        const response = await fetch(`${getAircraftHeroMediaEndpoint()}&_=${Date.now()}`, {
+          headers: { Accept: 'application/json' },
+        })
+        if (!response.ok) throw new Error(`WordPress returned ${response.status}`)
+
+        const data = await response.json()
+        let nextMedia = Array.isArray(data) && data[0]
+          ? normalizeAircraftHeroMediaPost(data[0], fallbackImage)
+          : []
+        nextMedia = await resolveVideoPressEmbeds(nextMedia)
+
+        if (!cancelled) {
+          if (nextMedia.length > 0) {
+            aircraftHeroMediaCache = nextMedia
+            setMedia(nextMedia)
+          } else if (aircraftHeroMediaCache.length === 0) {
+            setMedia([])
+          }
+
+          setActiveIndex(0)
+          trackRef.current?.scrollTo({ left: 0, behavior: 'auto' })
+        }
+      } catch {
+        if (!cancelled && aircraftHeroMediaCache.length === 0) setMedia([])
+      }
+    }
+
+    loadMedia()
+    const timer = window.setInterval(loadMedia, 300000)
+    return () => {
+      cancelled = true
+      window.clearInterval(timer)
+    }
+  }, [fallbackImage])
+
+  const slides = useMemo(
+    () => (media.length > 0
+      ? media
+      : [{
+          id: 'fallback-aircraft-hero',
+          type: 'image',
+          src: fallbackImage,
+          poster: '',
+          title: 'Aviona aircraft',
+        }]),
+    [fallbackImage, media],
+  )
+
+  const safeActiveIndex = Math.min(activeIndex, Math.max(slides.length - 1, 0))
+
+  const goToSlide = useCallback((index, behavior = 'smooth') => {
+    const track = trackRef.current
+    if (!track || !track.clientWidth) return
+
+    const nextIndex = Math.min(Math.max(index, 0), slides.length - 1)
+    track.scrollTo({ left: nextIndex * track.clientWidth, behavior })
+    setActiveIndex(nextIndex)
+  }, [slides.length])
+
+  useEffect(() => {
+    if (slides.length <= 1 || activeMedia) return undefined
+    if (slides[safeActiveIndex]?.type === 'video') return undefined
+
+    const timer = window.setTimeout(() => {
+      if (dragRef.current.active) return
+      goToSlide((safeActiveIndex + 1) % slides.length)
+    }, 5000)
+
+    return () => window.clearTimeout(timer)
+  }, [activeMedia, goToSlide, safeActiveIndex, slides])
+
+  useEffect(() => {
+    trackRef.current?.querySelectorAll('video[data-media-index]').forEach((video) => {
+      const isActive = Number(video.dataset.mediaIndex) === safeActiveIndex
+      if (isActive) {
+        if (video.dataset.wasActive !== 'true') {
+          try {
+            video.currentTime = 0
+          } catch {
+            // Some browsers block seeking before metadata is ready.
+          }
+        }
+        video.dataset.wasActive = 'true'
+        video.play().catch(() => {})
+      } else {
+        video.dataset.wasActive = 'false'
+        video.pause()
+      }
+    })
+  }, [safeActiveIndex, slides])
+
+  useEffect(() => {
+    if (!activeMedia) return undefined
+
+    function closeOnEscape(event) {
+      if (event.key === 'Escape') setActiveMedia(null)
+    }
+
+    document.body.classList.add('modal-open')
+    window.addEventListener('keydown', closeOnEscape)
+    return () => {
+      document.body.classList.remove('modal-open')
+      window.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [activeMedia])
+
+  function handleScroll() {
+    const track = trackRef.current
+    if (!track || !track.clientWidth) return
+    setActiveIndex(Math.min(Math.round(track.scrollLeft / track.clientWidth), slides.length - 1))
+  }
+
+  function handleVideoEnded(index) {
+    if (index !== safeActiveIndex || activeMedia || dragRef.current.active || slides.length <= 1) return
+    goToSlide((index + 1) % slides.length)
+  }
+
+  function snapToNearestSlide() {
+    const track = trackRef.current
+    if (!track || !track.clientWidth) return
+
+    const nextIndex = Math.min(Math.round(track.scrollLeft / track.clientWidth), slides.length - 1)
+    goToSlide(nextIndex)
+  }
+
+  function handlePointerDown(event) {
+    const track = trackRef.current
+    if (!track || slides.length <= 1) return
+
+    dragRef.current = {
+      active: true,
+      moved: false,
+      scrollLeft: track.scrollLeft,
+      startX: event.clientX,
+    }
+    track.classList.add('dragging')
+    if (event.pointerId !== undefined) track.setPointerCapture?.(event.pointerId)
+    event.preventDefault()
+  }
+
+  function handlePointerMove(event) {
+    const track = trackRef.current
+    const drag = dragRef.current
+    if (!track || !drag.active) return
+
+    const distance = event.clientX - drag.startX
+    if (Math.abs(distance) > 3) drag.moved = true
+    track.scrollLeft = drag.scrollLeft - distance
+    if (drag.moved) event.preventDefault()
+  }
+
+  function handlePointerEnd(event) {
+    const track = trackRef.current
+    if (!track || !dragRef.current.active) return
+
+    dragRef.current.active = false
+    track.classList.remove('dragging')
+    if (event.pointerId !== undefined) track.releasePointerCapture?.(event.pointerId)
+    snapToNearestSlide()
+  }
+
+  function handleSlideClick(slide) {
+    if (dragRef.current.moved) {
+      dragRef.current.moved = false
+      return
+    }
+
+    setActiveMedia(slide)
+  }
+
+  return (
+    <>
+      <div className="aircraft-media-banner">
+        <div
+          className="aircraft-media-track"
+          ref={trackRef}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerEnd}
+          onPointerCancel={handlePointerEnd}
+          onPointerLeave={handlePointerEnd}
+          onMouseDown={(event) => {
+            if (!dragRef.current.active) handlePointerDown(event)
+          }}
+          onMouseMove={handlePointerMove}
+          onMouseUp={handlePointerEnd}
+          onMouseLeave={handlePointerEnd}
+          onScroll={handleScroll}
+        >
+          {slides.map((slide, index) => (
+            <div
+              className={`aircraft-media-slide is-${slide.type}`}
+              key={slide.id}
+              onClick={() => handleSlideClick(slide)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault()
+                  setActiveMedia(slide)
+                }
+              }}
+            >
+              {slide.type === 'video' ? (
+                <video
+                  data-media-index={index}
+                  src={slide.src}
+                  poster={slide.poster || undefined}
+                  muted
+                  playsInline
+                  preload="metadata"
+                  onEnded={() => handleVideoEnded(index)}
+                />
+              ) : slide.type === 'embed' ? (
+                <iframe
+                  src={slide.src}
+                  title={slide.title}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <img
+                  src={slide.src}
+                  alt={slide.title}
+                  draggable={false}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  fetchPriority={index === safeActiveIndex ? 'high' : 'auto'}
+                  onDragStart={(event) => event.preventDefault()}
+                />
+              )}
+            </div>
+          ))}
+        </div>
+
+        {slides.length > 1 && (
+          <div className="aircraft-media-dots" aria-hidden="true">
+            {slides.map((slide, index) => (
+              <span className={index === safeActiveIndex ? 'active' : ''} key={slide.id} />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {activeMedia && createPortal(
+        <div className="media-lightbox" role="dialog" aria-modal="true" onClick={() => setActiveMedia(null)}>
+          <div className="media-lightbox-card" onClick={(event) => event.stopPropagation()}>
+            <button className="media-lightbox-close" type="button" onClick={() => setActiveMedia(null)}>
+              {lang === 'zh' ? '关闭' : 'Close'}
+            </button>
+            {activeMedia.type === 'video' ? (
+              <video src={activeMedia.src} poster={activeMedia.poster || undefined} controls autoPlay muted playsInline />
+            ) : activeMedia.type === 'embed' ? (
+              <iframe
+                src={getPlayableEmbedUrl(activeMedia.src)}
+                title={activeMedia.title}
+                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <img src={activeMedia.src} alt={activeMedia.title} />
+            )}
+          </div>
+        </div>,
+        document.body,
+      )}
+    </>
+  )
+}
+
 function NewsCarousel({ lang }) {
   const trackRef = useRef(null)
   const dragRef = useRef({ active: false, moved: false, postId: null, scrollLeft: 0, startX: 0, startY: 0 })
@@ -1237,6 +1700,7 @@ function closeMobileMenu(root) {
 function App() {
   const pageRootRef = useRef(null)
   const heroBannerRootRef = useRef(null)
+  const aircraftMediaBannerRootRef = useRef(null)
   const newsCarouselRootRef = useRef(null)
   const aircraftShowcaseRootRef = useRef(null)
   const pathCardCarouselRootsRef = useRef(new Map())
@@ -1309,6 +1773,25 @@ function App() {
 
     heroBannerRootRef.current.root.render(
       <HeroBanner fallbackImage={host.dataset.fallbackImage || '/assets/photos/jet-sunset.jpg'} lang={lang} />,
+    )
+  }, [pageHtml, route.key, lang])
+
+  useEffect(() => {
+    const host = pageRootRef.current?.querySelector('[data-aircraft-media-banner-host]')
+    if (!host) {
+      aircraftMediaBannerRootRef.current = null
+      return
+    }
+
+    if (aircraftMediaBannerRootRef.current?.host !== host) {
+      aircraftMediaBannerRootRef.current = {
+        host,
+        root: createRoot(host),
+      }
+    }
+
+    aircraftMediaBannerRootRef.current.root.render(
+      <AircraftHeroMediaBanner fallbackImage={host.dataset.fallbackImage || '/assets/photos/jet-sunset.jpg'} lang={lang} />,
     )
   }, [pageHtml, route.key, lang])
 
