@@ -925,6 +925,37 @@
   .usecase .body { padding: 28px 24px 30px; }
   .usecase h3 { font-size: 20px; font-weight: 500; }
   .usecase p { font-size: 14px; margin-top: 10px; max-width: 100%; }
+  .usecase-copy {
+    margin-top: 12px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .usecase-copy p {
+    margin-top: 8px;
+    font-size: 14px;
+    max-width: 100%;
+  }
+  .usecase-copy p:first-child { margin-top: 0; }
+  .usecase-list {
+    list-style: none;
+    display: grid;
+    gap: 7px;
+  }
+  .usecase-list li {
+    position: relative;
+    padding-left: 18px;
+  }
+  .usecase-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
 
   /* Path detail section (Class A/B/Membership on Ways page) */
   .path-detail {
