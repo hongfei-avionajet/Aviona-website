@@ -15,6 +15,8 @@ const routeMap = {
   '/ways-to-participate.html': 'ways',
   '/about': 'about',
   '/about.html': 'about',
+  '/contact': 'contact',
+  '/contact.html': 'contact',
 }
 
 const pagePaths = {
@@ -23,6 +25,7 @@ const pagePaths = {
   aircraft: '/aircraft',
   ways: '/ways-to-participate',
   about: '/about',
+  contact: '/contact',
 }
 
 const dataTargetToPage = {
@@ -31,6 +34,7 @@ const dataTargetToPage = {
   aircraft: 'aircraft',
   ways: 'ways',
   about: 'about',
+  contact: 'contact',
 }
 
 const fallbackLabelTranslations = [
@@ -128,6 +132,15 @@ const contactChannels = [
     linkLabel: { en: 'Send Email', zh: '发送邮件' },
     href: 'mailto:ops@avionajet.com',
   },
+  {
+    id: 'phone',
+    icon: 'phone',
+    label: { en: 'Phone', zh: '电话' },
+    description: { en: 'Call or save the VIP contact number.', zh: '拨打或保存 VIP 联系电话。' },
+    value: '+65 9136 7485',
+    linkLabel: { en: 'Call Now', zh: '立即拨打' },
+    href: 'tel:+6591367485',
+  },
 ]
 
 function FloatingContactIcon({ type }) {
@@ -165,6 +178,14 @@ function FloatingContactIcon({ type }) {
       <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
         <path d="M10.2 16.4C7.2 16.4 4.8 14.6 4.8 12.3C4.8 10 7.2 8.2 10.2 8.2C13.2 8.2 15.6 10 15.6 12.3C15.6 14.6 13.2 16.4 10.2 16.4Z" />
         <path d="M14.1 15.8C15 16.7 16.2 17.2 17.6 17.2C18.3 17.2 18.9 17.1 19.5 16.8L18.9 15.8C19.4 15.3 19.6 14.8 19.6 14.1C19.6 12.7 18.2 11.5 16.3 11.2" />
+      </svg>
+    )
+  }
+
+  if (type === 'phone') {
+    return (
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+        <path d="M7.2 5.2L9.6 4L12 8.8L10.5 9.9C11.3 11.5 12.5 12.7 14.1 13.5L15.2 12L20 14.4L18.8 16.8C18.2 18 16.8 18.5 15.5 18.1C10.8 16.7 7.3 13.2 5.9 8.5C5.5 7.2 6 5.8 7.2 5.2Z" />
       </svg>
     )
   }
@@ -1590,6 +1611,18 @@ function FloatingContactWidget({ lang, onExternalAction }) {
     return () => document.removeEventListener('pointerdown', closeOnOutsideClick)
   }, [isOpen])
 
+  useEffect(() => {
+    function handleContactRequest(event) {
+      const channelId = event.detail?.channelId
+      if (!contactChannels.some((channel) => channel.id === channelId)) return
+      setActiveId(channelId)
+      setIsOpen(true)
+    }
+
+    window.addEventListener('aviona:open-contact-channel', handleContactRequest)
+    return () => window.removeEventListener('aviona:open-contact-channel', handleContactRequest)
+  }, [])
+
   function openChannel(channelId) {
     setActiveId(channelId)
     setIsOpen(true)
@@ -1966,6 +1999,15 @@ function App() {
         event.preventDefault()
         closeMobileMenu(root)
         showToast(dataTarget)
+        return
+      }
+
+      if (action === 'contact-channel') {
+        event.preventDefault()
+        closeMobileMenu(root)
+        window.dispatchEvent(new CustomEvent('aviona:open-contact-channel', {
+          detail: { channelId: actionEl.getAttribute('data-channel-id') },
+        }))
         return
       }
 
