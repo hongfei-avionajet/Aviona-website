@@ -46,6 +46,8 @@ const fallbackLabelTranslations = [
 const wordpressPostsEndpoint =
   'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=4&_embed=1'
 
+const secureStoreUrl = 'https://ava.store.sandbox.brickken.com/en/store/'
+
 const wordpressBannerEndpoint =
   'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=4&_embed=1&orderby=date&order=desc'
 
@@ -186,6 +188,16 @@ function FloatingContactIcon({ type }) {
     return (
       <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
         <path d="M7.2 5.2L9.6 4L12 8.8L10.5 9.9C11.3 11.5 12.5 12.7 14.1 13.5L15.2 12L20 14.4L18.8 16.8C18.2 18 16.8 18.5 15.5 18.1C10.8 16.7 7.3 13.2 5.9 8.5C5.5 7.2 6 5.8 7.2 5.2Z" />
+      </svg>
+    )
+  }
+
+  if (type === 'contact') {
+    return (
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+        <path d="M5 7.5H19V16H10L6 19V16H5V7.5Z" />
+        <path d="M8.5 11.5H15.5" />
+        <path d="M8.5 13.7H13" />
       </svg>
     )
   }
@@ -1591,32 +1603,48 @@ function NewsCarousel({ lang }) {
   )
 }
 
-function FloatingContactWidget({ lang, onExternalAction }) {
-  const [isOpen, setIsOpen] = useState(false)
-  const [activeId, setActiveId] = useState(contactChannels[0].id)
+function FloatingContactWidget({ lang, hideRail = false }) {
+  const [isListOpen, setIsListOpen] = useState(false)
+  const [activeId, setActiveId] = useState(null)
   const widgetRef = useRef(null)
-  const activeChannel = contactChannels.find((channel) => channel.id === activeId) || contactChannels[0]
+  const activeChannel = contactChannels.find((channel) => channel.id === activeId)
   const investLabel = lang === 'zh' ? '马上投资' : 'Invest Now'
   const contactLabel = lang === 'zh' ? '联系我们' : 'Contact Us'
 
   useEffect(() => {
-    if (!isOpen) return undefined
+    if (!isListOpen) return undefined
 
     function closeOnOutsideClick(event) {
       if (widgetRef.current?.contains(event.target)) return
-      setIsOpen(false)
+      setIsListOpen(false)
     }
 
     document.addEventListener('pointerdown', closeOnOutsideClick)
     return () => document.removeEventListener('pointerdown', closeOnOutsideClick)
-  }, [isOpen])
+  }, [isListOpen])
+
+  useEffect(() => {
+    if (!activeId) return undefined
+
+    document.body.classList.add('modal-open')
+
+    function closeOnEscape(event) {
+      if (event.key === 'Escape') setActiveId(null)
+    }
+
+    document.addEventListener('keydown', closeOnEscape)
+    return () => {
+      document.body.classList.remove('modal-open')
+      document.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [activeId])
 
   useEffect(() => {
     function handleContactRequest(event) {
       const channelId = event.detail?.channelId
       if (!contactChannels.some((channel) => channel.id === channelId)) return
       setActiveId(channelId)
-      setIsOpen(true)
+      setIsListOpen(false)
     }
 
     window.addEventListener('aviona:open-contact-channel', handleContactRequest)
@@ -1625,38 +1653,71 @@ function FloatingContactWidget({ lang, onExternalAction }) {
 
   function openChannel(channelId) {
     setActiveId(channelId)
-    setIsOpen(true)
+    setIsListOpen(false)
   }
 
   function handleInvestClick() {
-    onExternalAction?.(lang === 'zh' ? 'Brickken 入口 — 即将上线' : 'Brickken Portal — Coming Soon')
+    const opened = window.open(secureStoreUrl, '_blank', 'noopener')
+    if (!opened) window.location.href = secureStoreUrl
   }
 
   return (
-    <aside ref={widgetRef} className={`floating-contact ${isOpen ? 'open' : ''}`} aria-label={lang === 'zh' ? '联系方式' : 'Contact options'}>
-      {isOpen && (
-        <div className="floating-contact-panel">
-          <div className="floating-contact-head">
-            <div>
-              <div className="floating-contact-kicker">{lang === 'zh' ? '联系 AVIONA' : 'Contact Aviona'}</div>
-              <h3>{activeChannel.label[lang]}</h3>
+    <>
+      {!hideRail && (
+        <aside ref={widgetRef} className={`floating-contact ${isListOpen ? 'open' : ''}`} aria-label={lang === 'zh' ? '联系方式' : 'Contact options'}>
+          {isListOpen && (
+            <div className="floating-contact-menu">
+              {contactChannels.map((channel) => (
+                <button key={channel.id} type="button" onClick={() => openChannel(channel.id)}>
+                  <span className="floating-contact-icon"><FloatingContactIcon type={channel.icon} /></span>
+                  <span>{channel.label[lang]}</span>
+                </button>
+              ))}
             </div>
+          )}
+
+          <div className="floating-contact-rail">
+            <button className="floating-contact-invest" type="button" onClick={handleInvestClick}>
+              <span className="floating-contact-icon"><FloatingContactIcon type="invest" /></span>
+              <span>{investLabel}</span>
+            </button>
             <button
-              className="floating-contact-close"
+              className="floating-contact-toggle"
               type="button"
-              onClick={() => setIsOpen(false)}
-              aria-label={lang === 'zh' ? '关闭联系方式' : 'Close contact panel'}
+              onClick={() => setIsListOpen((value) => !value)}
+              aria-expanded={isListOpen}
+            >
+              <span className="floating-contact-icon"><FloatingContactIcon type="contact" /></span>
+              <span>{contactLabel}</span>
+            </button>
+          </div>
+        </aside>
+      )}
+
+      {activeChannel && createPortal(
+        <div className="contact-channel-modal-backdrop" role="presentation" onClick={() => setActiveId(null)}>
+          <article
+            className="contact-channel-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label={activeChannel.label[lang]}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              className="contact-channel-modal-close"
+              type="button"
+              onClick={() => setActiveId(null)}
+              aria-label={lang === 'zh' ? '关闭联系方式' : 'Close contact detail'}
             >
               x
             </button>
-          </div>
-
-          <div className="floating-contact-detail">
+            <div className="contact-channel-modal-kicker">{lang === 'zh' ? '联系 AVIONA' : 'Contact Aviona'}</div>
+            <h3>{activeChannel.label[lang]}</h3>
             <p>{activeChannel.description[lang]}</p>
             {activeChannel.image ? (
               <img src={activeChannel.image} alt={`${activeChannel.label.en} QR code`} />
             ) : (
-              <div className="floating-contact-email-card">
+              <div className="contact-channel-value-card">
                 <span>{activeChannel.value}</span>
               </div>
             )}
@@ -1665,32 +1726,13 @@ function FloatingContactWidget({ lang, onExternalAction }) {
                 {activeChannel.linkLabel?.[lang] || activeChannel.value}
               </a>
             ) : (
-              <span className="floating-contact-value">{activeChannel.value}</span>
+              <span className="contact-channel-value">{activeChannel.value}</span>
             )}
-          </div>
-        </div>
+          </article>
+        </div>,
+        document.body,
       )}
-
-      <div className="floating-contact-rail">
-        <button className="floating-contact-invest" type="button" onClick={handleInvestClick}>
-          <span className="floating-contact-icon"><FloatingContactIcon type="invest" /></span>
-          <span>{investLabel}</span>
-        </button>
-        <div className="floating-contact-rail-title">{contactLabel}</div>
-        {contactChannels.map((channel) => (
-          <button
-            className={channel.id === activeId && isOpen ? 'active' : ''}
-            key={channel.id}
-            type="button"
-            onClick={() => openChannel(channel.id)}
-            aria-expanded={channel.id === activeId && isOpen}
-          >
-            <span className="floating-contact-icon"><FloatingContactIcon type={channel.icon} /></span>
-            <span>{channel.label[lang]}</span>
-          </button>
-        ))}
-      </div>
-    </aside>
+    </>
   )
 }
 
@@ -1935,7 +1977,7 @@ function App() {
     }, 3500)
   }
 
-  function handleClick(event) {
+  async function handleClick(event) {
     const target = event.target
     const root = pageRootRef.current
     if (!(target instanceof Element) || !root) return
@@ -2011,6 +2053,54 @@ function App() {
         return
       }
 
+      if (action === 'contact-form-submit') {
+        event.preventDefault()
+        closeMobileMenu(root)
+        const form = actionEl.closest('form')
+        const fields = Array.from(form?.querySelectorAll('label') || [])
+          .map((label) => {
+            const field = label.querySelector('input, select, textarea')
+            if (!field) return null
+            const key = label.getAttribute('data-i18n')
+            const labelText = (I18N[key]?.[lang] || I18N[key]?.en || label.childNodes[0]?.textContent || '')
+              .replace(/\s+/g, ' ')
+              .trim()
+            const value = field.value?.trim()
+            return value ? { key, label: labelText, value } : null
+          })
+          .filter(Boolean)
+
+        const originalText = actionEl.textContent
+        actionEl.textContent = lang === 'zh' ? '提交中...' : 'Sending...'
+        actionEl.setAttribute('aria-busy', 'true')
+
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              lang,
+              page: window.location.href,
+              fields,
+            }),
+          })
+
+          const result = await response.json().catch(() => ({}))
+          if (!response.ok) {
+            throw new Error(result.message || 'Unable to submit inquiry.')
+          }
+
+          form?.reset()
+          showToast(lang === 'zh' ? '咨询已提交，我们会尽快联系您。' : 'Inquiry submitted. We will follow up shortly.')
+        } catch (error) {
+          showToast(lang === 'zh' ? '提交失败，请稍后再试或直接联系邮箱。' : 'Submission failed. Please try again or contact us by email.')
+        } finally {
+          actionEl.textContent = originalText
+          actionEl.removeAttribute('aria-busy')
+        }
+        return
+      }
+
       if (action === 'scroll') {
         event.preventDefault()
         closeMobileMenu(root)
@@ -2055,7 +2145,7 @@ function App() {
         onClick={handleClick}
         dangerouslySetInnerHTML={{ __html: pageHtml }}
       />
-      <FloatingContactWidget lang={lang} onExternalAction={showToast} />
+      <FloatingContactWidget lang={lang} hideRail={route.key === 'contact'} />
     </>
   )
 }
