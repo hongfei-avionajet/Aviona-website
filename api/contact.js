@@ -1,4 +1,6 @@
-const DEFAULT_TO_EMAIL = 'leiyang203@gmail.com'
+/* global process */
+
+const DEFAULT_TO_EMAIL = 'ops@avionajet.com'
 
 function sendJson(response, status, payload) {
   response.status(status).json(payload)

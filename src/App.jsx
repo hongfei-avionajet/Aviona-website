@@ -1606,10 +1606,57 @@ function NewsCarousel({ lang }) {
 function FloatingContactWidget({ lang, hideRail = false }) {
   const [isListOpen, setIsListOpen] = useState(false)
   const [activeId, setActiveId] = useState(null)
+  const [position, setPosition] = useState(() => {
+    try {
+      const saved = window.localStorage.getItem('aviona-floating-contact-position')
+      if (!saved) return null
+      const parsed = JSON.parse(saved)
+      if (Number.isFinite(parsed?.left) && Number.isFinite(parsed?.top)) {
+        return { left: parsed.left, top: parsed.top }
+      }
+    } catch {
+      // Ignore a stale saved position.
+    }
+    return null
+  })
   const widgetRef = useRef(null)
+  const dragStateRef = useRef(null)
+  const suppressClickRef = useRef(false)
   const activeChannel = contactChannels.find((channel) => channel.id === activeId)
   const investLabel = lang === 'zh' ? '马上投资' : 'Invest Now'
   const contactLabel = lang === 'zh' ? '联系我们' : 'Contact Us'
+
+  function clampWidgetPosition(left, top, width, height) {
+    const padding = 12
+    return {
+      left: Math.min(Math.max(padding, left), Math.max(padding, window.innerWidth - width - padding)),
+      top: Math.min(Math.max(padding, top), Math.max(padding, window.innerHeight - height - padding)),
+    }
+  }
+
+  function saveWidgetPosition(nextPosition) {
+    try {
+      window.localStorage.setItem('aviona-floating-contact-position', JSON.stringify(nextPosition))
+    } catch {
+      // Position persistence is a convenience only.
+    }
+  }
+
+  useEffect(() => {
+    if (!position) return undefined
+
+    function clampOnResize() {
+      const rect = widgetRef.current?.getBoundingClientRect()
+      if (!rect) return
+      const nextPosition = clampWidgetPosition(position.left, position.top, rect.width, rect.height)
+      if (nextPosition.left === position.left && nextPosition.top === position.top) return
+      setPosition(nextPosition)
+      saveWidgetPosition(nextPosition)
+    }
+
+    window.addEventListener('resize', clampOnResize)
+    return () => window.removeEventListener('resize', clampOnResize)
+  }, [position])
 
   useEffect(() => {
     if (!isListOpen) return undefined
@@ -1652,19 +1699,86 @@ function FloatingContactWidget({ lang, hideRail = false }) {
   }, [])
 
   function openChannel(channelId) {
+    if (suppressClickRef.current) return
     setActiveId(channelId)
     setIsListOpen(false)
   }
 
   function handleInvestClick() {
+    if (suppressClickRef.current) return
     const opened = window.open(secureStoreUrl, '_blank', 'noopener')
     if (!opened) window.location.href = secureStoreUrl
+  }
+
+  function handleWidgetPointerDown(event) {
+    if (event.button != null && event.button !== 0) return
+    if (event.target.closest('.floating-contact-menu')) return
+
+    const rect = widgetRef.current?.getBoundingClientRect()
+    if (!rect) return
+
+    dragStateRef.current = {
+      pointerX: event.clientX,
+      pointerY: event.clientY,
+      left: rect.left,
+      top: rect.top,
+      width: rect.width,
+      height: rect.height,
+      dragged: false,
+    }
+
+    function handlePointerMove(moveEvent) {
+      const dragState = dragStateRef.current
+      if (!dragState) return
+
+      const dx = moveEvent.clientX - dragState.pointerX
+      const dy = moveEvent.clientY - dragState.pointerY
+      if (!dragState.dragged && Math.hypot(dx, dy) < 6) return
+
+      dragState.dragged = true
+      widgetRef.current?.classList.add('is-dragging')
+      moveEvent.preventDefault()
+
+      const nextPosition = clampWidgetPosition(
+        dragState.left + dx,
+        dragState.top + dy,
+        dragState.width,
+        dragState.height,
+      )
+      setPosition(nextPosition)
+      saveWidgetPosition(nextPosition)
+    }
+
+    function handlePointerUp() {
+      if (dragStateRef.current?.dragged) {
+        suppressClickRef.current = true
+        window.setTimeout(() => {
+          suppressClickRef.current = false
+        }, 180)
+      }
+
+      widgetRef.current?.classList.remove('is-dragging')
+      dragStateRef.current = null
+      document.removeEventListener('pointermove', handlePointerMove)
+      document.removeEventListener('pointerup', handlePointerUp)
+      document.removeEventListener('pointercancel', handlePointerUp)
+    }
+
+    document.addEventListener('pointermove', handlePointerMove, { passive: false })
+    document.addEventListener('pointerup', handlePointerUp)
+    document.addEventListener('pointercancel', handlePointerUp)
   }
 
   return (
     <>
       {!hideRail && (
-        <aside ref={widgetRef} className={`floating-contact ${isListOpen ? 'open' : ''}`} aria-label={lang === 'zh' ? '联系方式' : 'Contact options'}>
+        <aside
+          ref={widgetRef}
+          className={`floating-contact ${isListOpen ? 'open' : ''}`}
+          style={position ? { left: `${position.left}px`, top: `${position.top}px`, right: 'auto', bottom: 'auto' } : undefined}
+          aria-label={lang === 'zh' ? '联系方式' : 'Contact options'}
+          onPointerDown={handleWidgetPointerDown}
+        >
           {isListOpen && (
             <div className="floating-contact-menu">
               {contactChannels.map((channel) => (
@@ -1684,7 +1798,10 @@ function FloatingContactWidget({ lang, hideRail = false }) {
             <button
               className="floating-contact-toggle"
               type="button"
-              onClick={() => setIsListOpen((value) => !value)}
+              onClick={() => {
+                if (suppressClickRef.current) return
+                setIsListOpen((value) => !value)
+              }}
               aria-expanded={isListOpen}
             >
               <span className="floating-contact-icon"><FloatingContactIcon type="contact" /></span>
@@ -2092,7 +2209,7 @@ function App() {
 
           form?.reset()
           showToast(lang === 'zh' ? '咨询已提交，我们会尽快联系您。' : 'Inquiry submitted. We will follow up shortly.')
-        } catch (error) {
+        } catch {
           showToast(lang === 'zh' ? '提交失败，请稍后再试或直接联系邮箱。' : 'Submission failed. Please try again or contact us by email.')
         } finally {
           actionEl.textContent = originalText
