@@ -1601,17 +1601,21 @@
     background: rgba(255, 253, 247, 0.96);
     box-shadow: 0 18px 42px rgba(31, 35, 41, 0.12);
   }
-  .floating-contact-rail button {
+  .floating-contact-rail button,
+  .floating-contact-rail a {
     width: 100%; min-height: 72px; display: flex; flex-direction: column;
     align-items: center; justify-content: center; gap: 5px;
     border: 0; border-top: 1px solid rgba(201, 160, 54, 0.16);
     background: transparent; color: #a77a16; font-family: inherit;
     font-size: 11px; line-height: 1.15; cursor: pointer;
+    text-decoration: none;
     transition: background 0.2s, color 0.2s;
   }
-  .floating-contact-rail button:first-child { border-top: 0; }
+  .floating-contact-rail > :first-child { border-top: 0; }
   .floating-contact-rail button:hover,
-  .floating-contact-rail button.active {
+  .floating-contact-rail button.active,
+  .floating-contact-rail a:hover,
+  .floating-contact-rail a.active {
     background: rgba(248, 235, 197, 0.72);
     color: #8e650e;
   }
@@ -1941,7 +1945,8 @@
     .floating-contact { right: 12px; bottom: 12px; gap: 10px; }
     .floating-contact-menu { width: min(172px, calc(100vw - 100px)); }
     .floating-contact-rail { width: 70px; }
-    .floating-contact-rail button { min-height: 54px; font-size: 10px; }
+    .floating-contact-rail button,
+    .floating-contact-rail a { min-height: 54px; font-size: 10px; }
     .floating-contact-icon { width: 28px; height: 28px; font-size: 9px; }
   }
 

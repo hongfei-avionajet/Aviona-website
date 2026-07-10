@@ -1645,7 +1645,7 @@ function FloatingContactWidget({ lang, hideRail = false }) {
   useEffect(() => {
     if (!position) return undefined
 
-    function clampOnResize() {
+    function clampCurrentPosition() {
       const rect = widgetRef.current?.getBoundingClientRect()
       if (!rect) return
       const nextPosition = clampWidgetPosition(position.left, position.top, rect.width, rect.height)
@@ -1654,9 +1654,13 @@ function FloatingContactWidget({ lang, hideRail = false }) {
       saveWidgetPosition(nextPosition)
     }
 
-    window.addEventListener('resize', clampOnResize)
-    return () => window.removeEventListener('resize', clampOnResize)
-  }, [position])
+    const frameId = window.requestAnimationFrame(clampCurrentPosition)
+    window.addEventListener('resize', clampCurrentPosition)
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      window.removeEventListener('resize', clampCurrentPosition)
+    }
+  }, [isListOpen, position])
 
   useEffect(() => {
     if (!isListOpen) return undefined
@@ -1704,10 +1708,8 @@ function FloatingContactWidget({ lang, hideRail = false }) {
     setIsListOpen(false)
   }
 
-  function handleInvestClick() {
-    if (suppressClickRef.current) return
-    const opened = window.open(secureStoreUrl, '_blank', 'noopener')
-    if (!opened) window.location.href = secureStoreUrl
+  function handleInvestClick(event) {
+    if (suppressClickRef.current) event.preventDefault()
   }
 
   function handleWidgetPointerDown(event) {
@@ -1791,10 +1793,16 @@ function FloatingContactWidget({ lang, hideRail = false }) {
           )}
 
           <div className="floating-contact-rail">
-            <button className="floating-contact-invest" type="button" onClick={handleInvestClick}>
+            <a
+              className="floating-contact-invest"
+              href={secureStoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleInvestClick}
+            >
               <span className="floating-contact-icon"><FloatingContactIcon type="invest" /></span>
               <span>{investLabel}</span>
-            </button>
+            </a>
             <button
               className="floating-contact-toggle"
               type="button"
