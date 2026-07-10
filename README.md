@@ -47,6 +47,19 @@ Output Directory: dist
 
 The included `vercel.json` sends all routes back to `index.html`, so direct visits or refreshes on routes such as `/about`, `/aircraft`, and `/ways-to-participate` work after deployment.
 
+### Contact email service
+
+The `/api/contact` Vercel function sends inquiry emails through Resend. Configure
+these variables for every Vercel environment that serves the form, including
+Preview and Production:
+
+- `RESEND_API_KEY`: secret Resend API key
+- `CONTACT_EMAIL_FROM`: verified sender, such as `Aviona <contact@avionajet.com>`
+- `CONTACT_EMAIL_TO`: production recipient; defaults to `ops@avionajet.com`
+
+Preview deployments use the dedicated preview recipient defined by the function.
+Never commit the API key or expose it through a client-side `VITE_*` variable.
+
 ## Verification Completed
 
 The project has been checked with:

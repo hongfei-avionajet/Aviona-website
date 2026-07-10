@@ -1719,6 +1719,9 @@ function FloatingContactWidget({ lang, hideRail = false }) {
     const rect = widgetRef.current?.getBoundingClientRect()
     if (!rect) return
 
+    // Disable native link dragging so the widget keeps receiving pointer events.
+    event.currentTarget.setPointerCapture?.(event.pointerId)
+
     dragStateRef.current = {
       pointerX: event.clientX,
       pointerY: event.clientY,
@@ -1760,6 +1763,9 @@ function FloatingContactWidget({ lang, hideRail = false }) {
       }
 
       widgetRef.current?.classList.remove('is-dragging')
+      if (widgetRef.current?.hasPointerCapture?.(event.pointerId)) {
+        widgetRef.current.releasePointerCapture(event.pointerId)
+      }
       dragStateRef.current = null
       document.removeEventListener('pointermove', handlePointerMove)
       document.removeEventListener('pointerup', handlePointerUp)
@@ -1780,6 +1786,7 @@ function FloatingContactWidget({ lang, hideRail = false }) {
           style={position ? { left: `${position.left}px`, top: `${position.top}px`, right: 'auto', bottom: 'auto' } : undefined}
           aria-label={lang === 'zh' ? '联系方式' : 'Contact options'}
           onPointerDown={handleWidgetPointerDown}
+          onDragStart={(event) => event.preventDefault()}
         >
           {isListOpen && (
             <div className="floating-contact-menu">
@@ -2217,8 +2224,14 @@ function App() {
 
           form?.reset()
           showToast(lang === 'zh' ? '咨询已提交，我们会尽快联系您。' : 'Inquiry submitted. We will follow up shortly.')
-        } catch {
-          showToast(lang === 'zh' ? '提交失败，请稍后再试或直接联系邮箱。' : 'Submission failed. Please try again or contact us by email.')
+        } catch (error) {
+          const detail = error instanceof Error ? error.message : ''
+          const message = lang === 'zh'
+            ? detail === 'Email service is not configured.'
+              ? '邮件服务尚未配置，请联系管理员。'
+              : `提交失败${detail ? `：${detail}` : '，请稍后再试或直接联系邮箱。'}`
+            : `Submission failed${detail ? `: ${detail}` : '. Please try again or contact us by email.'}`
+          showToast(message)
         } finally {
           actionEl.textContent = originalText
           actionEl.removeAttribute('aria-busy')
