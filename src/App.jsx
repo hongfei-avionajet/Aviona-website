@@ -48,16 +48,9 @@ const wordpressPostsEndpoint =
 
 const secureStoreUrl = 'https://ava.store.sandbox.brickken.com/en/store/'
 
-const wordpressBannerEndpoint =
-  'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=4&_embed=1&orderby=date&order=desc'
+const wordpressCarouselEndpoint =
+  'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=1&_embed=1&orderby=date&order=desc'
 
-const wordpressPathCardEndpoint =
-  'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=5&_embed=1&orderby=date&order=desc'
-
-const wordpressAircraftShowcaseEndpoint =
-  'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=5&_embed=1&orderby=date&order=desc'
-
-const wordpressAircraftShowcaseCategory = 790298188
 const wordpressAircraftHeroMediaCategory = 790314762
 const wordpressAircraftHeroMediaEndpoint =
   'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=1&_embed=1&orderby=date&order=desc'
@@ -67,30 +60,12 @@ const wordpressNewsCategories = {
   zh: 286977090,
 }
 
-const wordpressBannerCategories = {
-  en: 233024975,
-  zh: 790295996,
-}
-
-const wordpressPathCardCategories = {
-  classA: {
-    en: 790297633,
-    zh: 790297630,
-  },
-  classB: {
-    en: 790297635,
-    zh: 790297634,
-  },
-  vip: {
-    en: 181000998,
-    zh: 790297636,
-  },
-}
-
-let aircraftShowcaseImageCache = []
 let aircraftHeroMediaCache = []
+const wordpressCarouselCache = new Map()
+const wordpressCarouselRequests = new Map()
 const videoPressSourceCache = {}
 const newsPostsCache = {}
+const wordpressCarouselRefreshMs = 300000
 
 const newsFallbackImages = [
   '/assets/news/news-cabin-wide.jpg',
@@ -219,23 +194,190 @@ const heroBackgroundPattern =
 const certificationCopyPattern =
   /<div class="certification-copy">[\s\S]*?<\/div>(\n {6}<figure class="certificate-frame">)/
 
-const pathCardImagePatterns = [
-  {
-    key: 'classA',
-    pattern: /<div class="img-wrap"><img src="(\/assets\/photos\/engine-closeup\.jpg)" alt="([^"]+)"><\/div>/,
-  },
-  {
-    key: 'classB',
-    pattern: /<div class="img-wrap"><img src="(\/assets\/photos\/cabin-doorway\.jpg)" alt="([^"]+)"><\/div>/,
-  },
-  {
-    key: 'vip',
-    pattern: /<div class="img-wrap"><img src="(\/assets\/photos\/champagne-bucket\.jpg)" alt="([^"]+)"><\/div>/,
-  },
-]
+const contentCarouselSlots = {
+  home: [
+    {
+      key: 'home-hero',
+      categoryId: 790497678,
+      kind: 'hero',
+      fallbackImage: '/assets/photos/jet-sunset.jpg',
+      fallbackTitle: 'Aviona home hero',
+      hostClass: 'hero-bg hero-banner-host',
+      pattern: heroBackgroundPattern,
+    },
+    {
+      key: 'home-class-a',
+      categoryId: 790497681,
+      kind: 'inline',
+      variant: 'card',
+      fallbackImage: '/assets/photos/engine-closeup.jpg',
+      fallbackTitle: 'Class A — Invest',
+      hostClass: 'img-wrap content-image-carousel-host',
+      pattern: /<div class="img-wrap"><img src="\/assets\/photos\/engine-closeup\.jpg" alt="Class A — Invest"><\/div>/,
+    },
+    {
+      key: 'home-class-b',
+      categoryId: 790497683,
+      kind: 'inline',
+      variant: 'card',
+      fallbackImage: '/assets/photos/cabin-doorway.jpg',
+      fallbackTitle: 'Class B — Fly',
+      hostClass: 'img-wrap content-image-carousel-host',
+      pattern: /<div class="img-wrap"><img src="\/assets\/photos\/cabin-doorway\.jpg" alt="Class B — Fly"><\/div>/,
+    },
+    {
+      key: 'home-vip',
+      categoryId: 790497687,
+      kind: 'inline',
+      variant: 'card',
+      fallbackImage: '/assets/photos/champagne-bucket.jpg',
+      fallbackTitle: 'Membership',
+      hostClass: 'img-wrap content-image-carousel-host',
+      pattern: /<div class="img-wrap"><img src="\/assets\/photos\/champagne-bucket\.jpg" alt="Membership"><\/div>/,
+    },
+    {
+      key: 'home-aircraft-showcase',
+      categoryId: 790497688,
+      kind: 'inline',
+      variant: 'showcase',
+      fallbackImage: '/assets/aviona-jet.jpg',
+      fallbackTitle: 'Private jet — Aviona livery',
+      hostClass: 'img-wrap aircraft-showcase-carousel-host',
+      pattern: /<div class="img-wrap">\s*<img class="jet-shot" src="\/assets\/aviona-jet\.jpg" alt="private jet — Aviona livery">\s*<\/div>/,
+    },
+  ],
+  why: [
+    {
+      key: 'why-hero',
+      categoryId: 790497657,
+      kind: 'hero',
+      fallbackImage: '/assets/photos/stewardess-stairs.jpg',
+      fallbackTitle: 'Why Aviona hero',
+      hostClass: 'hero-bg hero-banner-host',
+      pattern: heroBackgroundPattern,
+    },
+  ],
+  aircraft: [
+    {
+      key: 'aircraft-range',
+      categoryId: 790497660,
+      kind: 'inline',
+      variant: 'landscape',
+      fallbackImage: '/assets/photos/aerial-mountains.jpg',
+      fallbackTitle: 'Aircraft in flight',
+      pattern: /<img src="\/assets\/photos\/aerial-mountains\.jpg" alt="Aircraft in flight">/,
+    },
+    {
+      key: 'aircraft-cabin',
+      categoryId: 790497662,
+      kind: 'inline',
+      variant: 'portrait',
+      fallbackImage: '/assets/photos/cabin-dining.jpg',
+      fallbackTitle: 'Cabin interior',
+      pattern: /<img src="\/assets\/photos\/cabin-dining\.jpg" alt="Cabin interior">/,
+    },
+    {
+      key: 'aircraft-business',
+      categoryId: 790497663,
+      kind: 'inline',
+      variant: 'usecase',
+      fallbackImage: '/assets/photos/cockpit-pilot.jpg',
+      fallbackTitle: 'Business',
+      pattern: /<img src="\/assets\/photos\/cockpit-pilot\.jpg" alt="Business">/,
+    },
+    {
+      key: 'aircraft-family',
+      categoryId: 790497664,
+      kind: 'inline',
+      variant: 'usecase',
+      fallbackImage: '/assets/photos/fruit-table.jpg',
+      fallbackTitle: 'Family',
+      pattern: /<img src="\/assets\/photos\/fruit-table\.jpg" alt="Family">/,
+    },
+    {
+      key: 'aircraft-lifestyle',
+      categoryId: 790497665,
+      kind: 'inline',
+      variant: 'usecase',
+      fallbackImage: '/assets/photos/champagne-service.jpg',
+      fallbackTitle: 'Lifestyle',
+      pattern: /<img src="\/assets\/photos\/champagne-service\.jpg" alt="Lifestyle">/,
+    },
+    {
+      key: 'aircraft-operations',
+      categoryId: 790497666,
+      kind: 'inline',
+      variant: 'landscape',
+      fallbackImage: '/assets/photos/landing-gear.jpg',
+      fallbackTitle: 'Operational rigor',
+      pattern: /<img src="\/assets\/photos\/landing-gear\.jpg" alt="Operational rigor">/,
+    },
+  ],
+  ways: [
+    {
+      key: 'ways-hero',
+      categoryId: 790497667,
+      kind: 'hero',
+      fallbackImage: '/assets/photos/cabin-doorway.jpg',
+      fallbackTitle: 'Ways to participate hero',
+      hostClass: 'hero-bg hero-banner-host',
+      pattern: heroBackgroundPattern,
+    },
+    {
+      key: 'ways-class-a',
+      categoryId: 790497668,
+      kind: 'inline',
+      variant: 'ways-detail',
+      fallbackImage: '/assets/photos/engine-closeup.jpg',
+      fallbackTitle: 'Class A — Invest',
+      pattern: /<img src="\/assets\/photos\/engine-closeup\.jpg" alt="Class A — Invest">/,
+    },
+    {
+      key: 'ways-class-b',
+      categoryId: 790497670,
+      kind: 'inline',
+      variant: 'ways-detail',
+      fallbackImage: '/assets/photos/cabin-sleep.jpg',
+      fallbackTitle: 'Class B — Fly',
+      pattern: /<img src="\/assets\/photos\/cabin-sleep\.jpg" alt="Class B — Fly">/,
+    },
+    {
+      key: 'ways-membership',
+      categoryId: 790497671,
+      kind: 'inline',
+      variant: 'ways-detail',
+      fallbackImage: '/assets/photos/champagne-bucket.jpg',
+      fallbackTitle: 'Membership — Belong',
+      pattern: /<img src="\/assets\/photos\/champagne-bucket\.jpg" alt="Membership — Belong">/,
+    },
+  ],
+  about: [
+    {
+      key: 'about-hero',
+      categoryId: 790497672,
+      kind: 'hero',
+      fallbackImage: '/assets/photos/engine-closeup.jpg',
+      fallbackTitle: 'About Aviona hero',
+      hostClass: 'hero-bg hero-banner-host',
+      pattern: heroBackgroundPattern,
+    },
+  ],
+  contact: [
+    {
+      key: 'contact-hero',
+      categoryId: 790497673,
+      kind: 'hero',
+      fallbackImage: '/assets/photos/champagne-service.jpg',
+      fallbackTitle: 'Contact Aviona hero',
+      hostClass: 'hero-bg hero-banner-host',
+      pattern: heroBackgroundPattern,
+    },
+  ],
+}
 
-const aircraftShowcaseImagePattern =
-  /<div class="img-wrap">\s*<img class="jet-shot" src="([^"]+)" alt="([^"]+)">\s*<\/div>/
+const contentCarouselSlotByKey = Object.fromEntries(
+  Object.values(contentCarouselSlots).flat().map((slot) => [slot.key, slot]),
+)
 
 function applyFallbackLabelTranslations(root, lang) {
   root.querySelectorAll('a, button').forEach((el) => {
@@ -248,20 +390,24 @@ function applyFallbackLabelTranslations(root, lang) {
   })
 }
 
-function getHeroBannerHostHtml(fallbackImage) {
-  return `<div class="hero-bg hero-banner-host" data-hero-banner-host data-fallback-image="${fallbackImage}" style="background-image: url('${fallbackImage}');"></div>`
-}
-
 function getAircraftHeroMediaHostHtml(fallbackImage) {
   return `<div class="hero-bg aircraft-media-banner-host" data-aircraft-media-banner-host data-fallback-image="${fallbackImage}" style="background-image: url('${fallbackImage}');"></div>`
 }
 
-function getPathCardCarouselHostHtml(cardKey, fallbackImage, fallbackTitle) {
-  return `<div class="img-wrap path-card-carousel-host" data-path-card-carousel-host data-card-key="${cardKey}" data-fallback-image="${fallbackImage}" data-fallback-title="${fallbackTitle}"></div>`
+function getContentCarouselHostHtml(slot) {
+  const className = slot.hostClass || 'content-image-carousel-host'
+  const fallback = slot.kind === 'hero'
+    ? ''
+    : `<img src="${slot.fallbackImage}" alt="${slot.fallbackTitle}">`
+  const style = slot.kind === 'hero'
+    ? ` style="background-image: url('${slot.fallbackImage}');"`
+    : ''
+
+  return `<div class="${className}" data-content-carousel-host data-carousel-slot="${slot.key}" data-carousel-category="${slot.categoryId}"${style}>${fallback}</div>`
 }
 
-function getAircraftShowcaseHostHtml() {
-  return '<div class="img-wrap aircraft-showcase-carousel-host" data-aircraft-showcase-carousel-host></div>'
+function deferReactRootUnmount(root) {
+  window.setTimeout(() => root.unmount(), 0)
 }
 
 function addMobileMenuToggle(html) {
@@ -273,20 +419,25 @@ function addMobileMenuToggle(html) {
 }
 
 function getPageHtml(page, routeKey) {
-  const html = addMobileMenuToggle(page.html)
+  let html = addMobileMenuToggle(page.html)
+
   if (routeKey === 'aircraft') {
-    return html.replace(heroBackgroundPattern, (_, fallbackImage) => getAircraftHeroMediaHostHtml(fallbackImage))
+    html = html.replace(heroBackgroundPattern, (_, fallbackImage) => getAircraftHeroMediaHostHtml(fallbackImage))
   }
 
-  if (routeKey !== 'home') return html
+  html = (contentCarouselSlots[routeKey] || []).reduce((currentHtml, slot) => {
+    const nextHtml = currentHtml.replace(slot.pattern, getContentCarouselHostHtml(slot))
+    if (nextHtml === currentHtml && import.meta.env.DEV) {
+      console.warn(`Unable to inject WordPress carousel slot: ${slot.key}`)
+    }
+    return nextHtml
+  }, html)
 
-  return pathCardImagePatterns.reduce(
-    (html, { key, pattern }) => html.replace(pattern, (_, fallbackImage, fallbackTitle) => getPathCardCarouselHostHtml(key, fallbackImage, fallbackTitle)),
-    html,
-  )
-    .replace(heroBackgroundPattern, (_, fallbackImage) => getHeroBannerHostHtml(fallbackImage))
-    .replace(aircraftShowcaseImagePattern, () => getAircraftShowcaseHostHtml())
-    .replace(certificationCopyPattern, `${newsCarouselHostHtml}$1`)
+  if (routeKey === 'home') {
+    html = html.replace(certificationCopyPattern, `${newsCarouselHostHtml}$1`)
+  }
+
+  return html
 }
 
 function decodeHtml(value = '') {
@@ -509,47 +660,109 @@ function getNewsEndpoint(lang) {
   return `${wordpressPostsEndpoint}&categories=${category}`
 }
 
-function getBannerEndpoint(lang) {
-  const category = wordpressBannerCategories[lang] || wordpressBannerCategories.en
-  return `${wordpressBannerEndpoint}&categories=${category}`
-}
-
-function getPathCardEndpoint(cardKey, lang) {
-  const categoryGroup = wordpressPathCardCategories[cardKey] || wordpressPathCardCategories.classA
-  const category = categoryGroup[lang] || categoryGroup.en
-  return `${wordpressPathCardEndpoint}&categories=${category}`
-}
-
-function getAircraftShowcaseEndpoint() {
-  return `${wordpressAircraftShowcaseEndpoint}&categories=${wordpressAircraftShowcaseCategory}`
+function getCarouselEndpoint(categoryId) {
+  return `${wordpressCarouselEndpoint}&categories=${categoryId}`
 }
 
 function getAircraftHeroMediaEndpoint() {
   return `${wordpressAircraftHeroMediaEndpoint}&categories=${wordpressAircraftHeroMediaCategory}`
 }
 
-function normalizeBannerPost(post) {
-  const contentHtml = post.content?.rendered || ''
-  const embeddedImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url
-  const image = post.jetpack_featured_media_url || embeddedImage || getFirstImageFromHtml(contentHtml)
-
-  return {
-    id: post.id,
-    title: decodeHtml(post.title?.rendered) || 'Aviona Banner',
-    image,
-  }
+function getFallbackCarouselSlides(fallbackImage, fallbackTitle = 'Aviona') {
+  return fallbackImage
+    ? [{ id: `fallback-${fallbackImage}`, image: fallbackImage, title: fallbackTitle }]
+    : []
 }
 
-function normalizeImagePost(post, fallbackImage) {
+function normalizeCarouselPost(post, fallbackImage, fallbackTitle = 'Aviona') {
   const contentHtml = post.content?.rendered || ''
-  const embeddedImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url
-  const image = post.jetpack_featured_media_url || embeddedImage || getFirstImageFromHtml(contentHtml) || fallbackImage
+  const images = extractMediaFromPostHtml(contentHtml)
+    .filter((item) => item.type === 'image')
+    .map((item, index) => ({
+      id: `${post.id}-${index}-${item.src}`,
+      image: item.src,
+      title: item.title || fallbackTitle,
+    }))
 
-  return {
-    id: post.id,
-    title: decodeHtml(post.title?.rendered) || 'Aviona',
-    image,
+  if (images.length > 0) return images
+
+  const embeddedImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url
+  const fallback = post.jetpack_featured_media_url || embeddedImage || fallbackImage
+
+  return getFallbackCarouselSlides(fallback, fallbackTitle)
+}
+
+async function requestWordPressCarouselImages(categoryId, fallbackImage, fallbackTitle) {
+  const cacheKey = String(categoryId)
+  if (wordpressCarouselRequests.has(cacheKey)) {
+    return wordpressCarouselRequests.get(cacheKey)
   }
+
+  const request = fetch(getCarouselEndpoint(categoryId), {
+    cache: 'no-store',
+    headers: { Accept: 'application/json' },
+  })
+    .then((response) => {
+      if (!response.ok) throw new Error(`WordPress returned ${response.status}`)
+      return response.json()
+    })
+    .then((data) => {
+      const slides = Array.isArray(data) && data[0]
+        ? normalizeCarouselPost(data[0], fallbackImage, fallbackTitle)
+        : getFallbackCarouselSlides(fallbackImage, fallbackTitle)
+
+      wordpressCarouselCache.set(cacheKey, {
+        fetchedAt: Date.now(),
+        slides,
+      })
+      slides.forEach((slide) => preloadImage(slide.image))
+      return slides
+    })
+    .finally(() => wordpressCarouselRequests.delete(cacheKey))
+
+  wordpressCarouselRequests.set(cacheKey, request)
+  return request
+}
+
+function useWordPressCarouselImages(categoryId, fallbackImage, fallbackTitle) {
+  const fallbackSlides = useMemo(
+    () => getFallbackCarouselSlides(fallbackImage, fallbackTitle),
+    [fallbackImage, fallbackTitle],
+  )
+  const [slides, setSlides] = useState(() => (
+    wordpressCarouselCache.get(String(categoryId))?.slides || fallbackSlides
+  ))
+
+  useEffect(() => {
+    let cancelled = false
+
+    async function loadImages(forceRefresh = false) {
+      const cacheKey = String(categoryId)
+      const cached = wordpressCarouselCache.get(cacheKey)
+      const cacheIsFresh = cached && Date.now() - cached.fetchedAt < wordpressCarouselRefreshMs
+
+      if (!forceRefresh && cacheIsFresh) {
+        if (!cancelled) setSlides(cached.slides)
+        return
+      }
+
+      try {
+        const nextSlides = await requestWordPressCarouselImages(categoryId, fallbackImage, fallbackTitle)
+        if (!cancelled) setSlides(nextSlides.length > 0 ? nextSlides : fallbackSlides)
+      } catch {
+        if (!cancelled && !cached?.slides?.length) setSlides(fallbackSlides)
+      }
+    }
+
+    loadImages()
+    const timer = window.setInterval(() => loadImages(true), wordpressCarouselRefreshMs)
+    return () => {
+      cancelled = true
+      window.clearInterval(timer)
+    }
+  }, [categoryId, fallbackImage, fallbackSlides, fallbackTitle])
+
+  return slides
 }
 
 function normalizeAircraftHeroMediaPost(post, fallbackImage) {
@@ -558,7 +771,7 @@ function normalizeAircraftHeroMediaPost(post, fallbackImage) {
   const embeddedImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url
   const fallbackMedia = post.jetpack_featured_media_url || embeddedImage || fallbackImage
 
-  if (media.length > 0) return media.slice(0, 8)
+  if (media.length > 0) return media
 
   return fallbackMedia
     ? [{
@@ -571,7 +784,7 @@ function normalizeAircraftHeroMediaPost(post, fallbackImage) {
     : []
 }
 
-function PathCardImageCarousel({ cardKey, fallbackImage, fallbackTitle, lang }) {
+function InlineImageCarousel({ categoryId, fallbackImage, fallbackTitle, variant = 'card' }) {
   const trackRef = useRef(null)
   const dragRef = useRef({
     active: false,
@@ -583,45 +796,11 @@ function PathCardImageCarousel({ cardKey, fallbackImage, fallbackTitle, lang }) 
     startY: 0,
   })
   const lastInteractionRef = useRef(0)
-  const [images, setImages] = useState([])
+  const slides = useWordPressCarouselImages(categoryId, fallbackImage, fallbackTitle)
   const [activeIndex, setActiveIndex] = useState(0)
   const [dragOffset, setDragOffset] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
 
-  useEffect(() => {
-    let cancelled = false
-
-    async function loadImages() {
-      try {
-        const response = await fetch(`${getPathCardEndpoint(cardKey, lang)}&_=${Date.now()}`, {
-          headers: { Accept: 'application/json' },
-        })
-        if (!response.ok) throw new Error(`WordPress returned ${response.status}`)
-
-        const data = await response.json()
-        const nextImages = Array.isArray(data)
-          ? data.map((post) => normalizeImagePost(post, fallbackImage)).filter((image) => image.image).slice(0, 5)
-          : []
-
-        if (!cancelled) {
-          setImages(nextImages)
-          setActiveIndex(0)
-          setDragOffset(0)
-        }
-      } catch {
-        if (!cancelled) setImages([])
-      }
-    }
-
-    loadImages()
-    const timer = window.setInterval(loadImages, 300000)
-    return () => {
-      cancelled = true
-      window.clearInterval(timer)
-    }
-  }, [cardKey, fallbackImage, lang])
-
-  const slides = images.length > 0 ? images : [{ id: 'fallback', image: fallbackImage, title: fallbackTitle }]
   const safeActiveIndex = Math.min(activeIndex, Math.max(slides.length - 1, 0))
 
   useEffect(() => {
@@ -715,7 +894,7 @@ function PathCardImageCarousel({ cardKey, fallbackImage, fallbackTitle, lang }) 
   const trackTransform = `translate3d(calc(-${safeActiveIndex * 100}% + ${dragOffset}px), 0, 0)`
 
   return (
-    <div className="path-card-image-carousel">
+    <div className={`path-card-image-carousel content-image-carousel--${variant}`}>
       <div
         className="path-card-image-track"
         ref={trackRef}
@@ -750,7 +929,7 @@ function PathCardImageCarousel({ cardKey, fallbackImage, fallbackTitle, lang }) 
   )
 }
 
-function AircraftShowcaseCarousel({ lang }) {
+function AircraftShowcaseCarousel({ categoryId, fallbackImage, fallbackTitle }) {
   const trackRef = useRef(null)
   const dragRef = useRef({
     active: false,
@@ -761,52 +940,11 @@ function AircraftShowcaseCarousel({ lang }) {
     startY: 0,
   })
   const lastInteractionRef = useRef(0)
-  const [images, setImages] = useState(() => aircraftShowcaseImageCache)
-  const [status, setStatus] = useState(aircraftShowcaseImageCache.length > 0 ? 'ready' : 'loading')
+  const slides = useWordPressCarouselImages(categoryId, fallbackImage, fallbackTitle)
   const [activeIndex, setActiveIndex] = useState(0)
   const [dragOffset, setDragOffset] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
 
-  useEffect(() => {
-    let cancelled = false
-
-    async function loadImages() {
-      try {
-        const response = await fetch(`${getAircraftShowcaseEndpoint()}&_=${Date.now()}`, {
-          headers: { Accept: 'application/json' },
-        })
-        if (!response.ok) throw new Error(`WordPress returned ${response.status}`)
-
-        const data = await response.json()
-        const nextImages = Array.isArray(data)
-          ? data.map((post) => normalizeImagePost(post)).filter((image) => image.image).slice(0, 5)
-          : []
-
-        if (!cancelled) {
-          if (nextImages.length > 0) {
-            aircraftShowcaseImageCache = nextImages
-            setImages(nextImages)
-            setStatus('ready')
-          } else if (aircraftShowcaseImageCache.length === 0) {
-            setStatus('empty')
-          }
-          setActiveIndex(0)
-          setDragOffset(0)
-        }
-      } catch {
-        if (!cancelled && aircraftShowcaseImageCache.length === 0) setStatus('error')
-      }
-    }
-
-    loadImages()
-    const timer = window.setInterval(loadImages, 300000)
-    return () => {
-      cancelled = true
-      window.clearInterval(timer)
-    }
-  }, [])
-
-  const slides = images
   const safeActiveIndex = Math.min(activeIndex, Math.max(slides.length - 1, 0))
 
   useEffect(() => {
@@ -898,7 +1036,7 @@ function AircraftShowcaseCarousel({ lang }) {
 
   return (
     <div className="aircraft-showcase-carousel">
-      {slides.length > 0 ? (
+      {slides.length > 0 && (
         <div
           className="aircraft-showcase-track"
           ref={trackRef}
@@ -928,12 +1066,6 @@ function AircraftShowcaseCarousel({ lang }) {
             </div>
           ))}
         </div>
-      ) : (
-        <div className="aircraft-showcase-placeholder">
-          {status === 'error'
-            ? (lang === 'zh' ? '暂时无法读取飞机图片' : 'Unable to load aircraft images')
-            : (lang === 'zh' ? '正在读取飞机图片...' : 'Loading aircraft images...')}
-        </div>
       )}
 
       {slides.length > 1 && (
@@ -947,49 +1079,11 @@ function AircraftShowcaseCarousel({ lang }) {
   )
 }
 
-function HeroBanner({ fallbackImage, lang }) {
+function HeroBanner({ categoryId, fallbackImage, fallbackTitle }) {
   const trackRef = useRef(null)
   const dragRef = useRef({ active: false, moved: false, scrollLeft: 0, startX: 0 })
-  const [banners, setBanners] = useState([])
+  const slides = useWordPressCarouselImages(categoryId, fallbackImage, fallbackTitle)
   const [activeIndex, setActiveIndex] = useState(0)
-
-  useEffect(() => {
-    let cancelled = false
-
-    async function loadBanners() {
-      try {
-        const response = await fetch(`${getBannerEndpoint(lang)}&_=${Date.now()}`, {
-          headers: { Accept: 'application/json' },
-        })
-        if (!response.ok) throw new Error(`WordPress returned ${response.status}`)
-
-        const data = await response.json()
-        const nextBanners = Array.isArray(data)
-          ? data.map(normalizeBannerPost).filter((banner) => banner.image).slice(0, 4)
-          : []
-
-        if (!cancelled) {
-          setBanners(nextBanners)
-          setActiveIndex(0)
-          trackRef.current?.scrollTo({ left: 0, behavior: 'auto' })
-        }
-      } catch {
-        if (!cancelled) setBanners([])
-      }
-    }
-
-    loadBanners()
-    const timer = window.setInterval(loadBanners, 300000)
-    return () => {
-      cancelled = true
-      window.clearInterval(timer)
-    }
-  }, [lang])
-
-  const slides = [
-    { id: 'fallback', image: fallbackImage, title: 'Aviona' },
-    ...banners,
-  ].slice(0, 5)
 
   useEffect(() => {
     if (slides.length <= 1) return undefined
@@ -1094,6 +1188,37 @@ function HeroBanner({ fallbackImage, lang }) {
         </div>
       )}
     </div>
+  )
+}
+
+function ContentCarouselSlot({ slot }) {
+  if (slot.kind === 'hero') {
+    return (
+      <HeroBanner
+        categoryId={slot.categoryId}
+        fallbackImage={slot.fallbackImage}
+        fallbackTitle={slot.fallbackTitle}
+      />
+    )
+  }
+
+  if (slot.variant === 'showcase') {
+    return (
+      <AircraftShowcaseCarousel
+        categoryId={slot.categoryId}
+        fallbackImage={slot.fallbackImage}
+        fallbackTitle={slot.fallbackTitle}
+      />
+    )
+  }
+
+  return (
+    <InlineImageCarousel
+      categoryId={slot.categoryId}
+      fallbackImage={slot.fallbackImage}
+      fallbackTitle={slot.fallbackTitle}
+      variant={slot.variant}
+    />
   )
 }
 
@@ -1714,15 +1839,14 @@ function FloatingContactWidget({ lang, hideRail = false }) {
 
   function handleWidgetPointerDown(event) {
     if (event.button != null && event.button !== 0) return
+    if (event.isPrimary === false || dragStateRef.current) return
     if (event.target.closest('.floating-contact-menu')) return
 
     const rect = widgetRef.current?.getBoundingClientRect()
     if (!rect) return
 
-    // Disable native link dragging so the widget keeps receiving pointer events.
-    event.currentTarget.setPointerCapture?.(event.pointerId)
-
     dragStateRef.current = {
+      pointerId: event.pointerId,
       pointerX: event.clientX,
       pointerY: event.clientY,
       left: rect.left,
@@ -1734,13 +1858,16 @@ function FloatingContactWidget({ lang, hideRail = false }) {
 
     function handlePointerMove(moveEvent) {
       const dragState = dragStateRef.current
-      if (!dragState) return
+      if (!dragState || moveEvent.pointerId !== dragState.pointerId) return
 
       const dx = moveEvent.clientX - dragState.pointerX
       const dy = moveEvent.clientY - dragState.pointerY
       if (!dragState.dragged && Math.hypot(dx, dy) < 6) return
 
-      dragState.dragged = true
+      if (!dragState.dragged) {
+        dragState.dragged = true
+        widgetRef.current?.setPointerCapture?.(dragState.pointerId)
+      }
       widgetRef.current?.classList.add('is-dragging')
       moveEvent.preventDefault()
 
@@ -1754,8 +1881,11 @@ function FloatingContactWidget({ lang, hideRail = false }) {
       saveWidgetPosition(nextPosition)
     }
 
-    function handlePointerUp() {
-      if (dragStateRef.current?.dragged) {
+    function handlePointerUp(upEvent) {
+      const dragState = dragStateRef.current
+      if (!dragState || upEvent.pointerId !== dragState.pointerId) return
+
+      if (dragState.dragged) {
         suppressClickRef.current = true
         window.setTimeout(() => {
           suppressClickRef.current = false
@@ -1763,8 +1893,9 @@ function FloatingContactWidget({ lang, hideRail = false }) {
       }
 
       widgetRef.current?.classList.remove('is-dragging')
-      if (widgetRef.current?.hasPointerCapture?.(event.pointerId)) {
-        widgetRef.current.releasePointerCapture(event.pointerId)
+      const pointerId = dragState.pointerId
+      if (pointerId !== undefined && widgetRef.current?.hasPointerCapture?.(pointerId)) {
+        widgetRef.current.releasePointerCapture(pointerId)
       }
       dragStateRef.current = null
       document.removeEventListener('pointermove', handlePointerMove)
@@ -1906,11 +2037,9 @@ function closeMobileMenu(root) {
 
 function App() {
   const pageRootRef = useRef(null)
-  const heroBannerRootRef = useRef(null)
+  const contentCarouselRootsRef = useRef(new Map())
   const aircraftMediaBannerRootRef = useRef(null)
   const newsCarouselRootRef = useRef(null)
-  const aircraftShowcaseRootRef = useRef(null)
-  const pathCardCarouselRootsRef = useRef(new Map())
   const toastTimer = useRef(null)
   const [route, setRoute] = useState(getRoute)
   const [lang, setLang] = useState(getInitialLang)
@@ -1965,32 +2094,47 @@ function App() {
   }, [lang, route.key, route.hash, pageHtml])
 
   useEffect(() => {
-    const host = pageRootRef.current?.querySelector('[data-hero-banner-host]')
-    if (!host) {
-      heroBannerRootRef.current = null
-      return
-    }
+    const hosts = Array.from(pageRootRef.current?.querySelectorAll('[data-content-carousel-host]') || [])
+    const activeHosts = new Set(hosts)
 
-    if (heroBannerRootRef.current?.host !== host) {
-      heroBannerRootRef.current = {
-        host,
-        root: createRoot(host),
+    contentCarouselRootsRef.current.forEach((root, host) => {
+      if (!activeHosts.has(host)) {
+        deferReactRootUnmount(root)
+        contentCarouselRootsRef.current.delete(host)
       }
-    }
+    })
 
-    heroBannerRootRef.current.root.render(
-      <HeroBanner fallbackImage={host.dataset.fallbackImage || '/assets/photos/jet-sunset.jpg'} lang={lang} />,
-    )
+    hosts.forEach((host) => {
+      const slot = contentCarouselSlotByKey[host.dataset.carouselSlot]
+      if (!slot) {
+        if (import.meta.env.DEV) console.warn(`Unknown WordPress carousel slot: ${host.dataset.carouselSlot}`)
+        return
+      }
+
+      if (!contentCarouselRootsRef.current.has(host)) {
+        contentCarouselRootsRef.current.set(host, createRoot(host))
+      }
+
+      contentCarouselRootsRef.current.get(host).render(
+        <ContentCarouselSlot key={slot.key} slot={slot} />,
+      )
+    })
   }, [pageHtml, route.key, lang])
 
   useEffect(() => {
     const host = pageRootRef.current?.querySelector('[data-aircraft-media-banner-host]')
     if (!host) {
+      if (aircraftMediaBannerRootRef.current) {
+        deferReactRootUnmount(aircraftMediaBannerRootRef.current.root)
+      }
       aircraftMediaBannerRootRef.current = null
       return
     }
 
     if (aircraftMediaBannerRootRef.current?.host !== host) {
+      if (aircraftMediaBannerRootRef.current) {
+        deferReactRootUnmount(aircraftMediaBannerRootRef.current.root)
+      }
       aircraftMediaBannerRootRef.current = {
         host,
         root: createRoot(host),
@@ -2005,11 +2149,17 @@ function App() {
   useEffect(() => {
     const host = pageRootRef.current?.querySelector('[data-news-carousel-host]')
     if (!host) {
+      if (newsCarouselRootRef.current) {
+        deferReactRootUnmount(newsCarouselRootRef.current.root)
+      }
       newsCarouselRootRef.current = null
       return
     }
 
     if (newsCarouselRootRef.current?.host !== host) {
+      if (newsCarouselRootRef.current) {
+        deferReactRootUnmount(newsCarouselRootRef.current.root)
+      }
       newsCarouselRootRef.current = {
         host,
         root: createRoot(host),
@@ -2017,52 +2167,6 @@ function App() {
     }
 
     newsCarouselRootRef.current.root.render(<NewsCarousel key={lang} lang={lang} />)
-  }, [pageHtml, route.key, lang])
-
-  useEffect(() => {
-    const host = pageRootRef.current?.querySelector('[data-aircraft-showcase-carousel-host]')
-    if (!host) {
-      aircraftShowcaseRootRef.current = null
-      return
-    }
-
-    if (aircraftShowcaseRootRef.current?.host !== host) {
-      aircraftShowcaseRootRef.current = {
-        host,
-        root: createRoot(host),
-      }
-    }
-
-    aircraftShowcaseRootRef.current.root.render(
-      <AircraftShowcaseCarousel lang={lang} />,
-    )
-  }, [pageHtml, route.key, lang])
-
-  useEffect(() => {
-    const hosts = Array.from(pageRootRef.current?.querySelectorAll('[data-path-card-carousel-host]') || [])
-    const activeHosts = new Set(hosts)
-
-    pathCardCarouselRootsRef.current.forEach((root, host) => {
-      if (!activeHosts.has(host)) {
-        root.unmount()
-        pathCardCarouselRootsRef.current.delete(host)
-      }
-    })
-
-    hosts.forEach((host) => {
-      if (!pathCardCarouselRootsRef.current.has(host)) {
-        pathCardCarouselRootsRef.current.set(host, createRoot(host))
-      }
-
-      pathCardCarouselRootsRef.current.get(host).render(
-        <PathCardImageCarousel
-          cardKey={host.dataset.cardKey || 'classA'}
-          fallbackImage={host.dataset.fallbackImage || '/assets/photos/engine-closeup.jpg'}
-          fallbackTitle={host.dataset.fallbackTitle || 'Aviona'}
-          lang={lang}
-        />,
-      )
-    })
   }, [pageHtml, route.key, lang])
 
   useEffect(() => {

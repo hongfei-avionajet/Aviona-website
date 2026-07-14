@@ -55,9 +55,8 @@ Preview and Production:
 
 - `RESEND_API_KEY`: secret Resend API key
 - `CONTACT_EMAIL_FROM`: verified sender, such as `Aviona <contact@avionajet.com>`
-- `CONTACT_EMAIL_TO`: production recipient; defaults to `ops@avionajet.com`
 
-Preview deployments use the dedicated preview recipient defined by the function.
+Preview and production deployments both send inquiries to `ops@avionajet.com`.
 Never commit the API key or expose it through a client-side `VITE_*` variable.
 
 ## Verification Completed

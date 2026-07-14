@@ -1,7 +1,6 @@
 /* global process */
 
-const DEFAULT_TO_EMAIL = 'ops@avionajet.com'
-const PREVIEW_TO_EMAIL = 'leiyang203@gmail.com'
+const CONTACT_EMAIL = 'ops@avionajet.com'
 
 function sendJson(response, status, payload) {
   response.status(status).json(payload)
@@ -65,9 +64,6 @@ export default async function handler(request, response) {
 
   const apiKey = process.env.RESEND_API_KEY
   const fromEmail = process.env.CONTACT_EMAIL_FROM
-  const toEmail = process.env.VERCEL_ENV === 'preview'
-    ? PREVIEW_TO_EMAIL
-    : process.env.CONTACT_EMAIL_TO || DEFAULT_TO_EMAIL
 
   if (!apiKey || !fromEmail) {
     return sendJson(response, 500, {
@@ -98,7 +94,7 @@ export default async function handler(request, response) {
     },
     body: JSON.stringify({
       from: fromEmail,
-      to: [toEmail],
+      to: [CONTACT_EMAIL],
       subject,
       reply_to: email || undefined,
       text: formatTextEmail(body),
