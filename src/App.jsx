@@ -1,8 +1,14 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { createRoot } from 'react-dom/client'
-import { I18N } from './content/i18n'
+import {
+  APPROVED_CONTENT_2026_I18N,
+  applyApprovedContent2026,
+} from './content/approvedContent2026'
+import { I18N as BASE_I18N } from './content/i18n'
 import { pages } from './content/pages'
+
+const I18N = { ...BASE_I18N, ...APPROVED_CONTENT_2026_I18N }
 
 const routeMap = {
   '/': 'home',
@@ -44,7 +50,7 @@ const fallbackLabelTranslations = [
 ]
 
 const wordpressPostsEndpoint =
-  'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=4&_embed=1'
+  'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=100&_embed=1&orderby=date&order=desc'
 
 const secureStoreUrl = 'https://ava.store.sandbox.brickken.com/en/store/'
 
@@ -419,7 +425,7 @@ function addMobileMenuToggle(html) {
 }
 
 function getPageHtml(page, routeKey) {
-  let html = addMobileMenuToggle(page.html)
+  let html = applyApprovedContent2026(routeKey, addMobileMenuToggle(page.html))
 
   if (routeKey === 'aircraft') {
     html = html.replace(heroBackgroundPattern, (_, fallbackImage) => getAircraftHeroMediaHostHtml(fallbackImage))
@@ -655,9 +661,48 @@ function formatPostDate(date, lang) {
   }).format(new Date(date))
 }
 
-function getNewsEndpoint(lang) {
+function getNewsEndpoint(lang, page = 1) {
   const category = wordpressNewsCategories[lang] || wordpressNewsCategories.en
-  return `${wordpressPostsEndpoint}&categories=${category}`
+  return `${wordpressPostsEndpoint}&categories=${category}&page=${page}`
+}
+
+async function requestAllNewsPosts(lang) {
+  const cacheBuster = Date.now()
+
+  async function requestPage(page) {
+    const response = await fetch(`${getNewsEndpoint(lang, page)}&_=${cacheBuster}`, {
+      headers: { Accept: 'application/json' },
+    })
+    if (!response.ok) throw new Error(`WordPress returned ${response.status}`)
+
+    const data = await response.json()
+    return {
+      posts: Array.isArray(data) ? data : [],
+      totalPages: Number.parseInt(response.headers.get('X-WP-TotalPages') || '1', 10),
+    }
+  }
+
+  const firstPage = await requestPage(1)
+  const totalPages = Number.isFinite(firstPage.totalPages) && firstPage.totalPages > 1
+    ? firstPage.totalPages
+    : 1
+  const remainingPages = totalPages > 1
+    ? await Promise.all(
+      Array.from({ length: totalPages - 1 }, (_, index) => requestPage(index + 2)),
+    )
+    : []
+  const seenPostIds = new Set()
+
+  return [firstPage, ...remainingPages]
+    .flatMap((page) => page.posts)
+    .filter((post) => {
+      if (!post?.id || seenPostIds.has(post.id)) return false
+      seenPostIds.add(post.id)
+      return true
+    })
+    .sort((left, right) => (
+      Date.parse(right.date || 0) - Date.parse(left.date || 0) || right.id - left.id
+    ))
 }
 
 function getCarouselEndpoint(categoryId) {
@@ -1515,20 +1560,14 @@ function NewsCarousel({ lang }) {
   useEffect(() => {
     let cancelled = false
     const cachedPosts = newsPostsCache[lang] || []
-    cachedPosts.forEach((post, index) => preloadImage(getNewsPostImage(post, index)))
+    cachedPosts.slice(0, 2).forEach((post, index) => preloadImage(getNewsPostImage(post, index)))
 
     async function loadPosts() {
       try {
-        const response = await fetch(`${getNewsEndpoint(lang)}&_=${Date.now()}`, {
-          headers: { Accept: 'application/json' },
-        })
-        if (!response.ok) throw new Error(`WordPress returned ${response.status}`)
-
-        const data = await response.json()
+        const nextPosts = await requestAllNewsPosts(lang)
         if (!cancelled) {
-          const nextPosts = Array.isArray(data) ? data.slice(0, 4) : []
           newsPostsCache[lang] = nextPosts
-          nextPosts.forEach((post, index) => preloadImage(getNewsPostImage(post, index)))
+          nextPosts.slice(0, 2).forEach((post, index) => preloadImage(getNewsPostImage(post, index)))
           setPosts(nextPosts)
           setActiveIndex(0)
           trackRef.current?.scrollTo({ left: 0, behavior: 'auto' })
@@ -1546,6 +1585,15 @@ function NewsCarousel({ lang }) {
       window.clearInterval(timer)
     }
   }, [lang])
+
+  useEffect(() => {
+    if (posts.length === 0) return
+
+    const currentIndex = Math.min(activeIndex, posts.length - 1)
+    const nextIndex = (currentIndex + 1) % posts.length
+    preloadImage(getNewsPostImage(posts[currentIndex], currentIndex))
+    if (nextIndex !== currentIndex) preloadImage(getNewsPostImage(posts[nextIndex], nextIndex))
+  }, [activeIndex, posts])
 
   useEffect(() => {
     if (!activePost) return undefined
@@ -1683,7 +1731,7 @@ function NewsCarousel({ lang }) {
                       src={post.image}
                       alt=""
                       draggable={false}
-                      loading="eager"
+                      loading={index < 2 ? 'eager' : 'lazy'}
                       fetchPriority={index === activeIndex ? 'high' : 'auto'}
                       onDragStart={(event) => event.preventDefault()}
                     />
@@ -2293,6 +2341,7 @@ function App() {
         event.preventDefault()
         closeMobileMenu(root)
         const form = actionEl.closest('form')
+        if (!form?.reportValidity() || actionEl.getAttribute('aria-busy') === 'true') return
         const fields = Array.from(form?.querySelectorAll('label') || [])
           .map((label) => {
             const field = label.querySelector('input, select, textarea')
@@ -2309,6 +2358,7 @@ function App() {
         const originalText = actionEl.textContent
         actionEl.textContent = lang === 'zh' ? '提交中...' : 'Sending...'
         actionEl.setAttribute('aria-busy', 'true')
+        actionEl.setAttribute('disabled', '')
 
         try {
           const response = await fetch('/api/contact', {
@@ -2317,6 +2367,7 @@ function App() {
             body: JSON.stringify({
               lang,
               page: window.location.href,
+              website: form?.elements.namedItem('website')?.value || '',
               fields,
             }),
           })
@@ -2339,6 +2390,7 @@ function App() {
         } finally {
           actionEl.textContent = originalText
           actionEl.removeAttribute('aria-busy')
+          actionEl.removeAttribute('disabled')
         }
         return
       }
@@ -2380,11 +2432,20 @@ function App() {
     }
   }
 
+  function handleSubmit(event) {
+    const form = event.target
+    if (!(form instanceof HTMLFormElement) || !form.matches('[data-contact-form]')) return
+
+    event.preventDefault()
+    form.querySelector('[data-action="contact-form-submit"]')?.click()
+  }
+
   return (
     <>
       <main
         ref={pageRootRef}
         onClick={handleClick}
+        onSubmit={handleSubmit}
         dangerouslySetInnerHTML={{ __html: pageHtml }}
       />
       <FloatingContactWidget lang={lang} hideRail={route.key === 'contact'} />

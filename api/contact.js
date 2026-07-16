@@ -1,6 +1,23 @@
 /* global process */
 
+import nodemailer from 'nodemailer'
+
 const CONTACT_EMAIL = 'ops@avionajet.com'
+const DEFAULT_SMTP_HOST = 'smtp.qiye.aliyun.com'
+const DEFAULT_SMTP_PORT = 465
+const MAX_FIELD_COUNT = 12
+const MAX_LABEL_LENGTH = 120
+const MAX_VALUE_LENGTH = 2000
+const ALLOWED_FIELD_KEYS = new Set([
+  'about.form.name',
+  'about.form.email',
+  'about.form.mobile',
+  'about.form.location',
+  'about.form.company',
+  'about.form.interest',
+  'about.form.region',
+  'about.form.followup',
+])
 
 function sendJson(response, status, payload) {
   response.status(status).json(payload)
@@ -17,6 +34,49 @@ function escapeHtml(value) {
 
 function getFieldValue(fields, key) {
   return fields.find((field) => field.key === key)?.value || ''
+}
+
+function cleanText(value, maxLength) {
+  return String(value || '')
+    .replaceAll(String.fromCharCode(0), '')
+    .trim()
+    .slice(0, maxLength)
+}
+
+function cleanHeaderText(value, maxLength) {
+  return cleanText(value, maxLength).replace(/[\r\n]+/g, ' ')
+}
+
+function normalizeFields(value) {
+  if (!Array.isArray(value)) return []
+
+  return value
+    .slice(0, MAX_FIELD_COUNT)
+    .map((field) => ({
+      key: cleanText(field?.key, MAX_LABEL_LENGTH),
+      label: cleanText(field?.label, MAX_LABEL_LENGTH),
+      value: cleanText(field?.value, MAX_VALUE_LENGTH),
+    }))
+    .filter((field) => ALLOWED_FIELD_KEYS.has(field.key) && field.label && field.value)
+}
+
+function isEmail(value) {
+  return value.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+}
+
+function getSmtpSettings() {
+  const user = cleanText(process.env.SMTP_USER, 254)
+  const password = process.env.SMTP_PASSWORD || ''
+  const host = cleanText(process.env.SMTP_HOST, 255) || DEFAULT_SMTP_HOST
+  const configuredPort = Number.parseInt(process.env.SMTP_PORT || '', 10)
+  const port = Number.isInteger(configuredPort) && configuredPort > 0
+    ? configuredPort
+    : DEFAULT_SMTP_PORT
+  const secure = process.env.SMTP_SECURE
+    ? process.env.SMTP_SECURE === 'true'
+    : port === 465
+
+  return { user, password, host, port, secure }
 }
 
 function formatTextEmail({ lang, fields, page }) {
@@ -62,50 +122,71 @@ export default async function handler(request, response) {
     return sendJson(response, 405, { message: 'Method not allowed.' })
   }
 
-  const apiKey = process.env.RESEND_API_KEY
-  const fromEmail = process.env.CONTACT_EMAIL_FROM
+  const smtp = getSmtpSettings()
 
-  if (!apiKey || !fromEmail) {
+  if (!smtp.user || !smtp.password) {
     return sendJson(response, 500, {
       message: 'Email service is not configured.',
     })
   }
 
   const body = request.body || {}
-  const fields = Array.isArray(body.fields)
-    ? body.fields.filter((field) => field?.label && field?.value)
-    : []
+  if (cleanText(body.website, 200)) {
+    return sendJson(response, 200, { ok: true })
+  }
+
+  const fields = normalizeFields(body.fields)
 
   if (!fields.length) {
     return sendJson(response, 400, { message: 'No inquiry fields provided.' })
   }
 
-  const email = getFieldValue(fields, 'about.form.email')
-  const name = getFieldValue(fields, 'about.form.name')
+  const email = cleanText(getFieldValue(fields, 'about.form.email'), 254)
+  const name = cleanHeaderText(getFieldValue(fields, 'about.form.name'), 100)
+  if (!isEmail(email)) {
+    return sendJson(response, 400, { message: 'A valid email address is required.' })
+  }
+  const normalizedBody = {
+    lang: body.lang === 'zh' ? 'zh' : 'en',
+    page: cleanText(body.page, 2048),
+    fields,
+  }
   const subject = body.lang === 'zh'
     ? `AVIONA 网站咨询${name ? ` - ${name}` : ''}`
     : `Aviona website inquiry${name ? ` - ${name}` : ''}`
 
-  const resendResponse = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
+  const transporter = nodemailer.createTransport({
+    host: smtp.host,
+    port: smtp.port,
+    secure: smtp.secure,
+    auth: {
+      user: smtp.user,
+      pass: smtp.password,
     },
-    body: JSON.stringify({
-      from: fromEmail,
-      to: [CONTACT_EMAIL],
-      subject,
-      reply_to: email || undefined,
-      text: formatTextEmail(body),
-      html: formatHtmlEmail(body),
-    }),
+    connectionTimeout: 8000,
+    greetingTimeout: 8000,
+    socketTimeout: 12000,
+    tls: {
+      minVersion: 'TLSv1.2',
+    },
   })
 
-  const result = await resendResponse.json().catch(() => ({}))
-  if (!resendResponse.ok) {
+  try {
+    await transporter.sendMail({
+      from: {
+        name: 'AVIONA Website',
+        address: smtp.user,
+      },
+      to: CONTACT_EMAIL,
+      subject,
+      replyTo: isEmail(email) ? email : undefined,
+      text: formatTextEmail(normalizedBody),
+      html: formatHtmlEmail(normalizedBody),
+    })
+  } catch (error) {
+    console.error('SMTP delivery failed:', error?.code || error?.message || 'unknown error')
     return sendJson(response, 502, {
-      message: result.message || 'Email delivery failed.',
+      message: 'Email delivery failed.',
     })
   }
 

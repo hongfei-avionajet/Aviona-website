@@ -49,15 +49,22 @@ The included `vercel.json` sends all routes back to `index.html`, so direct visi
 
 ### Contact email service
 
-The `/api/contact` Vercel function sends inquiry emails through Resend. Configure
-these variables for every Vercel environment that serves the form, including
-Preview and Production:
+The `/api/contact` Vercel function sends inquiry emails through the existing
+Alibaba Mail account over SMTP. Configure these variables for every Vercel
+environment that serves the form, including Preview and Production:
 
-- `RESEND_API_KEY`: secret Resend API key
-- `CONTACT_EMAIL_FROM`: verified sender, such as `Aviona <contact@avionajet.com>`
+- `SMTP_USER`: full Alibaba Mail address, such as `ops@avionajet.com`
+- `SMTP_PASSWORD`: Alibaba Mail third-party client security password (preferred)
+  or SMTP-enabled mailbox password
 
-Preview and production deployments both send inquiries to `ops@avionajet.com`.
-Never commit the API key or expose it through a client-side `VITE_*` variable.
+The function defaults to Alibaba Mail's SSL endpoint
+`smtp.qiye.aliyun.com:465`. `SMTP_HOST`, `SMTP_PORT`, and `SMTP_SECURE` may be
+set only when a different SMTP endpoint is required. All inquiries are sent to
+`ops@avionajet.com`, and a valid visitor email is used only as the Reply-To
+address.
+
+Never commit the SMTP password or expose it through a client-side `VITE_*`
+variable. Add it directly through Vercel's encrypted Environment Variables UI.
 
 ## Verification Completed
 
