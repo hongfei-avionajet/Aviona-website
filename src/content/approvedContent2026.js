@@ -7,6 +7,69 @@
  */
 
 export const APPROVED_CONTENT_2026_I18N = {
+  "meta.title.home": { en: "AVIONA — Own a Private Jet from US$16,000", zh: "首页 — AVIONA" },
+  "meta.title.why": { en: "Why Aviona — AVIONA", zh: "AVIONA 优势 — AVIONA" },
+  "meta.title.aircraft": { en: "The Aircraft — AVIONA", zh: "私人飞机 — AVIONA" },
+  "meta.title.ways": { en: "Investment Options — AVIONA", zh: "投资方式 — AVIONA" },
+  "meta.title.about": { en: "About AVIONA", zh: "关于 AVIONA" },
+  "meta.title.contact": { en: "Contact Us — AVIONA", zh: "联系我们 — AVIONA" },
+  "v5.card.price.b": { en: "From US$16,000", zh: "16,000 美元起" },
+  "ac.final.h2": {
+    en: "Now choose how you'd like to access it.",
+    zh: "现在，选择您希望如何参与。",
+  },
+  "ways.sub": {
+    en: "Financial Investment · Fractional Aircraft Ownership Investment · VIP Membership",
+    zh: "财务投资 · 机主权益投资 · VIP 会员",
+  },
+  "ways.subnav.m": { en: "VIP Membership", zh: "VIP 会员" },
+  "ways.faq.tab.m": { en: "VIP Membership", zh: "VIP 会员" },
+  "ways.compare.label": { en: "Advantages of the AVIONA Model", zh: "AVIONA 模式的优势" },
+  "ways.compare.col.aviona": { en: "AVIONA Model", zh: "AVIONA 模式" },
+  "ftr.tagline": {
+    en: "A new way into private aviation. A regulated platform built around private jet RWA and fractional ownership investment.",
+    zh: "进入私人航空的全新方式。围绕私人飞机 RWA 和产权共享投资进行的受监管平台。",
+  },
+  "about.partner.fm": { en: "Fund Manager · SFC Type 9", zh: "基金管理人 · SFC 第 9 类牌照" },
+  "about.struct.lead": {
+    en: "The Aviona Master Fund is structured as a Hong Kong Limited Partnership Fund (LPF) and operated within the regulatory framework of the Hong Kong Securities and Futures Commission (SFC). The aircraft itself is held by a single-asset SPV owned by the fund — your unit corresponds one-to-one with real aircraft ownership, not a paper claim.",
+    zh: "Aviona 主基金以香港有限合伙基金（LPF）架构设立，在香港证监会（SFC）监管框架下运营。飞机由基金持有的单资产 SPV 持有——您的份额对应真实飞机产权，非纸面权益。",
+  },
+  "about.tf.t1.p": {
+    en: "The aircraft is insured at 115% of its value — over-insured to protect holders against loss events.",
+    zh: "飞机按价值的 115% 投保——超额承保，保护持有人免受损失事件影响。",
+  },
+  "about.dl.lead": {
+    en: "Aviona uses a regulated digital ownership record to keep holdings clear, secure, and transferable. The technology is part of why Aviona is more efficient than traditional ownership — but it stays quietly in the background of the experience. You receive a secure unique identifier that connects your ownership to flight access and member benefits.",
+    zh: "Aviona 使用受监管的数字产权记录，使持仓清晰、安全、可转让。该技术是 Aviona 较传统产权更高效的原因之一——但隐于体验之后。您将获得安全的唯一标识符，连接您的产权与飞行使用、会员权益。",
+  },
+  "about.partner.mx.sub": { en: "Engine & airframe programs", zh: "发动机与机身保障计划" },
+  "ways.rails.fiat": { en: "Fiat (USD)", zh: "法币（USD）" },
+  "a11y.mobileMenu": { en: "Menu", zh: "菜单" },
+  "a11y.isbaoCertificate": {
+    en: "IS-BAO certificate of registration for Avion Infinity Group Limited",
+    zh: "Avion Infinity Group Limited 的 IS-BAO 注册证书",
+  },
+  "about.form.placeholder.name": { en: "Your name", zh: "请输入姓名" },
+  "about.form.placeholder.email": { en: "you@example.com", zh: "name@example.com" },
+  "about.form.placeholder.mobile": { en: "Your mobile number", zh: "请输入手机号码" },
+  "about.form.placeholder.location": { en: "City, Country", zh: "城市、国家/地区" },
+  "about.form.placeholder.company": { en: "Optional", zh: "选填" },
+  "about.form.placeholder.region": {
+    en: "Where do you typically travel from / to?",
+    zh: "您通常从哪里出发 / 前往哪里？",
+  },
+  "about.form.interest.placeholder": { en: "Choose an interest", zh: "请选择咨询意向" },
+  "about.form.interest.classA": { en: "Class A - Invest", zh: "Class A—财务投资" },
+  "about.form.interest.classB": { en: "Class B - Shared ownership", zh: "Class B—共享产权" },
+  "about.form.interest.membership": { en: "Membership Club", zh: "VIP 会员俱乐部" },
+  "about.form.interest.flight": { en: "Private flight access", zh: "私人飞行服务" },
+  "about.form.interest.multiple": { en: "Multiple", zh: "多项" },
+  "about.form.followup.email": { en: "Email", zh: "邮箱" },
+  "about.form.followup.phone": { en: "Phone", zh: "电话" },
+  "about.form.followup.whatsapp": { en: "WhatsApp", zh: "WhatsApp" },
+  "about.form.followup.telegram": { en: "Telegram", zh: "Telegram" },
+  "about.form.followup.wechat": { en: "WeChat", zh: "微信" },
   "v5.hero.eyebrow": {
     en: "Eligible professional investors can access private-aviation investment opportunities, travel convenience, and premium services.",
     zh: "让符合资格的专业投资者参与私人航空投资，并享受私人飞机带来的出行便利与高品质服务。",
@@ -45,7 +108,7 @@ export const APPROVED_CONTENT_2026_I18N = {
   },
   "ways.final.p": {
     en: "Eligible professional investors can participate with a lower entry threshold, pursue potential returns, and access the benefits and convenience of private aviation.",
-    zh: "为符合资格的专业投资者提供较低门槛的参与方式，在追求潜在回报的同时享受私人航空的权益与便利。",
+    zh: "为符合资格的专业投资者提供较低门槛的参与方式，在追求潜在回报的同时<br class=\"ways-final-copy-break\">享受私人航空的权益与便利。",
   },
   "ways.a.risk": {
     en: `<ul><li>Expected annual return: 6–8% (depending on the fund structure). This is a target only and is not guaranteed.</li><li>Investors may apply for early redemption or transfer of their investment interests, providing a more flexible liquidity arrangement.</li><li>All investments, redemptions, and transfers are subject to KYC/AML compliance review and the fund legal documents and final terms in the Secure Store.</li></ul>`,
@@ -62,10 +125,6 @@ export const APPROVED_CONTENT_2026_I18N = {
   "ways.faq.download.lead": {
     en: "For more information about the fund structure, asset operations, aircraft use, and exit arrangements, download the AVIONA Aircraft Shared-Ownership Limited Partnership Fund FAQ Handbook (2026).",
     zh: "如需了解基金架构、资产运营、飞机使用及退出安排，请下载《AVIONA 飞机产权共享有限合伙基金问答手册（2026）》。",
-  },
-  "ways.faq.download.cta": {
-    en: "Download the AVIONA Aircraft Shared-Ownership Limited Partnership Fund FAQ Handbook (2026)",
-    zh: "下载《AVIONA 飞机产权共享有限合伙基金问答手册（2026）》",
   },
 
   "faq.gen.q1": { en: "What is AVIONA?", zh: "什么是 AVIONA？" },
@@ -150,7 +209,7 @@ export const APPROVED_CONTENT_2026_I18N = {
     en: `<p>Class A provides flexible redemption options, subject to the final contract.</p>`,
     zh: `<p>Class A 提供灵活的赎回方式，具体以最终合约为准。</p>`,
   },
-  "faq.a.q4": { en: "How is Class A protected?", zh: "A 类如何受保护？" },
+  "faq.a.q4": { en: "How is Class A protected?", zh: "Class A 如何受保护？" },
   "faq.a.a4": {
     en: `<p>Class A has priority for distributions and redemption. A GP security deposit serves as a risk-mitigation arrangement, together with 1:1 real aircraft asset backing. Neither mechanism guarantees returns or redemption; the final fund terms prevail.</p>`,
     zh: `<p>Class A 享有优先分红和优先赎回序列。GP 保证金作为风险缓释安排，并由 1:1 真实飞机资产提供支撑；上述机制均不保证回报或赎回，具体以基金最终条款为准。</p>`,
@@ -222,7 +281,7 @@ export const APPROVED_CONTENT_2026_I18N = {
   "faq.b.q12": { en: "What is the simplest way to describe Class B?", zh: "如何用最简单的话描述 Class B？" },
   "faq.b.a12": {
     en: `<p>If Class A means investing in an aircraft, Class B means owning an interest in one.</p><p>You do not need to purchase an entire aircraft or bear all management and maintenance costs to enjoy long-term private-aircraft utility rights and fly at a cost far below the market charter rate. It is both an investment and an efficient, flexible way to travel globally for business, as well as an identity within AVIONA's global membership ecosystem.</p>`,
-    zh: `<p>如果 Class A 是投资飞机，那么 Class B 就是拥有飞机权益。</p><p>你无需购买整架飞机，也无需承担全部管理和维护成本，就可以长期享有私人飞机的使用权益，并以远低于市场包机价格的成本飞行。它不仅是一项投资，更是一种高效、灵活的全球商务出行方式，也是进入 AVIONA 全球会员生态的重要身份。</p>`,
+    zh: `<p>如果 Class A 是投资飞机，那么 Class B 就是拥有飞机权益。</p><p>您无需购买整架飞机，也无需承担全部管理和维护成本，就可以长期享有私人飞机的使用权益，并以远低于市场包机价格的成本飞行。它不仅是一项投资，更是一种高效、灵活的全球商务出行方式，也是进入 AVIONA 全球会员生态的重要身份。</p>`,
   },
   "faq.b.q13": {
     en: "Does Class B support corporate and personal brand promotion?",
@@ -265,7 +324,7 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: `<p>传统航空会员主要围绕飞行里程和出行服务。AVIONA 会员体系则融合了飞机资产、公务航空、全球商务、高端社交、品牌营销、投资机会及生活方式。</p><p>它不仅是一张会员卡，更是连接全球资源与高品质生活方式的平台。</p>`,
   },
 
-  "ac.h1": { en: "Bombardier Global 5000", zh: "庞巴迪 Global 5000" },
+  "ac.h1": { en: "Bombardier Global Series, Dassault Series", zh: "庞巴迪环球系列，达索系列" },
   "ac.compare.col.item": { en: "Item", zh: "项目" },
   "ac.compare.col.falcon": { en: "Dassault Falcon 7X", zh: "达索系列" },
   "ac.compare.col.global": { en: "Bombardier Global 5000", zh: "庞巴迪环球系列" },
@@ -302,9 +361,9 @@ export const APPROVED_CONTENT_2026_I18N = {
   "ac.compare.highAltitude": { en: "High-altitude airport capability", zh: "高原机场能力" },
   "ac.compare.highAltitude.falcon": { en: "Excellent performance at high-altitude and hot-weather airports; able to serve more complex airports", zh: "高海拔、高温机场性能出色，可运营更多复杂机场" },
   "ac.compare.highAltitude.global": { en: "Excellent capability at high-altitude and hot-weather airports", zh: "高海拔、高温机场能力优秀" },
-  "ac.compare.wifi": { en: "Wi-Fi", zh: "WiFi" },
-  "ac.compare.wifi.falcon": { en: "Ka-band high-speed satellite Wi-Fi", zh: "Ka 波段高速卫星 WiFi" },
-  "ac.compare.wifi.global": { en: "Ka-band high-speed satellite Wi-Fi", zh: "Ka 波段高速卫星 WiFi" },
+  "ac.compare.wifi": { en: "Wi-Fi", zh: "Wi-Fi" },
+  "ac.compare.wifi.falcon": { en: "Ka-band high-speed satellite Wi-Fi", zh: "Ka 波段高速卫星 Wi-Fi" },
+  "ac.compare.wifi.global": { en: "Ka-band high-speed satellite Wi-Fi", zh: "Ka 波段高速卫星 Wi-Fi" },
   "ac.compare.baggage": { en: "Baggage space", zh: "行李空间" },
   "ac.compare.baggage.falcon": { en: "Approx. 4.5 m³", zh: "约 4.5 m³" },
   "ac.compare.baggage.global": { en: "Approx. 5.5 m³", zh: "约 5.5 m³" },
@@ -318,7 +377,7 @@ export const APPROVED_CONTENT_2026_I18N = {
   "ac.compare.use.falcon": { en: "Business travel, complex airports, high-altitude airports, and long-range flights", zh: "商务出行、复杂机场、高原机场、远程飞行" },
   "ac.compare.use.global": { en: "Long-haul business, family travel, and corporate hospitality", zh: "长途商务、家庭出行、企业接待" },
   "ac.compare.summary": { en: "Overall positioning", zh: "综合定位" },
-  "ac.compare.summary.falcon": { en: "Performance flagship — quiet cabin, short-runway and high-altitude capability, three-engine design, Ka-band high-speed Wi-Fi, and elegant French design", zh: "性能型旗舰——静音、短跑道、高原机场、三发动机设计、Ka 高速 WiFi，法式优雅设计" },
+  "ac.compare.summary.falcon": { en: "Performance flagship — quiet cabin, short-runway and high-altitude capability, three-engine design, Ka-band high-speed Wi-Fi, and elegant French design", zh: "性能型旗舰——静音、短跑道、高原机场、三发动机设计、Ka 高速 Wi-Fi，法式优雅设计" },
   "ac.compare.summary.global": { en: "Comfort flagship — more cabin space, larger panoramic windows, a stronger business ambience, outstanding long-haul comfort, and greater baggage capacity", zh: "舒适型旗舰——空间更大、观景窗更大、商务氛围更强、长途舒适性和载物能力突出" },
 
   "ftr.copyrightNotice": {
@@ -426,10 +485,7 @@ ${buildFaqPanel("classb", "b", CLASS_B_FAQ_COUNT)}
 ${buildFaqPanel("membership", "m", MEMBERSHIP_FAQ_COUNT)}
 
       <div class="faq-cta-block">
-        <p class="faq-download-copy" data-i18n="ways.faq.download.lead">${english("ways.faq.download.lead")}</p>
-        <div class="faq-download-row">
-          <a data-i18n="ways.faq.download.cta" class="btn" href="/downloads/aviona-aircraft-fund-faq-2026.pdf" download>${english("ways.faq.download.cta")}</a>
-        </div>
+        <a class="faq-download-copy" data-i18n="ways.faq.download.lead" href="/downloads/aviona-aircraft-fund-faq-2026.pdf" download>${english("ways.faq.download.lead")}</a>
         <div class="faq-cta-row">
           <a data-i18n="ways.faq.cta1" class="btn primary" href="https://ava.store.sandbox.brickken.com/en/store/" target="_blank" rel="noopener">View Full FAQ in the Secure Store</a>
           <a data-i18n="ways.faq.cta2" class="btn" href="/contact">Contact Dedicated VIP Client Service</a>
@@ -462,13 +518,24 @@ ${rows}
 }
 
 function applyWaysContent(html) {
+  const localizedPaymentRail = html.replaceAll(
+    '<span class="pill">Fiat (USD)</span>',
+    '<span class="pill" data-i18n="ways.rails.fiat">Fiat (USD)</span>',
+  );
   const riskNote = `<div class="risk-note ways-risk-note" data-i18n="ways.a.risk">${english("ways.a.risk")}</div>`;
-  const withRiskNote = replaceElementByI18nKey(html, "ways.a.risk", riskNote);
+  const withRiskNote = replaceElementByI18nKey(localizedPaymentRail, "ways.a.risk", riskNote);
   return replaceBetween(
     withRiskNote,
     "<!-- FAQ -->",
     '<section class="center-cta alt ways-final-cta">',
     buildWaysFaqSection(),
+  );
+}
+
+function applyAboutContent(html) {
+  return html.replace(
+    '<div class="sub-name">Engine &amp; airframe programs</div>',
+    '<div class="sub-name" data-i18n="about.partner.mx.sub">Engine &amp; airframe programs</div>',
   );
 }
 
@@ -499,35 +566,61 @@ function applyContactContent(html) {
     )
     .replace(
       '<input type="text" placeholder="Your name">',
-      '<input type="text" name="name" placeholder="Your name" autocomplete="name" maxlength="100" required>',
+      '<input type="text" name="name" placeholder="Your name" data-i18n-placeholder="about.form.placeholder.name" autocomplete="name" maxlength="100" required>',
     )
     .replace(
       '<input type="email" placeholder="you@example.com">',
-      '<input type="email" name="email" placeholder="you@example.com" autocomplete="email" maxlength="254" required>',
+      '<input type="email" name="email" placeholder="you@example.com" data-i18n-placeholder="about.form.placeholder.email" autocomplete="email" maxlength="254" required>',
     )
     .replace(
       '<input type="tel" placeholder="Your mobile number">',
-      '<input type="tel" name="mobile" placeholder="Your mobile number" autocomplete="tel" maxlength="50">',
+      '<input type="tel" name="mobile" placeholder="Your mobile number" data-i18n-placeholder="about.form.placeholder.mobile" autocomplete="tel" maxlength="50">',
     )
     .replace(
       '<input type="text" placeholder="City, Country">',
-      '<input type="text" name="location" placeholder="City, Country" maxlength="120">',
+      '<input type="text" name="location" placeholder="City, Country" data-i18n-placeholder="about.form.placeholder.location" maxlength="120">',
     )
     .replace(
       '<input type="text" placeholder="Optional">',
-      '<input type="text" name="company" placeholder="Optional" maxlength="160">',
+      '<input type="text" name="company" placeholder="Optional" data-i18n-placeholder="about.form.placeholder.company" maxlength="160">',
     )
     .replace(
-      '<select>\n            <option>Choose an interest</option>',
-      '<select name="interest">\n            <option value="">Choose an interest</option>',
+      `<select>
+            <option>Choose an interest</option>
+            <option>Class A - Invest</option>
+            <option>Class B - Shared ownership</option>
+            <option>Membership Club</option>
+            <option>Private flight access</option>
+            <option>Multiple</option>
+          </select>`,
+      `<select name="interest">
+            <option value="" data-i18n="about.form.interest.placeholder">Choose an interest</option>
+            <option value="class-a" data-i18n="about.form.interest.classA">Class A - Invest</option>
+            <option value="class-b" data-i18n="about.form.interest.classB">Class B - Shared ownership</option>
+            <option value="membership" data-i18n="about.form.interest.membership">Membership Club</option>
+            <option value="private-flight" data-i18n="about.form.interest.flight">Private flight access</option>
+            <option value="multiple" data-i18n="about.form.interest.multiple">Multiple</option>
+          </select>`,
     )
     .replace(
       '<input type="text" placeholder="Where do you typically travel from / to?">',
-      '<input type="text" name="region" placeholder="Where do you typically travel from / to?" maxlength="300">',
+      '<input type="text" name="region" placeholder="Where do you typically travel from / to?" data-i18n-placeholder="about.form.placeholder.region" maxlength="300">',
     )
     .replace(
-      '<select>\n            <option>Email</option>',
-      '<select name="followup">\n            <option>Email</option>',
+      `<select>
+            <option>Email</option>
+            <option>Phone</option>
+            <option>WhatsApp</option>
+            <option>Telegram</option>
+            <option>WeChat</option>
+          </select>`,
+      `<select name="followup">
+            <option value="email" data-i18n="about.form.followup.email">Email</option>
+            <option value="phone" data-i18n="about.form.followup.phone">Phone</option>
+            <option value="whatsapp" data-i18n="about.form.followup.whatsapp">WhatsApp</option>
+            <option value="telegram" data-i18n="about.form.followup.telegram">Telegram</option>
+            <option value="wechat" data-i18n="about.form.followup.wechat">WeChat</option>
+          </select>`,
     );
 
   const currentSubmitRow = `        <div class="submit-row">
@@ -546,7 +639,12 @@ function applyContactContent(html) {
 }
 
 function applyCopyrightNotice(html) {
-  let next = html.replaceAll(" © 2026 Aviona. All rights reserved.", "");
+  let next = html
+    .replaceAll(" © 2026 Aviona. All rights reserved.", "")
+    .replace(
+      '<img src="/assets/is-bao-certificate.jpg" alt="IS-BAO certificate of registration for Avion Infinity Group Limited">',
+      '<img src="/assets/is-bao-certificate.jpg" alt="IS-BAO certificate of registration for Avion Infinity Group Limited" data-i18n-alt="a11y.isbaoCertificate">',
+    );
 
   if (!next.includes('data-i18n="ftr.professionalNotice"')) {
     const noticeStart = next.lastIndexOf('<p style="margin-bottom: 14px;"><b style="color: rgba(255,255,255,0.78);">Important — For Professional Investors Only.</b>');
@@ -595,6 +693,7 @@ export function applyApprovedContent2026(routeKey, html) {
 
   if (normalizedRoute === "ways") next = applyWaysContent(next);
   if (normalizedRoute === "aircraft") next = applyAircraftContent(next);
+  if (normalizedRoute === "about") next = applyAboutContent(next);
   if (normalizedRoute === "contact") next = applyContactContent(next);
 
   return applyCopyrightNotice(next);

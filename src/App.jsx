@@ -49,6 +49,15 @@ const fallbackLabelTranslations = [
   { key: 'v5.final.cta1', labels: ['Start Investing', '立即投资'] },
 ]
 
+const externalToastLabelKeyByTarget = {
+  'Booking Page — Coming Soon': 'btn.book',
+  'WeChat — Coming Soon': 'about.ch.wechat',
+  'Telegram — Coming Soon': 'about.ch.telegram',
+  'Eligibility — Coming Soon': 'ftr.eligibility',
+  'Privacy Policy — Coming Soon': 'ftr.privacy',
+  'Terms of Service — Coming Soon': 'ftr.terms',
+}
+
 const wordpressPostsEndpoint =
   'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=100&_embed=1&orderby=date&order=desc'
 
@@ -206,6 +215,7 @@ const contentCarouselSlots = {
       key: 'home-hero',
       categoryId: 790497678,
       kind: 'hero',
+      a11yKey: 'v5.hero.h1',
       fallbackImage: '/assets/photos/jet-sunset.jpg',
       fallbackTitle: 'Aviona home hero',
       hostClass: 'hero-bg hero-banner-host',
@@ -215,6 +225,7 @@ const contentCarouselSlots = {
       key: 'home-class-a',
       categoryId: 790497681,
       kind: 'inline',
+      a11yKey: 'v5.card.h.a',
       variant: 'card',
       fallbackImage: '/assets/photos/engine-closeup.jpg',
       fallbackTitle: 'Class A — Invest',
@@ -225,6 +236,7 @@ const contentCarouselSlots = {
       key: 'home-class-b',
       categoryId: 790497683,
       kind: 'inline',
+      a11yKey: 'v5.card.h.b',
       variant: 'card',
       fallbackImage: '/assets/photos/cabin-doorway.jpg',
       fallbackTitle: 'Class B — Fly',
@@ -235,6 +247,7 @@ const contentCarouselSlots = {
       key: 'home-vip',
       categoryId: 790497687,
       kind: 'inline',
+      a11yKey: 'v5.card.h.m',
       variant: 'card',
       fallbackImage: '/assets/photos/champagne-bucket.jpg',
       fallbackTitle: 'Membership',
@@ -245,6 +258,7 @@ const contentCarouselSlots = {
       key: 'home-aircraft-showcase',
       categoryId: 790497688,
       kind: 'inline',
+      a11yKey: 'home.teaser.h2',
       variant: 'showcase',
       fallbackImage: '/assets/aviona-jet.jpg',
       fallbackTitle: 'Private jet — Aviona livery',
@@ -257,6 +271,7 @@ const contentCarouselSlots = {
       key: 'why-hero',
       categoryId: 790497657,
       kind: 'hero',
+      a11yKey: 'why.h1',
       fallbackImage: '/assets/photos/stewardess-stairs.jpg',
       fallbackTitle: 'Why Aviona hero',
       hostClass: 'hero-bg hero-banner-host',
@@ -268,6 +283,7 @@ const contentCarouselSlots = {
       key: 'aircraft-range',
       categoryId: 790497660,
       kind: 'inline',
+      a11yKey: 'ac.range.h2',
       variant: 'landscape',
       fallbackImage: '/assets/photos/aerial-mountains.jpg',
       fallbackTitle: 'Aircraft in flight',
@@ -277,6 +293,7 @@ const contentCarouselSlots = {
       key: 'aircraft-cabin',
       categoryId: 790497662,
       kind: 'inline',
+      a11yKey: 'ac.cabin.h2',
       variant: 'portrait',
       fallbackImage: '/assets/photos/cabin-dining.jpg',
       fallbackTitle: 'Cabin interior',
@@ -286,6 +303,7 @@ const contentCarouselSlots = {
       key: 'aircraft-business',
       categoryId: 790497663,
       kind: 'inline',
+      a11yKey: 'ac.uc.business.h3',
       variant: 'usecase',
       fallbackImage: '/assets/photos/cockpit-pilot.jpg',
       fallbackTitle: 'Business',
@@ -295,6 +313,7 @@ const contentCarouselSlots = {
       key: 'aircraft-family',
       categoryId: 790497664,
       kind: 'inline',
+      a11yKey: 'ac.uc.family.h3',
       variant: 'usecase',
       fallbackImage: '/assets/photos/fruit-table.jpg',
       fallbackTitle: 'Family',
@@ -304,6 +323,7 @@ const contentCarouselSlots = {
       key: 'aircraft-lifestyle',
       categoryId: 790497665,
       kind: 'inline',
+      a11yKey: 'ac.uc.lifestyle.h3',
       variant: 'usecase',
       fallbackImage: '/assets/photos/champagne-service.jpg',
       fallbackTitle: 'Lifestyle',
@@ -313,6 +333,7 @@ const contentCarouselSlots = {
       key: 'aircraft-operations',
       categoryId: 790497666,
       kind: 'inline',
+      a11yKey: 'ac.ops.h2',
       variant: 'landscape',
       fallbackImage: '/assets/photos/landing-gear.jpg',
       fallbackTitle: 'Operational rigor',
@@ -324,6 +345,7 @@ const contentCarouselSlots = {
       key: 'ways-hero',
       categoryId: 790497667,
       kind: 'hero',
+      a11yKey: 'ways.eyebrow',
       fallbackImage: '/assets/photos/cabin-doorway.jpg',
       fallbackTitle: 'Ways to participate hero',
       hostClass: 'hero-bg hero-banner-host',
@@ -333,6 +355,7 @@ const contentCarouselSlots = {
       key: 'ways-class-a',
       categoryId: 790497668,
       kind: 'inline',
+      a11yKey: 'ways.a.h2',
       variant: 'ways-detail',
       fallbackImage: '/assets/photos/engine-closeup.jpg',
       fallbackTitle: 'Class A — Invest',
@@ -342,6 +365,7 @@ const contentCarouselSlots = {
       key: 'ways-class-b',
       categoryId: 790497670,
       kind: 'inline',
+      a11yKey: 'ways.b.h2',
       variant: 'ways-detail',
       fallbackImage: '/assets/photos/cabin-sleep.jpg',
       fallbackTitle: 'Class B — Fly',
@@ -351,6 +375,7 @@ const contentCarouselSlots = {
       key: 'ways-membership',
       categoryId: 790497671,
       kind: 'inline',
+      a11yKey: 'ways.m.h2',
       variant: 'ways-detail',
       fallbackImage: '/assets/photos/champagne-bucket.jpg',
       fallbackTitle: 'Membership — Belong',
@@ -362,6 +387,7 @@ const contentCarouselSlots = {
       key: 'about-hero',
       categoryId: 790497672,
       kind: 'hero',
+      a11yKey: 'about.h1',
       fallbackImage: '/assets/photos/engine-closeup.jpg',
       fallbackTitle: 'About Aviona hero',
       hostClass: 'hero-bg hero-banner-host',
@@ -373,6 +399,7 @@ const contentCarouselSlots = {
       key: 'contact-hero',
       categoryId: 790497673,
       kind: 'hero',
+      a11yKey: 'nav.contact',
       fallbackImage: '/assets/photos/champagne-service.jpg',
       fallbackTitle: 'Contact Aviona hero',
       hostClass: 'hero-bg hero-banner-host',
@@ -396,6 +423,49 @@ function applyFallbackLabelTranslations(root, lang) {
   })
 }
 
+function applyI18nAttributes(root, lang) {
+  const attributeMappings = [
+    ['data-i18n-placeholder', 'placeholder'],
+    ['data-i18n-aria-label', 'aria-label'],
+    ['data-i18n-alt', 'alt'],
+  ]
+
+  attributeMappings.forEach(([keyAttribute, targetAttribute]) => {
+    root.querySelectorAll(`[${keyAttribute}]`).forEach((el) => {
+      const key = el.getAttribute(keyAttribute)
+      const text = I18N[key]?.[lang] || I18N[key]?.en
+      if (text) el.setAttribute(targetAttribute, text)
+    })
+  })
+}
+
+function getCarouselAccessibleTitle(slot, lang) {
+  const translated = I18N[slot.a11yKey]?.[lang] || I18N[slot.a11yKey]?.en
+  return translated?.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim() || slot.fallbackTitle
+}
+
+function getCarouselSlideAccessibleLabel(slide, index, accessibleTitle, lang) {
+  if (lang === 'zh') {
+    const normalizedTitle = accessibleTitle.replace(/[。.!！?？]+$/, '')
+    return `${normalizedTitle}，轮播图片 ${index + 1}`
+  }
+  return slide.title || `${accessibleTitle}, carousel image ${index + 1}`
+}
+
+function getAircraftMediaAccessibleLabel(slide, index, lang) {
+  if (lang === 'zh') return `${I18N['ac.h1']?.zh || 'AVIONA 私人飞机'}，媒体 ${index + 1}`
+  return slide.title || `AVIONA aircraft media ${index + 1}`
+}
+
+function getExternalToastDestination(destination, lang) {
+  const labelKey = externalToastLabelKeyByTarget[destination]
+  if (!labelKey) return destination || I18N['coming.soon']?.[lang] || 'Coming soon'
+
+  const label = I18N[labelKey]?.[lang] || I18N[labelKey]?.en
+  const comingSoon = I18N['coming.soon']?.[lang] || I18N['coming.soon']?.en || 'Coming soon'
+  return `${label} — ${comingSoon}`
+}
+
 function getAircraftHeroMediaHostHtml(fallbackImage) {
   return `<div class="hero-bg aircraft-media-banner-host" data-aircraft-media-banner-host data-fallback-image="${fallbackImage}" style="background-image: url('${fallbackImage}');"></div>`
 }
@@ -404,7 +474,7 @@ function getContentCarouselHostHtml(slot) {
   const className = slot.hostClass || 'content-image-carousel-host'
   const fallback = slot.kind === 'hero'
     ? ''
-    : `<img src="${slot.fallbackImage}" alt="${slot.fallbackTitle}">`
+    : `<img src="${slot.fallbackImage}" alt="">`
   const style = slot.kind === 'hero'
     ? ` style="background-image: url('${slot.fallbackImage}');"`
     : ''
@@ -420,7 +490,7 @@ function addMobileMenuToggle(html) {
   if (html.includes('data-mobile-menu-toggle')) return html
   return html.replace(
     '\n  <nav class="primary">',
-    '\n  <button class="mobile-menu-toggle" type="button" aria-label="Menu" aria-expanded="false" data-mobile-menu-toggle><span></span><span></span><span></span></button>\n  <nav class="primary">',
+    '\n  <button class="mobile-menu-toggle" type="button" aria-label="Menu" data-i18n-aria-label="a11y.mobileMenu" aria-expanded="false" data-mobile-menu-toggle><span></span><span></span><span></span></button>\n  <nav class="primary">',
   )
 }
 
@@ -829,7 +899,7 @@ function normalizeAircraftHeroMediaPost(post, fallbackImage) {
     : []
 }
 
-function InlineImageCarousel({ categoryId, fallbackImage, fallbackTitle, variant = 'card' }) {
+function InlineImageCarousel({ categoryId, fallbackImage, fallbackTitle, accessibleTitle, lang, variant = 'card' }) {
   const trackRef = useRef(null)
   const dragRef = useRef({
     active: false,
@@ -956,9 +1026,15 @@ function InlineImageCarousel({ categoryId, fallbackImage, fallbackTitle, variant
         onMouseLeave={handlePointerEnd}
         style={{ transform: trackTransform }}
       >
-        {slides.map((slide) => (
+        {slides.map((slide, index) => (
           <div className="path-card-image-slide" key={slide.id}>
-            <img src={slide.image} alt={slide.title} draggable={false} loading="lazy" onDragStart={(event) => event.preventDefault()} />
+            <img
+              src={slide.image}
+              alt={getCarouselSlideAccessibleLabel(slide, index, accessibleTitle, lang)}
+              draggable={false}
+              loading="lazy"
+              onDragStart={(event) => event.preventDefault()}
+            />
           </div>
         ))}
       </div>
@@ -974,7 +1050,7 @@ function InlineImageCarousel({ categoryId, fallbackImage, fallbackTitle, variant
   )
 }
 
-function AircraftShowcaseCarousel({ categoryId, fallbackImage, fallbackTitle }) {
+function AircraftShowcaseCarousel({ categoryId, fallbackImage, fallbackTitle, accessibleTitle, lang }) {
   const trackRef = useRef(null)
   const dragRef = useRef({
     active: false,
@@ -1102,7 +1178,7 @@ function AircraftShowcaseCarousel({ categoryId, fallbackImage, fallbackTitle }) 
             <div className="aircraft-showcase-slide" key={slide.id}>
               <img
                 src={slide.image}
-                alt={slide.title}
+                alt={getCarouselSlideAccessibleLabel(slide, index, accessibleTitle, lang)}
                 draggable={false}
                 loading="eager"
                 fetchPriority={index === safeActiveIndex ? 'high' : 'auto'}
@@ -1124,7 +1200,7 @@ function AircraftShowcaseCarousel({ categoryId, fallbackImage, fallbackTitle }) 
   )
 }
 
-function HeroBanner({ categoryId, fallbackImage, fallbackTitle }) {
+function HeroBanner({ categoryId, fallbackImage, fallbackTitle, accessibleTitle, lang }) {
   const trackRef = useRef(null)
   const dragRef = useRef({ active: false, moved: false, scrollLeft: 0, startX: 0 })
   const slides = useWordPressCarouselImages(categoryId, fallbackImage, fallbackTitle)
@@ -1214,12 +1290,12 @@ function HeroBanner({ categoryId, fallbackImage, fallbackTitle }) {
         onMouseLeave={handlePointerEnd}
         onScroll={handleScroll}
       >
-        {slides.map((slide) => (
+        {slides.map((slide, index) => (
           <div
             className="hero-banner-slide"
             key={slide.id}
             role="img"
-            aria-label={slide.title}
+            aria-label={getCarouselSlideAccessibleLabel(slide, index, accessibleTitle, lang)}
             style={{ backgroundImage: `url("${slide.image}")` }}
           />
         ))}
@@ -1236,13 +1312,17 @@ function HeroBanner({ categoryId, fallbackImage, fallbackTitle }) {
   )
 }
 
-function ContentCarouselSlot({ slot }) {
+function ContentCarouselSlot({ slot, lang }) {
+  const accessibleTitle = getCarouselAccessibleTitle(slot, lang)
+
   if (slot.kind === 'hero') {
     return (
       <HeroBanner
         categoryId={slot.categoryId}
         fallbackImage={slot.fallbackImage}
         fallbackTitle={slot.fallbackTitle}
+        accessibleTitle={accessibleTitle}
+        lang={lang}
       />
     )
   }
@@ -1253,6 +1333,8 @@ function ContentCarouselSlot({ slot }) {
         categoryId={slot.categoryId}
         fallbackImage={slot.fallbackImage}
         fallbackTitle={slot.fallbackTitle}
+        accessibleTitle={accessibleTitle}
+        lang={lang}
       />
     )
   }
@@ -1262,6 +1344,8 @@ function ContentCarouselSlot({ slot }) {
       categoryId={slot.categoryId}
       fallbackImage={slot.fallbackImage}
       fallbackTitle={slot.fallbackTitle}
+      accessibleTitle={accessibleTitle}
+      lang={lang}
       variant={slot.variant}
     />
   )
@@ -1474,6 +1558,7 @@ function AircraftHeroMediaBanner({ fallbackImage, lang }) {
               key={slide.id}
               onClick={() => handleSlideClick(slide)}
               role="button"
+              aria-label={getAircraftMediaAccessibleLabel(slide, index, lang)}
               tabIndex={0}
               onKeyDown={(event) => {
                 if (event.key === 'Enter' || event.key === ' ') {
@@ -1495,7 +1580,7 @@ function AircraftHeroMediaBanner({ fallbackImage, lang }) {
               ) : slide.type === 'embed' ? (
                 <iframe
                   src={slide.src}
-                  title={slide.title}
+                  title={getAircraftMediaAccessibleLabel(slide, index, lang)}
                   loading={index === 0 ? 'eager' : 'lazy'}
                   allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
                   allowFullScreen
@@ -1503,7 +1588,7 @@ function AircraftHeroMediaBanner({ fallbackImage, lang }) {
               ) : (
                 <img
                   src={slide.src}
-                  alt={slide.title}
+                  alt={getAircraftMediaAccessibleLabel(slide, index, lang)}
                   draggable={false}
                   loading={index === 0 ? 'eager' : 'lazy'}
                   fetchPriority={index === safeActiveIndex ? 'high' : 'auto'}
@@ -1524,7 +1609,13 @@ function AircraftHeroMediaBanner({ fallbackImage, lang }) {
       </div>
 
       {activeMedia && createPortal(
-        <div className="media-lightbox" role="dialog" aria-modal="true" onClick={() => setActiveMedia(null)}>
+        <div
+          className="media-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={lang === 'zh' ? '飞机媒体预览' : 'Aircraft media preview'}
+          onClick={() => setActiveMedia(null)}
+        >
           <div className="media-lightbox-card" onClick={(event) => event.stopPropagation()}>
             <button className="media-lightbox-close" type="button" onClick={() => setActiveMedia(null)}>
               {lang === 'zh' ? '关闭' : 'Close'}
@@ -1534,12 +1625,15 @@ function AircraftHeroMediaBanner({ fallbackImage, lang }) {
             ) : activeMedia.type === 'embed' ? (
               <iframe
                 src={getPlayableEmbedUrl(activeMedia.src)}
-                title={activeMedia.title}
+                title={getAircraftMediaAccessibleLabel(activeMedia, Math.max(slides.findIndex((slide) => slide.id === activeMedia.id), 0), lang)}
                 allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
                 allowFullScreen
               />
             ) : (
-              <img src={activeMedia.src} alt={activeMedia.title} />
+              <img
+                src={activeMedia.src}
+                alt={getAircraftMediaAccessibleLabel(activeMedia, Math.max(slides.findIndex((slide) => slide.id === activeMedia.id), 0), lang)}
+              />
             )}
           </div>
         </div>,
@@ -2026,7 +2120,10 @@ function FloatingContactWidget({ lang, hideRail = false }) {
             <h3>{activeChannel.label[lang]}</h3>
             <p>{activeChannel.description[lang]}</p>
             {activeChannel.image ? (
-              <img src={activeChannel.image} alt={`${activeChannel.label.en} QR code`} />
+              <img
+                src={activeChannel.image}
+                alt={lang === 'zh' ? `${activeChannel.label[lang]}二维码` : `${activeChannel.label[lang]} QR code`}
+              />
             ) : (
               <div className="contact-channel-value-card">
                 <span>{activeChannel.value}</span>
@@ -2088,6 +2185,7 @@ function App() {
   const contentCarouselRootsRef = useRef(new Map())
   const aircraftMediaBannerRootRef = useRef(null)
   const newsCarouselRootRef = useRef(null)
+  const pendingFormValuesRef = useRef(null)
   const toastTimer = useRef(null)
   const [route, setRoute] = useState(getRoute)
   const [lang, setLang] = useState(getInitialLang)
@@ -2101,8 +2199,8 @@ function App() {
   }, [])
 
   useEffect(() => {
-    document.title = page.title
-  }, [page.title])
+    document.title = I18N[`meta.title.${route.key}`]?.[lang] || page.title
+  }, [lang, page.title, route.key])
 
   useEffect(() => {
     const root = pageRootRef.current
@@ -2130,7 +2228,18 @@ function App() {
       }
     })
 
+    applyI18nAttributes(root, lang)
     applyFallbackLabelTranslations(root, lang)
+
+    if (pendingFormValuesRef.current) {
+      root.querySelectorAll('input[name], select[name], textarea[name]').forEach((field) => {
+        if (Object.prototype.hasOwnProperty.call(pendingFormValuesRef.current, field.name)) {
+          field.value = pendingFormValuesRef.current[field.name]
+        }
+      })
+      pendingFormValuesRef.current = null
+    }
+
     root.querySelector('#lang-en-btn')?.classList.toggle('active', lang === 'en')
     root.querySelector('#lang-zh-btn')?.classList.toggle('active', lang === 'zh')
 
@@ -2164,7 +2273,7 @@ function App() {
       }
 
       contentCarouselRootsRef.current.get(host).render(
-        <ContentCarouselSlot key={slot.key} slot={slot} />,
+        <ContentCarouselSlot key={slot.key} slot={slot} lang={lang} />,
       )
     })
   }, [pageHtml, route.key, lang])
@@ -2252,7 +2361,7 @@ function App() {
     const toastDest = root?.querySelector('#toast-dest')
     if (!toast || !toastDest) return
 
-    toastDest.textContent = destination || 'Coming soon'
+    toastDest.textContent = getExternalToastDestination(destination, lang)
     toast.classList.add('show')
 
     if (toastTimer.current) window.clearTimeout(toastTimer.current)
@@ -2290,6 +2399,10 @@ function App() {
     const langButton = target.closest('#lang-en-btn, #lang-zh-btn')
     if (langButton) {
       event.preventDefault()
+      pendingFormValuesRef.current = Object.fromEntries(
+        Array.from(root.querySelectorAll('input[name], select[name], textarea[name]'))
+          .map((field) => [field.name, field.value]),
+      )
       setLang(langButton.id === 'lang-zh-btn' ? 'zh' : 'en')
       return
     }
@@ -2350,8 +2463,13 @@ function App() {
             const labelText = (I18N[key]?.[lang] || I18N[key]?.en || label.childNodes[0]?.textContent || '')
               .replace(/\s+/g, ' ')
               .trim()
-            const value = field.value?.trim()
-            return value ? { key, label: labelText, value } : null
+            const rawValue = field.value?.trim()
+            if (!rawValue) return null
+
+            const value = field.tagName === 'SELECT'
+              ? field.selectedOptions?.[0]?.textContent?.trim() || rawValue
+              : rawValue
+            return { key, label: labelText, value }
           })
           .filter(Boolean)
 
@@ -2384,7 +2502,7 @@ function App() {
           const message = lang === 'zh'
             ? detail === 'Email service is not configured.'
               ? '邮件服务尚未配置，请联系管理员。'
-              : `提交失败${detail ? `：${detail}` : '，请稍后再试或直接联系邮箱。'}`
+              : '提交失败，请稍后再试或直接通过邮箱联系我们。'
             : `Submission failed${detail ? `: ${detail}` : '. Please try again or contact us by email.'}`
           showToast(message)
         } finally {
