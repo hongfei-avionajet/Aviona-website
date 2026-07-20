@@ -1873,19 +1873,7 @@ function NewsCarousel({ lang }) {
 function FloatingContactWidget({ lang, hideRail = false }) {
   const [isListOpen, setIsListOpen] = useState(false)
   const [activeId, setActiveId] = useState(null)
-  const [position, setPosition] = useState(() => {
-    try {
-      const saved = window.localStorage.getItem('aviona-floating-contact-position')
-      if (!saved) return null
-      const parsed = JSON.parse(saved)
-      if (Number.isFinite(parsed?.left) && Number.isFinite(parsed?.top)) {
-        return { left: parsed.left, top: parsed.top }
-      }
-    } catch {
-      // Ignore a stale saved position.
-    }
-    return null
-  })
+  const [position, setPosition] = useState(null)
   const widgetRef = useRef(null)
   const dragStateRef = useRef(null)
   const suppressClickRef = useRef(false)
@@ -1901,14 +1889,6 @@ function FloatingContactWidget({ lang, hideRail = false }) {
     }
   }
 
-  function saveWidgetPosition(nextPosition) {
-    try {
-      window.localStorage.setItem('aviona-floating-contact-position', JSON.stringify(nextPosition))
-    } catch {
-      // Position persistence is a convenience only.
-    }
-  }
-
   useEffect(() => {
     if (!position) return undefined
 
@@ -1918,7 +1898,6 @@ function FloatingContactWidget({ lang, hideRail = false }) {
       const nextPosition = clampWidgetPosition(position.left, position.top, rect.width, rect.height)
       if (nextPosition.left === position.left && nextPosition.top === position.top) return
       setPosition(nextPosition)
-      saveWidgetPosition(nextPosition)
     }
 
     const frameId = window.requestAnimationFrame(clampCurrentPosition)
@@ -2020,7 +1999,6 @@ function FloatingContactWidget({ lang, hideRail = false }) {
         dragState.height,
       )
       setPosition(nextPosition)
-      saveWidgetPosition(nextPosition)
     }
 
     function handlePointerUp(upEvent) {

@@ -102,7 +102,9 @@
     position: relative; min-height: 92vh; padding: 0;
     display: flex; flex-direction: column; justify-content: flex-end;
     overflow: hidden;
-    --banner-supporting-font-size: clamp(18px, 2.1vw, 27px);
+    --banner-supporting-font-size: clamp(16px, 1.55vw, 20px);
+    --banner-copy-gap: 40px;
+    --banner-title-gap: 48px;
   }
   .hero-bg {
     position: absolute; inset: 0; background-size: cover; background-position: center;
@@ -198,7 +200,7 @@
   }
   .hero-content {
     position: relative; z-index: 2; padding: 0 64px 72px;
-    color: #fff; max-width: 880px; pointer-events: none;
+    color: #fff; max-width: 1200px; pointer-events: none;
   }
   .hero-content a,
   .hero-content button {
@@ -206,7 +208,7 @@
   }
   .hero .eyebrow {
     color: var(--gold-soft); font-size: var(--banner-supporting-font-size); line-height: 1.4; letter-spacing: 0.18em; text-transform: uppercase;
-    margin-bottom: 20px; font-weight: 500;
+    margin-bottom: var(--banner-copy-gap); font-weight: 500;
   }
   .hero:not(.compact) .eyebrow {
     font-size: var(--banner-supporting-font-size); line-height: 1.45; letter-spacing: 0.02em; text-transform: none;
@@ -225,7 +227,7 @@
   }
   .hero h1 {
     font-size: 64px; line-height: 1.05; font-weight: 300; letter-spacing: -0.015em;
-    color: #fff; margin-bottom: 24px;
+    color: #fff; margin-bottom: var(--banner-title-gap);
   }
   .hero h1[data-i18n="ac.h1"] {
     width: max-content;
@@ -257,12 +259,12 @@
     font-size: clamp(24px, 3.2vw, 44px);
   }
   .hero p.sub {
-    font-size: var(--banner-supporting-font-size); color: rgba(255,255,255,0.92); line-height: 1.5; max-width: 640px;
+    font-size: var(--banner-supporting-font-size); color: rgba(255,255,255,0.92); line-height: 1.5; max-width: 960px;
     font-weight: 300; margin-bottom: 36px;
+    text-wrap: pretty;
   }
   .hero p.sub[data-i18n="ac.sub"] {
-    max-width: 920px;
-    white-space: nowrap;
+    max-width: 960px;
   }
   .hero .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
   .hero.compact { min-height: 60vh; }
@@ -468,6 +470,10 @@
   .stat-ribbon .stat .lbl {
     font-size: 18px; font-weight: 500; color: var(--text-muted);
     margin-top: 10px; letter-spacing: 0.03em; line-height: 1.45;
+  }
+  .stat-ribbon .stat .lbl[data-i18n="v5.stat.utility.desc"] {
+    font-size: 16.5px;
+    letter-spacing: 0;
   }
   @media (max-width: 980px) {
     .stat-ribbon { grid-template-columns: repeat(2, 1fr); }
@@ -1126,7 +1132,7 @@
   .ways-page-hero .ways-emphasis-label {
     font-size: var(--banner-supporting-font-size);
     line-height: 1.3;
-    margin-bottom: 18px;
+    margin-bottom: var(--banner-copy-gap);
   }
   .ways-inline-list {
     display: grid; gap: 8px; margin: 0; padding-left: 18px;
@@ -1548,14 +1554,14 @@
     letter-spacing: 0.02em;
     text-transform: none;
     max-width: none;
-    margin-bottom: 38px;
+    margin-bottom: var(--banner-copy-gap);
   }
   body.lang-zh .contact-hero .eyebrow[data-i18n="contact.eyebrow"] {
     white-space: nowrap;
   }
   .contact-hero h1 {
     max-width: 920px;
-    margin-bottom: 42px;
+    margin-bottom: var(--banner-title-gap);
   }
   .contact-hero-list {
     display: grid;
@@ -1584,7 +1590,7 @@
     background: var(--gold-soft);
   }
   .contact-hero p.sub[data-i18n="contact.sub"] {
-    max-width: 860px;
+    max-width: 960px;
     margin-top: 0;
     color: rgba(255,255,255,0.9);
     font-size: var(--banner-supporting-font-size);
@@ -1959,12 +1965,12 @@
     .header-utility { gap: 8px; margin-left: auto; }
     .btn { padding: 9px 14px; font-size: 11px; letter-spacing: 0.08em; }
     .btn.lg { padding: 13px 22px; font-size: 12px; }
-    .hero { min-height: 84vh; --banner-supporting-font-size: 17px; }
+    .hero { min-height: 84vh; --banner-supporting-font-size: 16px; }
     .hero-content { padding: 0 28px 56px; }
     .hero-banner-dots { left: 28px; bottom: 28px; }
     .aircraft-media-dots { left: 28px; bottom: 28px; }
     .hero h1 { font-size: 44px; }
-    .hero p.sub { font-size: 17px; }
+    .hero p.sub { font-size: var(--banner-supporting-font-size); }
     section.s { padding: 80px 28px; }
     h2 { font-size: 34px; }
     .paths-grid { grid-template-columns: 1fr; gap: 22px; }
@@ -2088,7 +2094,9 @@
       font-size: 13px;
     }
     .hero {
-      --banner-supporting-font-size: 15px;
+      --banner-supporting-font-size: 14px;
+      --banner-copy-gap: 24px;
+      --banner-title-gap: 28px;
     }
     .hero p.sub {
       font-size: var(--banner-supporting-font-size);
@@ -2119,7 +2127,7 @@
     .hero { min-height: 78vh; }
     .hero-content { padding: 0 20px 44px; }
     .hero-banner-dots { left: 20px; bottom: 20px; }
-    .hero .eyebrow { font-size: 15px; letter-spacing: 0.18em; }
+    .hero .eyebrow { font-size: var(--banner-supporting-font-size); letter-spacing: 0.18em; }
     .hero .eyebrow[data-i18n="v5.hero.eyebrow"] {
       font-size: var(--banner-supporting-font-size);
       line-height: 1.3;
@@ -2131,7 +2139,7 @@
     body.lang-en .hero h1[data-i18n="ac.h1"] {
       font-size: clamp(14px, 4vw, 20px);
     }
-    .hero p.sub { font-size: 15px; }
+    .hero p.sub { font-size: var(--banner-supporting-font-size); }
     .hero p.sub[data-i18n="ac.sub"] { white-space: normal; }
     section.s { padding: 60px 20px; }
     h2 { font-size: 26px; }
@@ -2156,12 +2164,12 @@
     .hero.compact.ways-page-hero h1 {
       font-size: clamp(28px, 8.2vw, 32px);
       line-height: 1.16;
-      margin-bottom: 18px;
+      margin-bottom: var(--banner-title-gap);
     }
     .ways-page-hero .ways-emphasis-label {
       font-size: var(--banner-supporting-font-size);
       line-height: 1.3;
-      margin-bottom: 14px;
+      margin-bottom: var(--banner-copy-gap);
     }
     .ways-vip-badge { top: 12px; right: 12px; max-width: calc(100% - 24px); font-size: 10px; }
     body.lang-zh .ways-final-cta h2 { white-space: normal; font-size: 28px; }
