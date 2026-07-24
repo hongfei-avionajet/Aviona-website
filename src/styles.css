@@ -269,6 +269,16 @@
   .hero .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
   .hero.compact { min-height: 60vh; }
   .hero.compact h1 { font-size: 48px; }
+  .hero.compact .about-hero-title-singleline {
+    width: max-content;
+    max-width: calc(100vw - 128px);
+    white-space: nowrap;
+    font-size: clamp(14px, 3.15vw, 46px);
+    letter-spacing: -0.02em;
+  }
+  .hero.compact .about-hero-subtitle {
+    max-width: 1080px;
+  }
 
   /* Eyebrows / labels */
   .eyebrow {
@@ -952,6 +962,285 @@
   .three-col > div h3 { font-size: 22px; font-weight: 400; }
   .three-col > div p { font-size: 15px; margin-top: 10px; max-width: 100%; }
 
+  /* AVIONA model advantages — July 2026 */
+  section.s.why-2026-comparison-section,
+  section.s.why-2026-advantage-section,
+  section.s.why-2026-operations-section {
+    padding-top: 92px;
+    padding-bottom: 92px;
+  }
+  .why-2026-heading { max-width: 960px; }
+  .why-2026-heading h2 { max-width: 940px; }
+  section.s .why-2026-heading p.lead { max-width: 850px; }
+  .why-2026-comparison {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .why-2026-compare-card,
+  .why-2026-ops-card {
+    min-width: 0;
+    padding: 34px;
+    border: 1px solid var(--border-mid);
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: var(--shadow-soft);
+  }
+  .why-2026-compare-card.why-2026-aviona {
+    border-color: #d8bd72;
+    background: linear-gradient(145deg, #fffdf7 0%, #f8edcf 100%);
+    box-shadow: 0 14px 38px rgba(201, 160, 54, 0.14);
+  }
+  .why-2026-card-title {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .why-2026-card-title h3 {
+    margin-top: 4px;
+    font-size: 25px;
+    font-weight: 600;
+  }
+  .why-2026-title-icon,
+  .why-2026-icon,
+  .why-2026-ops-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(201, 160, 54, 0.5);
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--gold);
+  }
+  .why-2026-title-icon {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .why-2026-title-icon.why-2026-muted {
+    border-color: var(--border-mid);
+    background: var(--bg-soft);
+    color: var(--text-muted);
+  }
+  .why-2026-title-icon .aircraft-reason-icon,
+  .why-2026-icon .aircraft-reason-icon,
+  .why-2026-ops-icon .aircraft-reason-icon {
+    width: 22px;
+    height: 22px;
+    margin: 0;
+  }
+  .why-2026-compare-list {
+    display: grid;
+    margin-top: 10px;
+  }
+  .why-2026-compare-item {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 12px;
+    padding: 17px 0;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .why-2026-compare-item:last-child { border-bottom: 0; }
+  .why-2026-item-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .why-2026-traditional .why-2026-item-mark {
+    background: var(--bg-soft);
+    color: var(--text-muted);
+  }
+  .why-2026-compare-item strong {
+    display: block;
+    font-size: 17px;
+    line-height: 1.45;
+  }
+  section.s .why-2026-compare-item p {
+    margin-top: 3px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .why-2026-value-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 48px;
+  }
+  .why-2026-value-card {
+    display: grid;
+    grid-template-columns: 50px minmax(0, 1fr);
+    column-gap: 14px;
+    align-items: center;
+    min-width: 0;
+    padding: 24px;
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: var(--shadow-soft);
+  }
+  .why-2026-value-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  section.s .why-2026-value-card p {
+    margin-top: 4px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .why-2026-subheading { margin-top: 82px; }
+  .why-2026-subheading h2 { margin-top: 10px; }
+  .why-2026-structure-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 38px;
+  }
+  .why-2026-structure-card {
+    min-width: 0;
+    min-height: 250px;
+    padding: 28px 24px;
+    border: 1px solid #d8bd72;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.76);
+  }
+  .why-2026-structure-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .why-2026-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: #fff;
+    font-weight: 700;
+  }
+  .why-2026-structure-card h3 {
+    margin-top: 22px;
+    font-size: 21px;
+    font-weight: 600;
+  }
+  section.s .why-2026-structure-card p {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .why-2026-statement,
+  .why-2026-bottom-line {
+    margin-top: 38px;
+    padding: 22px 26px;
+    border-left: 3px solid var(--gold);
+    background: var(--bg-champagne);
+    color: var(--text-primary);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.55;
+  }
+  .why-2026-ops-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .why-2026-ops-card { border-color: #d8bd72; }
+  .why-2026-ops-card ul {
+    display: grid;
+    margin-top: 10px;
+    list-style: none;
+  }
+  .why-2026-ops-card li {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .why-2026-ops-card li:last-child { border-bottom: 0; }
+  .why-2026-ops-icon {
+    width: 30px;
+    height: 30px;
+    border: 0;
+    background: transparent;
+  }
+  .why-2026-ops-icon .aircraft-reason-icon {
+    width: 20px;
+    height: 20px;
+  }
+  .why-2026-ops-card strong {
+    display: block;
+    font-size: 18px;
+    line-height: 1.45;
+  }
+  .why-2026-ops-card small {
+    display: block;
+    margin-top: 5px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .why-2026-bottom-line {
+    border-left: 0;
+    border-top: 2px solid var(--gold);
+    text-align: center;
+  }
+  h2[data-i18n="why.final.h2"] { max-width: 940px; }
+
+  @media (max-width: 980px) {
+    section.s.why-2026-comparison-section,
+    section.s.why-2026-advantage-section,
+    section.s.why-2026-operations-section {
+      padding: 80px 28px;
+    }
+    .why-2026-comparison,
+    .why-2026-ops-grid {
+      grid-template-columns: 1fr;
+    }
+    .why-2026-value-grid,
+    .why-2026-structure-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    section.s.why-2026-comparison-section,
+    section.s.why-2026-advantage-section,
+    section.s.why-2026-operations-section {
+      padding: 60px 20px;
+    }
+    .why-2026-value-grid,
+    .why-2026-structure-grid {
+      grid-template-columns: 1fr;
+    }
+    .why-2026-compare-card,
+    .why-2026-ops-card {
+      padding: 24px 20px;
+    }
+    .why-2026-value-card { padding: 20px; }
+    .why-2026-structure-card { min-height: 0; }
+    .why-2026-card-title h3 { font-size: 22px; }
+    .why-2026-statement,
+    .why-2026-bottom-line {
+      padding: 18px 20px;
+      font-size: 17px;
+    }
+  }
+
   /* Specs strip — Aircraft page */
   .specs-strip {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
@@ -1060,6 +1349,85 @@
     font-weight: 500;
     color: var(--text-primary);
   }
+  .aircraft-shared-intro { padding-top: 82px; }
+  .aircraft-shared-heading {
+    max-width: 920px;
+    margin-bottom: 56px;
+  }
+  .aircraft-shared-heading h2 { max-width: 900px; }
+  .aircraft-shared-heading p {
+    margin-top: 16px;
+    color: var(--text-secondary);
+    font-size: 16px;
+    letter-spacing: 0.08em;
+  }
+  .aircraft-shared-row { padding-top: 92px; padding-bottom: 92px; }
+  .aircraft-shared-reason { margin-top: 0; }
+  .aircraft-shared-reason .img-wrap {
+    overflow: hidden;
+    border: 1px solid var(--border-soft);
+    background: var(--bg-warm);
+  }
+  .aircraft-shared-reason .img-wrap,
+  .aircraft-shared-reason .img-wrap img,
+  .aircraft-shared-reason .content-image-carousel,
+  .aircraft-shared-reason .content-image-carousel-track,
+  .aircraft-shared-reason .content-image-carousel-slide {
+    aspect-ratio: 16 / 9;
+  }
+  .aircraft-shared-reason .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .aircraft-reason-media { min-width: 0; }
+  .aircraft-reason-caption {
+    margin: 12px 0 0;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .aircraft-reason-heading {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+  }
+  .aircraft-reason-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 42px;
+    border-radius: 8px;
+    background: var(--gold);
+    color: #fff;
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 600;
+  }
+  .aircraft-reason-heading .eyebrow { margin-top: 2px; }
+  .aircraft-reason-heading h2 { margin-top: 8px; font-size: 30px; }
+  .aircraft-reason-list {
+    display: grid;
+    gap: 12px;
+    margin: 26px 0 0 74px;
+    padding: 0;
+    list-style: none;
+  }
+  .aircraft-reason-list-two-col { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 22px; }
+  .aircraft-reason-list li {
+    display: grid;
+    grid-template-columns: 22px minmax(0, 1fr);
+    gap: 10px;
+    align-items: start;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .aircraft-reason-icon {
+    width: 20px;
+    height: 20px;
+    margin-top: 1px;
+    color: var(--gold);
+    flex: 0 0 auto;
+  }
 
   /* Use cases */
   .usecase-grid {
@@ -1103,6 +1471,215 @@
     height: 6px;
     border-radius: 50%;
     background: var(--gold);
+  }
+
+  .aircraft-usecase-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .aircraft-usecase-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+  .aircraft-usecase-card .body {
+    display: grid;
+    flex: 1;
+    grid-template-columns: 38px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 10px;
+    align-content: start;
+    align-items: center;
+    padding: 20px 16px 24px;
+  }
+  .aircraft-usecase-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 32px;
+  }
+  section.s.aircraft-advantages-section {
+    padding-top: 76px;
+    padding-right: 40px;
+    padding-bottom: 76px;
+    padding-left: 40px;
+  }
+  .aircraft-advantages-section .container {
+    max-width: 1360px;
+  }
+  .aircraft-usecase-card .img-wrap {
+    aspect-ratio: 4 / 3;
+  }
+  .aircraft-usecase-card h3 {
+    font-size: 20px;
+    line-height: 1.35;
+  }
+  .aircraft-usecase-card .usecase-copy {
+    grid-column: 1 / -1;
+    margin-top: 14px;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  .aircraft-usecase-card .usecase-list {
+    gap: 8px;
+  }
+  .aircraft-usecase-card .usecase-list li {
+    padding-left: 16px;
+  }
+  .aircraft-usecase-card .usecase-list li::before {
+    top: 0.72em;
+    width: 5px;
+    height: 5px;
+  }
+  .aircraft-usecase-icon,
+  .aircraft-institutional-icon {
+    display: inline-flex;
+    width: 46px;
+    height: 46px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    border: 1px solid rgba(201, 160, 54, 0.35);
+    border-radius: 50%;
+    color: var(--gold);
+    background: var(--accent-soft);
+  }
+  .aircraft-usecase-icon {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 0;
+  }
+  .aircraft-usecase-icon .aircraft-reason-icon,
+  .aircraft-institutional-icon .aircraft-reason-icon {
+    width: 23px;
+    height: 23px;
+    margin: 0;
+  }
+  .aircraft-usecase-icon .aircraft-reason-icon { width: 19px; height: 19px; }
+
+  @media (max-width: 1180px) {
+    .aircraft-usecase-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+  }
+
+  /* Aircraft participation and institutional-grade paths */
+  .aircraft-institutional-section {
+    background: linear-gradient(180deg, #fff 0%, var(--bg-ivory) 100%);
+  }
+  .aircraft-institutional-heading {
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .aircraft-institutional-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 46px;
+  }
+  .aircraft-institutional-card {
+    display: flex;
+    min-width: 0;
+    min-height: 310px;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 24px 26px;
+    border: 1px solid var(--border-mid);
+    border-radius: 4px;
+    background: rgba(255,255,255,0.92);
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+  }
+  .aircraft-institutional-card h3 {
+    min-height: 58px;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+  .aircraft-institutional-card p {
+    flex: 1;
+    margin: 12px 0 24px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .aircraft-institutional-card .btn {
+    width: 100%;
+    min-height: 44px;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+  .aircraft-institutional-contact {
+    border-color: #dcc57f;
+    background: linear-gradient(145deg, #fffaf0 0%, #f2e3bc 100%);
+    color: var(--text-primary);
+    box-shadow: 0 12px 32px rgba(201, 160, 54, 0.14);
+  }
+  .aircraft-institutional-contact h3 { color: var(--text-primary); }
+  .aircraft-institutional-contact p { color: var(--text-secondary); }
+  .aircraft-institutional-contact .aircraft-institutional-icon {
+    border-color: rgba(201,160,54,0.45);
+    background: rgba(255,255,255,0.55);
+    color: var(--gold);
+  }
+  .aircraft-participation-flow {
+    margin-top: 58px;
+    text-align: center;
+  }
+  .aircraft-participation-flow h2 {
+    width: 100%;
+    max-width: none;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: clamp(30px, 3vw, 42px);
+    text-align: center;
+  }
+  .aircraft-participation-flow > p {
+    margin: 10px auto 0;
+    color: var(--text-secondary);
+  }
+  .aircraft-participation-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 28px;
+    border: 1px solid var(--border-mid);
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: var(--shadow-soft);
+  }
+  .aircraft-participation-options a {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 7px 12px;
+    align-content: center;
+    min-height: 116px;
+    padding: 22px 24px;
+    border-right: 1px solid var(--border-soft);
+    color: var(--text-primary);
+    text-align: left;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  .aircraft-participation-options a:last-child { border-right: 0; }
+  .aircraft-participation-options a:hover { background: var(--accent-soft); }
+  .aircraft-participation-options strong { color: var(--gold); font-size: 14px; }
+  .aircraft-participation-options a > span[aria-hidden="true"] {
+    justify-self: end;
+    color: var(--gold);
+    font-size: 20px;
+    line-height: 1;
+  }
+  .aircraft-participation-options a > span:last-child {
+    grid-column: 1 / -1;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.55;
   }
 
   /* Path detail section (Class A/B/Membership on Ways page) */
@@ -1503,9 +2080,354 @@
     font-size: 13px; color: var(--text-secondary); margin-top: 8px; max-width: 100%;
     line-height: 1.5;
   }
+  .about-foundation-facts {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .about-foundation-facts .trust-fact {
+    min-height: 190px;
+  }
+  .about-foundation-facts .trust-fact .lbl {
+    min-height: 31px;
+  }
+
+  /* Keep the complete regulated-fund heading on one line. */
+  [data-i18n="about.struct.h2"] {
+    width: max-content;
+    max-width: calc(100vw - 120px);
+    white-space: nowrap;
+    font-size: clamp(12px, 3.4vw, 44px);
+  }
+  .about-network-lead {
+    display: grid;
+    gap: 18px;
+    margin-top: 20px;
+  }
+  section.s .about-network-lead p {
+    max-width: none;
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  /* About page: integrated AVIONA capabilities */
+  .about-why-aviona-head {
+    max-width: 1040px;
+  }
+  .about-why-aviona-head h2 {
+    margin: 15px 0 0;
+  }
+  .about-why-aviona-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 54px 46px;
+    margin-top: 54px;
+  }
+  .about-why-aviona-item {
+    min-width: 0;
+    padding-top: 21px;
+    border-top: 1px solid var(--border-mid);
+  }
+  .about-why-aviona-number {
+    margin-bottom: 16px;
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+  }
+  .about-why-aviona-item h3 {
+    margin: 0 0 12px;
+    color: var(--text-primary);
+    font-size: 17px;
+    font-weight: 500;
+  }
+  section.s .about-why-aviona-item p {
+    max-width: none;
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  /* About page: why private aircraft work as real-world assets */
+  .about-rwa-section {
+    border-top: 1px solid var(--border-soft);
+  }
+  .about-rwa-intro {
+    display: grid;
+    grid-template-columns: minmax(360px, 0.9fr) minmax(480px, 1.1fr);
+    gap: 76px;
+    align-items: start;
+    margin-bottom: 72px;
+  }
+  .about-rwa-intro h2 {
+    margin: 0;
+  }
+  .about-rwa-intro > p {
+    margin: 0;
+    padding: 2px 0 2px 28px;
+    border-left: 2px solid var(--gold);
+    color: var(--text-secondary);
+    font-size: 18px;
+    line-height: 1.8;
+  }
+  .about-rwa-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 68px 72px;
+  }
+  .about-rwa-item {
+    min-width: 0;
+  }
+  .about-rwa-number {
+    margin-bottom: 20px;
+    color: var(--gold);
+    font-family: 'DM Sans', 'Manrope', sans-serif;
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 1;
+  }
+  .about-rwa-item h3 {
+    margin-bottom: 13px;
+    color: var(--text-primary);
+    font-size: 17px;
+    font-weight: 500;
+  }
+  .about-rwa-item p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  /* About page: team experience and operating capability */
+  .about-team-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(420px, 0.92fr);
+    gap: 88px;
+    align-items: center;
+  }
+  .about-team-copy {
+    max-width: 690px;
+  }
+  .about-team-copy h2 {
+    margin: 15px 0 38px;
+  }
+  .about-team-body {
+    display: grid;
+    gap: 22px;
+  }
+  section.s .about-team-body p {
+    max-width: none;
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 1.9;
+  }
+  .about-team-collage {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.85fr);
+    grid-template-rows: repeat(2, 224px);
+    gap: 8px;
+    min-width: 0;
+  }
+  .about-team-photo {
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    background: var(--border-soft);
+  }
+  .about-team-photo-main {
+    grid-row: 1 / span 2;
+  }
+  .about-team-photo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+  }
+  .about-team-photo-main img {
+    object-position: 54% center;
+  }
+  .about-team-photo:nth-child(2) img {
+    object-position: 52% 58%;
+  }
+  .about-team-photo:nth-child(3) img {
+    object-position: center 66%;
+  }
+  .about-team-collage:hover .about-team-photo img {
+    transform: scale(1.018);
+  }
+
+  .about-capabilities-head {
+    max-width: 820px;
+    margin-bottom: 48px;
+  }
+  .about-capabilities-head h2 {
+    margin: 15px 0 18px;
+  }
+  section.s .about-capabilities-head > p {
+    max-width: 780px;
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .about-capabilities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid var(--border-mid);
+    border-left: 1px solid var(--border-mid);
+  }
+  .about-capability {
+    min-height: 142px;
+    padding: 25px 30px 26px;
+    border-right: 1px solid var(--border-mid);
+    border-bottom: 1px solid var(--border-mid);
+  }
+  .about-capability-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 11px;
+    margin-bottom: 12px;
+  }
+  .about-capability-number {
+    color: var(--gold);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.25;
+  }
+  .about-capability h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 17px;
+    font-weight: 600;
+  }
+  section.s .about-capability p {
+    max-width: none;
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  /* About page: five flight-service capabilities */
+  .about-flight-services-section {
+    padding: 72px 64px 82px;
+    background: var(--bg-ivory);
+  }
+  .about-flight-services-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-top: 1px solid var(--border-soft);
+    border-left: 1px solid var(--border-soft);
+    background: var(--bg-warm);
+  }
+  .about-flight-service {
+    min-width: 0;
+    min-height: 224px;
+    padding: 32px 24px 30px;
+    border-right: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .about-flight-service-icon {
+    min-height: 28px;
+    margin-bottom: 20px;
+    color: var(--gold);
+    font-family: 'DM Sans', 'Manrope', sans-serif;
+    font-size: 23px;
+    font-weight: 300;
+    line-height: 1;
+  }
+  .about-flight-service h3 {
+    margin: 0 0 13px;
+    color: var(--text-primary);
+    font-size: 17px;
+    font-weight: 500;
+  }
+  .about-flight-service p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
   @media (max-width: 980px) {
     .trust-facts { grid-template-columns: 1fr; }
     .trust-fact { border-right: 0; border-bottom: 1px solid var(--border-soft); }
+    .about-rwa-intro {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin-bottom: 48px;
+    }
+    .about-rwa-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 46px 30px;
+    }
+    .about-why-aviona-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 42px 34px;
+    }
+    .about-team-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .about-team-copy {
+      max-width: 760px;
+    }
+    .about-team-collage {
+      grid-template-rows: repeat(2, min(31vw, 224px));
+      max-width: 680px;
+    }
+    .about-capabilities-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .about-flight-services-section {
+      padding-right: 28px;
+      padding-left: 28px;
+    }
+    .about-flight-services-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 620px) {
+    .hero.compact .about-hero-title-singleline {
+      max-width: calc(100vw - 40px);
+      font-size: clamp(12px, 3.7vw, 18px);
+    }
+    [data-i18n="about.struct.h2"] {
+      max-width: calc(100vw - 40px);
+    }
+    .about-rwa-grid {
+      grid-template-columns: 1fr;
+    }
+    .about-why-aviona-grid {
+      grid-template-columns: 1fr;
+    }
+    .about-team-copy h2 {
+      margin-bottom: 28px;
+    }
+    .about-team-collage {
+      grid-template-columns: 1fr 0.8fr;
+      grid-template-rows: repeat(2, 142px);
+    }
+    .about-capabilities-grid {
+      grid-template-columns: 1fr;
+    }
+    .about-capability {
+      min-height: 0;
+    }
+    .about-flight-services-section {
+      padding: 56px 20px 64px;
+    }
+    .about-flight-services-grid {
+      grid-template-columns: 1fr;
+    }
+    .about-flight-service {
+      min-height: 0;
+    }
   }
 
   /* Contact channels row */
@@ -1975,7 +2897,13 @@
     h2 { font-size: 34px; }
     .paths-grid { grid-template-columns: 1fr; gap: 22px; }
     .aircraft-teaser, .two-up, .path-detail { grid-template-columns: 1fr; gap: 36px; }
+    .two-up.flip { direction: ltr; }
+    .aircraft-shared-heading { margin-bottom: 40px; }
+    .aircraft-reason-list { margin-left: 0; }
+    .aircraft-reason-list-two-col { grid-template-columns: 1fr; }
     .pillars-grid, .three-col, .usecase-grid { grid-template-columns: 1fr; gap: 36px; }
+    .aircraft-usecase-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+    .aircraft-institutional-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .specs-strip { grid-template-columns: repeat(2, 1fr); }
     .spec { border-right: none; border-bottom: 1px solid var(--border-soft); }
     .spec:nth-child(2n) { border-right: 0; }
@@ -1998,6 +2926,15 @@
       gap: 10px 12px;
       flex-wrap: wrap;
     }
+    .aircraft-usecase-grid,
+    .aircraft-institutional-grid,
+    .aircraft-participation-options { grid-template-columns: 1fr; }
+    .aircraft-participation-options a {
+      min-height: 104px;
+      border-right: 0;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .aircraft-participation-options a:last-child { border-bottom: 0; }
     header.site .logo {
       flex: 1 1 0;
       min-width: 0;

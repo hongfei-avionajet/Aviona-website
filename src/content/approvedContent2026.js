@@ -14,10 +14,339 @@ export const APPROVED_CONTENT_2026_I18N = {
   "meta.title.about": { en: "About AVIONA", zh: "关于 AVIONA" },
   "meta.title.contact": { en: "Contact Us — AVIONA", zh: "联系我们 — AVIONA" },
   "v5.card.price.b": { en: "From US$16,000", zh: "16,000 美元起" },
+  "why.eyebrow": { en: "AVIONA Model Advantages", zh: "AVIONA 模式优势" },
+  "why.h1": { en: "AVIONA Model Advantages", zh: "AVIONA 模式优势" },
+  "why.sub": {
+    en: "A real-world asset combining investment value, utility, global mobility, and high-end network value.",
+    zh: "私人飞机：兼具投资价值、使用价值、全球流动性与高端社交价值的真实世界资产。",
+  },
+  "why.2026.compare.label": {
+    en: "Traditional Ownership vs. the AVIONA Model",
+    zh: "传统拥有模式 VS AVIONA 模式",
+  },
+  "why.2026.compare.h2": {
+    en: "An innovative model that redefines private-jet ownership.",
+    zh: "创新模式，重新定义私人飞机的拥有方式",
+  },
+  "why.2026.compare.lead": {
+    en: "AVIONA makes private aviation more accessible and efficient while clearly separating investment value from utility.",
+    zh: "AVIONA 让私人飞机更可及、更高效，并将投资价值与使用价值清晰分离。",
+  },
+  "why.2026.traditional.label": { en: "Traditional Ownership", zh: "传统拥有模式" },
+  "why.2026.traditional.h3": { en: "One person carries one aircraft.", zh: "一人承担一架飞机" },
+  "why.2026.traditional.1.title": { en: "High capital threshold", zh: "资金门槛高" },
+  "why.2026.traditional.1.desc": {
+    en: "Only a small number of people can own a private jet.",
+    zh: "只有少数人能够拥有私人飞机",
+  },
+  "why.2026.traditional.2.title": { en: "All costs borne alone", zh: "成本全部承担" },
+  "why.2026.traditional.2.desc": {
+    en: "Purchase, operations, maintenance, and insurance are borne by one owner.",
+    zh: "购买、运营、维护及保险成本由自己承担",
+  },
+  "why.2026.traditional.3.title": { en: "Depreciation borne alone", zh: "折旧自己承担" },
+  "why.2026.traditional.3.desc": {
+    en: "Asset value continues to decline over time.",
+    zh: "资产价值随时间持续折损",
+  },
+  "why.2026.traditional.4.title": { en: "Investment equals use", zh: "投资等于使用" },
+  "why.2026.traditional.4.desc": {
+    en: "Investment value and utility cannot be separated.",
+    zh: "投资价值与使用价值无法分离",
+  },
+  "why.2026.traditional.5.title": { en: "Limited liquidity", zh: "流动性有限" },
+  "why.2026.traditional.5.desc": {
+    en: "The asset is difficult to monetize and exit mechanisms are inflexible.",
+    zh: "资产变现困难，退出机制不灵活",
+  },
+  "why.2026.aviona.label": { en: "The AVIONA Model", zh: "AVIONA 模式" },
+  "why.2026.aviona.h3": { en: "Multiple participants, one aircraft.", zh: "多方参与一架飞机" },
+  "why.2026.aviona.1.title": { en: "Lower participation threshold", zh: "降低参与门槛" },
+  "why.2026.aviona.1.desc": {
+    en: "Give more people an opportunity to share in private-jet value.",
+    zh: "让更多人有机会分享私人飞机价值",
+  },
+  "why.2026.aviona.2.title": { en: "Costs allocated more rationally", zh: "成本合理分摊" },
+  "why.2026.aviona.2.desc": {
+    en: "Share costs, ease capital pressure, and improve capital efficiency.",
+    zh: "共享成本、减轻资金压力并提升资金效率",
+  },
+  "why.2026.aviona.3.title": { en: "Professional operations improve efficiency", zh: "专业运营提升效率" },
+  "why.2026.aviona.3.desc": {
+    en: "Improve utilization and optimize long-term asset performance.",
+    zh: "提升利用率，优化资产长期表现",
+  },
+  "why.2026.aviona.4.title": {
+    en: "Investment value separated from utility",
+    zh: "投资价值与使用价值分离",
+  },
+  "why.2026.aviona.4.desc": {
+    en: "Investors pursue potential returns while users focus on efficient travel.",
+    zh: "投资者追求潜在回报，用户专注高效飞行，互不干扰",
+  },
+  "why.2026.aviona.5.title": { en: "Transferable with exit options", zh: "可转让、可退出" },
+  "why.2026.aviona.5.desc": {
+    en: "More flexible liquidity, subject to the applicable product arrangements.",
+    zh: "依据产品安排提供更灵活的流动性",
+  },
+  "why.2026.rwa.label": { en: "AVIONA Model Advantages", zh: "AVIONA 模式优势" },
+  "why.2026.rwa.h2": { en: "Why choose a private jet as an RWA?", zh: "为什么选择私人飞机作为 RWA？" },
+  "why.2026.rwa.lead": {
+    en: "A real-world asset combining investment value, utility, global mobility, and high-end network value.",
+    zh: "兼具投资价值、使用价值、全球流动性与高端社交价值的真实世界资产。",
+  },
+  "why.2026.value.global.title": { en: "Global Mobility", zh: "全球流动" },
+  "why.2026.value.global.desc": {
+    en: "Cross-border operations and transactions with global flight capability.",
+    zh: "跨境运营与交易，全球自由飞行",
+  },
+  "why.2026.value.title.title": { en: "Clear Title", zh: "产权清晰" },
+  "why.2026.value.title.desc": {
+    en: "International registration systems with clear, auditable ownership.",
+    zh: "国际登记体系，产权明确且可审计",
+  },
+  "why.2026.value.stable.title": { en: "Stable Value", zh: "价值稳定" },
+  "why.2026.value.stable.desc": {
+    en: "A mature transaction market with clear long-term allocation value.",
+    zh: "成熟交易市场，长期配置价值清晰",
+  },
+  "why.2026.value.time.title": { en: "Time Machine", zh: "时间机器" },
+  "why.2026.value.time.desc": {
+    en: "Connect the world efficiently and turn saved time into value.",
+    zh: "高效连接全球，节省时间创造价值",
+  },
+  "why.2026.value.network.title": { en: "Private Network", zh: "圈层社交" },
+  "why.2026.value.network.desc": {
+    en: "Connect entrepreneurs with high-value global networks.",
+    zh: "连接企业家与高净值圈层资源",
+  },
+  "why.2026.value.operations.title": { en: "Professional Operations", zh: "专业运营" },
+  "why.2026.value.operations.desc": {
+    en: "Professional team management designed to protect asset value.",
+    zh: "专业团队管理，保障资产价值",
+  },
+  "why.2026.structure.label": { en: "Four Structural Advantages", zh: "四项结构性优势" },
+  "why.2026.structure.h2": { en: "Our structural advantages.", zh: "我们的结构性优势" },
+  "why.2026.structure.1.title": { en: "Real-Asset Backing", zh: "真实资产锚定" },
+  "why.2026.structure.1.desc": {
+    en: "Each participation interest is linked one-to-one to a real aircraft that can be registered, audited, operated, and verified.",
+    zh: "每一份参与均一比一关联真实飞机，可登记、可审计、可运营、可验证。",
+  },
+  "why.2026.structure.2.title": { en: "Investment and Utility Separated", zh: "投资与使用分离" },
+  "why.2026.structure.2.desc": {
+    en: "Investors pursue potential returns, users fly efficiently, and professional operations improve asset and capital efficiency.",
+    zh: "投资者追求潜在回报，使用者高效飞行，专业运营提升资产与资本效率。",
+  },
+  "why.2026.structure.3.title": { en: "Lower Participation Threshold", zh: "更低的参与门槛" },
+  "why.2026.structure.3.desc": {
+    en: "More eligible participants can access a high-threshold real asset and its multiple layers of value.",
+    zh: "更多合资格参与者有机会进入高门槛真实资产，并获得多层价值。",
+  },
+  "why.2026.structure.4.title": { en: "A Visible Global Asset", zh: "看得见的全球资产" },
+  "why.2026.structure.4.desc": {
+    en: "Global mobility, clear registration, and physical verifiability provide a foundation for long-term value.",
+    zh: "全球移动、清晰登记与实体可验证性，为长期价值提供基础。",
+  },
+  "why.2026.structure.statement": {
+    en: "AVIONA makes private aviation more accessible, efficient, and investable.",
+    zh: "AVIONA 让私人飞机更可及、更高效、更具投资价值。",
+  },
+  "why.2026.ops.label": { en: "Execution and Compliance", zh: "运行实力与合规基础" },
+  "why.2026.ops.h2": {
+    en: "Professional aviation capability × global network × institutional-grade transparent governance.",
+    zh: "专业航空能力 × 全球网络 × 机构级透明治理",
+  },
+  "why.2026.ops.lead": {
+    en: "From aircraft operations to fund structures, audits, and distributed-ledger records, AVIONA lays the foundation for a scalable private-aviation RWA platform.",
+    zh: "从飞机资产运营到基金结构、审计与分布式账本记录，为可规模化的私人航空 RWA 平台奠定基础。",
+  },
+  "why.2026.operating.label": { en: "Operating Advantage", zh: "运行优势" },
+  "why.2026.operating.h3": { en: "Operating Strength", zh: "运行优势" },
+  "why.2026.operating.1.title": { en: "16 years of aviation experience", zh: "16 年专业航空经验加持" },
+  "why.2026.operating.1.desc": {
+    en: "Aircraft management, operating efficiency, and full-lifecycle asset execution.",
+    zh: "覆盖飞机管理、运营效率与资产全周期执行",
+  },
+  "why.2026.operating.2.title": { en: "International fleet and OEM support", zh: "国际化机队与 OEM 支持" },
+  "why.2026.operating.2.desc": {
+    en: "Mature fleet operations supported by an established manufacturer ecosystem.",
+    zh: "成熟机队运营能力与原厂生态支持",
+  },
+  "why.2026.operating.3.title": {
+    en: "Global network and IS-BAO safety registration",
+    zh: "全球网络与 IS-BAO 安全认证",
+  },
+  "why.2026.operating.3.desc": {
+    en: "International operating support grounded in recognized safety standards.",
+    zh: "以国际安全运行标准为运营底座",
+  },
+  "why.2026.compliance.label": { en: "Compliance Advantage", zh: "合规优势" },
+  "why.2026.compliance.h3": { en: "Compliance Foundation", zh: "合规优势" },
+  "why.2026.compliance.1.title": {
+    en: "Hong Kong professional-fund and licensed capabilities",
+    zh: "香港专业基金与持牌能力",
+  },
+  "why.2026.compliance.1.desc": {
+    en: "A Hong Kong professional-fund structure supported by relevant Type 9 and Type 1 licensed capabilities.",
+    zh: "香港专业基金架构，并由 9 号牌及 1 号牌相关持牌能力支持",
+  },
+  "why.2026.compliance.2.title": {
+    en: "Cayman and BVI fund management",
+    zh: "开曼及英属维京群岛基金管理",
+  },
+  "why.2026.compliance.2.desc": {
+    en: "Professional fund managers and third-party asset managers support cross-border structuring and governance.",
+    zh: "专业基金管理人及第三方资产管理公司支持跨境结构与治理",
+  },
+  "why.2026.compliance.3.title": {
+    en: "Audited and distributed-ledger records",
+    zh: "审计与分布式账本透明记录",
+  },
+  "why.2026.compliance.3.desc": {
+    en: "KPMG audits and third-party distributed-ledger records are designed to improve asset and transaction transparency.",
+    zh: "KPMG 审计与第三方分布式账本记账，提升资产与交易记录透明度",
+  },
+  "why.2026.ops.statement": {
+    en: "More than an aircraft: a global private-aviation asset platform designed to be operable, governable, auditable, and scalable.",
+    zh: "不只是一架飞机：是可运营、可治理、可审计、可规模化的全球私人航空资产平台。",
+  },
+  "why.final.h2": {
+    en: "Give everyone an opportunity to participate in private-jet investment.",
+    zh: "让每个人都有机会参与私人飞机的投资。",
+  },
   "ac.final.h2": {
     en: "Now choose how you'd like to access it.",
     zh: "现在，选择您希望如何参与。",
   },
+  "ac.shared.heading": {
+    en: "Why are the Falcon 7X and Bombardier Global series ideal for shared ownership?",
+    zh: "为什么 Falcon 7X / Bombardier Global 系列最适合产权共享？",
+  },
+  "ac.shared.subheading": {
+    en: "Global reach · Exceptional comfort · World-class safety · Predictable asset value",
+    zh: "全球航程 · 极致舒适 · 世界级安全 · 可预测的资产价值",
+  },
+  "ac.shared.range.label": { en: "Global business reach", zh: "覆盖全球商务航程" },
+  "ac.shared.range.title": {
+    en: "From Hong Kong to the world's major business destinations.",
+    zh: "香港出发，可覆盖全球主要商务目的地",
+  },
+  "ac.shared.range.1": {
+    en: "Reach key destinations across Europe, the Middle East, Japan and Australia from Hong Kong.",
+    zh: "香港可直飞欧洲、中东、日本、澳洲大部分地区",
+  },
+  "ac.shared.range.2": {
+    en: "Covers most genuine travel requirements for business owners.",
+    zh: "覆盖绝大多数企业家真实飞行需求",
+  },
+  "ac.shared.range.3": { en: "Fewer stopovers and greater time efficiency.", zh: "减少经停，提高时间效率" },
+  "ac.shared.range.4": {
+    en: "Higher operating efficiency and better aircraft utilization.",
+    zh: "更高运营效率，更高资产利用率",
+  },
+  "ac.shared.range.caption": {
+    en: "11-hour flight coverage (approximately 10,500 km / 6,750 nm)",
+    zh: "11 小时航程覆盖范围（约 10,500 km / 6,750 nm）",
+  },
+  "ac.shared.cabin.label": { en: "The most comfortable large cabin", zh: "最舒适的大客舱" },
+  "ac.shared.cabin.title": {
+    en: "Designed for business, family and long-haul travel.",
+    zh: "真正适合商务、家庭与长途飞行",
+  },
+  "ac.shared.cabin.1": { en: "Ultra-wide cabin, approximately 2.34–2.50 m wide", zh: "超宽客舱，宽度约 2.34–2.50 米" },
+  "ac.shared.cabin.2": { en: "Low cabin-altitude environment for greater comfort", zh: "模拟低海拔环境，长途飞行更舒适" },
+  "ac.shared.cabin.3": { en: "Low-noise design for a quieter flight", zh: "超静音设计，带来更安静的飞行体验" },
+  "ac.shared.cabin.4": { en: "Full-size washrooms; showers available on selected configurations", zh: "全尺寸洗手间，部分机型配置可提供淋浴" },
+  "ac.shared.cabin.5": { en: "Forward galley with heating, refrigeration and storage", zh: "前置厨房，配备加热、冷藏与储物空间" },
+  "ac.shared.cabin.6": { en: "Club seating for meetings and conversation", zh: "Club Seating 对坐布局，适合会议与商务洽谈" },
+  "ac.shared.cabin.7": { en: "Lie-flat rest areas for long-haul sleep", zh: "可平躺休息，适合长途飞行睡眠" },
+  "ac.shared.cabin.8": { en: "Conference and office space with screens and connectivity", zh: "可会议办公，支持大屏、电视与网络" },
+  "ac.shared.cabin.9": { en: "Dining space suitable for family meals", zh: "可家庭聚餐，支持多人用餐" },
+  "ac.shared.cabin.10": { en: "Pet-friendly cabin environment", zh: "宠物友好，可携宠物同行" },
+  "ac.shared.cabin.11": { en: "Large baggage compartment for extended travel", zh: "大型行李舱，满足长途出行需求" },
+  "ac.shared.cabin.caption": {
+    en: "An aircraft is more than transportation—it is a mobile office and a living room in the sky.",
+    zh: "飞机不仅是交通工具，更是一间移动办公室、一间空中客厅。",
+  },
+  "ac.shared.safety.label": { en: "World-class safety", zh: "世界级安全性" },
+  "ac.shared.safety.title": {
+    en: "One of the world's recognized business-aviation platforms.",
+    zh: "全球公认最安全的公务机平台之一",
+  },
+  "ac.shared.safety.1": { en: "Falcon 7X trijet design / proven Bombardier Global platform", zh: "Falcon 7X 三发设计 / Bombardier Global 系列成熟平台" },
+  "ac.shared.safety.2": { en: "EASy avionics suite", zh: "EASy Avionics 航电系统" },
+  "ac.shared.safety.3": { en: "Digital fly-by-wire flight controls", zh: "数字飞控系统（Fly-by-Wire）" },
+  "ac.shared.safety.4": { en: "Enhanced Vision and Synthetic Vision systems", zh: "Enhanced Vision / Synthetic Vision 增强与合成视景系统" },
+  "ac.shared.safety.5": { en: "TCAS II / TAWS / HUD, depending on configuration", zh: "TCAS II / TAWS / HUD（如配置）" },
+  "ac.shared.safety.6": { en: "Global maintenance network with high reliability", zh: "全球维护网络，可靠性极高" },
+  "ac.shared.safety.7": { en: "Proven platform with a strong safety record", zh: "成熟机型平台，安全记录卓越" },
+  "ac.shared.safety.caption": {
+    en: "High safety standards mean lower operating risk and more stable asset performance.",
+    zh: "高安全性意味着更低的运营风险与更稳定的资产表现。",
+  },
+  "ac.shared.value.label": { en: "Predictable asset value", zh: "可预测的资产价值" },
+  "ac.shared.value.title": {
+    en: "Mature models with transparent, measurable market value.",
+    zh: "成熟机型，折旧更加可预测",
+  },
+  "ac.shared.value.1": { en: "Active global transaction market and strong liquidity", zh: "全球交易活跃，市场流动性高" },
+  "ac.shared.value.2": { en: "Mature maintenance systems and controllable costs", zh: "维护体系成熟，成本透明可控" },
+  "ac.shared.value.3": { en: "Broad international buyer base and multiple resale channels", zh: "全球买家充足，转售渠道广泛" },
+  "ac.shared.value.4": { en: "Relatively resilient residual value and strong value retention", zh: "残值相对稳定，资产保值能力强" },
+  "ac.shared.value.5": { en: "Well suited to long-term asset allocation", zh: "更适合长期资产配置" },
+  "ac.shared.value.caption": {
+    en: "For RWA, stable and measurable asset value matters more than extreme performance.",
+    zh: "对于 RWA 而言，稳定、可衡量的资产价值比极致性能更加重要。",
+  },
+  "ac.uc.office.h3": { en: "Airborne Office", zh: "空中办公室" },
+  "ac.uc.office.p": {
+    en: "<ul class=\"usecase-list\"><li>Meet whenever needed</li><li>Video conferencing</li><li>Review and sign documents</li><li>Work efficiently in complete privacy</li></ul>",
+    zh: "<ul class=\"usecase-list\"><li>随时开会</li><li>视频会议</li><li>签署文件</li><li>高效办公</li></ul>",
+  },
+  "ac.uc.time.h3": { en: "Time Machine", zh: "时间机器" },
+  "ac.uc.time.p": {
+    en: "<ul class=\"usecase-list\"><li>Save hundreds of hours</li><li>Fly point to point</li><li>Avoid queues and connections</li><li>Take control of your schedule</li></ul>",
+    zh: "<ul class=\"usecase-list\"><li>节约数百小时</li><li>点对点飞行</li><li>无需排队与转机</li><li>掌控时间</li></ul>",
+  },
+  "ac.uc.vacation.h3": { en: "Vacation Lifestyle", zh: "度假生活" },
+  "ac.uc.vacation.p": {
+    en: "<ul class=\"usecase-list\"><li>Family travel</li><li>Trips with friends</li><li>Pet-friendly journeys</li><li>Enjoy freedom on your own schedule</li></ul>",
+    zh: "<ul class=\"usecase-list\"><li>家庭旅行</li><li>朋友聚会</li><li>宠物同行</li><li>享受自由</li></ul>",
+  },
+  "ac.uc.network.h3": { en: "Business Networking", zh: "商务社交" },
+  "ac.uc.network.p": {
+    en: "<ul class=\"usecase-list\"><li>Private invitations</li><li>Premium client hospitality</li><li>Corporate brand presentation</li><li>Expand business influence</li></ul>",
+    zh: "<ul class=\"usecase-list\"><li>私人邀请</li><li>客户接待</li><li>企业品牌展示</li><li>扩大影响力</li></ul>",
+  },
+  "ac.uc.tax.h3": { en: "Corporate Tax Planning Tool", zh: "企业税务工具" },
+  "ac.uc.tax.p": {
+    en: "<ul class=\"usecase-list\"><li>Corporate ownership structures</li><li>Depreciation and tax planning</li><li>Compliant expense reporting</li><li>Brand and business use</li></ul>",
+    zh: "<ul class=\"usecase-list\"><li>企业持有</li><li>折旧与税务规划</li><li>合规申报</li><li>品牌宣传与商务使用</li></ul>",
+  },
+  "ac.uc.quality.h3": { en: "Quality Lifestyle", zh: "高品质生活" },
+  "ac.uc.quality.p": {
+    en: "<ul class=\"usecase-list\"><li>Protect privacy</li><li>Travel in comfort</li><li>Move freely</li><li>Elevate quality of life</li></ul>",
+    zh: "<ul class=\"usecase-list\"><li>保障隐私</li><li>舒适尊享</li><li>自由出行</li><li>提升生活质量</li></ul>",
+  },
+  "ac.institutional.label": { en: "Institutional-Grade Asset Protection", zh: "Institutional-Grade 资产保障体系" },
+  "ac.institutional.h2": { en: "Choose how to begin your aviation-asset journey.", zh: "选择参与方式，开启您的航空资产之旅" },
+  "ac.institutional.a.title": { en: "Class A Investment", zh: "Class A 固定收益型投资" },
+  "ac.institutional.a.desc": { en: "Return-oriented participation backed by real aircraft assets.", zh: "以真实飞机资产支持的财务投资方式" },
+  "ac.institutional.b.title": { en: "Class B Ownership & Flight Hours", zh: "Class B 产权与飞行权益" },
+  "ac.institutional.b.desc": { en: "Fractional ownership combined with practical flight benefits.", zh: "产权共享与实际飞行权益相结合" },
+  "ac.institutional.m.title": { en: "Membership Future Aviation Club", zh: "Membership 未来航空俱乐部" },
+  "ac.institutional.m.desc": { en: "Private networking, business connection and priority experiences.", zh: "圈层会员、商务社交与优先体验" },
+  "ac.institutional.contact.title": { en: "Contact Us", zh: "联系我们" },
+  "ac.institutional.contact.desc": { en: "Request more information and a tailored participation plan.", zh: "获取更多信息与专属方案" },
+  "ac.institutional.cta": { en: "Learn More & Apply", zh: "了解并申请" },
+  "ac.institutional.contactCta": { en: "Contact Us", zh: "联系我们" },
+  "ac.participation.h2": { en: "How would you like to participate in Aviona?", zh: "您希望以何种方式参与 Aviona？" },
+  "ac.participation.sub": { en: "Choose a path, submit your contact details, and continue securely.", zh: "选择参与方式，提交联系方式后进入对应安全流程" },
+  "ac.participation.classA": { en: "Choose Class A", zh: "选择 Class A" },
+  "ac.participation.classB": { en: "Choose Class B", zh: "选择 Class B" },
+  "ac.participation.investFlow": { en: "Submit the contact form, then continue to the corresponding Brickken store", zh: "提交联系表单后，进入对应 Brickken 认购页面" },
+  "ac.participation.membership": { en: "Choose Membership", zh: "选择 Membership" },
+  "ac.participation.membershipFlow": { en: "Submit the contact form, then continue to the Membership store", zh: "提交联系表单后，进入 Membership 页面" },
   "ways.sub": {
     en: "Financial Investment · Fractional Aircraft Ownership Investment · VIP Membership",
     zh: "财务投资 · 机主权益投资 · VIP 会员",
@@ -31,6 +360,199 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "进入私人航空的全新方式。围绕私人飞机 RWA 和产权共享投资进行的受监管平台。",
   },
   "about.partner.fm": { en: "Fund Manager · SFC Type 9", zh: "基金管理人 · SFC 第 9 类牌照" },
+  "about.h1": {
+    en: "AVIONA -- The World's Leading Private Aviation RWA Platform",
+    zh: "AVIONA --全球领先的私人航空 RWA 平台",
+  },
+  "about.sub": {
+    en: "Connecting aviation, finance and technology to precisely unlock the investment value and utility value of private aircraft, making private aviation assets more transparent, more liquid and more investable, and opening a new era for private aviation assets.",
+    zh: "连接航空、金融与科技，精准释放私人飞机的投资价值与使用价值，让私人航空资产更加透明、更具流动性、更具投资价值，开启私人航空资产新时代",
+  },
+  "about.struct.label": { en: "Global Aviation Network", zh: "全球航空网络" },
+  "about.struct.h2": {
+    en: "Global Aviation Operations and Shared Fleet Network",
+    zh: "全球航空运营与机队共享网络",
+  },
+  "about.struct.lead1": {
+    en: "Anchored in international aviation hubs including Hong Kong, Singapore and Dubai, AVIONA has mature capabilities in international route planning, cross-border dispatch and global operations. Our aviation operations team is certified to the IS-BAO International Standard for Business Aircraft Operations, safeguarding every flight to international safety standards.",
+    zh: "AVIONA 依托香港、新加坡、迪拜等国际航空枢纽，具备成熟的国际航线规划、跨境调度与全球运营能力。我们的航空运营团队已获得 IS-BAO 国际公务航空运行标准认证，以国际安全标准保障每一次飞行。",
+  },
+  "about.struct.lead2": {
+    en: "AVIONA also maintains close partnerships with Jet Aviation; leading business-jet manufacturers including Bombardier, Gulfstream and Dassault Aviation; and operating partners such as Phenix Jet Japan. A flexible fleet-substitution and flight-support mechanism allows clients to use the aircraft corresponding to their project or draw from the global partner fleet according to route, aircraft type, range and travel requirements.",
+    zh: "同时，AVIONA 与 Jet Aviation，以及 Bombardier、Gulfstream、Dassault Aviation 等全球领先公务机制造商和 Phenix Jet Japan 等运营伙伴保持深度合作，并建立灵活的机队置换与飞行支持机制。客户不仅可以使用项目所对应的飞机，也可根据航线、机型、航程及出行需求，灵活置换或调配全球合作机队。",
+  },
+  "about.foundation.1.title": { en: "Regulated Fund Structure", zh: "受监管的基金架构" },
+  "about.foundation.1.desc": {
+    en: "An internationally compliant fund structure managed by professional licensed institutions provides a more regulated and transparent investment environment.",
+    zh: "采用国际合规基金架构，由专业持牌机构管理，为投资者提供更加规范、透明的投资环境。",
+  },
+  "about.foundation.2.title": { en: "1:1 Real Aircraft Assets", zh: "1:1 真实飞机资产" },
+  "about.foundation.2.desc": {
+    en: "Fund interests are backed 1:1 by real aircraft assets, with clear and verifiable underlying asset interests.",
+    zh: "基金份额由真实飞机资产 1:1 支撑，底层资产权益清晰、可验证。",
+  },
+  "about.foundation.3.title": { en: "Transparent, Auditable Digital Assets", zh: "透明可审计的数字资产" },
+  "about.foundation.3.desc": {
+    en: "Institutional-grade tokenization and blockchain technology make the asset lifecycle transparent, traceable and auditable.",
+    zh: "通过机构级通证化平台与区块链技术，实现资产全生命周期透明、可追溯、可审计。",
+  },
+  "about.foundation.4.title": { en: "Global Aviation Operations", zh: "全球航空运营能力" },
+  "about.foundation.4.desc": {
+    en: "Global route planning, aircraft dispatch and cross-border operations connect major international aviation hubs.",
+    zh: "依托国际航空枢纽，具备全球航线规划、飞机调度及跨境运营能力。",
+  },
+  "about.whyAviona.label": { en: "Why Choose AVIONA", zh: "为什么选择 AVIONA" },
+  "about.whyAviona.heading": {
+    en: "Integrated aviation operations, asset management and digital-platform capabilities.",
+    zh: "航空运营、资产管理与数字平台协同的一体化能力。",
+  },
+  "about.whyAviona.1.title": { en: "Compliant Fund Structure", zh: "合规基金架构" },
+  "about.whyAviona.1.desc": {
+    en: "AVIONA uses an internationally compliant fund structure managed by professional licensed institutions and works with institutions including Dongxing Securities to provide investors with a more regulated and transparent investment environment.",
+    zh: "AVIONA 采用国际合规基金架构，由专业持牌机构管理，并与东兴证券等机构合作，为投资者提供更加规范、透明的投资环境。",
+  },
+  "about.whyAviona.2.title": { en: "Secure and Transparent Digital Platform", zh: "安全透明的数字平台" },
+  "about.whyAviona.2.desc": {
+    en: "Brickken's institutional-grade tokenization platform and blockchain technology make the full asset lifecycle transparent, traceable and auditable, improving security and liquidity for digital assets.",
+    zh: "采用 Brickken 机构级通证化平台，结合区块链技术，实现资产全生命周期透明、可追溯、可审计，为数字资产提供更高的安全性与流动性。",
+  },
+  "about.whyAviona.3.title": { en: "Global Aviation Operations Network", zh: "全球航空运营网络" },
+  "about.whyAviona.3.desc": {
+    en: "International aviation hubs including Hong Kong, Singapore and Dubai support global route planning, aircraft dispatch and cross-border operations, providing efficient and flexible flight services.",
+    zh: "依托香港、新加坡、迪拜等国际航空枢纽，具备全球航线规划、飞机调度及跨境运营能力，为客户提供高效、灵活的飞行服务。",
+  },
+  "about.whyAviona.4.title": { en: "Global Shared Fleet Network", zh: "全球机队共享网络" },
+  "about.whyAviona.4.desc": {
+    en: "Close partnerships with Jet Aviation, Bombardier, Gulfstream, Dassault, Phenix Jet Japan and other international aviation partners enable access to more aircraft types, global fleet substitution and flight support.",
+    zh: "与 Jet Aviation、Bombardier、Gulfstream、Dassault、Phenix Jet Japan 等国际航空伙伴深度合作，可根据客户需求调配更多机型，提供全球范围的飞机置换及飞行保障。",
+  },
+  "about.whyAviona.5.title": { en: "Professional Asset Management", zh: "专业资产管理能力" },
+  "about.whyAviona.5.desc": {
+    en: "From aircraft procurement, operations and maintenance to leasing and asset exit, AVIONA provides one-stop lifecycle asset management that continuously improves asset value and operating efficiency.",
+    zh: "从飞机采购、运营管理、维护、出租到资产退出，AVIONA 提供覆盖飞机全生命周期的一站式资产管理服务，持续提升资产价值与运营效率。",
+  },
+  "about.whyAviona.6.title": { en: "Flexible Membership and Investment System", zh: "灵活的会员与投资体系" },
+  "about.whyAviona.6.desc": {
+    en: "Financial investors, equity investors and private-flight members can each choose the participation model best suited to their needs, combining investment value with utility value.",
+    zh: "无论是财务投资者、权益投资者还是私人飞行会员，都能够根据自身需求选择最适合的参与方式，兼顾投资价值与使用价值。",
+  },
+  "about.flightServices.label": { en: "AVIONA Flight Services", zh: "AVIONA 飞行服务能力" },
+  "about.flightServices.1.title": { en: "Rapid Route Applications", zh: "极速航线申请" },
+  "about.flightServices.1.desc": {
+    en: "Drawing on extensive international operating experience and a global coordination network, we rapidly complete route, slot and relevant flight-permit applications to improve travel efficiency.",
+    zh: "依托丰富的国际运营经验与全球协调网络，快速完成航线、时刻及相关飞行许可申请，提升出行效率。",
+  },
+  "about.flightServices.2.title": { en: "Safe Flight Assurance", zh: "安全飞行保障" },
+  "about.flightServices.2.desc": {
+    en: "International safety standards, professional crews, comprehensive risk management and standardized operating processes safeguard every flight.",
+    zh: "严格遵循国际安全运营标准，专业机组、完善的风险管理体系与规范化运行流程，为每一次飞行保驾护航。",
+  },
+  "about.flightServices.3.title": { en: "Ultra Five-Star Exclusive Service", zh: "超五星级专属服务" },
+  "about.flightServices.3.desc": {
+    en: "From itinerary planning and ground reception to in-flight concierge service, every stage delivers high-quality personalization and a distinguished, comfortable flight experience.",
+    zh: "从行程规划、地面接待到空中礼宾，全流程提供高品质、个性化服务，打造尊贵舒适的飞行体验。",
+  },
+  "about.flightServices.4.title": { en: "Efficient Point-to-Point Travel", zh: "点对点高效出行" },
+  "about.flightServices.4.desc": {
+    en: "Fly directly to the destination without transfers, saving significant time and making business travel more efficient and convenient.",
+    zh: "无需中转，直达目的地，大幅节省出行时间，让商务出行更加高效便捷。",
+  },
+  "about.flightServices.5.title": { en: "Global Dispatch Capabilities", zh: "全球调度能力" },
+  "about.flightServices.5.desc": {
+    en: "International aviation hubs including Hong Kong, Singapore and Dubai, together with the global partner fleet, enable flexible and efficient aircraft dispatch and operational support.",
+    zh: "依托香港、新加坡、迪拜等国际航空枢纽及全球合作机队，实现灵活、高效的飞机调度与运营保障。",
+  },
+  "about.rwa.heading": { en: "Why Choose Private Aircraft as RWA?", zh: "为什么选择私人飞机作为 RWA？" },
+  "about.rwa.lead": {
+    en: "A private aircraft is not only a high-value real-world asset; it also combines financial, utility and social attributes, making it one of the few asset categories capable of creating multiple forms of value at the same time.",
+    zh: "私人飞机不仅是一项高价值的真实世界资产，更兼具金融属性、使用属性与社交属性，是少数能够同时创造多重价值的资产类别。",
+  },
+  "about.rwa.1.title": { en: "Stable Value", zh: "价值稳定" },
+  "about.rwa.1.desc": {
+    en: "The global business-jet market has mature trading and international valuation systems, providing transparent asset values and long-term allocation potential.",
+    zh: "全球公务机拥有成熟的交易市场和国际估值体系，资产价值透明，具备长期配置价值。",
+  },
+  "about.rwa.2.title": { en: "Global Mobility", zh: "全球流动" },
+  "about.rwa.2.desc": {
+    en: "Aircraft can operate and circulate across borders without being limited to a single region, giving them natural international mobility.",
+    zh: "飞机可跨境运营和全球流通，不受单一地区限制，拥有天然的国际流动性。",
+  },
+  "about.rwa.3.title": { en: "Clear Ownership", zh: "产权清晰" },
+  "about.rwa.3.desc": {
+    en: "International aircraft registries and standardized legal frameworks make ownership clear, verifiable and auditable, providing a solid foundation for asset digitization.",
+    zh: "依托国际航空登记体系及标准化法律框架，飞机产权明确、可验证、可审计，为资产数字化提供坚实基础。",
+  },
+  "about.rwa.4.title": { en: "Investment and Utility Value", zh: "投资价值与使用价值兼具" },
+  "about.rwa.4.desc": {
+    en: "It can serve as a long-term asset allocation while also meeting business travel needs, combining investment and utility value.",
+    zh: "既能够作为长期资产配置获取收益，又能够满足商务出行需求，实现投资与使用双重价值。",
+  },
+  "about.rwa.5.title": { en: "A Connector for High-Net-Worth Networks", zh: "高净值圈层的连接器" },
+  "about.rwa.5.desc": {
+    en: "Private aircraft are more than transportation: they connect entrepreneurs, high-net-worth individuals and global business resources, supporting international cooperation and premium networks.",
+    zh: "私人飞机不仅是一种交通工具，更是企业家、高净值人士及全球商业资源的重要连接平台，有助于拓展国际商务合作与高端社交网络。",
+  },
+  "about.rwa.6.title": { en: "The Entrepreneur's Time Machine", zh: "企业家的时间机器" },
+  "about.rwa.6.desc": {
+    en: "Time is the scarcest resource. Private aircraft help entrepreneurs connect global markets efficiently, improve business productivity and devote more time to creating value.",
+    zh: "时间是最稀缺的资源。私人飞机帮助企业家高效连接全球市场，大幅提升商务效率，让更多时间投入到创造价值之中。",
+  },
+  "about.team.label": { en: "Professional Team · Global Operations", zh: "专业团队 · 全球运营" },
+  "about.team.heading": {
+    en: "More than sixteen years of international business-aviation experience.",
+    zh: "超过十六年的国际公务航空经验。",
+  },
+  "about.team.p1": {
+    en: "AVIONA's core team has more than sixteen years of international business-aviation experience, with long-standing expertise in business-jet transactions, asset management and global operations. The team has participated in the management, operation and trading of business-jet assets worth several billion US dollars, building extensive experience in cross-border transactions, international operations and asset management.",
+    zh: "AVIONA 核心团队拥有超过十六年的国际公务航空经验，长期深耕公务机交易、资产管理及全球运营领域。团队累计参与管理、运营及交易的公务机资产价值超过数十亿美元，积累了丰富的跨境交易、国际运营及资产管理经验。",
+  },
+  "about.team.p2": {
+    en: "Supported by an industry network spanning Asia, the Middle East, Europe and North America, we provide international route integration, global operating-resource coordination and cross-border business-aviation solutions. Clients and investors receive lifecycle services covering aircraft procurement, operations, asset management, financing and exit.",
+    zh: "依托覆盖亚洲、中东、欧洲及北美的行业合作网络，我们具备卓越的国际航线整合能力、全球运营资源整合能力以及跨境商务航空解决方案能力，为客户和投资者提供贯穿飞机采购、运营管理、资产管理、融资及退出的全生命周期服务。",
+  },
+  "about.team.p3": {
+    en: "By combining professional aviation operations, internationally compliant fund structures, artificial intelligence and blockchain technology, AVIONA is building a world-leading private aviation RWA ecosystem that makes private aviation assets more transparent, efficient and investable while creating long-term value.",
+    zh: "通过将专业航空运营能力、国际合规基金架构、人工智能及区块链技术相结合，AVIONA 正在打造全球领先的私人航空 RWA（Real World Assets）生态，让私人航空资产变得更加透明、高效、可投资，并创造长期价值。",
+  },
+  "about.capabilities.label": { en: "Six Core Capabilities", zh: "六项核心能力" },
+  "about.capabilities.heading": {
+    en: "From global mobility to long-term asset protection.",
+    zh: "从全球流动到长期资产保障。",
+  },
+  "about.capabilities.lead": {
+    en: "AVIONA connects global aviation operations, transparent ownership and professional asset management to deliver the combined investment, utility, time and network value of private aircraft.",
+    zh: "AVIONA 连接全球航空运营、透明产权与专业资产管理，持续释放私人飞机的投资价值、使用价值、时间价值与圈层价值。",
+  },
+  "about.capabilities.1.title": { en: "Global Mobility", zh: "全球流动性" },
+  "about.capabilities.1.desc": {
+    en: "Fly globally, with cross-border operations and transactions.",
+    zh: "全球自由飞行，可跨境运营与交易。",
+  },
+  "about.capabilities.2.title": { en: "Transparent Ownership", zh: "产权透明" },
+  "about.capabilities.2.desc": {
+    en: "International registration systems make ownership clear, verifiable and auditable.",
+    zh: "国际登记体系，产权清晰、可验证、可审计。",
+  },
+  "about.capabilities.3.title": { en: "Stable Asset Value", zh: "资产价值稳定" },
+  "about.capabilities.3.desc": {
+    en: "A mature international business-jet trading market and valuation system.",
+    zh: "成熟的国际公务机交易市场与估值体系。",
+  },
+  "about.capabilities.4.title": { en: "The Entrepreneur's Time Machine", zh: "企业家的时间机器" },
+  "about.capabilities.4.desc": {
+    en: "Save time, improve business efficiency and create more value.",
+    zh: "节省时间，提升商务效率，创造更多价值。",
+  },
+  "about.capabilities.5.title": { en: "Professional Operational Support", zh: "专业运营保障" },
+  "about.capabilities.5.desc": {
+    en: "Professional management and continuous maintenance protect long-term asset value.",
+    zh: "专业管理、持续维护，保障资产长期价值。",
+  },
+  "about.capabilities.6.title": { en: "High-Net-Worth Network Connection", zh: "高净值圈层连接" },
+  "about.capabilities.6.desc": {
+    en: "A private aircraft is more than transportation; it is a platform connecting entrepreneurs, investors and global business resources.",
+    zh: "私人飞机不仅是交通工具，更是连接企业家、投资人与全球商业资源的重要平台。",
+  },
   "about.struct.lead": {
     en: "The Aviona Master Fund is structured as a Hong Kong Limited Partnership Fund (LPF) and operated within the regulatory framework of the Hong Kong Securities and Futures Commission (SFC). The aircraft itself is held by a single-asset SPV owned by the fund — your unit corresponds one-to-one with real aircraft ownership, not a paper claim.",
     zh: "Aviona 主基金以香港有限合伙基金（LPF）架构设立，在香港证监会（SFC）监管框架下运营。飞机由基金持有的单资产 SPV 持有——您的份额对应真实飞机产权，非纸面权益。",
@@ -419,6 +941,59 @@ function english(key) {
   return APPROVED_CONTENT_2026_I18N[key]?.en ?? "";
 }
 
+const AIRCRAFT_REASON_ICONS = {
+  globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/>',
+  briefcase: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  utilization: '<path d="M4 18V9M10 18V5M16 18v-7M22 18V3"/><path d="m4 7 6-4 6 5 6-6"/>',
+  expand: '<path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/><path d="m3 3 6 6m12-6-6 6M3 21l6-6m12 6-6-6"/>',
+  altitude: '<path d="M4 17a8 8 0 0 1 16 0"/><path d="m12 13 4-4M7 20h10"/>',
+  volume: '<path d="M5 10v4h4l5 4V6L9 10H5Z"/><path d="M17 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/>',
+  washroom: '<path d="M3 12h18v3a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5v-3ZM7 12V7a3 3 0 0 1 3-3h1"/><path d="M7 20v2m10-2v2"/>',
+  galley: '<path d="M4 4h16v16H4zM4 10h16M9 10v10"/><circle cx="15" cy="7" r="1"/><path d="M12 14h5"/>',
+  armchair: '<path d="M6 12V8a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v4M4 11a2 2 0 0 1 2 2v4h12v-4a2 2 0 0 1 4 0v6H2v-6a2 2 0 0 1 2-2Z"/>',
+  bed: '<path d="M3 18V6M3 15h18v3M7 15v-4h5a4 4 0 0 1 4 4M3 10h4v5M21 18v2M3 18v2"/>',
+  monitor: '<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/>',
+  dining: '<path d="M7 3v8M4 3v5a3 3 0 0 0 6 0V3M7 11v10M16 3v18M16 3c3 2 4 5 4 8h-4"/>',
+  paw: '<circle cx="8" cy="8" r="2"/><circle cx="16" cy="8" r="2"/><circle cx="5" cy="13" r="2"/><circle cx="19" cy="13" r="2"/><path d="M8 18c0-3 2-5 4-5s4 2 4 5c0 2-2 3-4 3s-4-1-4-3Z"/>',
+  luggage: '<rect x="5" y="5" width="14" height="16" rx="2"/><path d="M9 5V3h6v2M9 9v8M15 9v8M5 12h14"/>',
+  plane: '<path d="M2 16l20-8-7 8v5l-3-2-3 2v-5l-7 0Z"/><path d="m9 16 3-9 3 9"/>',
+  avionics: '<rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 1v4m6-4v4M9 19v4m6-4v4M1 9h4m-4 6h4m14-6h4m-4 6h4M9 9h6v6H9z"/>',
+  controls: '<path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="7" cy="18" r="2"/>',
+  vision: '<path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
+  radar: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 12 19 5M12 3v2M3 12h2M12 19v2M19 12h2"/>',
+  wrench: '<path d="M14 6a5 5 0 0 0-6-3l3 3-4 4-3-3a5 5 0 0 0 6 6l7 7a2 2 0 0 0 3-3l-7-7a5 5 0 0 0 1-4Z"/>',
+  safety: '<path d="M12 3 4 6v6c0 5 3 8 8 10 5-2 8-5 8-10V6l-8-3Z"/><path d="m8 12 3 3 5-6"/>',
+  market: '<path d="M3 20h18M5 16l4-5 4 3 6-8"/><path d="M15 6h4v4"/>',
+  maintenance: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9 7 7M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"/>',
+  buyers: '<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2"/><path d="M3 20c0-4 2-7 6-7s6 3 6 7M15 14c3 0 5 2 5 5"/>',
+  residual: '<path d="M12 3 4 7v5c0 5 3 8 8 9 5-1 8-4 8-9V7l-8-4Z"/><path d="M8 12h8M12 8v8"/>',
+  allocation: '<path d="m12 3 4 6-4 12-4-12 4-6Z"/><path d="M8 9H3l5 8M16 9h5l-5 8"/>',
+};
+
+function aircraftReasonIcon(name) {
+  return `<svg class="aircraft-reason-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${AIRCRAFT_REASON_ICONS[name] || ""}</svg>`;
+}
+
+function buildAircraftReasonList(prefix, icons, extraClass = "") {
+  const className = `aircraft-reason-list${extraClass ? ` ${extraClass}` : ""}`;
+  return `<ul class="${className}">${icons.map((icon, index) => {
+    const key = `${prefix}.${index + 1}`;
+    return `<li>${aircraftReasonIcon(icon)}<span data-i18n="${key}">${english(key)}</span></li>`;
+  }).join("")}</ul>`;
+}
+
+function buildAircraftUsecaseCard({ image, alt, titleKey, copyKey, icon }) {
+  return `<article class="usecase aircraft-usecase-card">
+          <div class="img-wrap"><img src="${image}" alt="${alt}"></div>
+          <div class="body">
+            <div class="aircraft-usecase-icon">${aircraftReasonIcon(icon)}</div>
+            <h3 data-i18n="${titleKey}">${english(titleKey)}</h3>
+            <div data-i18n="${copyKey}" class="usecase-copy">${english(copyKey)}</div>
+          </div>
+        </article>`;
+}
+
 function replaceBetween(html, startMarker, endMarker, replacement) {
   const start = html.indexOf(startMarker);
   if (start < 0) return html;
@@ -446,6 +1021,189 @@ function replaceElementByI18nKey(html, key, replacement) {
   if (closeStart < 0) return html;
 
   return `${html.slice(0, openStart)}${replacement}${html.slice(closeStart + closeTag.length)}`;
+}
+
+function buildWhyComparisonItems(prefix, positive = false) {
+  return Array.from({ length: 5 }, (_, index) => {
+    const number = index + 1;
+    const titleKey = `why.2026.${prefix}.${number}.title`;
+    const descKey = `why.2026.${prefix}.${number}.desc`;
+    return `<div class="why-2026-compare-item">
+              <span class="why-2026-item-mark" aria-hidden="true">${positive ? "✓" : "×"}</span>
+              <div>
+                <strong data-i18n="${titleKey}">${english(titleKey)}</strong>
+                <p data-i18n="${descKey}">${english(descKey)}</p>
+              </div>
+            </div>`;
+  }).join("");
+}
+
+function buildWhyValueCard(key, icon) {
+  const titleKey = `why.2026.value.${key}.title`;
+  const descKey = `why.2026.value.${key}.desc`;
+  return `<article class="why-2026-value-card">
+            <div class="why-2026-icon">${aircraftReasonIcon(icon)}</div>
+            <div>
+              <h3 data-i18n="${titleKey}">${english(titleKey)}</h3>
+              <p data-i18n="${descKey}">${english(descKey)}</p>
+            </div>
+          </article>`;
+}
+
+function buildWhyStructureCard(number, icon) {
+  const titleKey = `why.2026.structure.${number}.title`;
+  const descKey = `why.2026.structure.${number}.desc`;
+  return `<article class="why-2026-structure-card">
+            <div class="why-2026-structure-top">
+              <span class="why-2026-num">0${number}</span>
+              <div class="why-2026-icon">${aircraftReasonIcon(icon)}</div>
+            </div>
+            <h3 data-i18n="${titleKey}">${english(titleKey)}</h3>
+            <p data-i18n="${descKey}">${english(descKey)}</p>
+          </article>`;
+}
+
+function buildWhyOpsItems(prefix, icons) {
+  return icons.map((icon, index) => {
+    const number = index + 1;
+    const titleKey = `why.2026.${prefix}.${number}.title`;
+    const descKey = `why.2026.${prefix}.${number}.desc`;
+    return `<li>
+              <div class="why-2026-ops-icon">${aircraftReasonIcon(icon)}</div>
+              <div>
+                <strong data-i18n="${titleKey}">${english(titleKey)}</strong>
+                <small data-i18n="${descKey}">${english(descKey)}</small>
+              </div>
+            </li>`;
+  }).join("");
+}
+
+function applyWhyContent(html) {
+  const comparisonSection = `  <section class="s why-2026-comparison-section">
+    <div class="container">
+      <div class="why-2026-heading">
+        <div data-i18n="why.2026.compare.label" class="eyebrow">${english("why.2026.compare.label")}</div>
+        <h2 data-i18n="why.2026.compare.h2">${english("why.2026.compare.h2")}</h2>
+        <p data-i18n="why.2026.compare.lead" class="lead">${english("why.2026.compare.lead")}</p>
+      </div>
+      <div class="why-2026-comparison">
+        <article class="why-2026-compare-card why-2026-traditional">
+          <div class="why-2026-card-title">
+            <span class="why-2026-title-icon why-2026-muted" aria-hidden="true">×</span>
+            <div>
+              <div data-i18n="why.2026.traditional.label" class="eyebrow">${english("why.2026.traditional.label")}</div>
+              <h3 data-i18n="why.2026.traditional.h3">${english("why.2026.traditional.h3")}</h3>
+            </div>
+          </div>
+          <div class="why-2026-compare-list">
+            ${buildWhyComparisonItems("traditional")}
+          </div>
+        </article>
+        <article class="why-2026-compare-card why-2026-aviona">
+          <div class="why-2026-card-title">
+            <span class="why-2026-title-icon" aria-hidden="true">${aircraftReasonIcon("safety")}</span>
+            <div>
+              <div data-i18n="why.2026.aviona.label" class="eyebrow-gold">${english("why.2026.aviona.label")}</div>
+              <h3 data-i18n="why.2026.aviona.h3">${english("why.2026.aviona.h3")}</h3>
+            </div>
+          </div>
+          <div class="why-2026-compare-list">
+            ${buildWhyComparisonItems("aviona", true)}
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+`;
+
+  const advantageSection = `  <section class="s alt why-2026-advantage-section">
+    <div class="container">
+      <div class="why-2026-heading">
+        <div data-i18n="why.2026.rwa.label" class="eyebrow">${english("why.2026.rwa.label")}</div>
+        <h2 data-i18n="why.2026.rwa.h2">${english("why.2026.rwa.h2")}</h2>
+        <p data-i18n="why.2026.rwa.lead" class="lead">${english("why.2026.rwa.lead")}</p>
+      </div>
+      <div class="why-2026-value-grid">
+        ${buildWhyValueCard("global", "globe")}
+        ${buildWhyValueCard("title", "controls")}
+        ${buildWhyValueCard("stable", "market")}
+        ${buildWhyValueCard("time", "clock")}
+        ${buildWhyValueCard("network", "buyers")}
+        ${buildWhyValueCard("operations", "maintenance")}
+      </div>
+
+      <div class="why-2026-subheading">
+        <div data-i18n="why.2026.structure.label" class="eyebrow-gold">${english("why.2026.structure.label")}</div>
+        <h2 data-i18n="why.2026.structure.h2">${english("why.2026.structure.h2")}</h2>
+      </div>
+      <div class="why-2026-structure-grid">
+        ${buildWhyStructureCard(1, "residual")}
+        ${buildWhyStructureCard(2, "allocation")}
+        ${buildWhyStructureCard(3, "expand")}
+        ${buildWhyStructureCard(4, "globe")}
+      </div>
+      <div class="why-2026-statement" data-i18n="why.2026.structure.statement">${english("why.2026.structure.statement")}</div>
+    </div>
+  </section>
+
+`;
+
+  const operationsSection = `  <section class="s why-2026-operations-section">
+    <div class="container">
+      <div class="why-2026-heading">
+        <div data-i18n="why.2026.ops.label" class="eyebrow">${english("why.2026.ops.label")}</div>
+        <h2 data-i18n="why.2026.ops.h2">${english("why.2026.ops.h2")}</h2>
+        <p data-i18n="why.2026.ops.lead" class="lead">${english("why.2026.ops.lead")}</p>
+      </div>
+      <div class="why-2026-ops-grid">
+        <article class="why-2026-ops-card">
+          <div class="why-2026-card-title">
+            <span class="why-2026-title-icon" aria-hidden="true">${aircraftReasonIcon("plane")}</span>
+            <div>
+              <div data-i18n="why.2026.operating.label" class="eyebrow-gold">${english("why.2026.operating.label")}</div>
+              <h3 data-i18n="why.2026.operating.h3">${english("why.2026.operating.h3")}</h3>
+            </div>
+          </div>
+          <ul>${buildWhyOpsItems("operating", ["briefcase", "wrench", "safety"])}</ul>
+        </article>
+        <article class="why-2026-ops-card">
+          <div class="why-2026-card-title">
+            <span class="why-2026-title-icon" aria-hidden="true">${aircraftReasonIcon("controls")}</span>
+            <div>
+              <div data-i18n="why.2026.compliance.label" class="eyebrow-gold">${english("why.2026.compliance.label")}</div>
+              <h3 data-i18n="why.2026.compliance.h3">${english("why.2026.compliance.h3")}</h3>
+            </div>
+          </div>
+          <ul>${buildWhyOpsItems("compliance", ["residual", "globe", "controls"])}</ul>
+        </article>
+      </div>
+      <div class="why-2026-bottom-line" data-i18n="why.2026.ops.statement">${english("why.2026.ops.statement")}</div>
+    </div>
+  </section>
+
+`;
+
+  let next = replaceBetween(
+    html,
+    '  <section class="s">\n    <div class="container">\n      <div style="max-width: 700px;">\n        <div data-i18n="why.existing.label"',
+    '  <section class="s alt">\n    <div class="container">\n      <div style="max-width: 760px;">\n        <div data-i18n="why.solution.label"',
+    comparisonSection,
+  );
+
+  next = replaceBetween(
+    next,
+    '  <section class="s alt">\n    <div class="container">\n      <div style="max-width: 760px;">\n        <div data-i18n="why.solution.label"',
+    '  <section class="s">\n    <div class="container-narrow" style="text-align: center;">\n      <div data-i18n="why.builtfor.label"',
+    advantageSection,
+  );
+
+  return replaceBetween(
+    next,
+    '  <section class="s">\n    <div class="container-narrow" style="text-align: center;">\n      <div data-i18n="why.builtfor.label"',
+    '  <section class="center-cta alt">',
+    operationsSection,
+  );
 }
 
 function buildFaqPanel(name, prefix, count, active = false) {
@@ -533,10 +1291,195 @@ function applyWaysContent(html) {
 }
 
 function applyAboutContent(html) {
-  return html.replace(
+  let next = html.replace(
     '<div class="sub-name">Engine &amp; airframe programs</div>',
     '<div class="sub-name" data-i18n="about.partner.mx.sub">Engine &amp; airframe programs</div>',
   );
+
+  next = replaceElementByI18nKey(
+    next,
+    "about.h1",
+    `<h1 class="about-hero-title-singleline" data-i18n="about.h1">${english("about.h1")}</h1>`,
+  );
+  next = replaceElementByI18nKey(
+    next,
+    "about.sub",
+    `<p class="sub about-hero-subtitle" data-i18n="about.sub">${english("about.sub")}</p>`,
+  );
+  next = replaceElementByI18nKey(
+    next,
+    "about.struct.label",
+    `<div class="eyebrow" data-i18n="about.struct.label">${english("about.struct.label")}</div>`,
+  );
+  next = replaceElementByI18nKey(
+    next,
+    "about.struct.h2",
+    `<h2 data-i18n="about.struct.h2">${english("about.struct.h2")}</h2>`,
+  );
+  next = replaceElementByI18nKey(
+    next,
+    "about.struct.lead",
+    `<div class="lead about-network-lead">
+          <p data-i18n="about.struct.lead1">${english("about.struct.lead1")}</p>
+          <p data-i18n="about.struct.lead2">${english("about.struct.lead2")}</p>
+        </div>`,
+  );
+
+  const foundationFacts = `<div class="trust-facts about-foundation-facts">
+        <div class="trust-fact">
+          <div class="num">01</div>
+          <div data-i18n="about.foundation.1.title" class="lbl">${english("about.foundation.1.title")}</div>
+          <p data-i18n="about.foundation.1.desc">${english("about.foundation.1.desc")}</p>
+        </div>
+        <div class="trust-fact">
+          <div class="num">1:1</div>
+          <div data-i18n="about.foundation.2.title" class="lbl">${english("about.foundation.2.title")}</div>
+          <p data-i18n="about.foundation.2.desc">${english("about.foundation.2.desc")}</p>
+        </div>
+        <div class="trust-fact">
+          <div class="num">03</div>
+          <div data-i18n="about.foundation.3.title" class="lbl">${english("about.foundation.3.title")}</div>
+          <p data-i18n="about.foundation.3.desc">${english("about.foundation.3.desc")}</p>
+        </div>
+        <div class="trust-fact">
+          <div class="num">04</div>
+          <div data-i18n="about.foundation.4.title" class="lbl">${english("about.foundation.4.title")}</div>
+          <p data-i18n="about.foundation.4.desc">${english("about.foundation.4.desc")}</p>
+        </div>
+      </div>
+`;
+
+  next = replaceBetween(
+    next,
+    '      <div class="trust-facts">',
+    '    </div>\n  </section>',
+    foundationFacts,
+  );
+
+  const whyAvionaSection = `  <section class="s alt about-why-aviona-section">
+    <div class="container">
+      <div class="about-why-aviona-head">
+        <div class="eyebrow-gold" data-i18n="about.whyAviona.label">${english("about.whyAviona.label")}</div>
+        <h2 data-i18n="about.whyAviona.heading">${english("about.whyAviona.heading")}</h2>
+      </div>
+      <div class="about-why-aviona-grid">
+        ${Array.from({ length: 6 }, (_, index) => {
+          const number = index + 1;
+          return `<article class="about-why-aviona-item">
+          <div class="about-why-aviona-number">0${number}</div>
+          <h3 data-i18n="about.whyAviona.${number}.title">${english(`about.whyAviona.${number}.title`)}</h3>
+          <p data-i18n="about.whyAviona.${number}.desc">${english(`about.whyAviona.${number}.desc`)}</p>
+        </article>`;
+        }).join("\n        ")}
+      </div>
+    </div>
+  </section>
+
+`;
+
+  const flightServiceIcons = ["↗", "◇", "★", "◎", "○"];
+  const flightServicesSection = `  <section class="about-flight-services-section" aria-label="${english("about.flightServices.label")}" data-i18n-aria-label="about.flightServices.label">
+    <div class="container">
+      <div class="about-flight-services-grid">
+        ${flightServiceIcons.map((icon, index) => {
+          const number = index + 1;
+          return `<article class="about-flight-service">
+          <div class="about-flight-service-icon" aria-hidden="true">${icon}</div>
+          <h3 data-i18n="about.flightServices.${number}.title">${english(`about.flightServices.${number}.title`)}</h3>
+          <p data-i18n="about.flightServices.${number}.desc">${english(`about.flightServices.${number}.desc`)}</p>
+        </article>`;
+        }).join("\n        ")}
+      </div>
+    </div>
+  </section>
+
+`;
+
+  const rwaSection = `  <section class="s about-rwa-section">
+    <div class="container">
+      <div class="about-rwa-intro">
+        <h2 data-i18n="about.rwa.heading">${english("about.rwa.heading")}</h2>
+        <p data-i18n="about.rwa.lead">${english("about.rwa.lead")}</p>
+      </div>
+      <div class="about-rwa-grid">
+        ${Array.from({ length: 6 }, (_, index) => {
+          const number = index + 1;
+          return `<article class="about-rwa-item">
+          <div class="about-rwa-number">0${number}</div>
+          <h3 data-i18n="about.rwa.${number}.title">${english(`about.rwa.${number}.title`)}</h3>
+          <p data-i18n="about.rwa.${number}.desc">${english(`about.rwa.${number}.desc`)}</p>
+        </article>`;
+        }).join("\n        ")}
+      </div>
+    </div>
+  </section>
+
+`;
+
+  const teamAndCapabilitiesSections = `  <section class="s alt about-team-section">
+    <div class="container">
+      <div class="about-team-grid">
+        <div class="about-team-copy">
+          <div class="eyebrow-gold" data-i18n="about.team.label">${english("about.team.label")}</div>
+          <h2 data-i18n="about.team.heading">${english("about.team.heading")}</h2>
+          <div class="about-team-body">
+            <p data-i18n="about.team.p1">${english("about.team.p1")}</p>
+            <p data-i18n="about.team.p2">${english("about.team.p2")}</p>
+            <p data-i18n="about.team.p3">${english("about.team.p3")}</p>
+          </div>
+        </div>
+        <div class="about-team-collage" aria-hidden="true">
+          <figure class="about-team-photo about-team-photo-main">
+            <img src="/assets/photos/engine-closeup.jpg" alt="">
+          </figure>
+          <figure class="about-team-photo">
+            <img src="/assets/photos/cockpit-pilot.jpg" alt="">
+          </figure>
+          <figure class="about-team-photo">
+            <img src="/assets/photos/landing-gear.jpg" alt="">
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s about-capabilities-section">
+    <div class="container">
+      <div class="about-capabilities-head">
+        <div class="eyebrow-gold" data-i18n="about.capabilities.label">${english("about.capabilities.label")}</div>
+        <h2 data-i18n="about.capabilities.heading">${english("about.capabilities.heading")}</h2>
+        <p data-i18n="about.capabilities.lead">${english("about.capabilities.lead")}</p>
+      </div>
+      <div class="about-capabilities-grid">
+        ${Array.from({ length: 6 }, (_, index) => {
+          const number = index + 1;
+          return `<article class="about-capability">
+          <div class="about-capability-heading">
+            <div class="about-capability-number">0${number}</div>
+            <h3 data-i18n="about.capabilities.${number}.title">${english(`about.capabilities.${number}.title`)}</h3>
+          </div>
+          <p data-i18n="about.capabilities.${number}.desc">${english(`about.capabilities.${number}.desc`)}</p>
+        </article>`;
+        }).join("\n        ")}
+      </div>
+    </div>
+  </section>
+
+`;
+
+  next = next.replace(
+    '  <section class="s alt">\n    <div class="container">\n      <div style="max-width: 760px;">\n        <div data-i18n="about.dl.label"',
+    `${whyAvionaSection}${rwaSection}${teamAndCapabilitiesSections}${flightServicesSection}  <section class="s alt">\n    <div class="container">\n      <div style="max-width: 760px;">\n        <div data-i18n="about.dl.label"`,
+  );
+
+  next = replaceBetween(
+    next,
+    '  <section class="s alt">\n    <div class="container">\n      <div style="max-width: 760px;">\n        <div data-i18n="about.dl.label"',
+    '    <section class="s alt" id="contact">',
+    "",
+  );
+
+  return next;
 }
 
 function applyAircraftContent(html) {
@@ -553,6 +1496,138 @@ function applyAircraftContent(html) {
     buildAircraftComparisonTable(),
   );
 
+  const sharedOwnershipReasons = `  <section class="s alt aircraft-shared-intro">
+    <div class="container">
+      <div class="aircraft-shared-heading">
+        <h2 data-i18n="ac.shared.heading">${english("ac.shared.heading")}</h2>
+        <p data-i18n="ac.shared.subheading">${english("ac.shared.subheading")}</p>
+      </div>
+      <div class="two-up aircraft-shared-reason">
+        <div class="copy">
+          <div class="aircraft-reason-heading"><span class="aircraft-reason-number">01</span><div><div data-i18n="ac.shared.range.label" class="eyebrow">${english("ac.shared.range.label")}</div><h2 data-i18n="ac.shared.range.title">${english("ac.shared.range.title")}</h2></div></div>
+          ${buildAircraftReasonList("ac.shared.range", ["globe", "briefcase", "clock", "utilization"])}
+        </div>
+        <div class="aircraft-reason-media"><div class="img-wrap"><img src="/assets/photos/aerial-mountains.jpg" alt="Aircraft in flight"></div><p class="aircraft-reason-caption" data-i18n="ac.shared.range.caption">${english("ac.shared.range.caption")}</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s aircraft-shared-row">
+    <div class="container">
+      <div class="two-up flip aircraft-shared-reason">
+        <div class="copy">
+          <div class="aircraft-reason-heading"><span class="aircraft-reason-number">02</span><div><div data-i18n="ac.shared.cabin.label" class="eyebrow">${english("ac.shared.cabin.label")}</div><h2 data-i18n="ac.shared.cabin.title">${english("ac.shared.cabin.title")}</h2></div></div>
+          ${buildAircraftReasonList("ac.shared.cabin", ["expand", "altitude", "volume", "washroom", "galley", "armchair", "bed", "monitor", "dining", "paw", "luggage"], "aircraft-reason-list-two-col")}
+        </div>
+        <div class="aircraft-reason-media"><div class="img-wrap"><img src="/assets/photos/cabin-dining.jpg" alt="Cabin interior"></div><p class="aircraft-reason-caption" data-i18n="ac.shared.cabin.caption">${english("ac.shared.cabin.caption")}</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s alt aircraft-shared-row">
+    <div class="container">
+      <div class="two-up aircraft-shared-reason">
+        <div class="copy">
+          <div class="aircraft-reason-heading"><span class="aircraft-reason-number">03</span><div><div data-i18n="ac.shared.safety.label" class="eyebrow">${english("ac.shared.safety.label")}</div><h2 data-i18n="ac.shared.safety.title">${english("ac.shared.safety.title")}</h2></div></div>
+          ${buildAircraftReasonList("ac.shared.safety", ["plane", "avionics", "controls", "vision", "radar", "wrench", "safety"])}
+        </div>
+        <div class="aircraft-reason-media"><div class="img-wrap"><img src="/assets/photos/jet-sunset.jpg" alt="Private jet representing world-class safety"></div><p class="aircraft-reason-caption" data-i18n="ac.shared.safety.caption">${english("ac.shared.safety.caption")}</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s aircraft-shared-row">
+    <div class="container">
+      <div class="two-up flip aircraft-shared-reason">
+        <div class="copy">
+          <div class="aircraft-reason-heading"><span class="aircraft-reason-number">04</span><div><div data-i18n="ac.shared.value.label" class="eyebrow">${english("ac.shared.value.label")}</div><h2 data-i18n="ac.shared.value.title">${english("ac.shared.value.title")}</h2></div></div>
+          ${buildAircraftReasonList("ac.shared.value", ["market", "maintenance", "buyers", "residual", "allocation"])}
+        </div>
+        <div class="aircraft-reason-media"><div class="img-wrap"><img src="/assets/photos/engine-closeup.jpg" alt="Private jet asset value"></div><p class="aircraft-reason-caption" data-i18n="ac.shared.value.caption">${english("ac.shared.value.caption")}</p></div>
+      </div>
+    </div>
+  </section>
+
+`;
+
+  next = replaceBetween(
+    next,
+    '  <section class="s alt">\n    <div class="container">\n      <div class="two-up aircraft-shared-section">',
+    '  <section class="s alt">\n    <div class="container">\n      <div style="max-width: 1100px;">',
+    sharedOwnershipReasons,
+  );
+
+  const aircraftAdvantagesAndParticipation = `  <section class="s alt aircraft-advantages-section">
+    <div class="container">
+      <div style="max-width: 1100px;">
+        <div data-i18n="ac.uc.label" class="eyebrow">Private Jet Advantages</div>
+        <h2 data-i18n="ac.uc.h2">The best solution for time, efficiency, privacy, and quality living.</h2>
+      </div>
+      <div class="usecase-grid aircraft-usecase-grid">
+        ${buildAircraftUsecaseCard({ image: "/assets/photos/cockpit-pilot.jpg", alt: "Business", titleKey: "ac.uc.office.h3", copyKey: "ac.uc.office.p", icon: "briefcase" })}
+        ${buildAircraftUsecaseCard({ image: "/assets/photos/aerial-mountains.jpg", alt: "Time-saving point-to-point flight", titleKey: "ac.uc.time.h3", copyKey: "ac.uc.time.p", icon: "clock" })}
+        ${buildAircraftUsecaseCard({ image: "/assets/photos/fruit-table.jpg", alt: "Family", titleKey: "ac.uc.vacation.h3", copyKey: "ac.uc.vacation.p", icon: "allocation" })}
+        ${buildAircraftUsecaseCard({ image: "/assets/photos/champagne-service.jpg", alt: "Lifestyle", titleKey: "ac.uc.network.h3", copyKey: "ac.uc.network.p", icon: "buyers" })}
+        ${buildAircraftUsecaseCard({ image: "/assets/photos/engine-closeup.jpg", alt: "Corporate aviation asset", titleKey: "ac.uc.tax.h3", copyKey: "ac.uc.tax.p", icon: "market" })}
+        ${buildAircraftUsecaseCard({ image: "/assets/photos/cabin-sleep.jpg", alt: "Quality private aviation lifestyle", titleKey: "ac.uc.quality.h3", copyKey: "ac.uc.quality.p", icon: "residual" })}
+      </div>
+    </div>
+  </section>
+
+  <section class="s aircraft-institutional-section">
+    <div class="container">
+      <div class="aircraft-institutional-heading">
+        <div data-i18n="ac.institutional.label" class="eyebrow">Institutional-Grade Asset Protection</div>
+        <h2 data-i18n="ac.institutional.h2">Choose how to begin your aviation-asset journey.</h2>
+      </div>
+      <div class="aircraft-institutional-grid">
+        <article class="aircraft-institutional-card">
+          <div class="aircraft-institutional-icon">${aircraftReasonIcon("market")}</div>
+          <h3 data-i18n="ac.institutional.a.title">Class A Investment</h3>
+          <p data-i18n="ac.institutional.a.desc">Return-oriented participation backed by real aircraft assets.</p>
+          <a class="btn primary" href="/contact?interest=class-a#contact-form" data-i18n="ac.institutional.cta">Learn More & Apply</a>
+        </article>
+        <article class="aircraft-institutional-card">
+          <div class="aircraft-institutional-icon">${aircraftReasonIcon("plane")}</div>
+          <h3 data-i18n="ac.institutional.b.title">Class B Ownership & Flight Hours</h3>
+          <p data-i18n="ac.institutional.b.desc">Fractional ownership combined with practical flight benefits.</p>
+          <a class="btn primary" href="/contact?interest=class-b#contact-form" data-i18n="ac.institutional.cta">Learn More & Apply</a>
+        </article>
+        <article class="aircraft-institutional-card">
+          <div class="aircraft-institutional-icon">${aircraftReasonIcon("buyers")}</div>
+          <h3 data-i18n="ac.institutional.m.title">Membership Future Aviation Club</h3>
+          <p data-i18n="ac.institutional.m.desc">Private networking, business connection and priority experiences.</p>
+          <a class="btn primary" href="/contact?interest=membership#contact-form" data-i18n="ac.institutional.cta">Learn More & Apply</a>
+        </article>
+        <article class="aircraft-institutional-card aircraft-institutional-contact">
+          <div class="aircraft-institutional-icon">${aircraftReasonIcon("monitor")}</div>
+          <h3 data-i18n="ac.institutional.contact.title">Contact Us</h3>
+          <p data-i18n="ac.institutional.contact.desc">Request more information and a tailored participation plan.</p>
+          <a class="btn primary" href="/contact#contact-form" data-i18n="ac.institutional.contactCta">Contact Us</a>
+        </article>
+      </div>
+
+      <div class="aircraft-participation-flow">
+        <h2 data-i18n="ac.participation.h2">How would you like to participate in Aviona?</h2>
+        <p data-i18n="ac.participation.sub">Choose a path, submit your contact details, and continue securely.</p>
+        <div class="aircraft-participation-options">
+          <a href="/contact?interest=class-a#contact-form"><strong data-i18n="ac.participation.classA">Choose Class A</strong><span aria-hidden="true">→</span><span data-i18n="ac.participation.investFlow">Submit the contact form, then continue to the corresponding Brickken store</span></a>
+          <a href="/contact?interest=class-b#contact-form"><strong data-i18n="ac.participation.classB">Choose Class B</strong><span aria-hidden="true">→</span><span data-i18n="ac.participation.investFlow">Submit the contact form, then continue to the corresponding Brickken store</span></a>
+          <a href="/contact?interest=membership#contact-form"><strong data-i18n="ac.participation.membership">Choose Membership</strong><span aria-hidden="true">→</span><span data-i18n="ac.participation.membershipFlow">Submit the contact form, then continue to the Membership store</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+`;
+
+  next = replaceBetween(
+    next,
+    '  <section class="s alt">\n    <div class="container">\n      <div style="max-width: 1100px;">\n        <div data-i18n="ac.uc.label"',
+    '  <section class="s">\n    <div class="container">\n      <div class="two-up">\n        <div class="copy">\n          <div data-i18n="ac.ops.label"',
+    aircraftAdvantagesAndParticipation,
+  );
+
   return next;
 }
 
@@ -562,7 +1637,7 @@ function applyContactContent(html) {
   let next = html
     .replace(
       '<form class="contact contact-page-form" onsubmit="event.preventDefault();">',
-      '<form class="contact contact-page-form" data-contact-form><input class="contact-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">',
+      '<form class="contact contact-page-form" id="contact-form" data-contact-form><input class="contact-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">',
     )
     .replace(
       '<input type="text" placeholder="Your name">',
@@ -574,11 +1649,11 @@ function applyContactContent(html) {
     )
     .replace(
       '<input type="tel" placeholder="Your mobile number">',
-      '<input type="tel" name="mobile" placeholder="Your mobile number" data-i18n-placeholder="about.form.placeholder.mobile" autocomplete="tel" maxlength="50">',
+      '<input type="tel" name="mobile" placeholder="Your mobile number" data-i18n-placeholder="about.form.placeholder.mobile" autocomplete="tel" maxlength="50" required>',
     )
     .replace(
       '<input type="text" placeholder="City, Country">',
-      '<input type="text" name="location" placeholder="City, Country" data-i18n-placeholder="about.form.placeholder.location" maxlength="120">',
+      '<input type="text" name="location" placeholder="City, Country" data-i18n-placeholder="about.form.placeholder.location" maxlength="120" required>',
     )
     .replace(
       '<input type="text" placeholder="Optional">',
@@ -593,7 +1668,7 @@ function applyContactContent(html) {
             <option>Private flight access</option>
             <option>Multiple</option>
           </select>`,
-      `<select name="interest">
+      `<select name="interest" required>
             <option value="" data-i18n="about.form.interest.placeholder">Choose an interest</option>
             <option value="class-a" data-i18n="about.form.interest.classA">Class A - Invest</option>
             <option value="class-b" data-i18n="about.form.interest.classB">Class B - Shared ownership</option>
@@ -604,7 +1679,7 @@ function applyContactContent(html) {
     )
     .replace(
       '<input type="text" placeholder="Where do you typically travel from / to?">',
-      '<input type="text" name="region" placeholder="Where do you typically travel from / to?" data-i18n-placeholder="about.form.placeholder.region" maxlength="300">',
+      '<input type="text" name="region" placeholder="Where do you typically travel from / to?" data-i18n-placeholder="about.form.placeholder.region" maxlength="300" required>',
     )
     .replace(
       `<select>
@@ -614,7 +1689,7 @@ function applyContactContent(html) {
             <option>Telegram</option>
             <option>WeChat</option>
           </select>`,
-      `<select name="followup">
+      `<select name="followup" required>
             <option value="email" data-i18n="about.form.followup.email">Email</option>
             <option value="phone" data-i18n="about.form.followup.phone">Phone</option>
             <option value="whatsapp" data-i18n="about.form.followup.whatsapp">WhatsApp</option>
@@ -630,7 +1705,7 @@ function applyContactContent(html) {
   const nextSubmitRow = `        <div class="submit-row">
           <div class="contact-submit-actions">
             <button data-i18n="about.form.submit" class="btn primary lg" data-action="contact-form-submit" type="submit">Submit Inquiry</button>
-            <a data-i18n="v5.final.cta1" class="btn primary lg arrow" href="https://ava.store.sandbox.brickken.com/en/store/" target="_blank" rel="noopener">Start Investing (Secure Store Portal)</a>
+            <a data-i18n="v5.final.cta1" class="btn primary lg arrow" href="/contact#contact-form">Start Investing (Secure Store Portal)</a>
           </div>
           <p data-i18n="about.form.note">We review all inquiries privately and follow up directly.</p>
         </div>`;
@@ -691,6 +1766,7 @@ export function applyApprovedContent2026(routeKey, html) {
   const normalizedRoute = normalizeRouteKey(routeKey);
   let next = html;
 
+  if (normalizedRoute === "why") next = applyWhyContent(next);
   if (normalizedRoute === "ways") next = applyWaysContent(next);
   if (normalizedRoute === "aircraft") next = applyAircraftContent(next);
   if (normalizedRoute === "about") next = applyAboutContent(next);
