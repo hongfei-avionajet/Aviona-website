@@ -3818,7 +3818,7 @@
     body.lang-zh .hero h1,
     body.lang-zh .hero.compact.ways-page-hero h1,
     body.lang-zh .contact-hero h1 {
-      font-size: 26px !important;
+      font-size: var(--type-24) !important;
       line-height: 1.16 !important;
     }
 
