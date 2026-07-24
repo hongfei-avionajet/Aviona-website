@@ -93,7 +93,7 @@ function getResendSettings(env) {
   return {
     apiKey: cleanText(env.RESEND_API_KEY, 512),
     fromEmail: cleanText(env.CONTACT_EMAIL_FROM, 254),
-    toEmail: cleanText(env.CONTACT_EMAIL_TO, 254) || DEFAULT_CONTACT_EMAIL,
+    toEmail: DEFAULT_CONTACT_EMAIL,
   }
 }
 
