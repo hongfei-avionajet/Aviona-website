@@ -2415,7 +2415,12 @@
       font-size: var(--banner-title-font-size);
     }
     [data-i18n="about.struct.h2"] {
-      max-width: calc(100vw - 40px);
+      width: auto;
+      max-width: 100%;
+      white-space: normal;
+      overflow-wrap: normal;
+      word-break: normal;
+      text-wrap: balance;
     }
     .about-rwa-grid {
       grid-template-columns: 1fr;
