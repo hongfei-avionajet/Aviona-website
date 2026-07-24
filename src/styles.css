@@ -3820,6 +3820,45 @@
   }
 
   @media (max-width: 760px) {
+    html,
+    body,
+    #root,
+    .page,
+    .page.active {
+      max-width: 100%;
+      overflow-x: clip;
+    }
+
+    main,
+    section,
+    .container,
+    .container-narrow,
+    .copy {
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    .lead {
+      min-width: 0;
+      max-width: 100%;
+      overflow-wrap: break-word;
+      word-break: normal;
+    }
+
+    .aircraft-teaser .copy h2 {
+      width: auto;
+      max-width: 100%;
+      white-space: normal;
+      overflow-wrap: break-word;
+      word-break: normal;
+      text-wrap: balance;
+    }
+
     body.lang-zh .hero h1,
     body.lang-zh .hero.compact.ways-page-hero h1,
     body.lang-zh .contact-hero h1 {
