@@ -134,6 +134,58 @@ function formatHtmlEmail({ lang, fields, page }) {
   `
 }
 
+async function sendWithSmtp({ smtp, toEmail, email, subject, normalizedBody }) {
+  const transporter = nodemailer.createTransport({
+    host: smtp.host,
+    port: smtp.port,
+    secure: smtp.secure,
+    auth: {
+      user: smtp.user,
+      pass: smtp.password,
+    },
+    connectionTimeout: 8000,
+    greetingTimeout: 8000,
+    socketTimeout: 12000,
+    tls: {
+      minVersion: 'TLSv1.2',
+    },
+  })
+
+  await transporter.sendMail({
+    from: {
+      name: 'AVIONA Website',
+      address: smtp.user,
+    },
+    to: toEmail,
+    subject,
+    replyTo: email,
+    text: formatTextEmail(normalizedBody),
+    html: formatHtmlEmail(normalizedBody),
+  })
+}
+
+async function sendWithResend({ resend, email, subject, normalizedBody }) {
+  const resendResponse = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${resend.apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from: resend.fromEmail,
+      to: [resend.toEmail],
+      subject,
+      reply_to: email,
+      text: formatTextEmail(normalizedBody),
+      html: formatHtmlEmail(normalizedBody),
+    }),
+  })
+  const result = await resendResponse.json().catch(() => ({}))
+  if (!resendResponse.ok) {
+    throw new Error(result.message || 'Resend delivery failed.')
+  }
+}
+
 export default async function handler(request, response) {
   if (request.method !== 'POST') {
     response.setHeader('Allow', 'POST')
@@ -180,57 +232,35 @@ export default async function handler(request, response) {
     ? `AVIONA 网站咨询${name ? ` - ${name}` : ''}`
     : `Aviona website inquiry${name ? ` - ${name}` : ''}`
 
-  try {
-    if (hasSmtp) {
-      const transporter = nodemailer.createTransport({
-        host: smtp.host,
-        port: smtp.port,
-        secure: smtp.secure,
-        auth: {
-          user: smtp.user,
-          pass: smtp.password,
-        },
-        connectionTimeout: 8000,
-        greetingTimeout: 8000,
-        socketTimeout: 12000,
-        tls: {
-          minVersion: 'TLSv1.2',
-        },
-      })
-      await transporter.sendMail({
-        from: {
-          name: 'AVIONA Website',
-          address: smtp.user,
-        },
-        to: resend.toEmail,
-        subject,
-        replyTo: email,
-        text: formatTextEmail(normalizedBody),
-        html: formatHtmlEmail(normalizedBody),
-      })
-    } else {
-      const resendResponse = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${resend.apiKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          from: resend.fromEmail,
-          to: [resend.toEmail],
-          subject,
-          reply_to: email,
-          text: formatTextEmail(normalizedBody),
-          html: formatHtmlEmail(normalizedBody),
-        }),
-      })
-      const result = await resendResponse.json().catch(() => ({}))
-      if (!resendResponse.ok) {
-        throw new Error(result.message || 'Resend delivery failed.')
-      }
+  const deliveryErrors = []
+  let delivered = false
+
+  if (hasResend) {
+    try {
+      await sendWithResend({ resend, email, subject, normalizedBody })
+      delivered = true
+    } catch (error) {
+      deliveryErrors.push(`resend:${error?.message || 'unknown error'}`)
     }
-  } catch (error) {
-    console.error('Email delivery failed:', error?.code || error?.message || 'unknown error')
+  }
+
+  if (!delivered && hasSmtp) {
+    try {
+      await sendWithSmtp({
+        smtp,
+        toEmail: resend.toEmail,
+        email,
+        subject,
+        normalizedBody,
+      })
+      delivered = true
+    } catch (error) {
+      deliveryErrors.push(`smtp:${error?.code || error?.message || 'unknown error'}`)
+    }
+  }
+
+  if (!delivered) {
+    console.error('Email delivery failed:', deliveryErrors.join(' | '))
     return sendJson(response, 502, {
       message: 'Email delivery failed.',
     })

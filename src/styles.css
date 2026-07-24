@@ -3806,6 +3806,65 @@
     }
   }
 
+  /* Keep desktop header controls on one line while scaling for narrower laptops. */
+  .header-utility,
+  .lang-toggle {
+    flex-wrap: nowrap;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .header-utility {
+    flex: 0 0 auto;
+    min-width: max-content;
+  }
+
+  .header-utility .btn,
+  .lang-toggle a,
+  nav.primary a {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 981px) and (max-width: 1380px) {
+    header.site {
+      padding-right: clamp(20px, 3vw, 40px);
+      padding-left: clamp(20px, 3vw, 40px);
+      gap: clamp(14px, 1.6vw, 24px);
+    }
+
+    header.site .logo {
+      flex: 0 1 auto;
+      min-width: 170px;
+    }
+
+    header.site .logo-text.brand-positioning {
+      max-width: clamp(170px, 18vw, 245px) !important;
+      font-size: clamp(10px, 0.85vw, 12px) !important;
+      white-space: normal;
+    }
+
+    nav.primary {
+      min-width: 0;
+      gap: clamp(10px, 1.2vw, 20px);
+    }
+
+    nav.primary a {
+      padding-right: 2px;
+      padding-left: 2px;
+      font-size: clamp(12px, 1vw, 14px) !important;
+    }
+
+    .header-utility {
+      gap: clamp(6px, 0.7vw, 10px);
+    }
+
+    .header-utility .btn {
+      padding-right: clamp(14px, 1.5vw, 22px);
+      padding-left: clamp(14px, 1.5vw, 22px);
+    }
+  }
+
   /* Mobile phrase wrapping and investment-section navigation. */
   .hero-title-phrase {
     display: inline-block;

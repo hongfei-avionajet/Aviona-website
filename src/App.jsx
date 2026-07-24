@@ -2487,6 +2487,17 @@ function App() {
 
         const selectedInterest = form?.elements.namedItem('interest')?.value || ''
         const redirectUrl = brickkenStoreUrlsByInterest[selectedInterest]
+        let redirectWindow = null
+        if (redirectUrl) {
+          redirectWindow = window.open('', '_blank')
+          if (redirectWindow) {
+            redirectWindow.opener = null
+            redirectWindow.document.title = 'AVIONA'
+            redirectWindow.document.body.textContent = lang === 'zh'
+              ? '正在提交咨询，请稍候…'
+              : 'Submitting your inquiry. Please wait…'
+          }
+        }
         const originalText = actionEl.textContent
         actionEl.textContent = lang === 'zh' ? '提交中...' : 'Sending...'
         actionEl.setAttribute('aria-busy', 'true')
@@ -2512,15 +2523,24 @@ function App() {
           form?.reset()
           showToast(redirectUrl
             ? lang === 'zh'
-              ? '咨询已提交，即将进入安全投资平台。'
-              : 'Inquiry submitted. Redirecting to the secure investment platform.'
+              ? '咨询已提交，安全投资平台将在新页面打开。'
+              : 'Inquiry submitted. The secure investment platform will open in a new tab.'
             : lang === 'zh'
               ? '咨询已提交，我们会尽快联系您。'
               : 'Inquiry submitted. We will follow up shortly.')
           if (redirectUrl) {
-            window.setTimeout(() => window.location.assign(redirectUrl), 900)
+            window.setTimeout(() => {
+              if (redirectWindow && !redirectWindow.closed) {
+                redirectWindow.location.replace(redirectUrl)
+              } else {
+                window.open(redirectUrl, '_blank', 'noopener,noreferrer')
+              }
+            }, 400)
           }
         } catch (error) {
+          if (redirectWindow && !redirectWindow.closed) {
+            redirectWindow.close()
+          }
           const detail = error instanceof Error ? error.message : ''
           const message = lang === 'zh'
             ? detail === 'Email service is not configured.'
