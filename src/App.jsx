@@ -61,7 +61,18 @@ const externalToastLabelKeyByTarget = {
 const wordpressPostsEndpoint =
   'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=100&_embed=1&orderby=date&order=desc'
 
-const secureStoreUrl = 'https://ava.store.sandbox.brickken.com/en/store/'
+const contactFormUrl = '/contact#contact-form'
+const secureStoreUrl = contactFormUrl
+const brickkenStoreUrlsByInterest = {
+  'class-a': 'https://ava.store.sandbox.brickken.com/en/store',
+  'class-b': 'https://avb.store.sandbox.brickken.com/en/store',
+  membership: 'https://avm.store.sandbox.brickken.com/en/store',
+}
+const brickkenHostPattern = /^(?:ava|avb|avm)\.store\.sandbox\.brickken\.com$/i
+const interestByInvestmentLinkKey = {
+  'ways.a.cta1': 'class-a',
+  'ways.b.cta1': 'class-b',
+}
 
 const wordpressCarouselEndpoint =
   'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=1&_embed=1&orderby=date&order=desc'
@@ -294,7 +305,7 @@ const contentCarouselSlots = {
       categoryId: 790497662,
       kind: 'inline',
       a11yKey: 'ac.cabin.h2',
-      variant: 'portrait',
+      variant: 'landscape',
       fallbackImage: '/assets/photos/cabin-dining.jpg',
       fallbackTitle: 'Cabin interior',
       pattern: /<img src="\/assets\/photos\/cabin-dining\.jpg" alt="Cabin interior">/,
@@ -2209,6 +2220,21 @@ function App() {
     applyI18nAttributes(root, lang)
     applyFallbackLabelTranslations(root, lang)
 
+    root.querySelectorAll('a[href]').forEach((anchor) => {
+      const url = new URL(anchor.getAttribute('href'), window.location.origin)
+      if (!brickkenHostPattern.test(url.hostname)) return
+
+      let requestedInterest = interestByInvestmentLinkKey[anchor.getAttribute('data-i18n')] || ''
+      if (!requestedInterest && anchor.closest('#class-a')) requestedInterest = 'class-a'
+      if (!requestedInterest && anchor.closest('#class-b')) requestedInterest = 'class-b'
+      if (!requestedInterest && anchor.closest('#membership')) requestedInterest = 'membership'
+      const query = requestedInterest ? `?interest=${encodeURIComponent(requestedInterest)}` : ''
+      anchor.setAttribute('href', `/contact${query}#contact-form`)
+      anchor.setAttribute('data-investment-gate', '')
+      anchor.removeAttribute('target')
+      anchor.removeAttribute('rel')
+    })
+
     if (pendingFormValuesRef.current) {
       root.querySelectorAll('input[name], select[name], textarea[name]').forEach((field) => {
         if (Object.prototype.hasOwnProperty.call(pendingFormValuesRef.current, field.name)) {
@@ -2216,6 +2242,14 @@ function App() {
         }
       })
       pendingFormValuesRef.current = null
+    }
+
+    if (route.key === 'contact') {
+      const requestedInterest = new URLSearchParams(window.location.search).get('interest')
+      const interestField = root.querySelector('select[name="interest"]')
+      if (interestField && brickkenStoreUrlsByInterest[requestedInterest]) {
+        interestField.value = requestedInterest
+      }
     }
 
     root.querySelector('#lang-en-btn')?.classList.toggle('active', lang === 'en')
@@ -2451,6 +2485,8 @@ function App() {
           })
           .filter(Boolean)
 
+        const selectedInterest = form?.elements.namedItem('interest')?.value || ''
+        const redirectUrl = brickkenStoreUrlsByInterest[selectedInterest]
         const originalText = actionEl.textContent
         actionEl.textContent = lang === 'zh' ? '提交中...' : 'Sending...'
         actionEl.setAttribute('aria-busy', 'true')
@@ -2474,7 +2510,16 @@ function App() {
           }
 
           form?.reset()
-          showToast(lang === 'zh' ? '咨询已提交，我们会尽快联系您。' : 'Inquiry submitted. We will follow up shortly.')
+          showToast(redirectUrl
+            ? lang === 'zh'
+              ? '咨询已提交，即将进入安全投资平台。'
+              : 'Inquiry submitted. Redirecting to the secure investment platform.'
+            : lang === 'zh'
+              ? '咨询已提交，我们会尽快联系您。'
+              : 'Inquiry submitted. We will follow up shortly.')
+          if (redirectUrl) {
+            window.setTimeout(() => window.location.assign(redirectUrl), 900)
+          }
         } catch (error) {
           const detail = error instanceof Error ? error.message : ''
           const message = lang === 'zh'
@@ -2494,6 +2539,10 @@ function App() {
       if (action === 'scroll') {
         event.preventDefault()
         closeMobileMenu(root)
+        if (actionEl.getAttribute('data-i18n') === 'v5.hero.cta1') {
+          navigateToPageKey('contact', '#contact-form')
+          return
+        }
         scrollToSection(dataTarget)
         return
       }
@@ -2521,10 +2570,34 @@ function App() {
     if (!href || href === '#' || href.startsWith('mailto:') || href.startsWith('tel:')) return
 
     const url = new URL(href, window.location.origin)
+    if (anchor.hasAttribute('data-investment-gate')) {
+      event.preventDefault()
+      closeMobileMenu(root)
+      window.history.pushState({}, '', `${url.pathname}${url.search}${url.hash}`)
+      setRoute(getRoute())
+      return
+    }
+    if (brickkenHostPattern.test(url.hostname)) {
+      event.preventDefault()
+      closeMobileMenu(root)
+      let requestedInterest = interestByInvestmentLinkKey[anchor.getAttribute('data-i18n')] || ''
+      if (!requestedInterest && anchor.closest('#class-a')) requestedInterest = 'class-a'
+      if (!requestedInterest && anchor.closest('#class-b')) requestedInterest = 'class-b'
+      if (!requestedInterest && anchor.closest('#membership')) requestedInterest = 'membership'
+      const query = requestedInterest ? `?interest=${encodeURIComponent(requestedInterest)}` : ''
+      window.history.pushState({}, '', `/contact${query}#contact-form`)
+      setRoute(getRoute())
+      return
+    }
     if (url.origin === window.location.origin && isAppPath(url.pathname)) {
       event.preventDefault()
       closeMobileMenu(root)
-      navigate(url.pathname, url.hash)
+      if (url.search) {
+        window.history.pushState({}, '', `${url.pathname}${url.search}${url.hash}`)
+        setRoute(getRoute())
+      } else {
+        navigate(url.pathname, url.hash)
+      }
     }
   }
 

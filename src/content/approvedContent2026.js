@@ -13,6 +13,14 @@ export const APPROVED_CONTENT_2026_I18N = {
   "meta.title.ways": { en: "Investment Options — AVIONA", zh: "投资方式 — AVIONA" },
   "meta.title.about": { en: "About AVIONA", zh: "关于 AVIONA" },
   "meta.title.contact": { en: "Contact Us — AVIONA", zh: "联系我们 — AVIONA" },
+  "contact.h1": {
+    en: "Every investor interested in private jets can find the right solution.",
+    zh: '每一位对私人飞机<span class="hero-title-phrase">感兴趣的投资者</span>，都能找到<span class="hero-title-phrase">最适合自己的方案</span>。',
+  },
+  "home.teaser.sub": {
+    en: "Dassault Falcon&nbsp;7X or Bombardier Global&nbsp;5000",
+    zh: '达索Falcon&nbsp;7X或庞巴迪Global&nbsp;5000',
+  },
   "v5.card.price.b": { en: "From US$16,000", zh: "16,000 美元起" },
   "why.eyebrow": { en: "AVIONA Model Advantages", zh: "AVIONA 模式优势" },
   "why.h1": { en: "AVIONA Model Advantages", zh: "AVIONA 模式优势" },
@@ -220,7 +228,7 @@ export const APPROVED_CONTENT_2026_I18N = {
   },
   "ac.shared.heading": {
     en: "Why are the Falcon 7X and Bombardier Global series ideal for shared ownership?",
-    zh: "为什么 Falcon 7X / Bombardier Global 系列最适合产权共享？",
+    zh: '为什么 Falcon 7X / Bombardier Global 系列最适合<span class="no-orphan">产权共享</span>？',
   },
   "ac.shared.subheading": {
     en: "Global reach · Exceptional comfort · World-class safety · Predictable asset value",
@@ -846,7 +854,14 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: `<p>传统航空会员主要围绕飞行里程和出行服务。AVIONA 会员体系则融合了飞机资产、公务航空、全球商务、高端社交、品牌营销、投资机会及生活方式。</p><p>它不仅是一张会员卡，更是连接全球资源与高品质生活方式的平台。</p>`,
   },
 
-  "ac.h1": { en: "Bombardier Global Series, Dassault Series", zh: "庞巴迪环球系列，达索系列" },
+  "ac.h1": {
+    en: "Bombardier Global Series, Dassault Series",
+    zh: '<span class="hero-title-phrase">庞巴迪环球系列，</span><span class="hero-title-phrase">达索系列</span>',
+  },
+  "ways.h1": {
+    en: 'Three ways to invest in private aviation<br class="ways-hero-break">or enjoy the convenience of private jet travel.',
+    zh: '三种方式参与<span class="hero-title-phrase">私人飞机的投资</span><span class="hero-title-phrase">或享受私人飞机带来的便利</span>',
+  },
   "ac.compare.col.item": { en: "Item", zh: "项目" },
   "ac.compare.col.falcon": { en: "Dassault Falcon 7X", zh: "达索系列" },
   "ac.compare.col.global": { en: "Bombardier Global 5000", zh: "庞巴迪环球系列" },
@@ -907,8 +922,8 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "© 2026 AVIONA 版权所有。AVIONA、AVIONA 标识、网站设计、商业模式、图文内容及相关知识产权均受法律保护。未经书面授权，任何复制、转载、修改或商业使用均被禁止。",
   },
   "ftr.professionalNotice": {
-    en: "<b>Important — For Professional Investors Only.</b> The information on this website is intended exclusively for eligible professional investors as defined under the Hong Kong Securities and Futures Commission (SFC) framework. Nothing on this website constitutes a public offer, a solicitation to the general public, financial advice, or final investment documentation. All references to target returns are aspirational and not guarantees. Investments involve risk, including loss of capital and aircraft depreciation. Final terms are governed by the offering documentation provided privately through the Secure Store, subject to KYC, accreditation, and compliance review.",
-    zh: "<b>重要提示——仅限专业投资者。</b>本网站信息仅供香港证券及期货事务监察委员会（SFC）框架下定义的合格专业投资者参考。本网站任何内容均不构成公开要约、面向公众的招揽、财务建议或最终投资文件。所有目标回报仅为预期目标，不构成保证。投资涉及风险，包括本金损失及飞机资产折旧。最终条款以通过安全商店私下提供的发行文件为准，并须通过 KYC、投资者资格认证及合规审核。",
+    en: "The information on this website is intended exclusively for eligible professional investors as defined under the Hong Kong Securities and Futures Commission (SFC) framework. Nothing on this website constitutes a public offer, a solicitation to the general public, financial advice, or final investment documentation. All references to target returns are aspirational and not guarantees. Investments involve risk, including loss of capital and aircraft depreciation. Final terms are governed by the offering documentation provided privately through the Secure Store, subject to KYC, accreditation, and compliance review.",
+    zh: "本网站信息仅供香港证券及期货事务监察委员会（SFC）框架下定义的合格专业投资者参考。本网站任何内容均不构成公开要约、面向公众的招揽、财务建议或最终投资文件。所有目标回报仅为预期目标，不构成保证。投资涉及风险，包括本金损失及飞机资产折旧。最终条款以通过安全商店私下提供的发行文件为准，并须通过 KYC、投资者资格认证及合规审核。",
   },
 };
 
@@ -1325,6 +1340,13 @@ function applyAboutContent(html) {
         </div>`,
   );
 
+  next = replaceBetween(
+    next,
+    '      <div class="partners-row">',
+    '      <div class="trust-facts">',
+    "",
+  );
+
   const foundationFacts = `<div class="trust-facts about-foundation-facts">
         <div class="trust-fact">
           <div class="num">01</div>
@@ -1377,15 +1399,23 @@ function applyAboutContent(html) {
 
 `;
 
-  const flightServiceIcons = ["↗", "◇", "★", "◎", "○"];
+  const flightServiceIcons = [
+    `<svg viewBox="0 0 24 24" role="presentation"><circle cx="5" cy="18" r="2"></circle><circle cx="19" cy="6" r="2"></circle><path d="M6.7 16.9C9.1 11.7 12.5 8.7 17 7"></path><path d="m13.8 6.1 3.6.5-1.7 3.2"></path></svg>`,
+    `<svg viewBox="0 0 24 24" role="presentation"><path d="M12 3 19 6v5c0 4.6-2.8 8-7 10-4.2-2-7-5.4-7-10V6l7-3Z"></path><path d="m8.7 12 2.1 2.1 4.7-4.8"></path></svg>`,
+    `<svg viewBox="0 0 24 24" role="presentation"><path d="m12 3.7 2.5 5.1 5.6.8-4 3.9.9 5.5-5-2.6L7 19l1-5.5-4.1-3.9 5.6-.8L12 3.7Z"></path><path d="M19 3v3M17.5 4.5h3"></path></svg>`,
+    `<svg viewBox="0 0 24 24" role="presentation"><circle cx="5" cy="12" r="2.5"></circle><circle cx="19" cy="12" r="2.5"></circle><path d="M7.5 12h8.7"></path><path d="m13.8 9.6 2.4 2.4-2.4 2.4"></path></svg>`,
+    `<svg viewBox="0 0 24 24" role="presentation"><circle cx="12" cy="12" r="8.5"></circle><path d="M3.8 12h16.4M12 3.5c2.3 2.4 3.5 5.2 3.5 8.5S14.3 18.1 12 20.5M12 3.5C9.7 5.9 8.5 8.7 8.5 12s1.2 6.1 3.5 8.5"></path><path d="m17.4 5.7 2.1.1-.2 2.1"></path></svg>`,
+  ];
   const flightServicesSection = `  <section class="about-flight-services-section" aria-label="${english("about.flightServices.label")}" data-i18n-aria-label="about.flightServices.label">
     <div class="container">
       <div class="about-flight-services-grid">
         ${flightServiceIcons.map((icon, index) => {
           const number = index + 1;
           return `<article class="about-flight-service">
-          <div class="about-flight-service-icon" aria-hidden="true">${icon}</div>
-          <h3 data-i18n="about.flightServices.${number}.title">${english(`about.flightServices.${number}.title`)}</h3>
+          <div class="about-flight-service-heading">
+            <div class="about-flight-service-icon" aria-hidden="true">${icon}</div>
+            <h3 data-i18n="about.flightServices.${number}.title">${english(`about.flightServices.${number}.title`)}</h3>
+          </div>
           <p data-i18n="about.flightServices.${number}.desc">${english(`about.flightServices.${number}.desc`)}</p>
         </article>`;
         }).join("\n        ")}
@@ -1697,6 +1727,20 @@ function applyContactContent(html) {
             <option value="wechat" data-i18n="about.form.followup.wechat">WeChat</option>
           </select>`,
     );
+
+  const heroListMatch = next.match(/\s*<ul class="contact-hero-list">[\s\S]*?<\/ul>/);
+  if (heroListMatch) {
+    const purposeList = heroListMatch[0].replace(
+      'class="contact-hero-list"',
+      'class="contact-purpose-list"',
+    );
+    next = next
+      .replace(heroListMatch[0], "")
+      .replace(
+        /(<p data-i18n="contact\.service\.lead" class="lead">[\s\S]*?<\/p>)/,
+        `$1${purposeList}`,
+      );
+  }
 
   const currentSubmitRow = `        <div class="submit-row">
           <a data-i18n="about.form.submit" class="btn primary lg" data-action="contact-form-submit" href="mailto:ops@avionajet.com">Submit Inquiry</a>
