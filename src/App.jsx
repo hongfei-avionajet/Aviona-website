@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { createRoot } from 'react-dom/client'
 import {
@@ -61,8 +61,8 @@ const externalToastLabelKeyByTarget = {
 const wordpressPostsEndpoint =
   'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=100&_embed=1&orderby=date&order=desc'
 
-const contactFormUrl = '/contact#contact-form'
-const secureStoreUrl = contactFormUrl
+const contactChannelsUrl = '/contact#contact-channels'
+const secureStoreUrl = contactChannelsUrl
 const brickkenStoreUrlsByInterest = {
   'class-a': 'https://ava.store.sandbox.brickken.com/en/store',
   'class-b': 'https://avb.store.sandbox.brickken.com/en/store',
@@ -141,6 +141,10 @@ const contactChannels = [
     label: { en: 'Phone', zh: '电话' },
     description: { en: 'Call or save the VIP contact number.', zh: '拨打或保存 VIP 联系电话。' },
     value: '+65 9136 7485',
+    values: [
+      { value: '+65 9136 7485', href: 'tel:+6591367485' },
+      { value: '+86 152 0119 8472', href: 'tel:+8615201198472' },
+    ],
     linkLabel: { en: 'Call Now', zh: '立即拨打' },
     href: 'tel:+6591367485',
   },
@@ -288,6 +292,83 @@ const contentCarouselSlots = {
       hostClass: 'hero-bg hero-banner-host',
       pattern: heroBackgroundPattern,
     },
+    {
+      key: 'why-compare-reits',
+      categoryId: 790726398,
+      kind: 'inline',
+      a11yKey: 'why.2026.structure.1.title',
+      variant: 'why-structure',
+      fallbackImage: '/assets/photos/compare-reits-v2.jpg',
+      fallbackTitle: 'Advantages compared with REITs',
+      hostClass: 'content-image-carousel-host why-structure-carousel-host',
+      pattern: /<img src="\/assets\/photos\/compare-reits-v2\.jpg" alt="REITs comparison" loading="lazy">/,
+    },
+    {
+      key: 'why-compare-real-estate',
+      categoryId: 790726399,
+      kind: 'inline',
+      a11yKey: 'why.2026.structure.2.title',
+      variant: 'why-structure',
+      fallbackImage: '/assets/photos/compare-realty-v2.jpg',
+      fallbackTitle: 'Advantages compared with real estate',
+      hostClass: 'content-image-carousel-host why-structure-carousel-host',
+      pattern: /<img src="\/assets\/photos\/compare-realty-v2\.jpg" alt="Real estate comparison" loading="lazy">/,
+    },
+    {
+      key: 'why-compare-financial-products',
+      categoryId: 790726400,
+      kind: 'inline',
+      a11yKey: 'why.2026.structure.3.title',
+      variant: 'why-structure',
+      fallbackImage: '/assets/photos/compare-finance-v2.jpg',
+      fallbackTitle: 'Advantages compared with traditional financial products',
+      hostClass: 'content-image-carousel-host why-structure-carousel-host',
+      pattern: /<img src="\/assets\/photos\/compare-finance-v2\.jpg" alt="Traditional finance comparison" loading="lazy">/,
+    },
+    {
+      key: 'why-compare-private-jet-industry',
+      categoryId: 790726401,
+      kind: 'inline',
+      a11yKey: 'why.2026.structure.4.title',
+      variant: 'why-structure',
+      fallbackImage: '/assets/photos/compare-jets-v2.jpg',
+      fallbackTitle: 'Advantages compared with the traditional private jet industry',
+      hostClass: 'content-image-carousel-host why-structure-carousel-host',
+      pattern: /<img src="\/assets\/photos\/compare-jets-v2\.jpg" alt="Private jet industry comparison" loading="lazy">/,
+    },
+    {
+      key: 'why-core-tangible-asset',
+      categoryId: 790726403,
+      kind: 'inline',
+      a11yKey: 'why.2026.core.1.title',
+      variant: 'why-core',
+      fallbackImage: '/assets/photos/engine-closeup.jpg',
+      fallbackTitle: 'Tangible private jet underlying asset',
+      hostClass: 'content-image-carousel-host why-core-carousel-host',
+      pattern: /<img src="\/assets\/photos\/engine-closeup\.jpg" alt="Tangible private-jet underlying asset" loading="lazy">/,
+    },
+    {
+      key: 'why-core-regulated-fund',
+      categoryId: 790726404,
+      kind: 'inline',
+      a11yKey: 'why.2026.core.2.title',
+      variant: 'why-core',
+      fallbackImage: '/assets/photos/core-regulated-fund.jpg',
+      fallbackTitle: 'Regulated fund structure',
+      hostClass: 'content-image-carousel-host why-core-carousel-host',
+      pattern: /<img src="\/assets\/photos\/core-regulated-fund\.jpg" alt="Regulated fund structure" loading="lazy">/,
+    },
+    {
+      key: 'why-core-transparent-ledger',
+      categoryId: 790726405,
+      kind: 'inline',
+      a11yKey: 'why.2026.core.3.title',
+      variant: 'why-core',
+      fallbackImage: '/assets/photos/core-distributed-ledger.jpg',
+      fallbackTitle: 'Transparent distributed ledger and audit',
+      hostClass: 'content-image-carousel-host why-core-carousel-host',
+      pattern: /<img src="\/assets\/photos\/core-distributed-ledger\.jpg" alt="Transparent distributed ledger and audit" loading="lazy">/,
+    },
   ],
   aircraft: [
     {
@@ -311,6 +392,26 @@ const contentCarouselSlots = {
       pattern: /<img src="\/assets\/photos\/cabin-dining\.jpg" alt="Cabin interior">/,
     },
     {
+      key: 'aircraft-shared-safety',
+      categoryId: 790726406,
+      kind: 'inline',
+      a11yKey: 'ac.shared.safety.title',
+      variant: 'landscape',
+      fallbackImage: '/assets/photos/jet-sunset.jpg',
+      fallbackTitle: 'World-class safety',
+      pattern: /<img src="\/assets\/photos\/jet-sunset\.jpg" alt="Private jet representing world-class safety">/,
+    },
+    {
+      key: 'aircraft-shared-value',
+      categoryId: 790726407,
+      kind: 'inline',
+      a11yKey: 'ac.shared.value.title',
+      variant: 'landscape',
+      fallbackImage: '/assets/photos/engine-closeup.jpg',
+      fallbackTitle: 'Predictable asset value',
+      pattern: /<img src="\/assets\/photos\/engine-closeup\.jpg" alt="Private jet asset value">/,
+    },
+    {
       key: 'aircraft-business',
       categoryId: 790497663,
       kind: 'inline',
@@ -319,6 +420,16 @@ const contentCarouselSlots = {
       fallbackImage: '/assets/photos/cockpit-pilot.jpg',
       fallbackTitle: 'Business',
       pattern: /<img src="\/assets\/photos\/cockpit-pilot\.jpg" alt="Business">/,
+    },
+    {
+      key: 'aircraft-time-machine',
+      categoryId: 790726408,
+      kind: 'inline',
+      a11yKey: 'ac.uc.time.h3',
+      variant: 'usecase',
+      fallbackImage: '/assets/photos/aerial-mountains.jpg',
+      fallbackTitle: 'Time Machine',
+      pattern: /<img src="\/assets\/photos\/aerial-mountains\.jpg" alt="Time-saving point-to-point flight">/,
     },
     {
       key: 'aircraft-family',
@@ -341,14 +452,24 @@ const contentCarouselSlots = {
       pattern: /<img src="\/assets\/photos\/champagne-service\.jpg" alt="Lifestyle">/,
     },
     {
-      key: 'aircraft-operations',
-      categoryId: 790497666,
+      key: 'aircraft-tax-planning',
+      categoryId: 790726409,
       kind: 'inline',
-      a11yKey: 'ac.ops.h2',
-      variant: 'landscape',
-      fallbackImage: '/assets/photos/landing-gear.jpg',
-      fallbackTitle: 'Operational rigor',
-      pattern: /<img src="\/assets\/photos\/landing-gear\.jpg" alt="Operational rigor">/,
+      a11yKey: 'ac.uc.tax.h3',
+      variant: 'usecase',
+      fallbackImage: '/assets/photos/engine-closeup.jpg',
+      fallbackTitle: 'Corporate Tax Planning Tool',
+      pattern: /<img src="\/assets\/photos\/engine-closeup\.jpg" alt="Corporate aviation asset">/,
+    },
+    {
+      key: 'aircraft-quality-lifestyle',
+      categoryId: 790726410,
+      kind: 'inline',
+      a11yKey: 'ac.uc.quality.h3',
+      variant: 'usecase',
+      fallbackImage: '/assets/photos/cabin-sleep.jpg',
+      fallbackTitle: 'Quality Lifestyle',
+      pattern: /<img src="\/assets\/photos\/cabin-sleep\.jpg" alt="Quality private aviation lifestyle">/,
     },
   ],
   ways: [
@@ -403,6 +524,39 @@ const contentCarouselSlots = {
       fallbackTitle: 'About Aviona hero',
       hostClass: 'hero-bg hero-banner-host',
       pattern: heroBackgroundPattern,
+    },
+    {
+      key: 'about-team-operations-main',
+      categoryId: 790731623,
+      kind: 'inline',
+      a11yKey: 'about.team.heading',
+      variant: 'about-team',
+      fallbackImage: '/assets/photos/engine-closeup.jpg',
+      fallbackTitle: 'Aviona global operations',
+      hostClass: 'content-image-carousel-host about-team-carousel-host',
+      pattern: /<img src="\/assets\/photos\/engine-closeup\.jpg" alt="">/,
+    },
+    {
+      key: 'about-team-operations-top-right',
+      categoryId: 790731624,
+      kind: 'inline',
+      a11yKey: 'about.team.heading',
+      variant: 'about-team',
+      fallbackImage: '/assets/photos/cockpit-pilot.jpg',
+      fallbackTitle: 'Aviona cockpit operations',
+      hostClass: 'content-image-carousel-host about-team-carousel-host',
+      pattern: /<img src="\/assets\/photos\/cockpit-pilot\.jpg" alt="">/,
+    },
+    {
+      key: 'about-team-operations-bottom-right',
+      categoryId: 790731625,
+      kind: 'inline',
+      a11yKey: 'about.team.heading',
+      variant: 'about-team',
+      fallbackImage: '/assets/photos/landing-gear.jpg',
+      fallbackTitle: 'Aviona aircraft operations',
+      hostClass: 'content-image-carousel-host about-team-carousel-host',
+      pattern: /<img src="\/assets\/photos\/landing-gear\.jpg" alt="">/,
     },
   ],
   contact: [
@@ -461,6 +615,18 @@ function getCarouselSlideAccessibleLabel(slide, index, accessibleTitle, lang) {
     return `${normalizedTitle}，轮播图片 ${index + 1}`
   }
   return slide.title || `${accessibleTitle}, carousel image ${index + 1}`
+}
+
+function getTouchGestureEvent(event) {
+  const touch = event.touches?.[0] || event.changedTouches?.[0]
+  if (!touch) return null
+
+  return {
+    clientX: touch.clientX,
+    clientY: touch.clientY,
+    target: event.target,
+    preventDefault: () => event.preventDefault(),
+  }
 }
 
 function getAircraftMediaAccessibleLabel(slide, index, lang) {
@@ -960,7 +1126,6 @@ function InlineImageCarousel({ categoryId, fallbackImage, fallbackTitle, accessi
     setIsDragging(true)
     setDragOffset(0)
     if (event.pointerId !== undefined) track.setPointerCapture?.(event.pointerId)
-    event.preventDefault()
   }
 
   function handlePointerMove(event) {
@@ -1024,11 +1189,37 @@ function InlineImageCarousel({ categoryId, fallbackImage, fallbackTitle, accessi
       <div
         className="path-card-image-track"
         ref={trackRef}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerEnd}
-        onPointerCancel={handlePointerCancel}
-        onPointerLeave={handlePointerEnd}
+        onPointerDown={(event) => {
+          if (event.pointerType !== 'touch') handlePointerDown(event)
+        }}
+        onPointerMove={(event) => {
+          if (event.pointerType !== 'touch') handlePointerMove(event)
+        }}
+        onPointerUp={(event) => {
+          if (event.pointerType !== 'touch') handlePointerEnd(event)
+        }}
+        onPointerCancel={(event) => {
+          if (event.pointerType !== 'touch') handlePointerCancel(event)
+        }}
+        onPointerLeave={(event) => {
+          if (event.pointerType !== 'touch') handlePointerEnd(event)
+        }}
+        onTouchStart={(event) => {
+          const touchEvent = getTouchGestureEvent(event)
+          if (touchEvent) handlePointerDown(touchEvent)
+        }}
+        onTouchMove={(event) => {
+          const touchEvent = getTouchGestureEvent(event)
+          if (touchEvent) handlePointerMove(touchEvent)
+        }}
+        onTouchEnd={(event) => {
+          const touchEvent = getTouchGestureEvent(event)
+          if (touchEvent) handlePointerEnd(touchEvent)
+        }}
+        onTouchCancel={(event) => {
+          const touchEvent = getTouchGestureEvent(event)
+          if (touchEvent) handlePointerCancel(touchEvent)
+        }}
         onMouseDown={(event) => {
           if (!dragRef.current.active) handlePointerDown(event)
         }}
@@ -1109,7 +1300,6 @@ function AircraftShowcaseCarousel({ categoryId, fallbackImage, fallbackTitle, ac
     setIsDragging(true)
     setDragOffset(0)
     if (event.pointerId !== undefined) track.setPointerCapture?.(event.pointerId)
-    event.preventDefault()
   }
 
   function handlePointerMove(event) {
@@ -1172,11 +1362,37 @@ function AircraftShowcaseCarousel({ categoryId, fallbackImage, fallbackTitle, ac
         <div
           className="aircraft-showcase-track"
           ref={trackRef}
-          onPointerDown={handlePointerDown}
-          onPointerMove={handlePointerMove}
-          onPointerUp={handlePointerEnd}
-          onPointerCancel={handlePointerCancel}
-          onPointerLeave={handlePointerEnd}
+          onPointerDown={(event) => {
+            if (event.pointerType !== 'touch') handlePointerDown(event)
+          }}
+          onPointerMove={(event) => {
+            if (event.pointerType !== 'touch') handlePointerMove(event)
+          }}
+          onPointerUp={(event) => {
+            if (event.pointerType !== 'touch') handlePointerEnd(event)
+          }}
+          onPointerCancel={(event) => {
+            if (event.pointerType !== 'touch') handlePointerCancel(event)
+          }}
+          onPointerLeave={(event) => {
+            if (event.pointerType !== 'touch') handlePointerEnd(event)
+          }}
+          onTouchStart={(event) => {
+            const touchEvent = getTouchGestureEvent(event)
+            if (touchEvent) handlePointerDown(touchEvent)
+          }}
+          onTouchMove={(event) => {
+            const touchEvent = getTouchGestureEvent(event)
+            if (touchEvent) handlePointerMove(touchEvent)
+          }}
+          onTouchEnd={(event) => {
+            const touchEvent = getTouchGestureEvent(event)
+            if (touchEvent) handlePointerEnd(touchEvent)
+          }}
+          onTouchCancel={(event) => {
+            const touchEvent = getTouchGestureEvent(event)
+            if (touchEvent) handlePointerCancel(touchEvent)
+          }}
           onMouseDown={(event) => {
             if (!dragRef.current.active) handlePointerDown(event)
           }}
@@ -1259,7 +1475,6 @@ function HeroBanner({ categoryId, fallbackImage, fallbackTitle, accessibleTitle,
     }
     track.classList.add('dragging')
     if (event.pointerId !== undefined) track.setPointerCapture?.(event.pointerId)
-    event.preventDefault()
   }
 
   function handlePointerMove(event) {
@@ -1288,11 +1503,30 @@ function HeroBanner({ categoryId, fallbackImage, fallbackTitle, accessibleTitle,
       <div
         className="hero-banner-track"
         ref={trackRef}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerEnd}
-        onPointerCancel={handlePointerEnd}
-        onPointerLeave={handlePointerEnd}
+        onPointerDown={(event) => {
+          if (event.pointerType !== 'touch') handlePointerDown(event)
+        }}
+        onPointerMove={(event) => {
+          if (event.pointerType !== 'touch') handlePointerMove(event)
+        }}
+        onPointerUp={(event) => {
+          if (event.pointerType !== 'touch') handlePointerEnd(event)
+        }}
+        onPointerCancel={(event) => {
+          if (event.pointerType !== 'touch') handlePointerEnd(event)
+        }}
+        onPointerLeave={(event) => {
+          if (event.pointerType !== 'touch') handlePointerEnd(event)
+        }}
+        onTouchStart={() => {
+          if (slides.length > 1) dragRef.current.active = true
+        }}
+        onTouchEnd={() => {
+          dragRef.current.active = false
+        }}
+        onTouchCancel={() => {
+          dragRef.current.active = false
+        }}
         onMouseDown={(event) => {
           if (!dragRef.current.active) handlePointerDown(event)
         }}
@@ -1511,7 +1745,6 @@ function AircraftHeroMediaBanner({ fallbackImage, lang }) {
     }
     track.classList.add('dragging')
     if (event.pointerId !== undefined) track.setPointerCapture?.(event.pointerId)
-    event.preventDefault()
   }
 
   function handlePointerMove(event) {
@@ -1550,11 +1783,44 @@ function AircraftHeroMediaBanner({ fallbackImage, lang }) {
         <div
           className="aircraft-media-track"
           ref={trackRef}
-          onPointerDown={handlePointerDown}
-          onPointerMove={handlePointerMove}
-          onPointerUp={handlePointerEnd}
-          onPointerCancel={handlePointerEnd}
-          onPointerLeave={handlePointerEnd}
+          onPointerDown={(event) => {
+            if (event.pointerType !== 'touch') handlePointerDown(event)
+          }}
+          onPointerMove={(event) => {
+            if (event.pointerType !== 'touch') handlePointerMove(event)
+          }}
+          onPointerUp={(event) => {
+            if (event.pointerType !== 'touch') handlePointerEnd(event)
+          }}
+          onPointerCancel={(event) => {
+            if (event.pointerType !== 'touch') handlePointerEnd(event)
+          }}
+          onPointerLeave={(event) => {
+            if (event.pointerType !== 'touch') handlePointerEnd(event)
+          }}
+          onTouchStart={(event) => {
+            const touch = event.touches?.[0]
+            if (!touch || slides.length <= 1) return
+
+            dragRef.current = {
+              active: true,
+              moved: false,
+              scrollLeft: trackRef.current?.scrollLeft || 0,
+              startX: touch.clientX,
+            }
+          }}
+          onTouchMove={(event) => {
+            const touch = event.touches?.[0]
+            if (touch && Math.abs(touch.clientX - dragRef.current.startX) > 6) {
+              dragRef.current.moved = true
+            }
+          }}
+          onTouchEnd={() => {
+            dragRef.current.active = false
+          }}
+          onTouchCancel={() => {
+            dragRef.current.active = false
+          }}
           onMouseDown={(event) => {
             if (!dragRef.current.active) handlePointerDown(event)
           }}
@@ -1761,7 +2027,7 @@ function NewsCarousel({ lang }) {
       startY: event.clientY,
     }
     track.classList.add('dragging')
-    track.setPointerCapture?.(event.pointerId)
+    if (event.pointerId !== undefined) track.setPointerCapture?.(event.pointerId)
   }
 
   function handlePointerMove(event) {
@@ -1822,11 +2088,51 @@ function NewsCarousel({ lang }) {
             <div
               className="news-carousel-track"
               ref={trackRef}
-              onPointerDown={handlePointerDown}
-              onPointerMove={handlePointerMove}
-              onPointerUp={handlePointerEnd}
-              onPointerCancel={(event) => handlePointerEnd(event, { openOnTap: false })}
-              onPointerLeave={(event) => handlePointerEnd(event, { openOnTap: false })}
+              onPointerDown={(event) => {
+                if (event.pointerType !== 'touch') handlePointerDown(event)
+              }}
+              onPointerMove={(event) => {
+                if (event.pointerType !== 'touch') handlePointerMove(event)
+              }}
+              onPointerUp={(event) => {
+                if (event.pointerType !== 'touch') handlePointerEnd(event)
+              }}
+              onPointerCancel={(event) => {
+                if (event.pointerType !== 'touch') handlePointerEnd(event, { openOnTap: false })
+              }}
+              onPointerLeave={(event) => {
+                if (event.pointerType !== 'touch') handlePointerEnd(event, { openOnTap: false })
+              }}
+              onTouchStart={(event) => {
+                const touch = event.touches?.[0]
+                if (!touch || normalizedPosts.length <= 1) return
+
+                const slide = event.target instanceof Element ? event.target.closest('.news-slide') : null
+                dragRef.current = {
+                  active: true,
+                  moved: false,
+                  postId: slide?.dataset.postId || null,
+                  scrollLeft: trackRef.current?.scrollLeft || 0,
+                  startX: touch.clientX,
+                  startY: touch.clientY,
+                }
+              }}
+              onTouchMove={(event) => {
+                const touch = event.touches?.[0]
+                if (!touch || !dragRef.current.active) return
+
+                const distanceX = touch.clientX - dragRef.current.startX
+                const distanceY = touch.clientY - dragRef.current.startY
+                if (Math.abs(distanceX) > 6 || Math.abs(distanceY) > 8) {
+                  dragRef.current.moved = true
+                }
+              }}
+              onTouchEnd={() => {
+                dragRef.current.active = false
+              }}
+              onTouchCancel={() => {
+                dragRef.current.active = false
+              }}
               onScroll={handleScroll}
             >
               {normalizedPosts.map((post, index) => (
@@ -2113,12 +2419,18 @@ function FloatingContactWidget({ lang, hideRail = false }) {
                 src={activeChannel.image}
                 alt={lang === 'zh' ? `${activeChannel.label[lang]}二维码` : `${activeChannel.label[lang]} QR code`}
               />
+            ) : activeChannel.values ? (
+              <div className="contact-channel-value-card contact-channel-value-list">
+                {activeChannel.values.map((item) => (
+                  <a key={item.value} href={item.href}>{item.value}</a>
+                ))}
+              </div>
             ) : (
               <div className="contact-channel-value-card">
                 <span>{activeChannel.value}</span>
               </div>
             )}
-            {activeChannel.href ? (
+            {activeChannel.values ? null : activeChannel.href ? (
               <a href={activeChannel.href} target={activeChannel.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
                 {activeChannel.linkLabel?.[lang] || activeChannel.value}
               </a>
@@ -2169,7 +2481,96 @@ function closeMobileMenu(root) {
   header.querySelector('[data-mobile-menu-toggle]')?.setAttribute('aria-expanded', 'false')
 }
 
-function App() {
+// Isolates page HTML from unrelated re-renders. React only rewrites markup when
+// the html string changes — not when language toggles or a modal opens.
+const StaticPageHtml = memo(function StaticPageHtml({ html }) {
+  return <div className="page-html-root" dangerouslySetInnerHTML={{ __html: html }} />
+}, (prev, next) => prev.html === next.html)
+
+function TermsPreviewModal({ productClass, lang, onClose }) {
+  const pageCount = productClass === 'class-b' ? 2 : 1
+  const locale = lang === 'zh' ? 'zh' : 'en'
+  const title = `${productClass === 'class-a' ? 'Class A' : 'Class B'} ${lang === 'zh' ? '详细条款' : 'Detailed Terms'}`
+  const images = Array.from(
+    { length: pageCount },
+    (_, index) => `/assets/terms/${productClass}-${locale}-${index + 1}.png`,
+  )
+  const [isClosing, setIsClosing] = useState(false)
+  const closingRef = useRef(false)
+
+  const finishClose = useCallback(() => {
+    onClose()
+  }, [onClose])
+
+  const requestClose = useCallback((event) => {
+    event?.preventDefault?.()
+    event?.stopPropagation?.()
+    if (closingRef.current) return
+    closingRef.current = true
+    setIsClosing(true)
+    // Keep the overlay mounted briefly so the closing pointer/click cannot
+    // fall through onto the EN/中文 toggle in the page header.
+    window.setTimeout(() => {
+      finishClose()
+    }, 350)
+  }, [finishClose])
+
+  useEffect(() => {
+    document.body.classList.add('modal-open')
+    function closeOnEscape(event) {
+      if (event.key === 'Escape') requestClose(event)
+    }
+    document.addEventListener('keydown', closeOnEscape)
+    return () => {
+      document.body.classList.remove('modal-open')
+      document.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [requestClose])
+
+  return createPortal(
+    <div
+      className={`terms-preview-backdrop${isClosing ? ' is-closing' : ''}`}
+      role="presentation"
+      onPointerDown={(event) => {
+        if (event.target === event.currentTarget) requestClose(event)
+      }}
+      onClick={(event) => {
+        event.preventDefault()
+        event.stopPropagation()
+        if (event.target === event.currentTarget) requestClose(event)
+      }}
+    >
+      <article
+        className="terms-preview-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label={title}
+        onPointerDown={(event) => event.stopPropagation()}
+        onClick={(event) => event.stopPropagation()}
+      >
+        <header>
+          <h2>{title}</h2>
+          <button
+            type="button"
+            onPointerDown={requestClose}
+            onClick={requestClose}
+            aria-label={lang === 'zh' ? '关闭详细条款' : 'Close detailed terms'}
+          >
+            ×
+          </button>
+        </header>
+        <div className="terms-preview-pages">
+          {images.map((src, index) => (
+            <img key={src} src={src} alt={`${title} - ${lang === 'zh' ? '第' : 'Page '}${index + 1}${lang === 'zh' ? '页' : ''}`} />
+          ))}
+        </div>
+      </article>
+    </div>,
+    document.body,
+  )
+}
+
+function SitePages({ lang, setLang, onOpenTerms }) {
   const pageRootRef = useRef(null)
   const contentCarouselRootsRef = useRef(new Map())
   const aircraftMediaBannerRootRef = useRef(null)
@@ -2177,9 +2578,8 @@ function App() {
   const pendingFormValuesRef = useRef(null)
   const toastTimer = useRef(null)
   const [route, setRoute] = useState(getRoute)
-  const [lang, setLang] = useState(getInitialLang)
   const page = pages[route.key] || pages.home
-  const pageHtml = getPageHtml(page, route.key)
+  const pageHtml = useMemo(() => getPageHtml(page, route.key), [page, route.key])
 
   useEffect(() => {
     const handlePopState = () => setRoute(getRoute())
@@ -2191,7 +2591,7 @@ function App() {
     document.title = I18N[`meta.title.${route.key}`]?.[lang] || page.title
   }, [lang, page.title, route.key])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const root = pageRootRef.current
     if (!root) return
 
@@ -2221,7 +2621,9 @@ function App() {
     applyFallbackLabelTranslations(root, lang)
 
     root.querySelectorAll('a[href]').forEach((anchor) => {
-      const url = new URL(anchor.getAttribute('href'), window.location.origin)
+      const href = anchor.getAttribute('href')
+      if (!href) return
+      const url = new URL(href, window.location.origin)
       if (!brickkenHostPattern.test(url.hostname)) return
 
       let requestedInterest = interestByInvestmentLinkKey[anchor.getAttribute('data-i18n')] || ''
@@ -2229,7 +2631,7 @@ function App() {
       if (!requestedInterest && anchor.closest('#class-b')) requestedInterest = 'class-b'
       if (!requestedInterest && anchor.closest('#membership')) requestedInterest = 'membership'
       const query = requestedInterest ? `?interest=${encodeURIComponent(requestedInterest)}` : ''
-      anchor.setAttribute('href', `/contact${query}#contact-form`)
+      anchor.setAttribute('href', `/contact${query}#contact-channels`)
       anchor.setAttribute('data-investment-gate', '')
       anchor.removeAttribute('target')
       anchor.removeAttribute('rel')
@@ -2401,6 +2803,14 @@ function App() {
       closeMobileMenu(root)
     }
 
+    const contactPageLink = target.closest('a[data-i18n="nav.contact"]')
+    if (contactPageLink) {
+      event.preventDefault()
+      closeMobileMenu(root)
+      navigateToPageKey('contact')
+      return
+    }
+
     const toast = target.closest('#toast')
     if (toast) {
       toast.classList.remove('show')
@@ -2459,6 +2869,13 @@ function App() {
         window.dispatchEvent(new CustomEvent('aviona:open-contact-channel', {
           detail: { channelId: actionEl.getAttribute('data-channel-id') },
         }))
+        return
+      }
+
+      if (action === 'terms-preview') {
+        event.preventDefault()
+        closeMobileMenu(root)
+        onOpenTerms(actionEl.getAttribute('data-terms'))
         return
       }
 
@@ -2560,7 +2977,7 @@ function App() {
         event.preventDefault()
         closeMobileMenu(root)
         if (actionEl.getAttribute('data-i18n') === 'v5.hero.cta1') {
-          navigateToPageKey('contact', '#contact-form')
+          navigateToPageKey('contact', '#contact-channels')
           return
         }
         scrollToSection(dataTarget)
@@ -2605,7 +3022,7 @@ function App() {
       if (!requestedInterest && anchor.closest('#class-b')) requestedInterest = 'class-b'
       if (!requestedInterest && anchor.closest('#membership')) requestedInterest = 'membership'
       const query = requestedInterest ? `?interest=${encodeURIComponent(requestedInterest)}` : ''
-      window.history.pushState({}, '', `/contact${query}#contact-form`)
+      window.history.pushState({}, '', `/contact${query}#contact-channels`)
       setRoute(getRoute())
       return
     }
@@ -2635,9 +3052,59 @@ function App() {
         ref={pageRootRef}
         onClick={handleClick}
         onSubmit={handleSubmit}
-        dangerouslySetInnerHTML={{ __html: pageHtml }}
-      />
+      >
+        <StaticPageHtml html={pageHtml} />
+      </main>
       <FloatingContactWidget lang={lang} hideRail={route.key === 'contact'} />
+    </>
+  )
+}
+
+const MemoSitePages = memo(SitePages, (prev, next) => (
+  prev.lang === next.lang
+  && prev.setLang === next.setLang
+  && prev.onOpenTerms === next.onOpenTerms
+))
+
+function App() {
+  const [lang, setLang] = useState(getInitialLang)
+  const [termsPreview, setTermsPreview] = useState(null)
+  const suppressLangToggleUntilRef = useRef(0)
+
+  const closeTermsPreview = useCallback(() => {
+    suppressLangToggleUntilRef.current = Date.now() + 600
+    setTermsPreview(null)
+  }, [])
+
+  useEffect(() => {
+    function blockAccidentalLangToggle(event) {
+      if (Date.now() >= suppressLangToggleUntilRef.current) return
+      const langButton = event.target instanceof Element
+        ? event.target.closest('#lang-en-btn, #lang-zh-btn')
+        : null
+      if (!langButton) return
+      event.preventDefault()
+      event.stopPropagation()
+    }
+
+    document.addEventListener('pointerdown', blockAccidentalLangToggle, true)
+    document.addEventListener('click', blockAccidentalLangToggle, true)
+    return () => {
+      document.removeEventListener('pointerdown', blockAccidentalLangToggle, true)
+      document.removeEventListener('click', blockAccidentalLangToggle, true)
+    }
+  }, [])
+
+  return (
+    <>
+      <MemoSitePages lang={lang} setLang={setLang} onOpenTerms={setTermsPreview} />
+      {termsPreview && (
+        <TermsPreviewModal
+          productClass={termsPreview}
+          lang={lang}
+          onClose={closeTermsPreview}
+        />
+      )}
     </>
   )
 }
