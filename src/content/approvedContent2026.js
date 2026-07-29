@@ -15,7 +15,11 @@ export const APPROVED_CONTENT_2026_I18N = {
   "meta.title.contact": { en: "Contact Us — AVIONA", zh: "联系我们 — AVIONA" },
   "contact.h1": {
     en: "Every investor interested in private jets can find the right solution.",
-    zh: '每一位对私人飞机<span class="hero-title-phrase">感兴趣的投资者</span>，都能找到<span class="hero-title-phrase">最适合自己的方案</span>。',
+    zh: '<span class="mobile-title-line">每位关注私人飞机的投资者</span><span class="mobile-title-line">都能找到适合自己的方案。</span>',
+  },
+  "v5.hero.h1": {
+    en: "AVIONA — The Leader in Private Jet RWA",
+    zh: '<span class="mobile-title-line">AVIONA——私人飞机 RWA</span><span class="mobile-title-line">的领跑者</span>',
   },
   "home.teaser.sub": {
     en: "Dassault Falcon&nbsp;7X or Bombardier Global&nbsp;5000",
@@ -482,8 +486,8 @@ export const APPROVED_CONTENT_2026_I18N = {
   },
   "about.partner.fm": { en: "Fund Manager · SFC Type 9", zh: "基金管理人 · SFC 第 9 类牌照" },
   "about.h1": {
-    en: "AVIONA -- The World's Leading Private Aviation RWA Platform",
-    zh: "AVIONA --全球领先的私人航空 RWA 平台",
+    en: "AVIONA — The World's Leading Private Aviation RWA Platform",
+    zh: "AVIONA — 全球领先的私人航空 RWA 平台",
   },
   "about.sub": {
     en: "We connect aviation, finance and technology to precisely unlock the investment value and utility value of private aircraft, making private aviation assets more transparent, more liquid and more investable, and opening a new era for private aviation assets.",
@@ -717,24 +721,24 @@ export const APPROVED_CONTENT_2026_I18N = {
   "about.form.followup.telegram": { en: "Telegram", zh: "Telegram" },
   "about.form.followup.wechat": { en: "WeChat", zh: "微信" },
   "v5.hero.eyebrow": {
-    en: "Eligible professional investors can access private-aviation investment opportunities, travel convenience, and premium services.",
-    zh: "让符合资格的专业投资者参与私人航空投资，并享受私人飞机带来的出行便利与高品质服务。",
+    en: "We provide all investors with private-aviation investment opportunities, travel convenience, and premium services.",
+    zh: "面向所有投资者提供私人航空投资机会、出行便利与高品质服务。",
   },
   "v5.hero.sub": {
-    en: "AVIONA combines Web3.0 technology with more than two decades of private-aviation operating experience, integrating regulatory licensing, technology capabilities, industry resources, and a global operating system to separate investment value from utility value and create multidimensional value for private-jet users and investors. It provides eligible professional investors with a compliant way to participate in the potential value created by business aviation.",
-    zh: "AVIONA 结合 Web3.0 技术与二十余年的私人飞机行业运营经验，整合监管牌照、科技能力、行业资源及全球运营体系，拆解投资价值和使用价值，为私人飞机用户和投资者创造多维度价值，并为符合资格的专业投资者提供合规参与公务航空潜在价值的方式。",
+    en: "AVIONA combines Web3.0 technology with more than two decades of private-aviation operating experience, integrating regulatory licensing, technology capabilities, industry resources, and a global operating system to separate investment value from utility value and create multidimensional value for private-jet users and investors. It provides all investors with a compliant way to participate in the potential value created by business aviation.",
+    zh: "AVIONA 结合 Web3.0 技术与二十余年的私人飞机行业运营经验，整合监管牌照、科技能力、行业资源及全球运营体系，拆解投资价值和使用价值，为私人飞机用户和投资者创造多维度价值，并为所有投资者提供合规参与公务航空潜在价值的方式。",
   },
   "v5.stat.invest.desc": {
-    en: "Target annual return of 6–8%; not guaranteed.",
-    zh: "目标年化回报 6%–8%，不构成保证。",
+    en: "Target annual return of 6–8%.",
+    zh: "目标年化回报 6%–8%。",
   },
   "v5.card.f.b4": {
     en: "Exit through the GP repurchase arrangement at the end of the fund term",
     zh: "基金存续期届满后按 GP 回购安排退出",
   },
   "contact.eyebrow": {
-    en: "Explore the value and advantages of private-jet RWA; investment products are intended only for eligible professional investors.",
-    zh: "了解私人飞机 RWA 的价值与优势；投资产品仅面向符合资格的专业投资者。",
+    en: "Investment products are designed for all investors interested in private aviation.",
+    zh: "投资产品面向所有对私人飞机感兴趣的投资者。",
   },
   "contact.want.return": {
     en: "Pursue potential financial returns",
@@ -745,29 +749,45 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "投资由真实飞机资产 1:1 锚定的基金份额，目标年化回报为 6%–8%。",
   },
   "ways.m.founding.lbl": {
-    en: "Founding Member Offer (the first 100 investors become founding members)",
-    zh: "初创会员优惠（前一百个投资者是初创会员）",
+    en: "Founding Member Offer (the first 100 members will become founding members)",
+    zh: "创始会员优惠（前 100 名会员将成为创始会员）",
   },
   "ways.m.founding.p": {
-    en: "<ul class=\"ways-inline-list\"><li>Each founding member pays only US$1,800 for the first year's annual fee</li><li>Receive points after the official AVIONA launch</li><li>Redeem points for flight hours, charter discounts, airport VIP services, event access, and more</li><li>Successful referrals may become channel partners, receive channel fees, and redeem points for complimentary private jet flights</li></ul>",
-    zh: "<ul class=\"ways-inline-list\"><li>每位初创会员首年年费仅需支付 1,800 美元</li><li>AVIONA 正式发行后获得积分</li><li>积分可兑换飞行小时、包机折扣、机场 VIP 服务、活动资格等</li><li>推荐客户成功后可成为渠道伙伴、获得渠道费用，积分还可兑换免费私人飞机飞行</li></ul>",
+    en: "<ul class=\"ways-inline-list\"><li>Each founding member pays only US$1,800 for the first year's annual fee</li><li>Receive points after the official launch of the AVIONA fund and membership program</li><li>Redeem points for flight hours, charter discounts, airport VIP services, event access, and more</li><li>Successful referrals may become channel partners, receive channel fees, and redeem points for complimentary private jet flights</li></ul>",
+    zh: "<ul class=\"ways-inline-list\"><li>每位创始会员首年年费仅需支付 1,800 美元</li><li>AVIONA 基金和会员计划正式发行后获得积分</li><li>积分可兑换飞行小时、包机折扣、机场 VIP 服务、活动资格等</li><li>推荐客户成功后可成为渠道伙伴、获得渠道费用，积分还可兑换免费私人飞机飞行</li></ul>",
   },
   "v5.card.f.m2": { en: "10% discount on charter flights", zh: "包机 9 折" },
   "ways.a.terms.v5": {
     en: "A GP security deposit as a risk-mitigation arrangement, 1:1 backing by real aircraft assets, and a flexible redemption mechanism, subject to the final fund terms",
     zh: "GP 保证金作为风险缓释安排、1:1 真实飞机资产支撑及灵活赎回机制，具体以基金最终条款为准",
   },
+  "ways.a.terms.v7": {
+    en: `<ul class="ways-inline-list"><li>All VIP Membership benefits</li><li>Empty-leg travel on the corresponding aircraft at US$700 per seat per flight hour, plus all Aviona and partner empty-leg flights at cost</li><li>10% discount on charter flights</li></ul>`,
+    zh: `<ul class="ways-inline-list"><li>VIP 俱乐部会员的所有权益</li><li>可以每座每飞行小时 700 美元乘坐所购基金份额对应飞机的空腿航班，并以成本价乘坐 Aviona 旗下或联名合作飞机的所有空腿航班</li><li>包机九折优惠</li></ul>`,
+  },
+  "ways.b.terms.v8": {
+    en: `<ul class="ways-inline-list"><li>All VIP Membership benefits</li><li>Empty-leg travel on the corresponding aircraft at US$700 per seat per flight hour, plus all Aviona and partner empty-leg flights at cost</li><li>10% discount on charter flights</li></ul>`,
+    zh: `<ul class="ways-inline-list"><li>VIP 俱乐部会员的所有权益</li><li>可以每座每飞行小时 700 美元乘坐对应飞机的空腿航班，并以成本价乘坐 Aviona 旗下或联名合作飞机的所有空腿航班</li><li>包机九折优惠</li></ul>`,
+  },
+  "ways.m.terms.v2": {
+    en: "The member or a designated user may take empty-leg flights on the corresponding aircraft at US$700 per seat per flight hour, and use all Aviona and partner empty-leg flights at cost",
+    zh: "会员或指定人员可以每座每飞行小时 700 美元乘坐对应飞机的空腿航班，并以成本价乘坐 Aviona 旗下或联名合作飞机的所有空腿航班",
+  },
   "ways.compare.r10c": {
-    en: "Potential returns are not guaranteed; management and operations are handled by a professional operator",
-    zh: "潜在回报不构成保证，由专业运营商负责管理和运营",
+    en: "Management and operations are handled by a professional operator, subject to the final fund terms",
+    zh: "由专业运营商负责管理和运营，并以基金最终条款为准",
   },
   "ways.final.p": {
-    en: "Eligible professional investors can participate with a lower entry threshold, pursue potential returns, and access the benefits and convenience of private aviation.",
-    zh: "为符合资格的专业投资者提供较低门槛的参与方式，在追求潜在回报的同时<br class=\"ways-final-copy-break\">享受私人航空的权益与便利。",
+    en: "Participate with a lower entry threshold, pursue potential returns, and access the benefits and convenience of private aviation.",
+    zh: "以较低门槛参与，在追求潜在回报的同时，<br class=\"ways-final-copy-break\">享受私人航空的权益与便利。",
   },
   "ways.a.risk": {
-    en: `<ul><li>Expected annual return: 6–8% (depending on the fund structure). This is a target only and is not guaranteed.</li><li>Investors may apply for early redemption or transfer of their investment interests, providing a more flexible liquidity arrangement.</li><li>All investments, redemptions, and transfers are subject to KYC/AML compliance review and the fund legal documents and final terms in the Secure Store.</li></ul>`,
-    zh: `<ul><li>预期年化回报：6%–8%（视基金结构而定）。该回报仅为目标，不构成保证。</li><li>可申请提前赎回或转让投资权益，提供更灵活的流动性安排。</li><li>所有投资、赎回及转让均须通过 KYC/AML 合规审核，并以基金法律文件及安全商店中的最终条款为准。</li></ul>`,
+    en: `<ul><li>Expected annual return: 6–8% (depending on the fund structure).</li><li>Investors may apply for early redemption or transfer of their investment interests, providing a more flexible liquidity arrangement.</li><li>All investments, redemptions, and transfers are subject to KYC/AML compliance review and the fund legal documents and final terms in the Secure Store.</li></ul>`,
+    zh: `<ul><li>预期年化回报：6%–8%（视基金结构而定）。</li><li>可申请提前赎回或转让投资权益，提供更灵活的流动性安排。</li><li>所有投资、赎回及转让均须通过 KYC/AML 合规审核，并以基金法律文件及安全认购平台中的最终条款为准。</li></ul>`,
+  },
+  "ways.b.risk": {
+    en: "The redemption value of a fractional aircraft ownership interest reflects depreciation from aircraft use. Compared with market charter, flight costs are more than 40% lower, and over four years the flight-cost savings exceed the depreciation amount. Subject to KYC, accreditation, and the final terms in the Secure Store.",
+    zh: "份额机主权益在赎回时会反映飞机使用产生的折旧。但相较市场包机，飞行成本可节省超过 40%，四年下来节省的飞行费用已经远大于折旧金额。须完成 KYC 和合格性认证，并以安全认购平台中的最终条款为准。",
   },
   "ways.faq.h2": {
     en: "Here are the questions investors care about most.",
@@ -775,8 +795,10 @@ export const APPROVED_CONTENT_2026_I18N = {
   },
   "ways.faq.lead": {
     en: "For more detailed information, enter the Secure Store or download the FAQ handbook below.",
-    zh: "如需了解更详细的问题，可进入安全商店或下载下方问答手册。",
+    zh: "如需了解更详细的问题，可进入安全认购平台或下载下方问答手册。",
   },
+  "ways.faq.cta1": { en: "View Full FAQ in the Secure Store", zh: "安全认购平台 · 完整问答" },
+  "v5.final.cta1": { en: "Start Investing (Secure Store Portal)", zh: "开始投资（安全认购平台入口）" },
   "ways.faq.download.lead": {
     en: "For more information about the fund structure, asset operations, aircraft use, and exit arrangements, download the AVIONA Aircraft Shared-Ownership Limited Partnership Fund FAQ Handbook (2026).",
     zh: "如需了解基金架构、资产运营、飞机使用及退出安排，请下载《AVIONA 飞机产权共享有限合伙基金问答手册（2026）》。",
@@ -812,8 +834,8 @@ export const APPROVED_CONTENT_2026_I18N = {
   },
   "faq.gen.q6": { en: "Who is AVIONA designed for?", zh: "AVIONA 适合哪些人群？" },
   "faq.gen.a6": {
-    en: `<p>AVIONA is intended for eligible professional investors who want to pursue potential returns or gain private-aviation convenience through aircraft investment. Subject to the applicable product terms, investors may combine real-asset allocation, global business travel, and premium membership services.</p><h4>Entrepreneurs</h4><p>For founders and executives who travel frequently for domestic and international business and want greater efficiency and better long-term control of private-aviation costs.</p><ul><li>Business travel</li><li>Brand image</li><li>Cost control</li><li>Global business networks</li></ul><h4>Family Offices</h4><p>For families seeking quality US-dollar-denominated real assets while considering wealth preservation, succession, and family travel.</p><ul><li>Asset allocation</li><li>Wealth succession</li><li>Target returns</li><li>Family travel</li></ul><h4>High-Net-Worth Individuals</h4><p>For clients seeking a premium lifestyle and private-aircraft benefits without bearing the full management cost of an entire aircraft.</p><ul><li>Private travel</li><li>Business networking</li><li>Premium lifestyle</li><li>Membership benefits</li></ul><h4>Professional Investors</h4><p>For professional investors interested in alternative real assets, potential cash flow, and long-term asset value.</p><ul><li>Alternative investments</li><li>US-dollar assets</li><li>Target returns</li><li>Real assets</li></ul><h4>Corporations and Listed Companies</h4><p>For businesses arranging executive travel, overseas inspections, client hospitality, and cross-border commercial activity.</p><ul><li>Corporate charter</li><li>Executive travel</li><li>Client hospitality</li><li>Global business</li></ul><h4>Web3 and Digital-Asset Investors</h4><p>For investors seeking to allocate digital assets to RWA while focusing on transparency, digital rights management, and global mobility.</p><ul><li>RWA allocation</li><li>Digital ownership</li><li>Global assets</li><li>US-dollar investment</li></ul>`,
-    zh: `<p>AVIONA 面向希望通过私人飞机投资追求潜在收益或获取便利，并符合资格要求的专业投资者。根据适用产品条款，投资者可同时获得实体资产配置、全球商务出行及高端会员服务。</p><h4>企业家（Entrepreneurs）</h4><p>适合经常往返国内外开展商务活动，希望提升出行效率、降低长期私人飞机使用成本的企业创始人及管理者。</p><ul><li>商务出行</li><li>品牌形象</li><li>成本控制</li><li>全球商务网络</li></ul><h4>家族办公室（Family Office）</h4><p>适合希望配置优质美元实体资产，同时兼顾财富传承、资产保值及家族成员出行需求的家族办公室。</p><ul><li>资产配置</li><li>财富传承</li><li>目标收益</li><li>家族出行</li></ul><h4>高净值人士（High-Net-Worth Individuals）</h4><p>适合追求高品质生活方式，希望拥有私人飞机权益，而无需承担整架飞机管理成本的客户。</p><ul><li>私人旅行</li><li>商务社交</li><li>高端生活方式</li><li>会员权益</li></ul><h4>专业投资人（Professional Investors）</h4><p>适合关注另类资产，希望参与航空实体资产投资，并关注潜在现金流及长期资产价值的专业投资者。</p><ul><li>另类投资</li><li>美元资产</li><li>目标收益</li><li>实体资产</li></ul><h4>企业及上市公司（Corporates）</h4><p>适合经常安排高管出行、海外考察、客户接待及跨国商务活动的企业。</p><ul><li>企业包机</li><li>高管出行</li><li>客户接待</li><li>全球商务</li></ul><h4>Web3 与数字资产投资者（Digital Asset Investors）</h4><p>适合希望将数字资产配置到真实世界资产（RWA），关注资产透明度、数字化权益管理及全球流动性的投资人。</p><ul><li>RWA 配置</li><li>数字产权</li><li>全球资产</li><li>美元投资</li></ul>`,
+    en: `<p>AVIONA is designed for clients seeking potential returns or private-aviation convenience through aircraft investment. Subject to the applicable product terms and compliance review, investors may combine real-asset allocation, global business travel, and premium membership services.</p><h4>Entrepreneurs</h4><p>For founders and executives who travel frequently for domestic and international business and want greater efficiency and better long-term control of private-aviation costs.</p><ul><li>Business travel</li><li>Brand image</li><li>Cost control</li><li>Global business networks</li></ul><h4>Family Offices</h4><p>For families seeking quality US-dollar-denominated real assets while considering wealth preservation, succession, and family travel.</p><ul><li>Asset allocation</li><li>Wealth succession</li><li>Target returns</li><li>Family travel</li></ul><h4>High-Net-Worth Individuals</h4><p>For clients seeking a premium lifestyle and private-aircraft benefits without bearing the full management cost of an entire aircraft.</p><ul><li>Private travel</li><li>Business networking</li><li>Premium lifestyle</li><li>Membership benefits</li></ul><h4>All Investors</h4><p>For all investors interested in alternative real assets, potential cash flow, and long-term asset value.</p><ul><li>Alternative investments</li><li>US-dollar assets</li><li>Target returns</li><li>Real assets</li></ul><h4>Corporations and Listed Companies</h4><p>For businesses arranging executive travel, overseas inspections, client hospitality, and cross-border commercial activity.</p><ul><li>Corporate charter</li><li>Executive travel</li><li>Client hospitality</li><li>Global business</li></ul><h4>Web3 and Digital-Asset Investors</h4><p>For investors seeking to allocate digital assets to RWA while focusing on transparency, digital rights management, and global mobility.</p><ul><li>RWA allocation</li><li>Digital ownership</li><li>Global assets</li><li>US-dollar investment</li></ul>`,
+    zh: `<p>AVIONA 适合希望通过私人飞机投资追求潜在收益或获得出行便利的客户。根据相关产品条款及合规审核结果，投资者可同时获得实体资产配置、全球商务出行及高端会员服务。</p><h4>企业家（Entrepreneurs）</h4><p>适合经常往返国内外开展商务活动，希望提升出行效率、降低长期私人飞机使用成本的企业创始人及管理者。</p><ul><li>商务出行</li><li>品牌形象</li><li>成本控制</li><li>全球商务网络</li></ul><h4>家族办公室（Family Office）</h4><p>适合希望配置优质美元实体资产，同时兼顾财富传承、资产保值及家族成员出行需求的家族办公室。</p><ul><li>资产配置</li><li>财富传承</li><li>目标收益</li><li>家族出行</li></ul><h4>高净值人士（High-Net-Worth Individuals）</h4><p>适合追求高品质生活方式，希望拥有私人飞机权益，而无需承担整架飞机管理成本的客户。</p><ul><li>私人旅行</li><li>商务社交</li><li>高端生活方式</li><li>会员权益</li></ul><h4>所有投资者（All Investors）</h4><p>适合关注另类资产，希望参与航空实体资产投资，并关注潜在现金流及长期资产价值的所有投资者。</p><ul><li>另类投资</li><li>美元资产</li><li>目标收益</li><li>实体资产</li></ul><h4>企业及上市公司（Corporates）</h4><p>适合经常安排高管出行、海外考察、客户接待及跨国商务活动的企业。</p><ul><li>企业包机</li><li>高管出行</li><li>客户接待</li><li>全球商务</li></ul><h4>Web3 与数字资产投资者（Digital Asset Investors）</h4><p>适合希望将数字资产配置到真实世界资产（RWA），关注资产透明度、数字化权益管理及全球流动性的投资者。</p><ul><li>RWA 配置</li><li>数字产权</li><li>全球资产</li><li>美元投资</li></ul>`,
   },
   "faq.gen.q7": { en: "Why do clients choose AVIONA?", zh: "为什么客户选择 AVIONA？" },
   "faq.gen.a7": {
@@ -835,8 +857,8 @@ export const APPROVED_CONTENT_2026_I18N = {
   },
   "faq.gen.q10": { en: "Which aircraft models does AVIONA select?", zh: "AVIONA 选择哪些机型？" },
   "faq.gen.a10": {
-    en: `<p>AVIONA gives priority to mature long-range business jets such as the Bombardier Global series, balancing market liquidity, operating efficiency, and stable long-term asset depreciation.</p>`,
-    zh: `<p>AVIONA 优先选择庞巴迪环球（Global）系列等成熟远程私人飞机，兼顾市场流动性、运营效率及长期稳定的资产折旧。</p>`,
+    en: `<p>AVIONA gives priority to mature long-range business jets such as the Bombardier Global series, balancing market liquidity, operating efficiency, and relatively predictable long-term depreciation performance.</p>`,
+    zh: `<p>AVIONA 优先选择庞巴迪环球（Global）系列等成熟远程私人飞机，兼顾市场流动性、运营效率及相对可预测的长期折旧表现。</p>`,
   },
   "faq.gen.q11": { en: "Why not purchase an entire aircraft directly?", zh: "为什么不直接购买整架飞机？" },
   "faq.gen.a11": {
@@ -851,13 +873,13 @@ export const APPROVED_CONTENT_2026_I18N = {
 
   "faq.a.q1": { en: "What is Class A?", zh: "什么是 Class A 投资？" },
   "faq.a.a1": {
-    en: `<p>Class A is the financial-investment option. It targets an annual return of 6–8%, distributed quarterly, and ranks senior in the distribution waterfall. The target return is not guaranteed. The fund holds real aircraft assets through a project SPV to provide 1:1 asset backing, subject to the fund documents.</p>`,
-    zh: `<p>Class A 是财务投资，目标年化回报为 6%–8%，按季度分红，在收益分配中属于优先级别。目标回报不构成保证。基金通过项目公司（SPV）持有真实飞机资产，提供 1:1 资产支撑，具体以基金文件为准。</p>`,
+    en: `<p>Class A is the financial-investment option. It targets an annual return of 6–8%, distributed quarterly, and ranks senior in the distribution waterfall. The fund holds real aircraft assets through a project SPV to provide 1:1 asset backing, subject to the fund documents.</p>`,
+    zh: `<p>Class A 是财务投资，目标年化回报为 6%–8%，按季度分红，在收益分配中属于优先级别。基金通过项目公司（SPV）持有真实飞机资产，提供 1:1 资产支撑，具体以基金文件为准。</p>`,
   },
   "faq.a.q2": { en: "What is the minimum subscription amount?", zh: "最低认购额是多少？" },
   "faq.a.a2": {
-    en: `<p>Class A has no fixed minimum subscription amount; the suggested subscription unit is US$16,000. Investors must qualify as eligible professional investors and complete identity verification (KYC) and anti-money-laundering (AML) review before subscribing.</p>`,
-    zh: `<p>Class A 不设固定最低认购金额，建议认购单位为 16,000 美元。投资人须符合合格专业投资者资格要求，并完成身份验证（KYC）及反洗钱（AML）审核后方可参与认购。</p>`,
+    en: `<p>Class A has no fixed minimum subscription amount; the suggested subscription unit is US$16,000. Subscription requires identity verification (KYC), anti-money-laundering (AML) review, and the applicable compliance procedures.</p>`,
+    zh: `<p>Class A 不设固定最低认购金额，建议认购单位为 16,000 美元。认购前须完成身份验证（KYC）、反洗钱（AML）审核及相关合规程序。</p>`,
   },
   "faq.a.q3": { en: "What is the redemption path?", zh: "赎回安排如何？" },
   "faq.a.a3": {
@@ -866,13 +888,13 @@ export const APPROVED_CONTENT_2026_I18N = {
   },
   "faq.a.q4": { en: "How is Class A protected?", zh: "Class A 如何受保护？" },
   "faq.a.a4": {
-    en: `<p>Class A has priority for distributions and redemption. A GP security deposit serves as a risk-mitigation arrangement, together with 1:1 real aircraft asset backing. Neither mechanism guarantees returns or redemption; the final fund terms prevail.</p>`,
-    zh: `<p>Class A 享有优先分红和优先赎回序列。GP 保证金作为风险缓释安排，并由 1:1 真实飞机资产提供支撑；上述机制均不保证回报或赎回，具体以基金最终条款为准。</p>`,
+    en: `<p>Class A has priority for distributions and redemption. A GP security deposit serves as a risk-mitigation arrangement, together with 1:1 real aircraft asset backing. The applicable arrangements and conditions remain subject to the final fund terms.</p>`,
+    zh: `<p>Class A 享有优先分红和优先赎回序列。GP 保证金作为风险缓释安排，并由 1:1 真实飞机资产提供支撑；具体安排及适用条件以基金最终条款为准。</p>`,
   },
   "faq.a.q5": { en: "Do I receive flight and membership benefits?", zh: "我是否享有飞行和会员权益？" },
   "faq.a.a5": {
     en: `<p>Yes. Class A includes all VIP Membership benefits, empty-leg travel on the corresponding aircraft at US$700 per seat per flight hour, Aviona and partner empty-leg flights at cost, and a 10% charter discount.</p>`,
-    zh: `<p>是。Class A 包含全部 VIP 会员权益、对应飞机 700 美元/座/飞行小时的空腿航班、Aviona 及合作飞机的成本价空腿航班，以及包机九折优惠。</p>`,
+    zh: `<p>是。Class A 包含全部 VIP 会员权益、对应飞机每座每飞行小时 700 美元的空腿航班、Aviona 及合作飞机的成本价空腿航班，以及包机九折优惠。</p>`,
   },
 
   "faq.b.q1": { en: "What is Class B?", zh: "什么是 Class B？" },
@@ -926,7 +948,7 @@ export const APPROVED_CONTENT_2026_I18N = {
   "faq.b.q10": { en: "Who may use my flight hours?", zh: "谁可以使用我的飞行小时？" },
   "faq.b.a10": {
     en: `<p>The investor and any family member, friend, colleague, or client booked by the investor may use the flight hours. The investor does not need to be on board.</p>`,
-    zh: `<p>投资者本人，以及投资者预约的任何家人、朋友、同事或客户均可使用飞行小时，投资人本人无需登机。</p>`,
+    zh: `<p>投资人本人，以及投资人预约的任何家人、朋友、同事或客户均可使用飞行小时，投资人本人无需登机。</p>`,
   },
   "faq.b.q11": { en: "How far in advance must I book?", zh: "需要提前多久预订？" },
   "faq.b.a11": {
@@ -985,7 +1007,7 @@ export const APPROVED_CONTENT_2026_I18N = {
   },
   "ways.h1": {
     en: 'Three ways to invest in private aviation<br class="ways-hero-break">or enjoy the convenience of private jet travel.',
-    zh: '三种方式参与<span class="hero-title-phrase">私人飞机的投资</span><span class="hero-title-phrase">或享受私人飞机带来的便利</span>',
+    zh: '<span class="mobile-title-line">三种方式参与私人飞机投资</span><span class="mobile-title-line">或享受私人飞机出行便利</span>',
   },
   "ac.compare.col.item": { en: "Item", zh: "项目" },
   "ac.compare.col.falcon": { en: "Dassault Falcon 7X", zh: "达索系列" },
@@ -1047,8 +1069,8 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "© 2026 AVIONA 版权所有。AVIONA、AVIONA 标识、网站设计、商业模式、图文内容及相关知识产权均受法律保护。未经书面授权，任何复制、转载、修改或商业使用均被禁止。",
   },
   "ftr.professionalNotice": {
-    en: "The information on this website is intended exclusively for eligible professional investors as defined under the Hong Kong Securities and Futures Commission (SFC) framework. Nothing on this website constitutes a public offer, a solicitation to the general public, financial advice, or final investment documentation. All references to target returns are aspirational and not guarantees. Investments involve risk, including loss of capital and aircraft depreciation. Final terms are governed by the offering documentation provided privately through the Secure Store, subject to KYC, accreditation, and compliance review.",
-    zh: "本网站信息仅供香港证券及期货事务监察委员会（SFC）框架下定义的合格专业投资者参考。本网站任何内容均不构成公开要约、面向公众的招揽、财务建议或最终投资文件。所有目标回报仅为预期目标，不构成保证。投资涉及风险，包括本金损失及飞机资产折旧。最终条款以通过安全商店私下提供的发行文件为准，并须通过 KYC、投资者资格认证及合规审核。",
+    en: "Nothing on this website constitutes a public offer, a solicitation to the general public, financial advice, or final investment documentation. Investments involve risk, including loss of capital and aircraft depreciation. Final terms are governed by the offering documentation provided privately through the Secure Store, subject to KYC, accreditation, and compliance review.",
+    zh: "本网站任何内容均不构成公开要约、面向公众的招揽、财务建议或最终投资文件。投资涉及风险，包括本金损失及飞机资产折旧。最终条款以通过安全认购平台私下提供的发行文件为准，并须通过 KYC、投资者资格认证及合规审核。",
   },
 };
 
@@ -1482,6 +1504,11 @@ function applyWaysContent(html) {
     withRiskNote,
     "ways.b.cta1",
     `<button data-i18n="ways.b.cta1" class="btn primary" type="button" data-action="terms-preview" data-terms="class-b">${english("ways.b.cta1")}</button>`,
+  );
+  withRiskNote = replaceElementByI18nKey(
+    withRiskNote,
+    "ways.m.cta1",
+    `<button data-i18n="ways.m.cta1" class="btn primary" type="button" data-action="terms-preview" data-terms="vip">${english("ways.m.cta1")}</button>`,
   );
   return replaceBetween(
     withRiskNote,
@@ -1940,7 +1967,10 @@ function applyCopyrightNotice(html) {
     );
 
   if (!next.includes('data-i18n="ftr.professionalNotice"')) {
-    const noticeStart = next.lastIndexOf('<p style="margin-bottom: 14px;"><b style="color: rgba(255,255,255,0.78);">Important — For Professional Investors Only.</b>');
+    const legalStart = next.lastIndexOf('<div class="legal">');
+    const noticeStart = legalStart >= 0
+      ? next.indexOf('<p style="margin-bottom: 14px;">', legalStart)
+      : -1;
     if (noticeStart >= 0) {
       const noticeEnd = next.indexOf("</p>", noticeStart);
       if (noticeEnd >= 0) {

@@ -2490,10 +2490,17 @@ const StaticPageHtml = memo(function StaticPageHtml({ html }) {
 function TermsPreviewModal({ productClass, lang, onClose }) {
   const pageCount = productClass === 'class-b' ? 2 : 1
   const locale = lang === 'zh' ? 'zh' : 'en'
-  const title = `${productClass === 'class-a' ? 'Class A' : 'Class B'} ${lang === 'zh' ? '详细条款' : 'Detailed Terms'}`
+  const productLabel = {
+    'class-a': 'Class A',
+    'class-b': 'Class B',
+    vip: lang === 'zh' ? 'VIP 会员' : 'VIP Membership',
+  }[productClass] || productClass
+  const title = productClass === 'vip'
+    ? `${productLabel}${lang === 'zh' ? '详情' : ' Details'}`
+    : `${productLabel} ${lang === 'zh' ? '详细条款' : 'Detailed Terms'}`
   const images = Array.from(
     { length: pageCount },
-    (_, index) => `/assets/terms/${productClass}-${locale}-${index + 1}.png`,
+    (_, index) => `/assets/terms/${productClass}-${locale}-${index + 1}.png${productClass === 'vip' ? '?v=3' : ''}`,
   )
   const [isClosing, setIsClosing] = useState(false)
   const closingRef = useRef(false)
