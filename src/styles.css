@@ -5,8 +5,9 @@
     --bg-champagne: #FBF4E1;
     --bg-graphite: #1A1D24;
     --bg-soft: #F4F2EC;
-    --text-primary: #1F2329;
-    --text-secondary: #545A65;
+    --text-primary: #646A73;
+    --control-dark: #1F2329;
+    --text-secondary: #747A83;
     --text-muted: #8A8F99;
     --silver: #B5B8BE;
     --gold: #C9A036;
@@ -58,7 +59,7 @@
     letter-spacing: 0.04em; font-weight: 400; cursor: pointer;
     border-bottom: 1px solid transparent; transition: border-color 0.2s, color 0.2s;
   }
-  nav.primary a:hover { color: #000; }
+  nav.primary a:hover { color: var(--text-primary); }
   nav.primary a.active { border-bottom-color: var(--gold); font-weight: 500; }
   .header-utility { display: flex; gap: 10px; }
   .mobile-menu-toggle {
@@ -68,7 +69,7 @@
   /* Buttons — retail style: pill-shaped, accent-color primary, soft shadow */
   .btn {
     display: inline-flex; align-items: center; justify-content: center;
-    padding: 13px 26px; border: 1.5px solid var(--text-primary);
+    padding: 13px 26px; border: 1.5px solid var(--control-dark);
     background: transparent; color: var(--text-primary);
     font-family: inherit; font-size: 14px; font-weight: 600;
     letter-spacing: 0.01em; text-transform: none;
@@ -76,7 +77,7 @@
     border-radius: 100px;
     transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
   }
-  .btn:hover { background: var(--text-primary); color: var(--bg-warm); transform: translateY(-1px); }
+  .btn:hover { background: var(--control-dark); color: var(--bg-warm); transform: translateY(-1px); }
   .btn.primary {
     background: var(--accent); color: #fff; border-color: var(--accent);
     box-shadow: var(--shadow-cta);
@@ -88,7 +89,7 @@
   }
   .btn.gold:hover { background: var(--gold-bright); border-color: var(--gold-bright); }
   .btn.ghost { border-color: var(--border-mid); color: var(--text-secondary); background: var(--bg-warm); }
-  .btn.ghost:hover { background: var(--text-primary); color: var(--bg-warm); border-color: var(--text-primary); }
+  .btn.ghost:hover { background: var(--control-dark); color: var(--bg-warm); border-color: var(--control-dark); }
   .btn.lg { padding: 17px 36px; font-size: 15px; }
   .btn.arrow::after { content: "→"; margin-left: 8px; transition: transform 0.2s; }
   .btn.arrow:hover::after { transform: translateX(4px); }
@@ -634,7 +635,7 @@
     margin: 12px auto 32px;
   }
   .news-modal-content {
-    color: #333; font-size: 20px; line-height: 1.6;
+    color: var(--text-primary); font-size: 20px; line-height: 1.6;
     max-width: 780px; margin: 0 auto;
   }
   .news-modal-content p {
@@ -643,7 +644,7 @@
   .news-modal-content h1,
   .news-modal-content h2,
   .news-modal-content h3 {
-    color: #333; font-weight: 700; line-height: 1.25;
+    color: var(--text-primary); font-weight: 700; line-height: 1.25;
     max-width: 780px; margin: 36px auto 20px;
   }
   .news-modal-content h2 { font-size: 34px; }
@@ -3031,7 +3032,7 @@
 
   /* Floating contact widget */
   .floating-contact {
-    position: fixed; right: 24px; bottom: 24px; z-index: 150;
+    position: fixed; right: 24px; bottom: 24px; z-index: 200;
     --floating-contact-menu-gap: 12px;
     display: block;
     font-family: inherit;
@@ -4053,6 +4054,31 @@
     gap: 10px !important;
   }
 
+  @media (max-width: 760px) {
+    #class-a .path-detail .cta-row,
+    #class-b .path-detail .cta-row,
+    #membership .path-detail .cta-row {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    #class-a .path-detail .cta-row .btn,
+    #class-b .path-detail .cta-row .btn,
+    #membership .path-detail .cta-row .btn,
+    #class-a .path-detail .cta-row [data-action="terms-preview"],
+    #class-b .path-detail .cta-row [data-action="terms-preview"],
+    #membership .path-detail .cta-row [data-action="terms-preview"] {
+      width: 100%;
+      min-width: 0;
+      padding-inline: 10px;
+      white-space: normal;
+      overflow-wrap: normal;
+      word-break: normal;
+      hyphens: none;
+    }
+  }
+
   #class-a .callout,
   #class-b .callout,
   #membership .callout {
@@ -4566,7 +4592,7 @@
     }
 
     [data-i18n="about.struct.h2"] {
-      color: #4b5563 !important;
+      color: var(--text-primary) !important;
       font-size: var(--type-24) !important;
       font-weight: var(--type-weight-semibold) !important;
       line-height: 1.25 !important;
@@ -4616,5 +4642,125 @@
       display: block;
       max-width: 100%;
       white-space: nowrap;
+    }
+  }
+
+  /* Canonical banner typography: the first and third copy differ only by color. */
+  .hero .eyebrow,
+  .hero .eyebrow-gold,
+  .ways-page-hero .ways-emphasis-label,
+  .hero p.sub,
+  .contact-hero p.sub {
+    font-size: var(--type-16) !important;
+    font-weight: var(--type-weight-regular) !important;
+    line-height: 1.5 !important;
+    letter-spacing: normal !important;
+  }
+
+  /* Every banner uses the same gold introductory line on desktop and mobile. */
+  .hero .eyebrow,
+  .hero .eyebrow-gold,
+  .ways-page-hero .ways-emphasis-label {
+    color: var(--gold-soft) !important;
+  }
+
+  .hero p.sub,
+  .contact-hero p.sub {
+    color: rgba(255, 255, 255, 0.92) !important;
+  }
+
+  .hero h1,
+  .hero.compact h1,
+  .hero.compact.ways-page-hero h1,
+  .contact-hero h1 {
+    font-size: var(--type-48) !important;
+    font-weight: var(--type-weight-medium) !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  @media (min-width: 761px) {
+    .hero-content,
+    .contact-hero-content {
+      width: 100%;
+      max-width: none;
+    }
+
+    .hero h1,
+    .hero.compact h1,
+    .hero.compact.ways-page-hero h1,
+    .contact-hero h1 {
+      width: 100%;
+      max-width: none;
+      font-size: clamp(28px, 2.3vw, 48px) !important;
+      line-height: 1.15 !important;
+      white-space: normal;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .hero h1,
+    .hero.compact h1,
+    .hero.compact.ways-page-hero h1,
+    .contact-hero h1 {
+      white-space: nowrap !important;
+      text-wrap: nowrap !important;
+    }
+
+    .hero h1 br,
+    .contact-hero h1 br {
+      display: none;
+    }
+  }
+
+  @media (max-width: 760px) {
+    /* Use one 78vh baseline on phones so the next section remains visible.
+       Content can still grow naturally when a banner needs more room. */
+    .hero,
+    .hero.compact {
+      min-height: 78vh !important;
+    }
+
+    /* Section titles are two pixels smaller on phones; banner titles retain
+       their dedicated 24px scale below. */
+    .page-html-root h2,
+    .section-title {
+      font-size: 30px !important;
+      line-height: 1.25 !important;
+    }
+
+    /* Keep the floating quick actions compact on phones. They are utility
+       controls and should not inherit the site's standard 14px button type. */
+    .floating-contact-rail button,
+    .floating-contact-rail a,
+    .floating-contact-invest > span:last-child,
+    .floating-contact-toggle > span:last-child {
+      font-size: 10px !important;
+      line-height: 1.15 !important;
+    }
+
+    .hero .eyebrow,
+    .hero .eyebrow-gold,
+    .ways-page-hero .ways-emphasis-label,
+    .hero p.sub,
+    .contact-hero p.sub {
+      font-size: var(--type-14) !important;
+      line-height: 1.333333 !important;
+    }
+
+    body.lang-zh .hero h1,
+    body.lang-en .hero h1,
+    body.lang-zh .hero.compact h1,
+    body.lang-en .hero.compact h1,
+    body.lang-zh .hero.compact.ways-page-hero h1,
+    body.lang-en .hero.compact.ways-page-hero h1,
+    body.lang-zh .contact-hero h1,
+    body.lang-en .contact-hero h1 {
+      font-size: var(--type-24) !important;
+      font-weight: var(--type-weight-medium) !important;
+      line-height: 1.16 !important;
+      letter-spacing: -0.015em !important;
     }
   }

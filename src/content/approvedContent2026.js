@@ -22,8 +22,8 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: '<span class="mobile-title-line">AVIONA——私人飞机 RWA</span><span class="mobile-title-line">的领跑者</span>',
   },
   "home.teaser.sub": {
-    en: "Dassault Falcon&nbsp;7X or Bombardier Global&nbsp;5000",
-    zh: '<span class="no-orphan">达索Falcon&nbsp;7X</span>或<span class="no-orphan">庞巴迪Global&nbsp;5000</span>',
+    en: "Dassault Falcon&nbsp;7X or Bombardier Global&nbsp;Series",
+    zh: '<span class="no-orphan">达索Falcon&nbsp;7X</span>或<span class="no-orphan">庞巴迪Global系列</span>',
   },
   "v5.card.price.a": { en: "No minimum investment amount", zh: "不限投资金额" },
   "v5.card.price.b": { en: "No minimum investment amount", zh: "不限投资金额" },
@@ -1006,7 +1006,7 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: '<span class="hero-title-phrase">庞巴迪环球系列，</span><span class="hero-title-phrase">达索系列</span>',
   },
   "ways.h1": {
-    en: 'Three ways to invest in private aviation<br class="ways-hero-break">or enjoy the convenience of private jet travel.',
+    en: 'Three ways to invest in private aviation<br class="ways-hero-break"> or enjoy the convenience of private jet travel.',
     zh: '<span class="mobile-title-line">三种方式参与私人飞机投资</span><span class="mobile-title-line">或享受私人飞机出行便利</span>',
   },
   "ac.compare.col.item": { en: "Item", zh: "项目" },
