@@ -66,6 +66,10 @@ address.
 Never commit the SMTP password or expose it through a client-side `VITE_*`
 variable. Add it directly through Vercel's encrypted Environment Variables UI.
 
+If the contact API cannot deliver an inquiry, the browser opens a prefilled
+email draft addressed to `ops@avionajet.com`. The visitor must review and send
+that draft; successful API submissions continue to send automatically.
+
 ## Verification Completed
 
 The project has been checked with:

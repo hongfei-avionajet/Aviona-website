@@ -61,6 +61,7 @@ const externalToastLabelKeyByTarget = {
 const wordpressPostsEndpoint =
   'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=100&_embed=1&orderby=date&order=desc'
 
+const contactEmailAddress = 'ops@avionajet.com'
 const contactChannelsUrl = '/contact#contact-channels'
 const secureStoreUrl = contactChannelsUrl
 const brickkenStoreUrlsByInterest = {
@@ -92,6 +93,22 @@ const wordpressCarouselRequests = new Map()
 const videoPressSourceCache = {}
 const newsPostsCache = {}
 const wordpressCarouselRefreshMs = 300000
+
+function buildContactEmailFallback({ lang, fields, page }) {
+  const subject = lang === 'zh' ? 'AVIONA 网站咨询' : 'AVIONA website inquiry'
+  const intro = lang === 'zh'
+    ? '您好，以下是我在 AVIONA 网站填写的咨询信息：'
+    : 'Hello, below is the inquiry I entered on the AVIONA website:'
+  const body = [
+    intro,
+    '',
+    ...fields.map((field) => `${field.label}: ${field.value}`),
+    '',
+    `${lang === 'zh' ? '页面' : 'Page'}: ${page}`,
+  ].join('\n')
+
+  return `mailto:${contactEmailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+}
 
 const newsFallbackImages = [
   '/assets/news/news-cabin-wide.jpg',
@@ -131,9 +148,9 @@ const contactChannels = [
     icon: 'email',
     label: { en: 'Email', zh: '邮箱' },
     description: { en: 'Send us a note by email.', zh: '通过邮箱联系我们。' },
-    value: 'ops@avionajet.com',
+    value: contactEmailAddress,
     linkLabel: { en: 'Send Email', zh: '发送邮件' },
-    href: 'mailto:ops@avionajet.com',
+    href: `mailto:${contactEmailAddress}`,
   },
   {
     id: 'phone',
@@ -2966,12 +2983,19 @@ function SitePages({ lang, setLang, onOpenTerms }) {
             redirectWindow.close()
           }
           const detail = error instanceof Error ? error.message : ''
+          const fallbackHref = buildContactEmailFallback({
+            lang,
+            fields,
+            page: window.location.href,
+          })
+          window.location.assign(fallbackHref)
           const message = lang === 'zh'
-            ? detail === 'Email service is not configured.'
-              ? '邮件服务尚未配置，请联系管理员。'
-              : '提交失败，请稍后再试或直接通过邮箱联系我们。'
-            : `Submission failed${detail ? `: ${detail}` : '. Please try again or contact us by email.'}`
+            ? '自动提交失败，已为您打开邮件，请确认发送。'
+            : 'Automatic submission failed. An email draft has been opened for you to review and send.'
           showToast(message)
+          if (detail) {
+            console.warn('Contact form delivery fallback:', detail)
+          }
         } finally {
           actionEl.textContent = originalText
           actionEl.removeAttribute('aria-busy')
