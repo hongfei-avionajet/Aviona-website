@@ -694,28 +694,26 @@
     font-family: inherit; font-size: 12px; cursor: pointer;
   }
   .certificate-frame {
-    width: min(100%, 310px);
+    width: min(100%, 420px);
     margin: 0; justify-self: center;
     background: transparent; border: 0;
-    padding: 112px 0 0; box-shadow: none;
-    position: relative;
+    padding: 0; box-shadow: none;
   }
   .certificate-frame figcaption {
-    position: absolute;
-    inset: 0 0 auto;
-    width: min(420px, calc(100vw - 48px));
-    margin: 0;
+    width: 100%;
+    margin: 0 auto 28px;
     color: var(--text-secondary);
     font-size: 18px;
     line-height: 1.55;
-    text-align: left;
+    text-align: center;
   }
   .certificate-frame img {
-    display: block; width: 100%; height: auto;
+    display: block; width: min(100%, 310px); height: auto;
+    margin: 0 auto;
   }
   @media (max-width: 980px) {
     .certification-inner { grid-template-columns: 1fr; gap: 28px; }
-    .certificate-frame { justify-self: start; max-width: 310px; }
+    .certificate-frame { justify-self: center; }
     .news-carousel h2 { font-size: 30px; }
     .news-slide { min-height: 280px; }
     .news-slide-image { min-height: 280px; }
@@ -724,8 +722,7 @@
     .certification-band { padding: 42px 20px 48px; }
     .certification-copy h2 { font-size: 28px; }
     .news-carousel-head { align-items: flex-start; flex-direction: column; }
-    .certificate-frame { padding-top: 150px; }
-    .certificate-frame figcaption { width: min(100%, calc(100vw - 40px)); font-size: 18px; }
+    .certificate-frame figcaption { font-size: 18px; }
     .news-slide { grid-template-columns: 1fr; min-height: 0; }
     .news-slide-image { min-height: 220px; }
     .news-slide-copy { padding: 24px; }
@@ -3663,6 +3660,32 @@
     --type-24: 24px;
     --type-32: 32px;
     --type-48: 48px;
+
+    /* Semantic roles for non-banner content. */
+    --type-display: var(--type-48);
+    --type-section-title: var(--type-32);
+    --type-subsection-title: var(--type-24);
+    --type-card-title: var(--type-18);
+    --type-lead: var(--type-18);
+    --type-body: var(--type-16);
+    --type-ui: var(--type-14);
+    --type-body-leading-en: 1.65;
+    --type-body-leading-zh: 1.75;
+    --type-lead-leading-en: 1.6;
+    --type-lead-leading-zh: 1.7;
+
+    /* Banner contract: copied from the approved Vercel preview.
+       These aliases keep later content typography changes out of every hero. */
+    --type-banner-title-desktop: clamp(28px, 2.3vw, 48px);
+    --type-banner-title-mobile: var(--type-24);
+    --type-banner-copy-desktop: var(--type-16);
+    --type-banner-copy-mobile: var(--type-14);
+    --type-banner-title-leading-desktop: 1.15;
+    --type-banner-title-leading-mobile: 1.16;
+    --type-banner-copy-leading-desktop: 1.5;
+    --type-banner-copy-leading-mobile: 1.333333;
+    --type-banner-title-tracking-desktop: -0.02em;
+    --type-banner-title-tracking-mobile: -0.015em;
     --type-font:
       "Inter",
       "PingFang SC",
@@ -3694,9 +3717,13 @@
   }
 
   body {
-    font-size: var(--type-16);
+    font-size: var(--type-body);
     font-weight: var(--type-weight-regular);
-    line-height: 1.7;
+    line-height: var(--type-body-leading-en);
+  }
+
+  body.lang-zh {
+    line-height: var(--type-body-leading-zh);
   }
 
   /* Display and heading hierarchy */
@@ -3705,7 +3732,7 @@
   .hero h1,
   .hero.compact h1,
   .contact-hero h1 {
-    font-size: var(--type-48) !important;
+    font-size: var(--type-display) !important;
     font-weight: var(--type-weight-medium) !important;
     line-height: 1.15 !important;
     letter-spacing: -0.02em;
@@ -3713,7 +3740,7 @@
 
   h2,
   .section-title {
-    font-size: var(--type-32) !important;
+    font-size: var(--type-section-title) !important;
     font-weight: var(--type-weight-medium) !important;
     line-height: 1.25 !important;
     letter-spacing: -0.015em;
@@ -3721,14 +3748,14 @@
 
   h3,
   .subsection-title {
-    font-size: var(--type-24) !important;
+    font-size: var(--type-subsection-title) !important;
     font-weight: var(--type-weight-medium) !important;
     line-height: 1.3 !important;
   }
 
   h4,
   .card-title {
-    font-size: var(--type-18) !important;
+    font-size: var(--type-card-title) !important;
     font-weight: var(--type-weight-medium) !important;
     line-height: 1.4 !important;
   }
@@ -3750,9 +3777,9 @@
   summary,
   figcaption,
   .body-text {
-    font-size: var(--type-16) !important;
+    font-size: var(--type-body) !important;
     font-weight: var(--type-weight-regular);
-    line-height: 1.75;
+    line-height: var(--type-body-leading-en);
   }
 
   .lead,
@@ -3762,9 +3789,43 @@
   .aircraft-teaser .copy p,
   .ways-final-cta p,
   .contact-hero-copy {
-    font-size: var(--type-18) !important;
+    font-size: var(--type-lead) !important;
     font-weight: var(--type-weight-regular) !important;
-    line-height: 1.7 !important;
+    line-height: var(--type-lead-leading-en) !important;
+  }
+
+  body.lang-zh p,
+  body.lang-zh li,
+  body.lang-zh td,
+  body.lang-zh th,
+  body.lang-zh label,
+  body.lang-zh input,
+  body.lang-zh select,
+  body.lang-zh textarea,
+  body.lang-zh summary,
+  body.lang-zh figcaption,
+  body.lang-zh .body-text {
+    line-height: var(--type-body-leading-zh);
+  }
+
+  body.lang-zh .lead,
+  body.lang-zh .path-detail .pitch,
+  body.lang-zh .center-cta p,
+  body.lang-zh .aircraft-teaser .copy p,
+  body.lang-zh .ways-final-cta p {
+    line-height: var(--type-lead-leading-zh) !important;
+  }
+
+  /* CJK headings need slightly more vertical room than Latin headings.
+     Hero headings are div-based and remain governed by the banner contract. */
+  body.lang-zh .page-html-root section h2 {
+    line-height: 1.3 !important;
+    letter-spacing: 0;
+  }
+
+  body.lang-zh .page-html-root section h3 {
+    line-height: 1.4 !important;
+    letter-spacing: 0;
   }
 
   /* Card titles and compact feature headings remain visibly emphasized. */
@@ -4651,9 +4712,9 @@
   .ways-page-hero .ways-emphasis-label,
   .hero p.sub,
   .contact-hero p.sub {
-    font-size: var(--type-16) !important;
+    font-size: var(--type-banner-copy-desktop) !important;
     font-weight: var(--type-weight-regular) !important;
-    line-height: 1.5 !important;
+    line-height: var(--type-banner-copy-leading-desktop) !important;
     letter-spacing: normal !important;
   }
 
@@ -4673,10 +4734,10 @@
   .hero.compact h1,
   .hero.compact.ways-page-hero h1,
   .contact-hero h1 {
-    font-size: var(--type-48) !important;
+    font-size: var(--type-banner-title-desktop) !important;
     font-weight: var(--type-weight-medium) !important;
-    line-height: 1.15 !important;
-    letter-spacing: -0.02em !important;
+    line-height: var(--type-banner-title-leading-desktop) !important;
+    letter-spacing: var(--type-banner-title-tracking-desktop) !important;
   }
 
   @media (min-width: 761px) {
@@ -4692,8 +4753,8 @@
     .contact-hero h1 {
       width: 100%;
       max-width: none;
-      font-size: clamp(28px, 2.3vw, 48px) !important;
-      line-height: 1.15 !important;
+      font-size: var(--type-banner-title-desktop) !important;
+      line-height: var(--type-banner-title-leading-desktop) !important;
       white-space: normal;
       overflow-wrap: normal;
       word-break: normal;
@@ -4746,8 +4807,8 @@
     .ways-page-hero .ways-emphasis-label,
     .hero p.sub,
     .contact-hero p.sub {
-      font-size: var(--type-14) !important;
-      line-height: 1.333333 !important;
+      font-size: var(--type-banner-copy-mobile) !important;
+      line-height: var(--type-banner-copy-leading-mobile) !important;
     }
 
     body.lang-zh .hero h1,
@@ -4758,9 +4819,9 @@
     body.lang-en .hero.compact.ways-page-hero h1,
     body.lang-zh .contact-hero h1,
     body.lang-en .contact-hero h1 {
-      font-size: var(--type-24) !important;
+      font-size: var(--type-banner-title-mobile) !important;
       font-weight: var(--type-weight-medium) !important;
-      line-height: 1.16 !important;
-      letter-spacing: -0.015em !important;
+      line-height: var(--type-banner-title-leading-mobile) !important;
+      letter-spacing: var(--type-banner-title-tracking-mobile) !important;
     }
   }

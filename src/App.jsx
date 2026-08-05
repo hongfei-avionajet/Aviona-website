@@ -61,6 +61,10 @@ const externalToastLabelKeyByTarget = {
 const wordpressPostsEndpoint =
   'https://public-api.wordpress.com/wp/v2/sites/avionajet.wordpress.com/posts?per_page=100&_embed=1&orderby=date&order=desc'
 
+const wordpressTypographyCssEndpoint =
+  'https://public-api.wordpress.com/rest/v1.1/sites/254060240/customcss'
+const wordpressTypographyStyleId = 'aviona-wordpress-typography'
+
 const contactEmailAddress = 'ops@avionajet.com'
 const contactChannelsUrl = '/contact#contact-channels'
 const secureStoreUrl = contactChannelsUrl
@@ -237,6 +241,9 @@ const newsCarouselHostHtml =
 
 const heroBackgroundPattern =
   /<div class="hero-bg" style="background-image: url\('([^']+)'\);"><\/div>/
+
+const homeHeroCtaRowPattern =
+  /(<a data-i18n="v5\.hero\.cta2"[\s\S]*?<\/a>)(\n {6}<\/div>)/
 
 const certificationCopyPattern =
   /<div class="certification-copy">[\s\S]*?<\/div>(\n {6}<figure class="certificate-frame">)/
@@ -688,6 +695,14 @@ function addMobileMenuToggle(html) {
   )
 }
 
+function addHomeInvestCta(html) {
+  if (html.includes('data-home-invest-cta')) return html
+  return html.replace(
+    homeHeroCtaRowPattern,
+    '$1\n        <a class="btn primary lg arrow hero-invest-cta" href="/contact" data-home-invest-cta>Invest Now</a>$2',
+  )
+}
+
 function getPageHtml(page, routeKey) {
   let html = applyApprovedContent2026(routeKey, addMobileMenuToggle(page.html))
 
@@ -704,6 +719,7 @@ function getPageHtml(page, routeKey) {
   }, html)
 
   if (routeKey === 'home') {
+    html = addHomeInvestCta(html)
     html = html.replace(certificationCopyPattern, `${newsCarouselHostHtml}$1`)
   }
 
@@ -2643,6 +2659,8 @@ function SitePages({ lang, setLang, onOpenTerms }) {
 
     applyI18nAttributes(root, lang)
     applyFallbackLabelTranslations(root, lang)
+    const homeInvestCta = root.querySelector('[data-home-invest-cta]')
+    if (homeInvestCta) homeInvestCta.textContent = lang === 'zh' ? '立即投资' : 'Invest Now'
 
     root.querySelectorAll('a[href]').forEach((anchor) => {
       const href = anchor.getAttribute('href')
@@ -3101,6 +3119,67 @@ function App() {
   const [lang, setLang] = useState(getInitialLang)
   const [termsPreview, setTermsPreview] = useState(null)
   const suppressLangToggleUntilRef = useRef(0)
+
+  useEffect(() => {
+    const controller = new AbortController()
+    let styleElement = document.getElementById(wordpressTypographyStyleId)
+    const ownsStyleElement = !styleElement
+
+    document.body.classList.add('aviona-react-site')
+
+    if (!styleElement) {
+      styleElement = document.createElement('style')
+      styleElement.id = wordpressTypographyStyleId
+      styleElement.dataset.source = 'wordpress-custom-css'
+      document.head.appendChild(styleElement)
+    }
+
+    const loadTypography = async () => {
+      const retryDelays = [0, 800, 2400]
+      let lastError
+
+      for (const delay of retryDelays) {
+        if (delay) await new Promise((resolve) => window.setTimeout(resolve, delay))
+
+        try {
+          const response = await fetch(wordpressTypographyCssEndpoint, {
+            cache: 'no-store',
+            signal: controller.signal,
+          })
+          if (!response.ok) {
+            throw new Error(`WordPress typography request failed: ${response.status}`)
+          }
+          return response.json()
+        } catch (error) {
+          if (error.name === 'AbortError') throw error
+          lastError = error
+        }
+      }
+
+      throw lastError
+    }
+
+    loadTypography()
+      .then((payload) => {
+        const css = typeof payload?.css === 'string' ? payload.css.trim() : ''
+        if (!css.includes('body.aviona-react-site')) {
+          throw new Error('WordPress typography response did not contain AVIONA rules')
+        }
+        styleElement.textContent = css
+        styleElement.dataset.status = 'loaded'
+      })
+      .catch((error) => {
+        if (error.name === 'AbortError') return
+        styleElement.dataset.status = 'fallback'
+        console.warn('Using bundled typography because WordPress configuration could not be loaded.', error)
+      })
+
+    return () => {
+      controller.abort()
+      document.body.classList.remove('aviona-react-site')
+      if (ownsStyleElement) styleElement.remove()
+    }
+  }, [])
 
   const closeTermsPreview = useCallback(() => {
     suppressLangToggleUntilRef.current = Date.now() + 600

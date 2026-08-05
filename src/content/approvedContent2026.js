@@ -737,7 +737,7 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "基金存续期届满后按 GP 回购安排退出",
   },
   "contact.eyebrow": {
-    en: "Investment products are designed for all investors interested in private aviation.",
+    en: "Contact Us",
     zh: "投资产品面向所有对私人飞机感兴趣的投资者。",
   },
   "contact.want.return": {
