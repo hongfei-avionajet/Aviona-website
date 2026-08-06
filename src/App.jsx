@@ -699,7 +699,7 @@ function addHomeInvestCta(html) {
   if (html.includes('data-home-invest-cta')) return html
   return html.replace(
     homeHeroCtaRowPattern,
-    '$1\n        <a class="btn primary lg arrow hero-invest-cta" href="/contact" data-home-invest-cta>Invest Now</a>$2',
+    '$1\n        <a class="btn primary lg arrow hero-invest-cta" href="/contact#contact-channels" data-home-invest-cta>Invest Now</a>$2',
   )
 }
 
