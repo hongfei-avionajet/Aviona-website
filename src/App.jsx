@@ -143,7 +143,7 @@ const contactChannels = [
     id: 'wechat',
     icon: 'wechat',
     label: { en: 'WeChat', zh: '微信' },
-    description: { en: 'Scan to add Aviona on WeChat.', zh: '扫码添加 Aviona 微信。' },
+    description: { en: 'Scan to add AVIONA on WeChat.', zh: '扫码添加 AVIONA 微信。' },
     image: '/assets/contact/wechat-qr-cropped.jpg',
     value: 'NSEJET',
   },
@@ -256,7 +256,7 @@ const contentCarouselSlots = {
       kind: 'hero',
       a11yKey: 'v5.hero.h1',
       fallbackImage: '/assets/photos/jet-sunset.jpg',
-      fallbackTitle: 'Aviona home hero',
+      fallbackTitle: 'AVIONA home hero',
       hostClass: 'hero-bg hero-banner-host',
       pattern: heroBackgroundPattern,
     },
@@ -300,9 +300,9 @@ const contentCarouselSlots = {
       a11yKey: 'home.teaser.h2',
       variant: 'showcase',
       fallbackImage: '/assets/aviona-jet.jpg',
-      fallbackTitle: 'Private jet — Aviona livery',
+      fallbackTitle: 'Private jet — AVIONA livery',
       hostClass: 'img-wrap aircraft-showcase-carousel-host',
-      pattern: /<div class="img-wrap">\s*<img class="jet-shot" src="\/assets\/aviona-jet\.jpg" alt="private jet — Aviona livery">\s*<\/div>/,
+      pattern: /<div class="img-wrap">\s*<img class="jet-shot" src="\/assets\/aviona-jet\.jpg" alt="private jet — AVIONA livery">\s*<\/div>/,
     },
   ],
   why: [
@@ -312,7 +312,7 @@ const contentCarouselSlots = {
       kind: 'hero',
       a11yKey: 'why.h1',
       fallbackImage: '/assets/photos/stewardess-stairs.jpg',
-      fallbackTitle: 'Why Aviona hero',
+      fallbackTitle: 'Why AVIONA hero',
       hostClass: 'hero-bg hero-banner-host',
       pattern: heroBackgroundPattern,
     },
@@ -545,7 +545,7 @@ const contentCarouselSlots = {
       kind: 'hero',
       a11yKey: 'about.h1',
       fallbackImage: '/assets/photos/engine-closeup.jpg',
-      fallbackTitle: 'About Aviona hero',
+      fallbackTitle: 'About AVIONA hero',
       hostClass: 'hero-bg hero-banner-host',
       pattern: heroBackgroundPattern,
     },
@@ -556,7 +556,7 @@ const contentCarouselSlots = {
       a11yKey: 'about.team.heading',
       variant: 'about-team',
       fallbackImage: '/assets/photos/engine-closeup.jpg',
-      fallbackTitle: 'Aviona global operations',
+      fallbackTitle: 'AVIONA global operations',
       hostClass: 'content-image-carousel-host about-team-carousel-host',
       pattern: /<img src="\/assets\/photos\/engine-closeup\.jpg" alt="">/,
     },
@@ -567,7 +567,7 @@ const contentCarouselSlots = {
       a11yKey: 'about.team.heading',
       variant: 'about-team',
       fallbackImage: '/assets/photos/cockpit-pilot.jpg',
-      fallbackTitle: 'Aviona cockpit operations',
+      fallbackTitle: 'AVIONA cockpit operations',
       hostClass: 'content-image-carousel-host about-team-carousel-host',
       pattern: /<img src="\/assets\/photos\/cockpit-pilot\.jpg" alt="">/,
     },
@@ -578,7 +578,7 @@ const contentCarouselSlots = {
       a11yKey: 'about.team.heading',
       variant: 'about-team',
       fallbackImage: '/assets/photos/landing-gear.jpg',
-      fallbackTitle: 'Aviona aircraft operations',
+      fallbackTitle: 'AVIONA aircraft operations',
       hostClass: 'content-image-carousel-host about-team-carousel-host',
       pattern: /<img src="\/assets\/photos\/landing-gear\.jpg" alt="">/,
     },
@@ -590,7 +590,7 @@ const contentCarouselSlots = {
       kind: 'hero',
       a11yKey: 'nav.contact',
       fallbackImage: '/assets/photos/champagne-service.jpg',
-      fallbackTitle: 'Contact Aviona hero',
+      fallbackTitle: 'Contact AVIONA hero',
       hostClass: 'hero-bg hero-banner-host',
       pattern: heroBackgroundPattern,
     },
@@ -874,7 +874,7 @@ function extractMediaFromPostHtml(html = '') {
       type,
       src,
       poster: tagName === 'video' ? cleanMediaUrl(element.getAttribute('poster') || '') : '',
-      title: element.getAttribute('title') || element.getAttribute('alt') || 'Aviona aircraft media',
+      title: element.getAttribute('title') || element.getAttribute('alt') || 'AVIONA aircraft media',
     })
   })
 
@@ -906,7 +906,7 @@ function sanitizePostHtml(html = '') {
 
 function normalizePost(post, index, lang) {
   const contentHtml = post.content?.rendered || ''
-  const title = decodeHtml(post.title?.rendered) || (lang === 'zh' ? 'Aviona 最新动态' : 'Aviona Update')
+  const title = decodeHtml(post.title?.rendered) || (lang === 'zh' ? 'AVIONA 最新动态' : 'AVIONA Update')
   const image = getNewsPostImage(post, index)
 
   return {
@@ -993,13 +993,13 @@ function getAircraftHeroMediaEndpoint() {
   return `${wordpressAircraftHeroMediaEndpoint}&categories=${wordpressAircraftHeroMediaCategory}`
 }
 
-function getFallbackCarouselSlides(fallbackImage, fallbackTitle = 'Aviona') {
+function getFallbackCarouselSlides(fallbackImage, fallbackTitle = 'AVIONA') {
   return fallbackImage
     ? [{ id: `fallback-${fallbackImage}`, image: fallbackImage, title: fallbackTitle }]
     : []
 }
 
-function normalizeCarouselPost(post, fallbackImage, fallbackTitle = 'Aviona') {
+function normalizeCarouselPost(post, fallbackImage, fallbackTitle = 'AVIONA') {
   const contentHtml = post.content?.rendered || ''
   const images = extractMediaFromPostHtml(contentHtml)
     .filter((item) => item.type === 'image')
@@ -1104,7 +1104,7 @@ function normalizeAircraftHeroMediaPost(post, fallbackImage) {
         type: 'image',
         src: fallbackMedia,
         poster: '',
-        title: 'Aviona aircraft',
+        title: 'AVIONA aircraft',
       }]
     : []
 }
@@ -1684,7 +1684,7 @@ function AircraftHeroMediaBanner({ fallbackImage, lang }) {
           type: 'image',
           src: fallbackImage,
           poster: '',
-          title: 'Aviona aircraft',
+          title: 'AVIONA aircraft',
         }]),
     [fallbackImage, media],
   )
@@ -2110,7 +2110,7 @@ function NewsCarousel({ lang }) {
       <section className="news-carousel" aria-label={lang === 'zh' ? '最新动态' : 'Latest News'}>
         <div className="news-carousel-kicker">{lang === 'zh' ? '最新动态' : 'Latest News'}</div>
         <div className="news-carousel-head">
-          <h2>{lang === 'zh' ? 'Aviona 新闻与公告' : 'Aviona News & Updates'}</h2>
+          <h2>{lang === 'zh' ? 'AVIONA 新闻与公告' : 'AVIONA News & Updates'}</h2>
         </div>
 
         {status === 'loading' && <div className="news-state">{lang === 'zh' ? '正在读取最新文章...' : 'Loading latest posts...'}</div>}
@@ -2478,7 +2478,7 @@ function FloatingContactWidget({ lang, hideRail = false }) {
             >
               x
             </button>
-            <div className="contact-channel-modal-kicker">{lang === 'zh' ? '联系 AVIONA' : 'Contact Aviona'}</div>
+            <div className="contact-channel-modal-kicker">{lang === 'zh' ? '联系 AVIONA' : 'Contact AVIONA'}</div>
             <h3>{activeChannel.label[lang]}</h3>
             <p>{activeChannel.description[lang]}</p>
             {activeChannel.image ? (

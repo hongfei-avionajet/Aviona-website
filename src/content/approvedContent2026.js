@@ -8,7 +8,7 @@
 
 export const APPROVED_CONTENT_2026_I18N = {
   "meta.title.home": { en: "AVIONA — Own a Private Jet from US$16,000", zh: "首页 — AVIONA" },
-  "meta.title.why": { en: "Why Aviona — AVIONA", zh: "AVIONA 优势 — AVIONA" },
+  "meta.title.why": { en: "Why AVIONA — AVIONA", zh: "AVIONA 优势 — AVIONA" },
   "meta.title.aircraft": { en: "The Aircraft — AVIONA", zh: "私人飞机 — AVIONA" },
   "meta.title.ways": { en: "Investment Options — AVIONA", zh: "投资方式 — AVIONA" },
   "meta.title.about": { en: "About AVIONA", zh: "关于 AVIONA" },
@@ -19,7 +19,7 @@ export const APPROVED_CONTENT_2026_I18N = {
   },
   "v5.hero.h1": {
     en: "AVIONA — The Leader in Private Jet RWA",
-    zh: '<span class="mobile-title-line">AVIONA——私人飞机 RWA</span><span class="mobile-title-line">的领跑者</span>',
+    zh: '<span class="mobile-title-line">AVIONA—私人飞机 RWA</span><span class="mobile-title-line">的领跑者</span>',
   },
   "home.teaser.sub": {
     en: "Dassault Falcon&nbsp;7X or Bombardier Global&nbsp;Series",
@@ -465,7 +465,7 @@ export const APPROVED_CONTENT_2026_I18N = {
   "ac.institutional.contact.desc": { en: "Request more information and a tailored participation plan.", zh: "获取更多信息与专属方案" },
   "ac.institutional.cta": { en: "Learn More & Apply", zh: "了解并申请" },
   "ac.institutional.contactCta": { en: "Contact Us", zh: "联系我们" },
-  "ac.participation.h2": { en: "How would you like to participate in Aviona?", zh: "您希望以何种方式参与 Aviona？" },
+  "ac.participation.h2": { en: "How would you like to participate in AVIONA?", zh: "您希望以何种方式参与 AVIONA？" },
   "ac.participation.sub": { en: "Choose a path, submit your contact details, and continue securely.", zh: "选择参与方式，提交联系方式后进入对应安全流程" },
   "ac.participation.classA": { en: "Choose Class A", zh: "选择 Class A" },
   "ac.participation.classB": { en: "Choose Class B", zh: "选择 Class B" },
@@ -642,7 +642,7 @@ export const APPROVED_CONTENT_2026_I18N = {
     en: "AVIONA holds IS-BAO international safety certification and safeguards every flight to international safety and service standards. By combining professional aviation operations, internationally compliant funds, artificial intelligence and blockchain technology, AVIONA is building a world-leading private-jet asset securitization and digitization ecosystem that makes private aviation assets more investable, with transparent costs and efficient operations, while creating long-term value.",
     zh: "AVIONA 具备 IS-BAO 国际安全认证，以国际安全标准和服务标准保障每一次飞行，并将专业航空运营能力、国际合规基金、人工智能及区块链技术相结合，打造全球领先的私人飞机资产证券化和资产数字化生态，让私人航空资产变得更加具备投资价值，成本透明、运行高效，并创造长期价值。",
   },
-  "about.capabilities.label": { en: "Aviona's Six Core Capabilities", zh: "Aviona的六项核心能力" },
+  "about.capabilities.label": { en: "AVIONA's Six Core Capabilities", zh: "AVIONA的六项核心能力" },
   "about.capabilities.heading": {
     en: "From a global route network to aircraft value preservation and appreciation",
     zh: "从全球航线网络到飞机资产增值保值",
@@ -682,16 +682,16 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "私人飞机不仅是交通工具，更是连接企业家、投资人与全球商业资源的重要平台。",
   },
   "about.struct.lead": {
-    en: "The Aviona Master Fund is structured as a Hong Kong Limited Partnership Fund (LPF) and operated within the regulatory framework of the Hong Kong Securities and Futures Commission (SFC). The aircraft itself is held by a single-asset SPV owned by the fund — your unit corresponds one-to-one with real aircraft ownership, not a paper claim.",
-    zh: "Aviona 主基金以香港有限合伙基金（LPF）架构设立，在香港证监会（SFC）监管框架下运营。飞机由基金持有的单资产 SPV 持有——您的份额对应真实飞机产权，非纸面权益。",
+    en: "The AVIONA Master Fund is structured as a Hong Kong Limited Partnership Fund (LPF) and operated within the regulatory framework of the Hong Kong Securities and Futures Commission (SFC). The aircraft itself is held by a single-asset SPV owned by the fund — your unit corresponds one-to-one with real aircraft ownership, not a paper claim.",
+    zh: "AVIONA 主基金以香港有限合伙基金（LPF）架构设立，在香港证监会（SFC）监管框架下运营。飞机由基金持有的单资产 SPV 持有——您的份额对应真实飞机产权，非纸面权益。",
   },
   "about.tf.t1.p": {
     en: "The aircraft is insured at 115% of its value — over-insured to protect holders against loss events.",
     zh: "飞机按价值的 115% 投保——超额承保，保护持有人免受损失事件影响。",
   },
   "about.dl.lead": {
-    en: "Aviona uses a regulated digital ownership record to keep holdings clear, secure, and transferable. The technology is part of why Aviona is more efficient than traditional ownership — but it stays quietly in the background of the experience. You receive a secure unique identifier that connects your ownership to flight access and member benefits.",
-    zh: "Aviona 使用受监管的数字产权记录，使持仓清晰、安全、可转让。该技术是 Aviona 较传统产权更高效的原因之一——但隐于体验之后。您将获得安全的唯一标识符，连接您的产权与飞行使用、会员权益。",
+    en: "AVIONA uses a regulated digital ownership record to keep holdings clear, secure, and transferable. The technology is part of why AVIONA is more efficient than traditional ownership — but it stays quietly in the background of the experience. You receive a secure unique identifier that connects your ownership to flight access and member benefits.",
+    zh: "AVIONA 使用受监管的数字产权记录，使持仓清晰、安全、可转让。该技术是 AVIONA 较传统产权更高效的原因之一——但隐于体验之后。您将获得安全的唯一标识符，连接您的产权与飞行使用、会员权益。",
   },
   "about.partner.mx.sub": { en: "Engine & airframe programs", zh: "发动机与机身保障计划" },
   "ways.rails.fiat": { en: "Fiat (USD)", zh: "法币（USD）" },
@@ -762,16 +762,16 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "GP 保证金作为风险缓释安排、1:1 真实飞机资产支撑及灵活赎回机制，具体以基金最终条款为准",
   },
   "ways.a.terms.v7": {
-    en: `<ul class="ways-inline-list"><li>All VIP Membership benefits</li><li>Empty-leg travel on the corresponding aircraft at US$700 per seat per flight hour, plus all Aviona and partner empty-leg flights at cost</li><li>10% discount on charter flights</li></ul>`,
-    zh: `<ul class="ways-inline-list"><li>VIP 俱乐部会员的所有权益</li><li>可以每座每飞行小时 700 美元乘坐所购基金份额对应飞机的空腿航班，并以成本价乘坐 Aviona 旗下或联名合作飞机的所有空腿航班</li><li>包机九折优惠</li></ul>`,
+    en: `<ul class="ways-inline-list"><li>All VIP Membership benefits</li><li>Empty-leg travel on the corresponding aircraft at US$700 per seat per flight hour, plus all AVIONA and partner empty-leg flights at cost</li><li>10% discount on charter flights</li></ul>`,
+    zh: `<ul class="ways-inline-list"><li>VIP 俱乐部会员的所有权益</li><li>可以每座每飞行小时 700 美元乘坐所购基金份额对应飞机的空腿航班，并以成本价乘坐 AVIONA 旗下或联名合作飞机的所有空腿航班</li><li>包机九折优惠</li></ul>`,
   },
   "ways.b.terms.v8": {
-    en: `<ul class="ways-inline-list"><li>All VIP Membership benefits</li><li>Empty-leg travel on the corresponding aircraft at US$700 per seat per flight hour, plus all Aviona and partner empty-leg flights at cost</li><li>10% discount on charter flights</li></ul>`,
-    zh: `<ul class="ways-inline-list"><li>VIP 俱乐部会员的所有权益</li><li>可以每座每飞行小时 700 美元乘坐对应飞机的空腿航班，并以成本价乘坐 Aviona 旗下或联名合作飞机的所有空腿航班</li><li>包机九折优惠</li></ul>`,
+    en: `<ul class="ways-inline-list"><li>All VIP Membership benefits</li><li>Empty-leg travel on the corresponding aircraft at US$700 per seat per flight hour, plus all AVIONA and partner empty-leg flights at cost</li><li>10% discount on charter flights</li></ul>`,
+    zh: `<ul class="ways-inline-list"><li>VIP 俱乐部会员的所有权益</li><li>可以每座每飞行小时 700 美元乘坐对应飞机的空腿航班，并以成本价乘坐 AVIONA 旗下或联名合作飞机的所有空腿航班</li><li>包机九折优惠</li></ul>`,
   },
   "ways.m.terms.v2": {
-    en: "The member or a designated user may take empty-leg flights on the corresponding aircraft at US$700 per seat per flight hour, and use all Aviona and partner empty-leg flights at cost",
-    zh: "会员或指定人员可以每座每飞行小时 700 美元乘坐对应飞机的空腿航班，并以成本价乘坐 Aviona 旗下或联名合作飞机的所有空腿航班",
+    en: "The member or a designated user may take empty-leg flights on the corresponding aircraft at US$700 per seat per flight hour, and use all AVIONA and partner empty-leg flights at cost",
+    zh: "会员或指定人员可以每座每飞行小时 700 美元乘坐对应飞机的空腿航班，并以成本价乘坐 AVIONA 旗下或联名合作飞机的所有空腿航班",
   },
   "ways.compare.r10c": {
     en: "Management and operations are handled by a professional operator, subject to the final fund terms",
@@ -893,8 +893,8 @@ export const APPROVED_CONTENT_2026_I18N = {
   },
   "faq.a.q5": { en: "Do I receive flight and membership benefits?", zh: "我是否享有飞行和会员权益？" },
   "faq.a.a5": {
-    en: `<p>Yes. Class A includes all VIP Membership benefits, empty-leg travel on the corresponding aircraft at US$700 per seat per flight hour, Aviona and partner empty-leg flights at cost, and a 10% charter discount.</p>`,
-    zh: `<p>是。Class A 包含全部 VIP 会员权益、对应飞机每座每飞行小时 700 美元的空腿航班、Aviona 及合作飞机的成本价空腿航班，以及包机九折优惠。</p>`,
+    en: `<p>Yes. Class A includes all VIP Membership benefits, empty-leg travel on the corresponding aircraft at US$700 per seat per flight hour, AVIONA and partner empty-leg flights at cost, and a 10% charter discount.</p>`,
+    zh: `<p>是。Class A 包含全部 VIP 会员权益、对应飞机每座每飞行小时 700 美元的空腿航班、AVIONA 及合作飞机的成本价空腿航班，以及包机九折优惠。</p>`,
   },
 
   "faq.b.q1": { en: "What is Class B?", zh: "什么是 Class B？" },
@@ -1800,7 +1800,7 @@ function applyAircraftContent(html) {
       </div>
 
       <div class="aircraft-participation-flow">
-        <h2 data-i18n="ac.participation.h2">How would you like to participate in Aviona?</h2>
+        <h2 data-i18n="ac.participation.h2">How would you like to participate in AVIONA?</h2>
         <p data-i18n="ac.participation.sub">Choose a path, submit your contact details, and continue securely.</p>
         <div class="aircraft-participation-options">
           <a href="/contact?interest=class-a#contact-channels"><strong data-i18n="ac.participation.classA">Choose Class A</strong><span aria-hidden="true">→</span><span data-i18n="ac.participation.investFlow">Submit the contact form, then continue to the corresponding Brickken store</span></a>
@@ -1960,7 +1960,7 @@ function applyContactContent(html) {
 
 function applyCopyrightNotice(html) {
   let next = html
-    .replaceAll(" © 2026 Aviona. All rights reserved.", "")
+    .replaceAll(" © 2026 AVIONA. All rights reserved.", "")
     .replace(
       '<img src="/assets/is-bao-certificate.jpg" alt="IS-BAO certificate of registration for Avion Infinity Group Limited">',
       '<img src="/assets/is-bao-certificate.jpg" alt="IS-BAO certificate of registration for Avion Infinity Group Limited" data-i18n-alt="a11y.isbaoCertificate">',
