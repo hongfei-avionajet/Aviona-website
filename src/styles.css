@@ -3483,6 +3483,9 @@
       pointer-events: none;
       transition: transform 0.28s ease, visibility 0.28s;
     }
+    body.lang-en .mobile-menu-panel {
+      min-width: 180px;
+    }
     header.site.mobile-menu-open .mobile-menu-panel {
       transform: translateX(0);
       visibility: visible;
@@ -3557,6 +3560,11 @@
       padding: 52px 7px 8px;
       gap: 5px;
       min-width: 148px;
+    }
+    /* English nav labels are longer; widen just enough to avoid clipping. */
+    body.lang-en .mobile-menu-panel {
+      min-width: 180px;
+      padding-inline: 10px;
     }
     .mobile-menu-panel nav.primary a {
       font-size: 10.5px;
