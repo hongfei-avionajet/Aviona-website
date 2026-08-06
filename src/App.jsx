@@ -689,9 +689,15 @@ function deferReactRootUnmount(root) {
 
 function addMobileMenuToggle(html) {
   if (html.includes('data-mobile-menu-toggle')) return html
-  return html.replace(
+
+  const withToggle = html.replace(
     '\n  <nav class="primary">',
-    '\n  <button class="mobile-menu-toggle" type="button" aria-label="Menu" data-i18n-aria-label="a11y.mobileMenu" aria-expanded="false" data-mobile-menu-toggle><span></span><span></span><span></span></button>\n  <nav class="primary">',
+    '\n  <button class="mobile-menu-toggle" type="button" aria-label="Menu" data-i18n-aria-label="a11y.mobileMenu" aria-expanded="false" data-mobile-menu-toggle><span></span><span></span><span></span></button>\n  <div class="mobile-menu-panel" data-mobile-menu-panel>\n  <nav class="primary">',
+  )
+
+  return withToggle.replace(
+    /(\n {2}<div class="header-utility">[\s\S]*?\n {2}<\/div>)\n<\/header>/,
+    '$1\n  </div>\n</header>',
   )
 }
 
