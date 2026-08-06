@@ -4723,6 +4723,7 @@
   .hero .eyebrow-gold,
   .ways-page-hero .ways-emphasis-label {
     color: var(--gold-soft) !important;
+    text-transform: none !important;
   }
 
   .hero p.sub,
