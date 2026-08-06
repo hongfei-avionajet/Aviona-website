@@ -16,6 +16,19 @@
     <title>AVIONA — Own a Private Jet from US$16,000</title>
   </head>
   <body>
+    <script>
+      (() => {
+        let language = 'en'
+        try {
+          language = window.localStorage.getItem('aviona-lang') === 'zh' ? 'zh' : 'en'
+        } catch {
+          language = 'en'
+        }
+
+        document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en'
+        document.body.classList.add(`lang-${language}`)
+      })()
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
