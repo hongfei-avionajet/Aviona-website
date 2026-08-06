@@ -1265,7 +1265,7 @@
   }
   .why-2026-core-card {
     display: grid;
-    grid-template-columns: 42% minmax(0, 1fr);
+    grid-template-columns: 38% minmax(0, 1fr);
     min-width: 0;
     min-height: 230px;
     overflow: hidden;
@@ -1328,7 +1328,7 @@
   }
   .why-2026-core-copy {
     min-width: 0;
-    padding: 22px 18px 20px;
+    padding: 18px 16px;
   }
   .why-2026-core-title {
     display: grid;
@@ -1345,15 +1345,15 @@
   }
   .why-2026-core-card h3 {
     margin: 0;
-    font-size: 17px !important;
+    font-size: 16px !important;
     font-weight: 500 !important;
     line-height: 1.35 !important;
     text-wrap: balance;
   }
   .why-2026-core-card ul {
     display: grid;
-    gap: 8px;
-    margin: 18px 0 0;
+    gap: 6px;
+    margin: 14px 0 0;
     padding: 0;
     list-style: none;
   }
@@ -1364,7 +1364,7 @@
     align-items: start;
     color: var(--text-secondary);
     font-size: 14px !important;
-    line-height: 1.5 !important;
+    line-height: 1.45 !important;
   }
   .why-2026-core-check {
     display: inline-flex;
@@ -4824,5 +4824,63 @@
       font-weight: var(--type-weight-medium) !important;
       line-height: var(--type-banner-title-leading-mobile) !important;
       letter-spacing: var(--type-banner-title-tracking-mobile) !important;
+    }
+  }
+
+  /* Component heading contracts
+     Keep compact card and service titles independent from the WordPress H3 token. */
+  body.aviona-react-site .page-html-root .why-2026-structure-card h3 {
+    font-size: clamp(12px, 1vw, 14px) !important;
+    font-weight: var(--type-weight-medium) !important;
+    line-height: 1.3 !important;
+  }
+
+  body.aviona-react-site.lang-zh .page-html-root .why-2026-structure-card h3 {
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+  }
+
+  body.aviona-react-site .page-html-root .why-2026-core-card h3 {
+    font-size: 16px !important;
+    font-weight: var(--type-weight-medium) !important;
+    line-height: 1.35 !important;
+  }
+
+  body.aviona-react-site .page-html-root .why-2026-core-card li {
+    font-size: 14px !important;
+    line-height: 1.45 !important;
+  }
+
+  body.aviona-react-site .page-html-root .about-flight-service h3 {
+    font-size: var(--type-18) !important;
+    font-weight: var(--type-weight-medium) !important;
+    line-height: 1.4 !important;
+  }
+
+  .about-flight-service-heading {
+    align-items: baseline;
+  }
+
+  @media (min-width: 1181px) {
+    .why-2026-core-title {
+      min-height: 65px;
+    }
+  }
+
+  @media (min-width: 981px) {
+    .about-flight-service-heading {
+      min-height: 76px;
+    }
+  }
+
+  @media (max-width: 1180px) {
+    body.aviona-react-site .page-html-root .why-2026-structure-card h3 {
+      font-size: 16px !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    body.aviona-react-site .page-html-root .why-2026-core-card h3 {
+      font-size: 18px !important;
     }
   }
