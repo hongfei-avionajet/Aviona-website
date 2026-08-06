@@ -703,8 +703,8 @@
     width: 100%;
     margin: 0 auto 28px;
     color: var(--text-secondary);
-    font-size: 18px;
-    line-height: 1.55;
+    font-size: 16px;
+    line-height: 1.75;
     text-align: center;
   }
   .certificate-frame img {
@@ -722,7 +722,7 @@
     .certification-band { padding: 42px 20px 48px; }
     .certification-copy h2 { font-size: 28px; }
     .news-carousel-head { align-items: flex-start; flex-direction: column; }
-    .certificate-frame figcaption { font-size: 18px; }
+    .certificate-frame figcaption { font-size: 16px; line-height: 1.75; }
     .news-slide { grid-template-columns: 1fr; min-height: 0; }
     .news-slide-image { min-height: 220px; }
     .news-slide-copy { padding: 24px; }
@@ -1665,7 +1665,7 @@
     font-weight: 600;
   }
   .aircraft-reason-heading .eyebrow { margin-top: 2px; }
-  .aircraft-reason-heading h2 { margin-top: 8px; font-size: 30px; }
+  .aircraft-reason-heading h2 { margin-top: 8px; font-size: 24px; }
   .aircraft-reason-list {
     display: grid;
     gap: 12px;
@@ -3057,8 +3057,15 @@
     border: 1px solid rgba(201, 160, 54, 0.34);
     background: rgba(255, 253, 247, 0.96);
     box-shadow: 0 18px 42px rgba(31, 35, 41, 0.12);
+    position: relative;
   }
-  .floating-contact-rail button,
+  .floating-contact-collapse {
+    display: none;
+  }
+  .floating-contact-collapsed {
+    display: none;
+  }
+  .floating-contact-rail button:not(.floating-contact-collapse),
   .floating-contact-rail a {
     width: 100%; min-height: 72px; display: flex; flex-direction: column;
     align-items: center; justify-content: center; gap: 5px;
@@ -3068,7 +3075,7 @@
     text-decoration: none;
     transition: background 0.2s, color 0.2s;
   }
-  .floating-contact-rail > :first-child { border-top: 0; }
+  .floating-contact-rail > :first-child:not(.floating-contact-collapse) { border-top: 0; }
   .floating-contact-rail button:hover,
   .floating-contact-rail button.active,
   .floating-contact-rail a:hover,
@@ -3622,12 +3629,92 @@
     .sub-anchor-nav { padding: 12px 18px; gap: 14px; top: 130px; }
     .sub-anchor-nav a { font-size: 10px; }
     .logos-row { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-    .floating-contact { right: 12px; bottom: 12px; --floating-contact-menu-gap: 10px; }
-    .floating-contact-menu { width: min(172px, calc(100vw - 100px)); }
-    .floating-contact-rail { width: 70px; }
-    .floating-contact-rail button,
-    .floating-contact-rail a { min-height: 54px; font-size: 10px; }
-    .floating-contact-icon { width: 28px; height: 28px; font-size: 9px; }
+    .floating-contact { right: 12px; bottom: 12px; --floating-contact-menu-gap: 6px; }
+    .floating-contact-menu {
+      width: min(90px, calc(100vw - 56px));
+      padding: 4px;
+      box-shadow: 0 9px 21px rgba(31, 35, 41, 0.13);
+    }
+    .floating-contact-menu button {
+      gap: 5px;
+      font-size: 8px;
+      padding: 4px;
+    }
+    .floating-contact-rail {
+      width: 42px;
+      overflow: visible;
+      box-shadow: 0 9px 21px rgba(31, 35, 41, 0.12);
+    }
+    .floating-contact-rail button:not(.floating-contact-collapse),
+    .floating-contact-rail a {
+      min-height: 36px;
+      gap: 2px;
+      font-size: 8px;
+      line-height: 1.1;
+      overflow: hidden;
+    }
+    .floating-contact-rail > .floating-contact-invest { border-top: 0; }
+    .floating-contact-invest > span:last-child,
+    .floating-contact-toggle > span:last-child {
+      font-size: 8px;
+      line-height: 1.1;
+    }
+    .floating-contact-icon {
+      width: 15px;
+      height: 15px;
+      font-size: 6px;
+    }
+    .floating-contact-icon svg {
+      width: 10px;
+      height: 10px;
+      stroke-width: 2;
+    }
+    .floating-contact-collapse {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      z-index: 2;
+      width: auto;
+      min-width: 0;
+      min-height: 0;
+      height: auto;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      color: #8e650e;
+      font: inherit;
+      font-size: 10px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .floating-contact.is-collapsed .floating-contact-collapse {
+      display: none;
+    }
+    .floating-contact-collapsed {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border: 1px solid rgba(201, 160, 54, 0.34);
+      border-radius: 8px;
+      background: rgba(255, 253, 247, 0.96);
+      color: #a77a16;
+      cursor: pointer;
+      box-shadow: 0 9px 21px rgba(31, 35, 41, 0.12);
+    }
+    .floating-contact:not(.is-collapsed) .floating-contact-collapsed {
+      display: none;
+    }
+    .floating-contact.is-collapsed {
+      cursor: pointer;
+    }
   }
 
   /* Chinese-language adjustments */
@@ -3800,7 +3887,6 @@
   .hero p.sub,
   .path-detail .pitch,
   .center-cta p,
-  .aircraft-teaser .copy p,
   .ways-final-cta p,
   .contact-hero-copy {
     font-size: var(--type-lead) !important;
@@ -3825,7 +3911,6 @@
   body.lang-zh .lead,
   body.lang-zh .path-detail .pitch,
   body.lang-zh .center-cta p,
-  body.lang-zh .aircraft-teaser .copy p,
   body.lang-zh .ways-final-cta p {
     line-height: var(--type-lead-leading-zh) !important;
   }
@@ -4011,7 +4096,6 @@
     .lead,
     .path-detail .pitch,
     .center-cta p,
-    .aircraft-teaser .copy p,
     .ways-final-cta p,
     .contact-hero-copy {
       font-size: var(--type-18) !important;
@@ -4814,9 +4898,10 @@
     .floating-contact-rail button,
     .floating-contact-rail a,
     .floating-contact-invest > span:last-child,
-    .floating-contact-toggle > span:last-child {
-      font-size: 10px !important;
-      line-height: 1.15 !important;
+    .floating-contact-toggle > span:last-child,
+    .floating-contact-menu button {
+      font-size: 8px !important;
+      line-height: 1.1 !important;
     }
 
     .hero .eyebrow,
@@ -4974,4 +5059,41 @@
       margin-bottom: 0;
       padding-bottom: 6px;
     }
+  }
+
+  /* Homepage IS-BAO certificate caption — override WordPress typography contract */
+  body.aviona-react-site .certificate-frame figcaption,
+  body.aviona-react-site.lang-zh .certificate-frame figcaption {
+    font-size: 16px !important;
+    line-height: 1.75 !important;
+  }
+
+  /* Homepage aircraft teaser body (home.teaser.p) — desktop and mobile */
+  body.aviona-react-site .aircraft-teaser .copy p[data-i18n="home.teaser.p"],
+  body.aviona-react-site.lang-zh .aircraft-teaser .copy p[data-i18n="home.teaser.p"],
+  body.aviona-react-site.lang-en .aircraft-teaser .copy p[data-i18n="home.teaser.p"] {
+    font-size: 16px !important;
+    line-height: 1.75 !important;
+  }
+
+  /* Aircraft page section titles — 24px on desktop and mobile (ZH/EN) */
+  body.aviona-react-site h2[data-i18n="ac.shared.heading"],
+  body.aviona-react-site h2[data-i18n="ac.shared.range.title"],
+  body.aviona-react-site h2[data-i18n="ac.shared.cabin.title"],
+  body.aviona-react-site h2[data-i18n="ac.shared.safety.title"],
+  body.aviona-react-site h2[data-i18n="ac.shared.value.title"],
+  body.aviona-react-site h2[data-i18n="ac.uc.h2"],
+  body.aviona-react-site.lang-zh h2[data-i18n="ac.shared.heading"],
+  body.aviona-react-site.lang-zh h2[data-i18n="ac.shared.range.title"],
+  body.aviona-react-site.lang-zh h2[data-i18n="ac.shared.cabin.title"],
+  body.aviona-react-site.lang-zh h2[data-i18n="ac.shared.safety.title"],
+  body.aviona-react-site.lang-zh h2[data-i18n="ac.shared.value.title"],
+  body.aviona-react-site.lang-zh h2[data-i18n="ac.uc.h2"],
+  body.aviona-react-site.lang-en h2[data-i18n="ac.shared.heading"],
+  body.aviona-react-site.lang-en h2[data-i18n="ac.shared.range.title"],
+  body.aviona-react-site.lang-en h2[data-i18n="ac.shared.cabin.title"],
+  body.aviona-react-site.lang-en h2[data-i18n="ac.shared.safety.title"],
+  body.aviona-react-site.lang-en h2[data-i18n="ac.shared.value.title"],
+  body.aviona-react-site.lang-en h2[data-i18n="ac.uc.h2"] {
+    font-size: 24px !important;
   }

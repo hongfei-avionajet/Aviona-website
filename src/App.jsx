@@ -2222,6 +2222,7 @@ function NewsCarousel({ lang }) {
 
 function FloatingContactWidget({ lang, hideRail = false }) {
   const [isListOpen, setIsListOpen] = useState(false)
+  const [isCollapsed, setIsCollapsed] = useState(false)
   const [activeId, setActiveId] = useState(null)
   const [position, setPosition] = useState(null)
   const widgetRef = useRef(null)
@@ -2308,10 +2309,23 @@ function FloatingContactWidget({ lang, hideRail = false }) {
     if (suppressClickRef.current) event.preventDefault()
   }
 
+  function handleCollapseClick(event) {
+    event.stopPropagation()
+    if (suppressClickRef.current) return
+    setIsListOpen(false)
+    setIsCollapsed(true)
+  }
+
+  function handleExpandClick(event) {
+    event.stopPropagation()
+    if (suppressClickRef.current) return
+    setIsCollapsed(false)
+  }
+
   function handleWidgetPointerDown(event) {
     if (event.button != null && event.button !== 0) return
     if (event.isPrimary === false || dragStateRef.current) return
-    if (event.target.closest('.floating-contact-menu')) return
+    if (event.target.closest('.floating-contact-menu, .floating-contact-collapse, .floating-contact-collapsed')) return
 
     const rect = widgetRef.current?.getBoundingClientRect()
     if (!rect) return
@@ -2383,13 +2397,13 @@ function FloatingContactWidget({ lang, hideRail = false }) {
       {!hideRail && (
         <aside
           ref={widgetRef}
-          className={`floating-contact ${isListOpen ? 'open' : ''}`}
+          className={`floating-contact ${isListOpen ? 'open' : ''} ${isCollapsed ? 'is-collapsed' : ''}`}
           style={position ? { left: `${position.left}px`, top: `${position.top}px`, right: 'auto', bottom: 'auto' } : undefined}
           aria-label={lang === 'zh' ? '联系方式' : 'Contact options'}
           onPointerDown={handleWidgetPointerDown}
           onDragStart={(event) => event.preventDefault()}
         >
-          {isListOpen && (
+          {!isCollapsed && isListOpen && (
             <div className="floating-contact-menu">
               {contactChannels.map((channel) => (
                 <button key={channel.id} type="button" onClick={() => openChannel(channel.id)}>
@@ -2400,30 +2414,50 @@ function FloatingContactWidget({ lang, hideRail = false }) {
             </div>
           )}
 
-          <div className="floating-contact-rail">
-            <a
-              className="floating-contact-invest"
-              href={secureStoreUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={handleInvestClick}
-            >
-              <span className="floating-contact-icon"><FloatingContactIcon type="invest" /></span>
-              <span>{investLabel}</span>
-            </a>
+          {isCollapsed ? (
             <button
-              className="floating-contact-toggle"
+              className="floating-contact-collapsed"
               type="button"
-              onClick={() => {
-                if (suppressClickRef.current) return
-                setIsListOpen((value) => !value)
-              }}
-              aria-expanded={isListOpen}
+              onClick={handleExpandClick}
+              aria-label={lang === 'zh' ? '展开快捷操作' : 'Expand quick actions'}
+              aria-expanded="false"
             >
               <span className="floating-contact-icon"><FloatingContactIcon type="contact" /></span>
-              <span>{contactLabel}</span>
             </button>
-          </div>
+          ) : (
+            <div className="floating-contact-rail">
+              <button
+                className="floating-contact-collapse"
+                type="button"
+                onClick={handleCollapseClick}
+                aria-label={lang === 'zh' ? '收起' : 'Minimize'}
+              >
+                ×
+              </button>
+              <a
+                className="floating-contact-invest"
+                href={secureStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleInvestClick}
+              >
+                <span className="floating-contact-icon"><FloatingContactIcon type="invest" /></span>
+                <span>{investLabel}</span>
+              </a>
+              <button
+                className="floating-contact-toggle"
+                type="button"
+                onClick={() => {
+                  if (suppressClickRef.current) return
+                  setIsListOpen((value) => !value)
+                }}
+                aria-expanded={isListOpen}
+              >
+                <span className="floating-contact-icon"><FloatingContactIcon type="contact" /></span>
+                <span>{contactLabel}</span>
+              </button>
+            </div>
+          )}
         </aside>
       )}
 
