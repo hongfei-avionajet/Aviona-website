@@ -5295,6 +5295,20 @@
     white-space: nowrap;
   }
 
+  body.aviona-react-site .calling-code-zh {
+    display: none;
+  }
+
+  body.aviona-react-site.lang-zh .calling-code-zh,
+  body.aviona-react-site.lang-en .calling-code-en {
+    display: block;
+  }
+
+  body.aviona-react-site.lang-zh .calling-code-en,
+  body.aviona-react-site.lang-en .calling-code-zh {
+    display: none;
+  }
+
   @media (max-width: 640px) {
     body.aviona-react-site .contact-phone-field {
       grid-template-columns: minmax(132px, 0.85fr) minmax(0, 1.15fr);
