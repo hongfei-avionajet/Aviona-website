@@ -5201,3 +5201,26 @@
   body.aviona-react-site .hero p.sub[data-i18n="why.sub"] {
     color: #F2F2F2 !important;
   }
+
+
+  /* Private aircraft page typography: approved values */
+  body.aviona-react-site.lang-zh .hero h1[data-i18n="ac.h1"],
+  body.aviona-react-site.lang-en .hero h1[data-i18n="ac.h1"] {
+    font-size: 32px !important;
+    line-height: 41.6px !important;
+    font-weight: 500 !important;
+    letter-spacing: 1px !important;
+  }
+
+  body.aviona-react-site h2[data-i18n="ac.shared.heading"],
+  body.aviona-react-site h2[data-i18n="ac.shared.range.title"],
+  body.aviona-react-site h2[data-i18n="ac.shared.cabin.title"],
+  body.aviona-react-site h2[data-i18n="ac.shared.safety.title"],
+  body.aviona-react-site h2[data-i18n="ac.shared.value.title"],
+  body.aviona-react-site h2[data-i18n="ac.uc.h2"],
+  body.aviona-react-site h2[data-i18n="ac.institutional.h2"],
+  body.aviona-react-site h2[data-i18n="ac.participation.h2"] {
+    font-size: 24px !important;
+    line-height: 41.6px !important;
+    font-weight: 500 !important;
+  }
