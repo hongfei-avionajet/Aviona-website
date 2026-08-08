@@ -5193,3 +5193,11 @@
     line-height: 41.6px !important;
     font-weight: 500 !important;
   }
+
+
+  /* AVIONA advantages hero copy: approved light gray */
+  body.aviona-react-site .hero .eyebrow[data-i18n="nav.why"],
+  body.aviona-react-site .hero h1[data-i18n="why.h1"],
+  body.aviona-react-site .hero p.sub[data-i18n="why.sub"] {
+    color: #F2F2F2 !important;
+  }
