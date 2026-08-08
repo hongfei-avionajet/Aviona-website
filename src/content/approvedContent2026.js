@@ -1861,7 +1861,113 @@ function applyContactContent(html) {
     )
     .replace(
       '<input type="tel" placeholder="Your mobile number">',
-      '<input type="tel" name="mobile" placeholder="Your mobile number" data-i18n-placeholder="about.form.placeholder.mobile" autocomplete="tel" maxlength="50" required>',
+      `<div class="contact-phone-field">
+          <div class="contact-calling-code-wrap">
+            <select name="callingCode" aria-label="Country or region calling code" required>
+              <option value="+86" selected>中国 / China +86</option>
+              <option value="+852">中国香港 / Hong Kong +852</option>
+              <option value="+853">中国澳门 / Macao +853</option>
+              <option value="+886">中国台湾 / Taiwan +886</option>
+              <option value="+65">新加坡 / Singapore +65</option>
+              <option value="+81">日本 / Japan +81</option>
+              <option value="+82">韩国 / South Korea +82</option>
+              <option value="+66">泰国 / Thailand +66</option>
+              <option value="+60">马来西亚 / Malaysia +60</option>
+              <option value="+62">印度尼西亚 / Indonesia +62</option>
+              <option value="+63">菲律宾 / Philippines +63</option>
+              <option value="+84">越南 / Vietnam +84</option>
+              <option value="+91">印度 / India +91</option>
+              <option value="+92">巴基斯坦 / Pakistan +92</option>
+              <option value="+880">孟加拉国 / Bangladesh +880</option>
+              <option value="+94">斯里兰卡 / Sri Lanka +94</option>
+              <option value="+977">尼泊尔 / Nepal +977</option>
+              <option value="+95">缅甸 / Myanmar +95</option>
+              <option value="+855">柬埔寨 / Cambodia +855</option>
+              <option value="+856">老挝 / Laos +856</option>
+              <option value="+673">文莱 / Brunei +673</option>
+              <option value="+976">蒙古 / Mongolia +976</option>
+              <option value="+960">马尔代夫 / Maldives +960</option>
+              <option value="+971">阿联酋 / UAE +971</option>
+              <option value="+966">沙特阿拉伯 / Saudi Arabia +966</option>
+              <option value="+974">卡塔尔 / Qatar +974</option>
+              <option value="+973">巴林 / Bahrain +973</option>
+              <option value="+965">科威特 / Kuwait +965</option>
+              <option value="+968">阿曼 / Oman +968</option>
+              <option value="+972">以色列 / Israel +972</option>
+              <option value="+90">土耳其 / Türkiye +90</option>
+              <option value="+962">约旦 / Jordan +962</option>
+              <option value="+961">黎巴嫩 / Lebanon +961</option>
+              <option value="+44">英国 / United Kingdom +44</option>
+              <option value="+33">法国 / France +33</option>
+              <option value="+49">德国 / Germany +49</option>
+              <option value="+39">意大利 / Italy +39</option>
+              <option value="+34">西班牙 / Spain +34</option>
+              <option value="+351">葡萄牙 / Portugal +351</option>
+              <option value="+31">荷兰 / Netherlands +31</option>
+              <option value="+32">比利时 / Belgium +32</option>
+              <option value="+41">瑞士 / Switzerland +41</option>
+              <option value="+43">奥地利 / Austria +43</option>
+              <option value="+353">爱尔兰 / Ireland +353</option>
+              <option value="+45">丹麦 / Denmark +45</option>
+              <option value="+46">瑞典 / Sweden +46</option>
+              <option value="+47">挪威 / Norway +47</option>
+              <option value="+358">芬兰 / Finland +358</option>
+              <option value="+354">冰岛 / Iceland +354</option>
+              <option value="+48">波兰 / Poland +48</option>
+              <option value="+420">捷克 / Czechia +420</option>
+              <option value="+30">希腊 / Greece +30</option>
+              <option value="+36">匈牙利 / Hungary +36</option>
+              <option value="+40">罗马尼亚 / Romania +40</option>
+              <option value="+359">保加利亚 / Bulgaria +359</option>
+              <option value="+385">克罗地亚 / Croatia +385</option>
+              <option value="+381">塞尔维亚 / Serbia +381</option>
+              <option value="+380">乌克兰 / Ukraine +380</option>
+              <option value="+7">俄罗斯 / Russia +7</option>
+              <option value="+352">卢森堡 / Luxembourg +352</option>
+              <option value="+377">摩纳哥 / Monaco +377</option>
+              <option value="+356">马耳他 / Malta +356</option>
+              <option value="+357">塞浦路斯 / Cyprus +357</option>
+              <option value="+1">美国 / United States +1</option>
+              <option value="+1">加拿大 / Canada +1</option>
+              <option value="+52">墨西哥 / Mexico +52</option>
+              <option value="+55">巴西 / Brazil +55</option>
+              <option value="+54">阿根廷 / Argentina +54</option>
+              <option value="+56">智利 / Chile +56</option>
+              <option value="+57">哥伦比亚 / Colombia +57</option>
+              <option value="+51">秘鲁 / Peru +51</option>
+              <option value="+58">委内瑞拉 / Venezuela +58</option>
+              <option value="+598">乌拉圭 / Uruguay +598</option>
+              <option value="+595">巴拉圭 / Paraguay +595</option>
+              <option value="+591">玻利维亚 / Bolivia +591</option>
+              <option value="+593">厄瓜多尔 / Ecuador +593</option>
+              <option value="+507">巴拿马 / Panama +507</option>
+              <option value="+506">哥斯达黎加 / Costa Rica +506</option>
+              <option value="+53">古巴 / Cuba +53</option>
+              <option value="+1-809">多米尼加 / Dominican Republic +1-809</option>
+              <option value="+1-876">牙买加 / Jamaica +1-876</option>
+              <option value="+1-787">波多黎各 / Puerto Rico +1-787</option>
+              <option value="+61">澳大利亚 / Australia +61</option>
+              <option value="+64">新西兰 / New Zealand +64</option>
+              <option value="+679">斐济 / Fiji +679</option>
+              <option value="+675">巴布亚新几内亚 / Papua New Guinea +675</option>
+              <option value="+1-671">关岛 / Guam +1-671</option>
+              <option value="+27">南非 / South Africa +27</option>
+              <option value="+20">埃及 / Egypt +20</option>
+              <option value="+212">摩洛哥 / Morocco +212</option>
+              <option value="+213">阿尔及利亚 / Algeria +213</option>
+              <option value="+216">突尼斯 / Tunisia +216</option>
+              <option value="+254">肯尼亚 / Kenya +254</option>
+              <option value="+234">尼日利亚 / Nigeria +234</option>
+              <option value="+233">加纳 / Ghana +233</option>
+              <option value="+251">埃塞俄比亚 / Ethiopia +251</option>
+              <option value="+255">坦桑尼亚 / Tanzania +255</option>
+              <option value="+256">乌干达 / Uganda +256</option>
+              <option value="+230">毛里求斯 / Mauritius +230</option>
+              <option value="+248">塞舌尔 / Seychelles +248</option>
+            </select>
+          </div>
+          <input type="tel" name="mobile" placeholder="Your mobile number" data-i18n-placeholder="about.form.placeholder.mobile" autocomplete="tel-national" inputmode="tel" maxlength="50" required>
+        </div>`,
     )
     .replace(
       '<input type="text" placeholder="City, Country">',
