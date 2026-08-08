@@ -5171,3 +5171,25 @@
     line-height: 41.6px;
     font-weight: 500;
   }
+
+
+  /* AVIONA advantages typography: enforce approved values */
+  body.aviona-react-site.lang-zh .hero h1[data-i18n="why.h1"],
+  body.aviona-react-site.lang-en .hero h1[data-i18n="why.h1"] {
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif !important;
+    font-size: 32px !important;
+    line-height: 41.6px !important;
+    font-weight: 500 !important;
+    letter-spacing: 1px !important;
+  }
+
+  body.aviona-react-site h2[data-i18n="why.2026.compare.h2"],
+  body.aviona-react-site h2[data-i18n="why.2026.rwa.h2"],
+  body.aviona-react-site h2[data-i18n="why.2026.structure.h2"],
+  body.aviona-react-site h2[data-i18n="why.2026.ops.h2"],
+  body.aviona-react-site h2[data-i18n="why.final.h2"] {
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif !important;
+    font-size: 24px !important;
+    line-height: 41.6px !important;
+    font-weight: 500 !important;
+  }
