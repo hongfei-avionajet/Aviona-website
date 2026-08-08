@@ -2978,7 +2978,10 @@ function SitePages({ lang, setLang, onOpenTerms }) {
             if (!rawValue) return null
 
             if (key === 'about.form.mobile') {
-              const callingCode = label.querySelector('[name="callingCode"]')?.value?.trim() || ''
+              const callingCodeField = label.querySelector(
+                lang === 'zh' ? '[name="callingCodeZh"]' : '[name="callingCodeEn"]',
+              )
+              const callingCode = callingCodeField?.value?.trim() || ''
               const mobile = label.querySelector('[name="mobile"]')?.value?.trim() || ''
               if (!mobile) return null
               return { key, label: labelText, value: `${callingCode} ${mobile}`.trim() }
