@@ -5226,7 +5226,9 @@
   }
 
   /* Global heading scale: approved site-wide values */
-  body.aviona-react-site h1 {
+  body.aviona-react-site h1,
+  body.aviona-react-site.lang-zh .hero h1,
+  body.aviona-react-site.lang-en .hero h1 {
     font-size: 32px !important;
   }
 
