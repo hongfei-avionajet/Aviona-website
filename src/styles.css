@@ -5136,11 +5136,11 @@
     font-size: 24px !important;
   }
 
-  /* Homepage hero title — light gray on mobile and desktop (ZH/EN) */
+  /* Homepage hero title — match the light-yellow accent above (mobile and desktop, ZH/EN) */
   body.aviona-react-site .hero h1[data-i18n="v5.hero.h1"],
   body.aviona-react-site.lang-zh .hero h1[data-i18n="v5.hero.h1"],
   body.aviona-react-site.lang-en .hero h1[data-i18n="v5.hero.h1"] {
-    color: rgba(255, 255, 255, 0.72) !important;
+    color: var(--gold-bright) !important;
   }
 
   /* Homepage hero supporting copy — match banner title light gray */
