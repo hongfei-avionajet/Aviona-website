@@ -725,8 +725,8 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "面向所有投资者提供私人航空投资机会、出行便利与高品质服务。",
   },
   "v5.hero.sub": {
-    en: "AVIONA combines Web3.0 technology with more than two decades of private-aviation operating experience, integrating regulatory licensing, technology capabilities, industry resources, and a global operating system to separate investment value from utility value and create multidimensional value for private-jet users and investors. It provides all investors with a compliant way to participate in the potential value created by business aviation.",
-    zh: "AVIONA 结合 Web3.0 技术与二十余年的私人飞机行业运营经验，整合监管牌照、科技能力、行业资源及全球运营体系，拆解投资价值和使用价值，为私人飞机用户和投资者创造多维度价值，并为所有投资者提供合规参与公务航空潜在价值的方式。",
+    en: "AVIONA reshapes private aviation through asset securitization and tokenization—improving efficiency, reducing costs, and making investment opportunities and travel benefits accessible to more people.",
+    zh: "AVIONA 以资产证券化与代币化重构私人飞机价值，让效率更高、成本更低，让更多人共享投资机遇与出行便利。",
   },
   "v5.stat.invest.desc": {
     en: "Target annual return of 6–8%.",
