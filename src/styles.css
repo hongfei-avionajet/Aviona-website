@@ -5224,3 +5224,13 @@
     line-height: 41.6px !important;
     font-weight: 500 !important;
   }
+
+  /* Global heading scale: approved site-wide values */
+  body.aviona-react-site h1 {
+    font-size: 32px !important;
+  }
+
+  body.aviona-react-site h2 {
+    font-size: 24px !important;
+  }
+
