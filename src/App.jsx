@@ -2977,6 +2977,13 @@ function SitePages({ lang, setLang, onOpenTerms }) {
             const rawValue = field.value?.trim()
             if (!rawValue) return null
 
+            if (key === 'about.form.mobile') {
+              const callingCode = label.querySelector('[name="callingCode"]')?.value?.trim() || ''
+              const mobile = label.querySelector('[name="mobile"]')?.value?.trim() || ''
+              if (!mobile) return null
+              return { key, label: labelText, value: `${callingCode} ${mobile}`.trim() }
+            }
+
             const value = field.tagName === 'SELECT'
               ? field.selectedOptions?.[0]?.textContent?.trim() || rawValue
               : rawValue
