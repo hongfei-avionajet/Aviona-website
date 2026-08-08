@@ -5228,6 +5228,8 @@
   /* Global typography system: approved site-wide values */
   body.aviona-react-site h1,
   body.aviona-react-site h1[data-i18n],
+  body.aviona-react-site.lang-zh .hero h1[data-i18n][data-i18n],
+  body.aviona-react-site.lang-en .hero h1[data-i18n][data-i18n],
   body.aviona-react-site.lang-zh .hero h1,
   body.aviona-react-site.lang-en .hero h1 {
     font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", Inter, Arial, sans-serif !important;
@@ -5246,7 +5248,9 @@
   }
 
   body.aviona-react-site h3,
-  body.aviona-react-site h3[data-i18n] {
+  body.aviona-react-site h3[data-i18n],
+  body.aviona-react-site.lang-zh main h3[data-i18n][data-i18n],
+  body.aviona-react-site.lang-en main h3[data-i18n][data-i18n] {
     font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", Inter, Arial, sans-serif !important;
     font-size: 18px !important;
     line-height: 25.2px !important;
