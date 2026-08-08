@@ -15,7 +15,7 @@ export const APPROVED_CONTENT_2026_I18N = {
   "meta.title.contact": { en: "Contact Us — AVIONA", zh: "联系我们 — AVIONA" },
   "contact.h1": {
     en: "Every investor interested in private jets can find the right solution.",
-    zh: '<span class="mobile-title-line">每位关注私人飞机的投资者</span><span class="mobile-title-line">都能找到适合自己的方案。</span>',
+    zh: '<span class="mobile-title-line">每位关注私人飞机的投资者</span><span class="mobile-title-line">都能找到适合的方式</span>',
   },
   "v5.hero.h1": {
     en: "AVIONA — The Leader in Private Jet RWA",
