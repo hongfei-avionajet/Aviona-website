@@ -145,7 +145,7 @@ const contactChannels = [
     label: { en: 'WeChat', zh: '微信' },
     description: { en: 'Scan to add AVIONA on WeChat.', zh: '扫码添加 AVIONA 微信。' },
     image: '/assets/contact/wechat-qr-cropped.jpg',
-    value: 'NSEJET',
+    value: 'NSEgroups',
   },
   {
     id: 'email',
