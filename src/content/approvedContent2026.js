@@ -725,8 +725,8 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "面向所有投资者提供私人航空投资机会、出行便利与高品质服务。",
   },
   "v5.hero.sub": {
-    en: "AVIONA reshapes private aviation through asset securitization and tokenization—improving efficiency, reducing costs, and making investment opportunities and travel benefits accessible to more people.",
-    zh: "AVIONA 以资产证券化与代币化重构私人飞机价值，让效率更高、成本更低，让更多人共享投资机遇与出行便利。",
+    en: "Invest, fly, and share in private aviation—more efficiently and at lower cost.",
+    zh: "更高效、更低成本地投资、飞行并共享私人航空价值。",
   },
   "v5.stat.invest.desc": {
     en: "Target annual return of 6–8%.",
