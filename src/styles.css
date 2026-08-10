@@ -1645,6 +1645,11 @@
   .aircraft-shared-reason [data-carousel-slot="aircraft-range"] .content-image-carousel--landscape {
     aspect-ratio: 16 / 9;
   }
+  .aircraft-shared-reason [data-carousel-slot="aircraft-cabin"] .content-image-carousel--landscape,
+  .aircraft-shared-reason [data-carousel-slot="aircraft-shared-safety"] .content-image-carousel--landscape,
+  .aircraft-shared-reason [data-carousel-slot="aircraft-shared-value"] .content-image-carousel--landscape {
+    aspect-ratio: 16 / 9;
+  }
   .aircraft-shared-reason [data-carousel-slot="aircraft-range"] .path-card-image-slide img {
     object-fit: contain;
     object-position: center;
