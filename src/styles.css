@@ -1642,6 +1642,13 @@
     aspect-ratio: 16 / 9;
   }
   .aircraft-shared-reason .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .aircraft-shared-reason [data-carousel-slot="aircraft-range"] .content-image-carousel--landscape {
+    aspect-ratio: 16 / 9;
+  }
+  .aircraft-shared-reason [data-carousel-slot="aircraft-range"] .path-card-image-slide img {
+    object-fit: contain;
+    object-position: center;
+  }
   .aircraft-reason-media { min-width: 0; }
   .aircraft-reason-caption {
     margin: 12px 0 0;
