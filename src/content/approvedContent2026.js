@@ -725,8 +725,8 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "面向所有投资者提供私人航空投资机会、出行便利与高品质服务。",
   },
   "v5.hero.sub": {
-    en: "Invest, fly, and share in private aviation—more efficiently and at lower cost.",
-    zh: "更高效、更低成本地投资、飞行并共享私人航空价值。",
+    en: "We give all investors a more efficient, lower-cost way to invest in, fly on, and share in private aviation—with premium services included.",
+    zh: "让所有投资者以更高效、更低成本的方式投资、使用并共享私人航空价值，同时享受高品质服务。",
   },
   "v5.stat.invest.desc": {
     en: "Target annual return of 6–8%.",
