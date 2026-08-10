@@ -13,6 +13,8 @@
     --gold: #C9A036;
     --gold-soft: #DDB95C;
     --gold-bright: #E8C66A;
+    --gold-text-dark: #8A6515;
+    --gold-text-light: #F2DA91;
     --accent: #C9A036;        /* main accent for retail CTAs */
     --accent-soft: #FAF1D8;
     --border-soft: #ECE9E1;
@@ -305,7 +307,7 @@
   }
   .eyebrow-gold {
     font-size: 16px; line-height: 1.4; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--gold); font-weight: 600;
+    color: var(--gold-text-dark); font-weight: 600;
   }
   /* Sections */
   section.s {
@@ -313,7 +315,7 @@
   }
   section.s.alt { background: var(--bg-ivory); }
   section.s.dark { background: var(--bg-graphite); color: rgba(255,255,255,0.92); }
-  section.s.dark .eyebrow, section.s.dark .eyebrow-gold { color: var(--gold-soft); }
+  section.s.dark .eyebrow, section.s.dark .eyebrow-gold { color: var(--gold-text-light); }
   section.s.dark h2 { color: #fff; }
   section.s.dark p { color: rgba(255,255,255,0.78); }
   section.s.dark .pillar h3 { color: #fff; }
@@ -4867,7 +4869,7 @@
   .hero .eyebrow,
   .hero .eyebrow-gold,
   .ways-page-hero .ways-emphasis-label {
-    color: var(--gold-soft) !important;
+    color: var(--gold-text-light) !important;
     text-transform: none !important;
   }
 
@@ -5147,7 +5149,8 @@
   body.aviona-react-site .hero h1[data-i18n="v5.hero.h1"],
   body.aviona-react-site.lang-zh .hero h1[data-i18n="v5.hero.h1"],
   body.aviona-react-site.lang-en .hero h1[data-i18n="v5.hero.h1"] {
-    color: var(--gold-bright) !important;
+    color: var(--gold-text-light) !important;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.58), 0 1px 2px rgba(0, 0, 0, 0.42);
   }
 
   /* Homepage hero supporting copy — match banner title light gray */
@@ -5329,4 +5332,3 @@
       font-size: 14px;
     }
   }
-
