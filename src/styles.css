@@ -5288,6 +5288,7 @@
   body.aviona-react-site .hero .eyebrow[data-i18n="v5.hero.eyebrow"] {
     font-size: 16px !important;
     line-height: 24px !important;
+    display: none !important;
   }
   /* Contact phone calling-code selector */
   body.aviona-react-site .contact-phone-field {
