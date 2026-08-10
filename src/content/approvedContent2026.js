@@ -14,11 +14,11 @@ export const APPROVED_CONTENT_2026_I18N = {
   "meta.title.about": { en: "About AVIONA", zh: "关于 AVIONA" },
   "meta.title.contact": { en: "Contact Us — AVIONA", zh: "联系我们 — AVIONA" },
   "contact.h1": {
-    en: "Every investor interested in private jets can find the right solution.",
+    en: "Find the Right Private Aviation Solution for Your Goals",
     zh: '<span class="mobile-title-line">每位关注私人飞机的投资者</span><span class="mobile-title-line">都能找到适合的方式</span>',
   },
   "v5.hero.h1": {
-    en: "AVIONA — The Leader in Private Jet RWA",
+    en: "AVIONA — A Leading Private Aviation RWA Platform",
     zh: '<span class="mobile-title-line">AVIONA—私人飞机 RWA</span><span class="mobile-title-line">的领跑者</span>',
   },
   "home.teaser.sub": {
@@ -32,8 +32,8 @@ export const APPROVED_CONTENT_2026_I18N = {
     en: "Best cost solution for clients with private jet usage needs",
     zh: "有使用飞机需求人士的最佳成本解决方案",
   },
-  "why.eyebrow": { en: "AVIONA Model Advantages", zh: "AVIONA 模式优势" },
-  "why.h1": { en: "AVIONA Model Advantages", zh: "AVIONA 模式优势" },
+  "why.eyebrow": { en: "Why AVIONA", zh: "AVIONA 模式优势" },
+  "why.h1": { en: "The AVIONA Advantage", zh: "AVIONA 模式优势" },
   "why.sub": {
     en: "A real-world asset combining investment value, utility, global mobility, and high-end network value.",
     zh: "私人飞机：兼具投资价值、使用价值、全球流动性与高端社交价值的真实世界资产。",
@@ -51,7 +51,7 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "AVIONA 让私人飞机更可及、更高效、更具投资价值。",
   },
   "why.2026.traditional.label": { en: "Traditional Ownership", zh: "传统拥有模式" },
-  "why.2026.traditional.h3": { en: "One person carries one aircraft.", zh: "一人承担一架飞机" },
+  "why.2026.traditional.h3": { en: "One owner bears the full cost of the aircraft.", zh: "一人承担一架飞机" },
   "why.2026.traditional.1.title": { en: "High capital threshold", zh: "资金门槛高" },
   "why.2026.traditional.1.desc": {
     en: "Only a small number of people can own a private jet.",
@@ -59,7 +59,7 @@ export const APPROVED_CONTENT_2026_I18N = {
   },
   "why.2026.traditional.2.title": { en: "All costs borne alone", zh: "成本全部承担" },
   "why.2026.traditional.2.desc": {
-    en: "Purchase, operations, maintenance, and insurance are borne by one owner.",
+    en: "A single owner bears all acquisition, operating, maintenance, and insurance costs.",
     zh: "购买、运营、维护及保险成本由自己承担",
   },
   "why.2026.traditional.3.title": { en: "Depreciation borne alone", zh: "折旧自己承担" },
@@ -153,7 +153,7 @@ export const APPROVED_CONTENT_2026_I18N = {
   },
   "why.2026.structure.1.title": { en: "Advantages vs REITs", zh: "相比 REITs 的优势" },
   "why.2026.structure.1.1": {
-    en: "Underlying assets are real and tangible — not valuation models",
+    en: "Backed by identifiable, tangible aircraft assets",
     zh: "底层资产真实可触，非估值模型",
   },
   "why.2026.structure.1.2": {
@@ -161,7 +161,7 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "收益来源多元，含使用价值",
   },
   "why.2026.structure.1.3": {
-    en: "No property vacancy risk, with stronger global liquidity",
+    en: "Not exposed to traditional property-vacancy risk; liquidity remains subject to the applicable fund and transfer terms",
     zh: "无物业空置风险，全球流动性更强",
   },
   "why.2026.structure.1.4": {
@@ -177,7 +177,7 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "全球可飞行资产，不受地域限制",
   },
   "why.2026.structure.2.2": {
-    en: "No complex tax burdens such as land value-added tax or holding tax",
+    en: "Not subject to certain property-specific taxes; applicable tax treatment varies by jurisdiction and investor circumstances",
     zh: "无土地增值税、持有税等复杂税负",
   },
   "why.2026.structure.2.3": {
@@ -185,7 +185,7 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "可产生运营收益，而非单纯被动增值",
   },
   "why.2026.structure.2.4": {
-    en: "Higher liquidity, with transferability and exit options",
+    en: "Potential transfer and exit options, subject to fund documentation, eligibility requirements, and market conditions",
     zh: "流动性更高，可转让、可退出",
   },
   "why.2026.structure.3.title": {
@@ -197,7 +197,7 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "有真实资产支撑，非信用或衍生品",
   },
   "why.2026.structure.3.2": {
-    en: "More stable returns with lower volatility",
+    en: "Potential diversification benefits and asset-backed return characteristics",
     zh: "收益更稳健，波动性更低",
   },
   "why.2026.structure.3.3": {
@@ -233,11 +233,11 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "AVIONA 让私人飞机更可及、更高效、更具投资价值。",
   },
   "why.2026.core.1.title": {
-    en: "A 1:1 Tangible Private-Jet Underlying Asset",
+    en: "1:1 Backing by Identifiable Aircraft Assets",
     zh: "一比一真实铆钉的私人飞机底层资产",
   },
   "why.2026.core.1.1": {
-    en: "Real aircraft, real ownership, real returns",
+    en: "Identifiable aircraft assets, clearly documented ownership, and potential investment returns",
     zh: "真实飞机，真实产权，真实收益",
   },
   "why.2026.core.1.2": {
@@ -308,7 +308,7 @@ export const APPROVED_CONTENT_2026_I18N = {
   "why.2026.compliance.label": { en: "Compliance Advantage", zh: "合规优势" },
   "why.2026.compliance.h3": { en: "Compliance Foundation", zh: "合规优势" },
   "why.2026.compliance.1.title": {
-    en: "Hong Kong and British Virgin Islands (BVI) professional-fund and licensed capabilities",
+    en: "Professional Fund Structure and Licensed Service Providers",
     zh: "香港及英属维京群岛（BVI）专业基金与持牌能力",
   },
   "why.2026.compliance.1.desc": {
@@ -348,7 +348,7 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: '为什么 Falcon 7X / Bombardier Global 系列最适合<span class="no-orphan">产权共享</span>？',
   },
   "ac.shared.subheading": {
-    en: "Global reach · Exceptional comfort · World-class safety · Predictable asset value",
+    en: "Global reach · Exceptional comfort · World-class safety · Transparent asset value",
     zh: "全球航程 · 极致舒适 · 世界级安全 · 可预测的资产价值",
   },
   "ac.shared.range.label": { en: "Global business reach", zh: "覆盖全球商务航程" },
@@ -361,7 +361,7 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "香港可直飞欧洲、中东、日本、澳洲大部分地区",
   },
   "ac.shared.range.2": {
-    en: "Covers most genuine travel requirements for business owners.",
+    en: "Supports many of the long-range travel needs of business owners and global families.",
     zh: "覆盖绝大多数企业家真实飞行需求",
   },
   "ac.shared.range.3": { en: "Fewer stopovers and greater time efficiency.", zh: "减少经停，提高时间效率" },
@@ -370,7 +370,7 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "更高运营效率，更高资产利用率",
   },
   "ac.shared.range.caption": {
-    en: "11-hour flight coverage (approximately 10,500 km / 6,750 nm)",
+    en: "Up to approximately 11 hours of nonstop flying (10,500 km / 6,750 nm)",
     zh: "11 小时航程覆盖范围（约 10,500 km / 6,750 nm）",
   },
   "ac.shared.cabin.label": { en: "The most comfortable large cabin", zh: "最舒适的大客舱" },
@@ -395,7 +395,7 @@ export const APPROVED_CONTENT_2026_I18N = {
   },
   "ac.shared.safety.label": { en: "World-class safety", zh: "世界级安全性" },
   "ac.shared.safety.title": {
-    en: "One of the world's recognized business-aviation platforms.",
+    en: "Proven business-aviation platforms with strong safety records.",
     zh: "全球公认最安全的私人飞机平台之一",
   },
   "ac.shared.safety.1": { en: "Falcon 7X trijet design / proven Bombardier Global platform", zh: "Falcon 7X 三发设计 / Bombardier Global 系列成熟平台" },
@@ -409,7 +409,7 @@ export const APPROVED_CONTENT_2026_I18N = {
     en: "High safety standards mean lower operating risk and more stable asset performance.",
     zh: "高安全性意味着更低的运营风险与更稳定的资产表现。",
   },
-  "ac.shared.value.label": { en: "Predictable asset value", zh: "可预测的资产价值" },
+  "ac.shared.value.label": { en: "Transparent and measurable asset value", zh: "可预测的资产价值" },
   "ac.shared.value.title": {
     en: "Mature models with transparent, measurable market value.",
     zh: "成熟机型，折旧更加可预测",
@@ -417,7 +417,7 @@ export const APPROVED_CONTENT_2026_I18N = {
   "ac.shared.value.1": { en: "Active global transaction market and strong liquidity", zh: "全球交易活跃，市场流动性高" },
   "ac.shared.value.2": { en: "Mature maintenance systems and controllable costs", zh: "维护体系成熟，成本透明可控" },
   "ac.shared.value.3": { en: "Broad international buyer base and multiple resale channels", zh: "全球买家充足，转售渠道广泛" },
-  "ac.shared.value.4": { en: "Relatively resilient residual value and strong value retention", zh: "残值相对稳定，资产保值能力强" },
+  "ac.shared.value.4": { en: "Established resale markets and measurable residual-value benchmarks", zh: "残值相对稳定，资产保值能力强" },
   "ac.shared.value.5": { en: "Well suited to long-term asset allocation", zh: "更适合长期资产配置" },
   "ac.shared.value.caption": {
     en: "For RWA, stable and measurable asset value matters more than extreme performance.",
@@ -433,7 +433,7 @@ export const APPROVED_CONTENT_2026_I18N = {
     en: "<ul class=\"usecase-list\"><li>Save hundreds of hours</li><li>Fly point to point</li><li>Avoid queues and connections</li><li>Take control of your schedule</li></ul>",
     zh: "<ul class=\"usecase-list\"><li>节约数百小时</li><li>点对点飞行</li><li>无需排队与转机</li><li>掌控时间</li></ul>",
   },
-  "ac.uc.vacation.h3": { en: "Vacation Lifestyle", zh: "度假生活" },
+  "ac.uc.vacation.h3": { en: "Leisure and Family Travel", zh: "度假生活" },
   "ac.uc.vacation.p": {
     en: "<ul class=\"usecase-list\"><li>Family travel</li><li>Trips with friends</li><li>Pet-friendly journeys</li><li>Enjoy freedom on your own schedule</li></ul>",
     zh: "<ul class=\"usecase-list\"><li>家庭旅行</li><li>朋友聚会</li><li>宠物同行</li><li>享受自由</li></ul>",
@@ -443,12 +443,12 @@ export const APPROVED_CONTENT_2026_I18N = {
     en: "<ul class=\"usecase-list\"><li>Private invitations</li><li>Premium client hospitality</li><li>Corporate brand presentation</li><li>Expand business influence</li></ul>",
     zh: "<ul class=\"usecase-list\"><li>私人邀请</li><li>客户接待</li><li>企业品牌展示</li><li>扩大影响力</li></ul>",
   },
-  "ac.uc.tax.h3": { en: "Corporate Tax Planning Tool", zh: "企业税务工具" },
+  "ac.uc.tax.h3": { en: "Potential Business and Tax Considerations", zh: "企业税务工具" },
   "ac.uc.tax.p": {
     en: "<ul class=\"usecase-list\"><li>Corporate ownership structures</li><li>Depreciation and tax planning</li><li>Compliant expense reporting</li><li>Brand and business use</li></ul>",
     zh: "<ul class=\"usecase-list\"><li>企业持有</li><li>折旧与税务规划</li><li>合规申报</li><li>品牌宣传与商务使用</li></ul>",
   },
-  "ac.uc.quality.h3": { en: "Quality Lifestyle", zh: "高品质生活" },
+  "ac.uc.quality.h3": { en: "Privacy and Lifestyle", zh: "高品质生活" },
   "ac.uc.quality.p": {
     en: "<ul class=\"usecase-list\"><li>Protect privacy</li><li>Travel in comfort</li><li>Move freely</li><li>Elevate quality of life</li></ul>",
     zh: "<ul class=\"usecase-list\"><li>保障隐私</li><li>舒适尊享</li><li>自由出行</li><li>提升生活质量</li></ul>",
@@ -459,7 +459,7 @@ export const APPROVED_CONTENT_2026_I18N = {
   "ac.institutional.a.desc": { en: "Return-oriented participation backed by real aircraft assets.", zh: "以真实飞机资产支持的财务投资方式" },
   "ac.institutional.b.title": { en: "Class B Ownership & Flight Hours", zh: "Class B 产权与飞行权益" },
   "ac.institutional.b.desc": { en: "Fractional ownership combined with practical flight benefits.", zh: "产权共享与实际飞行权益相结合" },
-  "ac.institutional.m.title": { en: "Membership Private Jet Club", zh: "Membership 私人飞机俱乐部" },
+  "ac.institutional.m.title": { en: "AVIONA Private Aviation Club", zh: "Membership 私人飞机俱乐部" },
   "ac.institutional.m.desc": { en: "Private networking, business connection and priority experiences.", zh: "圈层会员、商务社交与优先体验" },
   "ac.institutional.contact.title": { en: "Contact Us", zh: "联系我们" },
   "ac.institutional.contact.desc": { en: "Request more information and a tailored participation plan.", zh: "获取更多信息与专属方案" },
@@ -486,11 +486,11 @@ export const APPROVED_CONTENT_2026_I18N = {
   },
   "about.partner.fm": { en: "Fund Manager · SFC Type 9", zh: "基金管理人 · SFC 第 9 类牌照" },
   "about.h1": {
-    en: "AVIONA — The World's Leading Private Aviation RWA Platform",
+    en: "AVIONA — A Private Aviation RWA and Shared-Ownership Platform",
     zh: "AVIONA — 全球领先的私人航空 RWA 平台",
   },
   "about.sub": {
-    en: "We connect aviation, finance and technology to precisely unlock the investment value and utility value of private aircraft, making private aviation assets more transparent, more liquid and more investable, and opening a new era for private aviation assets.",
+    en: "We bring together aviation, finance, and technology to unlock the investment and practical value of private aircraft—making aviation assets more transparent, accessible, and investable.",
     zh: "我们连接航空、金融与科技，精准释放私人飞机的投资价值与使用价值，让私人航空资产更加透明、更具流动性、更具投资价值，开启私人航空资产新时代。",
   },
   "about.struct.label": { en: "Global Aviation Network", zh: "全球航空网络" },
@@ -567,12 +567,12 @@ export const APPROVED_CONTENT_2026_I18N = {
     en: "Drawing on extensive international operating experience and a global coordination network, we rapidly complete route, slot and relevant flight-permit applications to improve travel efficiency.",
     zh: "依托丰富的国际运营经验与全球协调网络，快速完成航线、时刻及相关飞行许可申请，提升出行效率。",
   },
-  "about.flightServices.2.title": { en: "Safe Flight Assurance", zh: "安全飞行保障" },
+  "about.flightServices.2.title": { en: "Professional Safety and Operational Oversight", zh: "安全飞行保障" },
   "about.flightServices.2.desc": {
     en: "International safety standards, professional crews, comprehensive risk management and standardized operating processes safeguard every flight.",
     zh: "严格遵循国际安全运营标准，专业机组、完善的风险管理体系与规范化运行流程，为每一次飞行保驾护航。",
   },
-  "about.flightServices.3.title": { en: "Ultra Five-Star Exclusive Service", zh: "超五星级专属服务" },
+  "about.flightServices.3.title": { en: "Bespoke In-Flight and Concierge Service", zh: "超五星级专属服务" },
   "about.flightServices.3.desc": {
     en: "From itinerary planning and ground reception to in-flight concierge service, every stage delivers high-quality personalization and a distinguished, comfortable flight experience.",
     zh: "从行程规划、地面接待到空中礼宾，全流程提供高品质、个性化服务，打造尊贵舒适的飞行体验。",
@@ -639,7 +639,7 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "AVIONA 与 Bombardier、Gulfstream、Dassault 等全球领先私人飞机制造商，以及 Jet Aviation、Phenix Jet 等顶尖运营商保持深度合作，建立起灵活的机队置换和飞行支持机制。依托覆盖香港、新加坡、亚太、中东、欧洲及北美的行业合作网络，具备卓越的国际航线整合能力、全球运营资源整合能力以及跨境商务航空协同能力，为投资者提供贯穿飞机采购、运营管理、资产管理、融资及退出的全生命周期服务。",
   },
   "about.team.p3": {
-    en: "AVIONA holds IS-BAO international safety certification and safeguards every flight to international safety and service standards. By combining professional aviation operations, internationally compliant funds, artificial intelligence and blockchain technology, AVIONA is building a world-leading private-jet asset securitization and digitization ecosystem that makes private aviation assets more investable, with transparent costs and efficient operations, while creating long-term value.",
+    en: "AVIONA's aircraft operator is IS-BAO registered and operates in accordance with recognized international safety and service standards. By combining professional aviation operations, internationally compliant fund structures, artificial intelligence, and distributed-ledger technology, AVIONA is building an institutional-grade ecosystem for private-aviation asset structuring and digital administration, with transparent costs and efficient operations.",
     zh: "AVIONA 具备 IS-BAO 国际安全认证，以国际安全标准和服务标准保障每一次飞行，并将专业航空运营能力、国际合规基金、人工智能及区块链技术相结合，打造全球领先的私人飞机资产证券化和资产数字化生态，让私人航空资产变得更加具备投资价值，成本透明、运行高效，并创造长期价值。",
   },
   "about.capabilities.label": { en: "AVIONA's Six Core Capabilities", zh: "AVIONA的六项核心能力" },
@@ -957,7 +957,7 @@ export const APPROVED_CONTENT_2026_I18N = {
   },
   "faq.b.q12": { en: "What is the simplest way to describe Class B?", zh: "如何用最简单的话描述 Class B？" },
   "faq.b.a12": {
-    en: `<p>If Class A means investing in an aircraft, Class B means owning an interest in one.</p><p>You do not need to purchase an entire aircraft or bear all management and maintenance costs to enjoy long-term private-aircraft utility rights and fly at a cost far below the market charter rate. It is both an investment and an efficient, flexible way to travel globally for business, as well as an identity within AVIONA's global membership ecosystem.</p>`,
+    en: `<p>If Class A means investing in an aircraft, Class B means owning an interest in one.</p><p>You do not need to purchase an entire aircraft or bear all management and maintenance costs to enjoy long-term private-aircraft utility rights and fly at a cost far below the market charter rate. It combines potential investment value, long-term flight benefits, and access to AVIONA's global membership network.</p>`,
     zh: `<p>如果 Class A 是投资飞机，那么 Class B 就是拥有飞机权益。</p><p>您无需购买整架飞机，也无需承担全部管理和维护成本，就可以长期享有私人飞机的使用权益，并以远低于市场包机价格的成本飞行。它不仅是一项投资，更是一种高效、灵活的全球商务出行方式，也是进入 AVIONA 全球会员生态的重要身份。</p>`,
   },
   "faq.b.q13": {
@@ -965,7 +965,7 @@ export const APPROVED_CONTENT_2026_I18N = {
     zh: "Class B 支持企业与个人 IP 宣传吗？",
   },
   "faq.b.a13": {
-    en: `<p>Yes. Class B is suitable for corporate brands, content creators, KOLs, livestreamers, self-media professionals, and public figures who want to strengthen brand influence and create premium content and a strong business image through private aviation.</p><ul><li>Show a brand logo on the boarding welcome screen</li><li>Play brand content on cabin displays</li><li>Customize tableware, beverages, and onboard amenities</li><li>Create corporate or personal brand-themed flights</li><li>Support premium brand collaborations and content production</li><li>Build a personal brand</li><li>Run brand marketing</li><li>Create premium content</li><li>Support commercial collaborations</li><li>Travel worldwide for productions and events</li></ul>`,
+    en: `<p>Yes. Class B is suitable for corporate brands, content creators, digital-media professionals, entrepreneurs, and public figures who want to strengthen brand influence and create premium content and a strong business image through private aviation.</p><ul><li>Show a brand logo on the boarding welcome screen</li><li>Play brand content on cabin displays</li><li>Customize tableware, beverages, and onboard amenities</li><li>Create corporate or personal brand-themed flights</li><li>Support premium brand collaborations and content production</li><li>Build a personal brand</li><li>Run brand marketing</li><li>Create premium content</li><li>Support commercial collaborations</li><li>Travel worldwide for productions and events</li></ul>`,
     zh: `<p>支持。Class B 适合企业 IP、内容创作者、KOL、主播、自媒体及公众人物，希望提升品牌影响力，并通过私人飞机打造高品质内容与商务形象。</p><ul><li>登机欢迎画面展示品牌 Logo</li><li>客舱显示屏播放品牌内容</li><li>定制餐具、酒水及机供品</li><li>企业或个人品牌主题飞行</li><li>高端品牌合作及内容拍摄</li><li>个人 IP 打造</li><li>品牌营销</li><li>高品质内容创作</li><li>商业合作</li><li>全球拍摄与活动出行</li></ul>`,
   },
   "faq.b.q14": {
@@ -984,7 +984,7 @@ export const APPROVED_CONTENT_2026_I18N = {
   },
   "faq.m.q2": { en: "What does VIP Membership include?", zh: "VIP 会员包含什么？" },
   "faq.m.a2": {
-    en: `<p>Benefits include applicable empty-leg flights, a 10% charter discount, a dedicated client manager, VIP dinners and brand events, and access to private yachts, golf, private banking, luxury hotels worldwide, airport VIP services, and Michelin restaurant resources.</p><p>Joining the club means not only gaining flight benefits, but also entering an international community of entrepreneurs, investors, family offices, creators, and global partners.</p>`,
+    en: `<p>Benefits include applicable empty-leg flights, a 10% charter discount, a dedicated client manager, VIP dinners and brand events, and access to private yachts, golf, private banking, luxury hotels worldwide, airport VIP services, and selected Michelin-recognized dining experiences.</p><p>Joining the club means not only gaining flight benefits, but also entering an international community of entrepreneurs, investors, family offices, creators, and global partners.</p>`,
     zh: `<p>包括适用的空腿航班、包机费用九折、专属客服经理、VIP 晚宴和品牌活动，以及私人游艇、高尔夫、私人银行、全球奢华酒店、机场 VIP 要客通道和米其林餐厅资源。</p><p>加入会员俱乐部，意味着您不仅拥有飞行权益，更加入一个汇聚企业家、投资人、家族办公室、创作者及全球合作伙伴的国际社区。</p>`,
   },
   "faq.m.q3": { en: "What exclusive events are available to members?", zh: "会员有哪些专属活动？" },
@@ -1002,11 +1002,11 @@ export const APPROVED_CONTENT_2026_I18N = {
   },
 
   "ac.h1": {
-    en: "Bombardier Global Series, Dassault Series",
+    en: "Dassault Falcon 7X and Bombardier Global Series",
     zh: '<span class="hero-title-phrase">庞巴迪环球系列，</span><span class="hero-title-phrase">达索系列</span>',
   },
   "ways.h1": {
-    en: 'Three ways to invest in private aviation<br class="ways-hero-break"> or enjoy the convenience of private jet travel.',
+    en: "Three Ways to Participate in Private Aviation",
     zh: '<span class="mobile-title-line">三种方式参与私人飞机投资</span><span class="mobile-title-line">或享受私人飞机出行便利</span>',
   },
   "ac.compare.col.item": { en: "Item", zh: "项目" },
@@ -1063,6 +1063,30 @@ export const APPROVED_CONTENT_2026_I18N = {
   "ac.compare.summary": { en: "Overall positioning", zh: "综合定位" },
   "ac.compare.summary.falcon": { en: "Performance flagship — quiet cabin, short-runway and high-altitude capability, three-engine design, Ka-band high-speed Wi-Fi, and elegant French design", zh: "性能型旗舰——静音、短跑道、高原机场、三发动机设计、Ka 高速 Wi-Fi，法式优雅设计" },
   "ac.compare.summary.global": { en: "Comfort flagship — more cabin space, larger panoramic windows, a stronger business ambience, outstanding long-haul comfort, and greater baggage capacity", zh: "舒适型旗舰——空间更大、观景窗更大、商务氛围更强、长途舒适性和载物能力突出" },
+
+  // English-language editorial refinements approved in August 2026.
+  "v5.how.s2.h": { en: "Complete Your Subscription", zh: "VIP专属认购" },
+  "v5.how.s3.h": { en: "Pursue potential returns or enjoy the benefits of private aviation.", zh: "获得回报或享受飞行便利。" },
+  "v5.card.pitch.a": { en: "No fixed minimum investment; the suggested subscription amount is US$16,000.", zh: "不限投资金额，建议每份16,000美元。" },
+  "v5.card.f.b1": { en: "Fly at direct operating cost—approximately 50% below typical market charter rates", zh: "成本价飞行（市场包机价50%以内）" },
+  "v5.card.f.b3": { en: "Showcase your corporate or personal brand onboard", zh: "拥有个人专属品牌" },
+  "v5.card.pitch.m": { en: "Join without purchasing an investment unit.", zh: "最低投资金额即可享受产品权益。" },
+  "v5.card.featured.m": { en: "Join without purchasing an investment unit", zh: "最低投资金额即可享受产品权益" },
+  "v5.card.f.m6": { en: "Access to an exclusive professional network", zh: "高端社交平台" },
+  "home.teaser.p": { en: "Everything you expect from private aviation:<br>long-range capability, spacious cabins, advanced avionics, high-speed Wi-Fi, dedicated crews, and exceptional in-flight dining.", zh: "满足您对私人航空的一切想象。<br>最安全、最舒适、最先进的航电系统，远程私人飞机，全球点对点直达，大客舱、高速 Wi-Fi、专属飞行员及超五星级空中餐饮服务。" },
+  "v5.final.h": { en: "Ready to Get Started?", zh: "是否开始？" },
+  "v5.final.p": { en: "Subscriptions can be completed online or with assistance from a dedicated client manager. Fiat, USDC, and USDT are accepted. Participate in private aviation at a lower entry threshold and access potential investment, ownership, travel, and networking benefits.", zh: "线上线下均可认购，支持法币、USDC及USDT。低门槛分享私人飞机价值，低成本成为共享机主，享受私人航空带来的飞行便利与高端人脉资源。" },
+  "ways.b.terms.v2": { en: "Each unit provides one flight hour per year at direct operating cost. Investors may subscribe for multiple whole units.", zh: "每份每年1小时，可认购任意倍数份" },
+  "ways.m.h2": { en: "Join the VIP Membership Program", zh: "购买VIP会员" },
+  "ways.m.terms.v4": { en: "Dedicated client managers facilitate introductions within the membership network, subject to mutual consent", zh: "专属客服帮助会员认识想认识的会员" },
+  "ways.m.terms.v6": { en: "Private yachts, golf, private banking, luxury hotels worldwide, airport VIP services, and selected Michelin-recognized dining experiences", zh: "私人游艇、高尔夫、私人银行、全球奢华酒店、机场VIP要客通道、米其林餐厅资源" },
+  "ways.compare.r1c": { en: "Combines travel and ownership benefits with the potential for investment returns", zh: "不但满足了以上所有功能，还可获得投资利润" },
+  "ways.compare.r3c": { en: "Depreciation and fixed costs are allocated according to the applicable ownership and fund terms, with transaction records supported by distributed-ledger technology", zh: "折旧与固定成本通过链上合约按份额透明、公平分摊" },
+  "ways.compare.r6c": { en: "Transfer and exit options may be available, subject to eligibility requirements, fund documents, and market conditions", zh: "快速、灵活、可转让" },
+  "about.contact.lite.h2": { en: "Learn More About AVIONA", zh: "详细了解 AVIONA" },
+  "contact.sub": { en: "Every inquiry matters to us. We handle your information with strict confidentiality, and a dedicated client manager will contact you to discuss your investment interests, travel requirements, or membership needs.", zh: "AVIONA 重视每一位对私人航空感兴趣的投资人，以及每一次咨询。我们将对您的信息及需求严格保密，并由专属客户经理一对一联系，提供专业、高效、贴心的服务。" },
+  "contact.service.lead": { en: "Our dedicated client managers look forward to assisting you. Whether you want to explore investment options, aircraft access, membership benefits, or arrange a private consultation, we will provide the appropriate follow-up.", zh: "AVIONA 专属客户经理期待为您服务。无论您希望了解投资方式、飞机使用、会员权益或私人咨询，我们都将安排最适合的后续服务。" },
+  "contact.privacy.p3": { en: "A dedicated client manager will discuss your needs with you personally.", zh: "专属客户经理将一对一跟进您的需求。" },
 
   "ftr.copyrightNotice": {
     en: "© 2026 AVIONA. All Rights Reserved. AVIONA®, AVIONA Logo®, and all website content, graphics, business models and intellectual property are protected by applicable copyright, trademark and intellectual property laws. Unauthorized copying, reproduction, modification or commercial use is strictly prohibited.",
