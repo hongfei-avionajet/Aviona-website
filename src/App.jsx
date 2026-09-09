@@ -727,6 +727,10 @@ function getPageHtml(page, routeKey) {
   if (routeKey === 'home') {
     html = addHomeInvestCta(html)
     html = html.replace(certificationCopyPattern, `${newsCarouselHostHtml}$1`)
+    html = html.replace(
+      '<span class="partner-logo partner-logo-with-name"><img src="/assets/partners/nse.png" alt="NSE Singapore"><span class="partner-logo-name">NSE Singapore</span></span>',
+      '<a class="partner-logo partner-logo-with-name" href="https://www.nsejet.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit NSE JET aircraft management website"><img src="/assets/partners/nse.png" alt="NSE Singapore"><span class="partner-logo-name">NSE Singapore</span></a>',
+    )
   }
 
   return html
