@@ -5260,6 +5260,13 @@
     letter-spacing: 1px !important;
   }
 
+  /* Hero H1 titles that use the neutral light treatment. The homepage title
+     keeps its approved light-yellow accent. */
+  body.aviona-react-site .hero h1:not([data-i18n="v5.hero.h1"]),
+  body.aviona-react-site .contact-hero h1:not([data-i18n="v5.hero.h1"]) {
+    color: #D6D6D6 !important;
+  }
+
   body.aviona-react-site h2,
   body.aviona-react-site h2[data-i18n] {
     font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", Inter, Arial, sans-serif !important;
